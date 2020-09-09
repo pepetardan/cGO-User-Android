@@ -1,0 +1,199 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    android:id="@+id/linearParent"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_marginLeft="24dp"
+    android:layout_marginRight="24dp"
+    android:layout_marginTop="24dp"
+    android:orientation="vertical">
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="155dp"
+        android:clipToPadding="true"
+        app:cardCornerRadius="12dp">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <androidx.viewpager.widget.ViewPager
+                android:id="@+id/viewPager"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@color/divider_color"
+                android:overScrollMode="never"
+                />
+
+            <com.rd.PageIndicatorView
+                android:id="@+id/indicatorView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentBottom="true"
+                android:layout_marginLeft="24dp"
+                android:layout_marginBottom="12dp"
+                app:piv_radius="4dp"
+                app:piv_animationType="worm"
+                />
+
+        </RelativeLayout>
+
+    </androidx.cardview.widget.CardView>
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rvServiceType"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        />
+
+    <id.dtech.cgo.CustomView.MyTextView
+        android:id="@+id/txtTitle"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:maxLines="2"
+        android:ellipsize="end"
+        android:text=""
+        android:layout_marginTop="14dp"
+        android:layout_marginLeft="16dp"
+        android:layout_marginRight="16dp"
+        android:textSize="16sp"
+        android:textColor="@color/profile_name"
+        android:lineSpacingExtra="6dp"
+        app:myFontStyle="rubik_medium"
+        />
+
+
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="14dp"
+        android:layout_marginLeft="16dp"
+        android:layout_marginRight="16dp"
+        android:orientation="horizontal">
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_gravity="center_vertical">
+
+            <ImageView
+                android:id="@+id/imgStar1"
+                android:layout_width="18dp"
+                android:layout_height="18dp"
+                android:src="@drawable/ic_star_empty"
+                />
+
+            <Space
+                android:layout_width="4dp"
+                android:layout_height="match_parent"/>
+
+            <ImageView
+                android:id="@+id/imgStar2"
+                android:layout_width="18dp"
+                android:layout_height="18dp"
+                android:src="@drawable/ic_star_empty"
+                />
+
+            <Space
+                android:layout_width="4dp"
+                android:layout_height="match_parent"/>
+
+            <ImageView
+                android:id="@+id/imgStar3"
+                android:layout_width="18dp"
+                android:layout_height="18dp"
+                android:src="@drawable/ic_star_empty"
+                />
+
+            <Space
+                android:layout_width="4dp"
+                android:layout_height="match_parent"/>
+
+            <ImageView
+                android:id="@+id/imgStar4"
+                android:layout_width="18dp"
+                android:layout_height="18dp"
+                android:src="@drawable/ic_star_empty"
+                />
+
+            <Space
+                android:layout_width="4dp"
+                android:layout_height="match_parent"/>
+
+            <ImageView
+                android:id="@+id/imgStar5"
+                android:layout_width="18dp"
+                android:layout_height="18dp"
+                android:src="@drawable/ic_star_empty"
+                />
+
+        </LinearLayout>
+
+        <Space
+            android:layout_width="6dp"
+            android:layout_height="match_parent"/>
+
+        <id.dtech.cgo.CustomView.MyTextView
+            android:id="@+id/txtReview"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="0 Review"
+            android:textColor="@color/text3"
+            android:textSize="14sp"
+            android:layout_gravity="center_vertical"
+            app:myFontStyle="nunito_sans_semibold"
+            />
+
+        <Space
+            android:layout_width="6dp"
+            android:layout_height="match_parent"/>
+
+        <View
+            android:layout_width="1dp"
+            android:layout_height="match_parent"
+            android:background="@color/divider_color"
+            />
+
+        <Space
+            android:layout_width="6dp"
+            android:layout_height="match_parent"/>
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center_vertical">
+
+            <ImageView
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:scaleType="fitXY"
+                android:src="@drawable/certified_guide_png"/>
+
+            <id.dtech.cgo.CustomView.MyTextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Certified Guide"/>
+        </LinearLayout>
+
+    </LinearLayout>
+
+    <id.dtech.cgo.CustomView.MyTextView
+        android:id="@+id/txtPrice"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Rp 0/pax"
+        android:textSize="16sp"
+        android:textStyle="bold"
+        android:layout_marginTop="14dp"
+        android:layout_marginLeft="16dp"
+        android:layout_marginRight="16dp"
+        android:textColor="@color/bottom_text_selected"
+        app:myFontStyle="nunito_sans_bold"
+        />
+
+</LinearLayout>

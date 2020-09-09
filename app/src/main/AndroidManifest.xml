@@ -1,0 +1,159 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="id.dtech.cgo">
+
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+
+    <application
+        android:name=".Application.MyApplication"
+        android:allowBackup="true"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:supportsRtl="true"
+        android:theme="@style/AppTheme"
+        android:usesCleartextTraffic="true">
+        <activity
+            android:name=".View.PackageDetailActivity"
+            android:theme="@style/AppTheme.WhiteNoActionBar" />
+        <activity
+            android:name=".View.PackageListActivity"
+            android:theme="@style/AppTheme.WhiteNoActionBar" />
+        <activity
+            android:name=".View.ActivityPrivacyPolicy"
+            android:theme="@style/AppTheme.WhiteNoActionBar" />
+        <activity
+            android:name=".View.ActivityTNC"
+            android:theme="@style/AppTheme.WhiteNoActionBar" />
+        <activity
+            android:name=".View.ActivityHistoryDetail"
+            android:theme="@style/AppTheme.WhiteNoActionBar" />
+        <activity
+            android:name=".View.ActivityWishlist"
+            android:theme="@style/AppTheme.WhiteNoActionBar" />
+        <activity
+            android:name=".View.ActivityReviewDetail"
+            android:theme="@style/AppTheme.WhiteNoActionBar" />
+        <activity
+            android:name=".View.ActivityReview"
+            android:theme="@style/AppTheme.WhiteNoActionBar" />
+        <activity
+            android:name=".View.ActivityWriteReview"
+            android:theme="@style/AppTheme.WhiteNoActionBar" />
+        <activity
+            android:name=".View.ActivityWaitingConfirmation"
+            android:theme="@style/AppTheme.WhiteNoActionBar" />
+        <activity
+            android:name=".View.ActivityTransportationTicket"
+            android:theme="@style/AppTheme.WhiteNoActionBar" />
+        <activity
+            android:name=".View.ActivityTransportationPaymentDetail"
+            android:theme="@style/AppTheme.WhiteNoActionBar" />
+        <activity
+            android:name=".View.ActivityPaymentRedirect"
+            android:theme="@style/AppTheme.WhiteNoActionBar" />
+        <activity
+            android:name=".View.ActivitySettings"
+            android:theme="@style/AppTheme.WhiteNoActionBar" />
+        <activity
+            android:name=".View.ActivityEditprofile"
+            android:theme="@style/AppTheme.WhiteNoActionBar" />
+        <activity
+            android:name=".View.ActivityShareReferal"
+            android:theme="@style/AppTheme.WhiteNoActionBar" />
+        <activity
+            android:name=".View.ActivitySignUp"
+            android:theme="@style/AppTheme.WhiteNoActionBar" />
+        <activity
+            android:name=".View.ActivityVerification"
+            android:theme="@style/AppTheme.WhiteNoActionBar" />
+        <activity
+            android:name=".View.ActivityTransportationResultDetail"
+            android:theme="@style/AppTheme.WhiteNoActionBar" />
+        <activity
+            android:name=".View.ActivityTransportationResult"
+            android:theme="@style/AppTheme.WhiteNoActionBar" />
+        <activity
+            android:name=".View.ActivitySearchTransportation"
+            android:theme="@style/AppTheme.WhiteNoActionBar" />
+        <activity
+            android:name=".View.ActivityGuestDetail"
+            android:theme="@style/AppTheme.WhiteNoActionBar" />
+        <activity
+            android:name=".View.ActivityTicket"
+            android:theme="@style/AppTheme.WhiteNoActionBar" />
+        <activity
+            android:name=".View.ActivityPaymentDetail"
+            android:theme="@style/AppTheme.WhiteNoActionBar" />
+        <activity
+            android:name=".View.ActivityCheckout"
+            android:theme="@style/AppTheme.WhiteNoActionBar" />
+        <activity
+            android:name=".View.ActivityAddOn"
+            android:theme="@style/AppTheme.WhiteNoActionBar" />
+        <activity
+            android:name=".View.ActivityPhotoDetail"
+            android:theme="@style/AppTheme.BlackNoActionBar" />
+        <activity
+            android:name=".View.ActivityPhoto"
+            android:theme="@style/AppTheme.WhiteNoActionBar" />
+        <activity
+            android:name=".View.ActivityDetailExperience"
+            android:theme="@style/AppTheme.WhiteNoActionBar" />
+        <activity
+            android:name=".View.ActivityExperienceSearch"
+            android:theme="@style/AppTheme.WhiteNoActionBar" />
+        <activity
+            android:name=".View.ActivityExperience"
+            android:theme="@style/AppTheme.WhiteNoActionBar" />
+        <activity
+            android:name=".View.ActivityLogin"
+            android:theme="@style/AppTheme.WhiteNoActionBar" />
+        <activity
+            android:name=".View.ActivityBoarding"
+            android:theme="@style/AppTheme.WhiteNoActionBar" />
+        <activity
+            android:name=".View.MainActivity"
+            android:theme="@style/AppTheme.WhiteNoActionBar" />
+        <activity
+            android:name=".View.ActivitySplashScreen"
+            android:theme="@style/AppTheme.WhiteNoActionBar">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity android:name="com.xendit.XenditActivity" />
+
+        <meta-data
+            android:name="com.facebook.sdk.ApplicationId"
+            android:value="@string/facebook_app_id" />
+        <meta-data
+            android:name="com.google.android.geo.API_KEY"
+            android:value="@string/google_maps_key" />
+
+        <provider
+            android:name="com.facebook.FacebookContentProvider"
+            android:authorities="com.facebook.app.FacebookContentProvider320430185609228"
+            android:exported="true" />
+
+        <receiver android:name=".Util.DownloadBroadcastReceiver">
+            <intent-filter>
+                <action android:name="android.intent.action.BOOT_COMPLETED" />
+            </intent-filter>
+        </receiver>
+
+        <provider
+            android:name="androidx.core.content.FileProvider"
+            android:authorities="${applicationId}.provider"
+            android:exported="false"
+            android:grantUriPermissions="true">
+            <meta-data
+                android:name="android.support.FILE_PROVIDER_PATHS"
+                android:resource="@xml/file_provider_path" />
+        </provider>
+    </application>
+
+</manifest>

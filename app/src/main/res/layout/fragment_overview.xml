@@ -1,0 +1,501 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.core.widget.NestedScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:fillViewport="true"
+    android:overScrollMode="never"
+    tools:context=".View.FragmentOverview">
+
+   <LinearLayout
+       android:layout_width="match_parent"
+       android:layout_height="match_parent"
+       android:orientation="vertical">
+
+       <androidx.cardview.widget.CardView
+           android:layout_width="match_parent"
+           android:layout_height="wrap_content">
+
+           <LinearLayout
+               android:layout_width="match_parent"
+               android:layout_height="match_parent"
+               android:orientation="vertical">
+
+               <id.dtech.cgo.CustomView.MyTextView
+                   android:layout_width="wrap_content"
+                   android:layout_height="wrap_content"
+                   android:text="@string/schedule"
+                   android:textSize="18sp"
+                   android:layout_marginTop="24dp"
+                   android:layout_marginLeft="24dp"
+                   android:textStyle="bold"
+                   android:textColor="@color/profile_name"
+                   app:myFontStyle="rubik_medium"
+                   />
+
+               <LinearLayout
+                   android:layout_width="match_parent"
+                   android:layout_height="0dp"
+                   android:layout_weight="1"
+                   android:orientation="horizontal"
+                   android:layout_marginTop="24dp"
+                   android:layout_marginLeft="24dp"
+                   android:layout_marginRight="24dp"
+                   android:layout_marginBottom="28dp"
+                   >
+
+                   <LinearLayout
+                       android:layout_width="wrap_content"
+                       android:layout_height="match_parent"
+                       android:orientation="vertical">
+
+                       <LinearLayout
+                           android:layout_width="wrap_content"
+                           android:layout_height="wrap_content"
+                           android:orientation="vertical">
+
+                           <id.dtech.cgo.CustomView.MyTextView
+                               android:id="@+id/txtOriginTime"
+                               android:layout_width="wrap_content"
+                               android:layout_height="wrap_content"
+                               android:text="19:50"
+                               android:textSize="16sp"
+                               android:textColor="@color/profile_name"
+                               app:myFontStyle="nunito_sans_bold"
+                               />
+
+                           <Space
+                               android:layout_width="match_parent"
+                               android:layout_height="4dp"/>
+
+                           <id.dtech.cgo.CustomView.MyTextView
+                               android:id="@+id/txtOriginDate"
+                               android:layout_width="wrap_content"
+                               android:layout_height="wrap_content"
+                               android:text="9 Feb"
+                               android:textSize="14sp"
+                               app:myFontStyle="nunito_sans_reguler"
+                               />
+
+                       </LinearLayout>
+
+                       <Space
+                           android:layout_width="match_parent"
+                           android:layout_height="45dp"/>
+
+                       <id.dtech.cgo.CustomView.MyTextView
+                           android:id="@+id/txtDuration"
+                           android:layout_width="wrap_content"
+                           android:layout_height="0dp"
+                           android:layout_weight="1"
+                           android:text="1h 20m"
+                           android:gravity="center"
+                           app:myFontStyle="nunito_sans_reguler"
+                           />
+
+                       <Space
+                           android:layout_width="match_parent"
+                           android:layout_height="45dp"/>
+
+                       <LinearLayout
+                           android:layout_width="wrap_content"
+                           android:layout_height="wrap_content"
+                           android:orientation="vertical">
+
+                           <id.dtech.cgo.CustomView.MyTextView
+                               android:id="@+id/txtDestinationTime"
+                               android:layout_width="wrap_content"
+                               android:layout_height="wrap_content"
+                               android:text="21:50"
+                               android:textSize="16sp"
+                               app:myFontStyle="nunito_sans_bold"
+                               android:textColor="@color/profile_name"
+                               />
+
+                           <Space
+                               android:layout_width="match_parent"
+                               android:layout_height="4dp"/>
+
+                           <id.dtech.cgo.CustomView.MyTextView
+                               android:id="@+id/txtDestinationDate"
+                               android:layout_width="wrap_content"
+                               android:layout_height="wrap_content"
+                               android:text="9 Feb"
+                               android:textSize="14sp"
+                               app:myFontStyle="nunito_sans_reguler"
+                               />
+
+                       </LinearLayout>
+
+                   </LinearLayout>
+
+                   <Space
+                       android:layout_width="12dp"
+                       android:layout_height="match_parent"/>
+
+                   <LinearLayout
+                       android:layout_width="wrap_content"
+                       android:layout_height="match_parent"
+                       android:orientation="vertical">
+
+                       <ImageView
+                           android:layout_width="10dp"
+                           android:layout_height="10dp"
+                           android:layout_marginTop="5dp"
+                           android:src="@drawable/ic_blue_circle"
+                           />
+
+                       <ImageView
+                           android:layout_width="wrap_content"
+                           android:layout_height="0dp"
+                           android:layout_weight="1"
+                           android:src="@drawable/background_dashline_vertical"
+                           android:layout_gravity="center_horizontal"
+                           />
+
+                       <ImageView
+                           android:layout_width="10dp"
+                           android:layout_height="10dp"
+                           android:src="@drawable/ic_green_circle"
+                           android:layout_marginBottom="30dp"
+                           />
+
+                   </LinearLayout>
+
+                   <Space
+                       android:layout_width="12dp"
+                       android:layout_height="match_parent"/>
+
+                   <LinearLayout
+                       android:layout_width="0dp"
+                       android:layout_height="match_parent"
+                       android:layout_weight="1"
+                       android:orientation="vertical">
+
+                       <LinearLayout
+                           android:layout_width="match_parent"
+                           android:layout_height="wrap_content"
+                           android:orientation="vertical">
+
+                           <LinearLayout
+                               android:layout_width="match_parent"
+                               android:layout_height="wrap_content"
+                               android:orientation="horizontal">
+
+                               <id.dtech.cgo.CustomView.MyTextView
+                                   android:id="@+id/txtProvinceOrigin"
+                                   android:layout_width="wrap_content"
+                                   android:layout_height="wrap_content"
+                                   android:text="Bali"
+                                   android:textSize="16sp"
+                                   android:textColor="@color/profile_name"
+                                   app:myFontStyle="nunito_sans_semibold"
+                                   />
+
+                               <id.dtech.cgo.CustomView.MyTextView
+                                   android:id="@+id/txtCityOrigin"
+                                   android:layout_width="wrap_content"
+                                   android:layout_height="wrap_content"
+                                   android:text=", Pelabuhan Bali Selatan"
+                                   android:textSize="16sp"
+                                   android:textColor="@color/text16"
+                                   app:myFontStyle="nunito_sans_reguler"
+                                   android:visibility="gone"
+                                   />
+
+                           </LinearLayout>
+
+                           <Space
+                               android:layout_width="match_parent"
+                               android:layout_height="4dp"/>
+
+                           <id.dtech.cgo.CustomView.MyTextView
+                               android:id="@+id/txtOriginHarbour"
+                               android:layout_width="wrap_content"
+                               android:layout_height="wrap_content"
+                               android:text="Sanur Harbour"
+                               android:textSize="14sp"
+                               android:textColor="@color/profile_name"
+                               app:myFontStyle="nunito_sans_semibold"
+                               android:visibility="invisible"
+                               />
+
+                       </LinearLayout>
+
+                       <Space
+                           android:layout_width="wrap_content"
+                           android:layout_height="0dp"
+                           android:layout_weight="1"
+                           android:gravity="center"
+                           />
+
+                       <LinearLayout
+                           android:layout_width="match_parent"
+                           android:layout_height="wrap_content"
+                           android:orientation="vertical">
+
+                           <LinearLayout
+                               android:layout_width="match_parent"
+                               android:layout_height="wrap_content"
+                               android:orientation="horizontal">
+
+                               <id.dtech.cgo.CustomView.MyTextView
+                                   android:id="@+id/txtProvinceDestination"
+                                   android:layout_width="wrap_content"
+                                   android:layout_height="wrap_content"
+                                   android:text="Bali"
+                                   android:textSize="16sp"
+                                   android:textColor="@color/profile_name"
+                                   app:myFontStyle="nunito_sans_semibold"
+                                   />
+
+                               <id.dtech.cgo.CustomView.MyTextView
+                                   android:id="@+id/txtCityDestination"
+                                   android:layout_width="wrap_content"
+                                   android:layout_height="wrap_content"
+                                   android:text=", Pelabuhan Nusa 1"
+                                   android:textSize="16sp"
+                                   android:textColor="@color/text16"
+                                   app:myFontStyle="nunito_sans_reguler"
+                                   android:visibility="gone"
+                                   />
+
+                           </LinearLayout>
+
+                           <Space
+                               android:layout_width="match_parent"
+                               android:layout_height="4dp"/>
+
+                           <id.dtech.cgo.CustomView.MyTextView
+                               android:id="@+id/txtDestinationHarbour"
+                               android:layout_width="wrap_content"
+                               android:layout_height="wrap_content"
+                               android:text="Nusa Penida"
+                               android:textSize="14sp"
+                               android:textColor="@color/profile_name"
+                               app:myFontStyle="nunito_sans_semibold"
+                               android:visibility="invisible"
+                               />
+
+                       </LinearLayout>
+
+                   </LinearLayout>
+
+               </LinearLayout>
+
+           </LinearLayout>
+
+       </androidx.cardview.widget.CardView>
+
+       <androidx.cardview.widget.CardView
+           android:layout_width="match_parent"
+           android:layout_height="wrap_content"
+           android:layout_marginTop="24dp">
+
+           <LinearLayout
+               android:layout_width="match_parent"
+               android:layout_height="wrap_content"
+               android:orientation="vertical">
+
+               <id.dtech.cgo.CustomView.MyTextView
+                   android:layout_width="wrap_content"
+                   android:layout_height="wrap_content"
+                   android:text="@string/price"
+                   android:layout_marginTop="24dp"
+                   android:layout_marginLeft="24dp"
+                   android:textSize="18sp"
+                   app:myFontStyle="nunito_sans_bold"
+                   android:textColor="@color/profile_name"
+                   />
+
+               <LinearLayout
+                   android:id="@+id/linearAdult"
+                   android:layout_width="match_parent"
+                   android:layout_height="wrap_content"
+                   android:layout_marginTop="24dp"
+                   android:layout_marginLeft="24dp"
+                   android:layout_marginRight="24dp"
+                   android:visibility="gone"
+                   android:orientation="horizontal">
+
+                   <id.dtech.cgo.CustomView.MyTextView
+                       android:id="@+id/txtAdult"
+                       android:layout_width="0dp"
+                       android:layout_height="wrap_content"
+                       android:layout_weight="1"
+                       android:text="Adult(x2)"
+                       app:myFontStyle="nunito_sans_reguler"
+                       android:textColor="#4A4A4A"
+                       android:textSize="14sp"
+                       />
+
+                   <id.dtech.cgo.CustomView.MyTextView
+                       android:id="@+id/txtAdultPrice"
+                       android:layout_width="wrap_content"
+                       android:layout_height="wrap_content"
+                       android:text="IDR 1.066.000"
+                       app:myFontStyle="nunito_sans_semibold"
+                       android:textColor="#4A4A4A"
+                       android:textSize="14sp"
+                       />
+
+               </LinearLayout>
+
+               <LinearLayout
+                   android:id="@+id/linearChildren"
+                   android:layout_width="match_parent"
+                   android:layout_height="wrap_content"
+                   android:layout_marginTop="12dp"
+                   android:layout_marginLeft="24dp"
+                   android:layout_marginRight="24dp"
+                   android:visibility="gone"
+                   android:orientation="horizontal">
+
+                   <id.dtech.cgo.CustomView.MyTextView
+                       android:id="@+id/txtChildren"
+                       android:layout_width="0dp"
+                       android:layout_height="wrap_content"
+                       android:layout_weight="1"
+                       android:text="Children(x1)"
+                       app:myFontStyle="nunito_sans_semibold"
+                       android:textColor="#4A4A4A"
+                       android:textSize="14sp"
+                       />
+
+                   <id.dtech.cgo.CustomView.MyTextView
+                       android:id="@+id/txtChildrenPrice"
+                       android:layout_width="wrap_content"
+                       android:layout_height="wrap_content"
+                       android:text="IDR 533.000"
+                       app:myFontStyle="nunito_sans_semibold"
+                       android:textColor="#4A4A4A"
+                       android:textSize="14sp"
+                       />
+
+               </LinearLayout>
+
+               <LinearLayout
+                   android:id="@+id/linearInsurance"
+                   android:layout_width="match_parent"
+                   android:layout_height="wrap_content"
+                   android:layout_marginTop="12dp"
+                   android:layout_marginLeft="24dp"
+                   android:layout_marginRight="24dp"
+                   android:visibility="gone"
+                   android:orientation="horizontal">
+
+                   <id.dtech.cgo.CustomView.MyTextView
+                       android:id="@+id/txtInsurance"
+                       android:layout_width="0dp"
+                       android:layout_height="wrap_content"
+                       android:layout_weight="1"
+                       android:text="Insurance"
+                       app:myFontStyle="nunito_sans_semibold"
+                       android:textColor="#4A4A4A"
+                       android:textSize="14sp"
+                       />
+
+                   <id.dtech.cgo.CustomView.MyTextView
+                       android:id="@+id/txtInsuranceInclude"
+                       android:layout_width="wrap_content"
+                       android:layout_height="wrap_content"
+                       android:text="Include"
+                       app:myFontStyle="nunito_sans_semibold"
+                       android:textColor="#4A4A4A"
+                       android:textSize="14sp"
+                       />
+
+               </LinearLayout>
+
+               <View
+                   android:layout_width="match_parent"
+                   android:layout_height="1dp"
+                   android:background="@color/divider_color"
+                   android:layout_marginTop="24dp"
+                   />
+
+               <LinearLayout
+                   android:layout_width="match_parent"
+                   android:layout_height="wrap_content"
+                   android:layout_margin="24dp"
+                   android:orientation="horizontal">
+
+                   <id.dtech.cgo.CustomView.MyTextView
+                       android:layout_width="0dp"
+                       android:layout_height="wrap_content"
+                       android:layout_weight="1"
+                       android:text="@string/total_price"
+                       android:textSize="16sp"
+                       android:textColor="@color/profile_name"
+                       app:myFontStyle="nunito_sans_semibold"
+                       />
+
+                   <id.dtech.cgo.CustomView.MyTextView
+                       android:id="@+id/txtTotalPrice"
+                       android:layout_width="wrap_content"
+                       android:layout_height="wrap_content"
+                       android:text="IDR 1.599.000"
+                       android:textColor="@color/bottom_text_selected"
+                       android:textStyle="bold"
+                       android:textSize="16sp"
+                       app:myFontStyle="nunito_sans_bold"
+                       />
+
+               </LinearLayout>
+
+           </LinearLayout>
+
+       </androidx.cardview.widget.CardView>
+
+       <androidx.cardview.widget.CardView
+           android:id="@+id/cardCancelation"
+           android:layout_width="match_parent"
+           android:layout_height="wrap_content"
+           android:layout_marginTop="24dp"
+           android:layout_marginBottom="55dp">
+
+           <LinearLayout
+               android:layout_width="match_parent"
+               android:layout_height="wrap_content"
+               android:orientation="vertical">
+
+               <LinearLayout
+                   android:layout_width="match_parent"
+                   android:layout_height="wrap_content"
+                   android:orientation="vertical">
+
+                   <LinearLayout
+                       android:layout_width="match_parent"
+                       android:layout_height="wrap_content"
+                       android:layout_margin="24dp"
+                       android:orientation="horizontal">
+
+                       <id.dtech.cgo.CustomView.MyTextView
+                           android:layout_width="0dp"
+                           android:layout_height="wrap_content"
+                           android:text="@string/cancel_policy"
+                           android:layout_weight="1"
+                           android:textSize="16sp"
+                           android:textColor="@color/profile_name"
+                           app:myFontStyle="nunito_sans_semibold"
+                           />
+
+                       <ImageView
+                           android:layout_width="24dp"
+                           android:layout_height="24dp"
+                           android:src="@drawable/ic_right_arrow"
+                           />
+
+                   </LinearLayout>
+
+               </LinearLayout>
+
+           </LinearLayout>
+
+       </androidx.cardview.widget.CardView>
+
+   </LinearLayout>
+
+</androidx.core.widget.NestedScrollView>

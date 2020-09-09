@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="@color/white"
+    android:orientation="vertical">
+
+    <id.dtech.cgo.CustomView.MyTextView
+        android:id="@+id/txtGuest"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/guest_detail"
+        android:textSize="14sp"
+        android:textStyle="bold"
+        android:textColor="@color/profile_name"
+        android:layout_marginTop="24dp"
+        android:layout_marginLeft="24dp"
+        app:myFontStyle="nunito_sans_bold"
+        />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginTop="12dp"
+        android:layout_marginLeft="24dp"
+        android:layout_marginRight="24dp">
+
+        <id.dtech.cgo.CustomView.MyTextView
+            android:id="@+id/txtName"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="Emma Watson"
+            android:textSize="14sp"
+            android:layout_weight="1"
+            android:textColor="@color/profile_name"
+            app:myFontStyle="nunito_sans_semibold"
+            />
+
+        <id.dtech.cgo.CustomView.MyTextView
+            android:id="@+id/txtType"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Adult"
+            android:textSize="14sp"
+            android:textColor="@color/profile_name"
+            android:textStyle="bold"
+            app:myFontStyle="nunito_sans_semibold"
+            />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginTop="12dp"
+        android:layout_marginLeft="24dp"
+        android:layout_marginRight="24dp"
+        android:layout_marginBottom="15dp">
+
+        <id.dtech.cgo.CustomView.MyTextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="ID Card"
+            android:textSize="14sp"
+            android:layout_weight="1"
+            android:textColor="@color/profile_name"
+            app:myFontStyle="nunito_sans_semibold"
+            />
+
+        <id.dtech.cgo.CustomView.MyTextView
+            android:id="@+id/txtIdCard"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="12345678"
+            android:textSize="14sp"
+            android:textColor="@color/profile_name"
+            android:textStyle="bold"
+            app:myFontStyle="nunito_sans_semibold"
+            />
+
+    </LinearLayout>
+
+    <View
+        android:id="@+id/viewGuest"
+        android:layout_width="match_parent"
+        android:layout_height="15dp"
+        android:background="#F7F7F7"
+        />
+
+</LinearLayout>

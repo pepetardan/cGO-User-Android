@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    android:id="@+id/linearParent"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal"
+    android:layout_marginTop="24dp"
+    android:layout_marginLeft="24dp"
+    android:layout_marginRight="24dp">
+
+    <ImageView
+        android:id="@+id/imgBank"
+        android:layout_width="75dp"
+        android:layout_height="35dp"
+        android:src="@drawable/bank_mandiri"
+        />
+
+    <Space
+        android:layout_width="24dp"
+        android:layout_height="match_parent"/>
+    
+    <TextView
+        android:id="@+id/txtBank"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:text="Bank Negara Indonesia (BNI)"
+        android:layout_gravity="center_vertical"
+        android:textColor="#333333"
+        />
+
+    <Space
+        android:layout_width="24dp"
+        android:layout_height="match_parent"/>
+
+    <ImageView
+        android:id="@+id/checkList"
+        android:layout_width="20dp"
+        android:layout_height="20dp"
+        android:src="@drawable/ic_circle_graybgk"
+        android:layout_gravity="center_vertical"
+        />
+
+</LinearLayout>

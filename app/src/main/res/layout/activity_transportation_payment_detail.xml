@@ -1,0 +1,692 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@color/white"
+    tools:context=".View.ActivityTransportationPaymentDetail">
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="65dp"
+        app:cardElevation="3dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="horizontal">
+
+            <ImageView
+                android:id="@+id/ivBack"
+                android:layout_width="28dp"
+                android:layout_height="28dp"
+                android:layout_gravity="center_vertical"
+                android:layout_marginLeft="24dp"
+                android:src="@drawable/left_arrow"
+                />
+
+        </LinearLayout>
+
+    </androidx.cardview.widget.CardView>
+
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:overScrollMode="never"
+        android:fillViewport="true">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:id="@+id/linearDeparture"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="24dp"
+                android:layout_marginLeft="24dp"
+                android:layout_marginRight="24dp"
+                android:orientation="vertical">
+
+                <id.dtech.cgo.CustomView.MyTextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/departure"
+                    android:textSize="14sp"
+                    app:myFontStyle="nunito_sans_bold"
+                    />
+
+                <LinearLayout
+                    android:id="@+id/linearOriginDestination"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="16dp"
+                    android:orientation="horizontal">
+
+                    <id.dtech.cgo.CustomView.MyTextView
+                        android:id="@+id/txtDepartureOrigin"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Sanur Harbour"
+                        android:textColor="@color/profile_name"
+                        android:textSize="16sp"
+                        app:myFontStyle="rubik_medium"
+                        />
+
+                    <Space
+                        android:layout_width="8dp"
+                        android:layout_height="match_parent"/>
+
+                    <ImageView
+                        android:layout_width="24dp"
+                        android:layout_height="24dp"
+                        android:src="@drawable/ic_rightarrow2"
+                        />
+
+                    <Space
+                        android:layout_width="8dp"
+                        android:layout_height="match_parent"/>
+
+                    <id.dtech.cgo.CustomView.MyTextView
+                        android:id="@+id/txtDepartureDestination"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Labuan Bajo"
+                        android:textColor="@color/profile_name"
+                        android:textSize="16sp"
+                        app:myFontStyle="rubik_medium"
+                        />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="12dp"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal">
+
+                    <ImageView
+                        android:id="@+id/imgDepartureMerchant"
+                        android:layout_width="55dp"
+                        android:layout_height="35dp"
+                        android:src="@drawable/example_asdp"
+                        android:scaleType="centerCrop"
+                        />
+
+                    <Space
+                        android:layout_width="16dp"
+                        android:layout_height="match_parent"/>
+
+                    <id.dtech.cgo.CustomView.MyTextView
+                        android:id="@+id/txtDepartureMerchantName"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:text="ASDP"
+                        android:textSize="16sp"
+                        android:layout_weight="1"
+                        android:layout_gravity="center_vertical"
+                        app:myFontStyle="nunito_sans_semibold"
+                        />
+
+                </LinearLayout>
+
+                <Space
+                    android:layout_width="match_parent"
+                    android:layout_height="8dp"/>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal">
+
+                    <id.dtech.cgo.CustomView.MyTextView
+                        android:id="@+id/txtDepartureClass"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:layout_gravity="center_vertical"
+                        android:text="Economy"
+                        android:textSize="14sp"
+                        app:myFontStyle="nunito_sans_semibold"
+                        android:textColor="#7E7E7E" />
+
+                    <Space
+                        android:layout_width="8dp"
+                        android:layout_height="match_parent"/>
+
+                    <ImageView
+                        android:layout_width="5dp"
+                        android:layout_height="5dp"
+                        android:src="@drawable/ic_ellipse"
+                        android:layout_gravity="center_vertical"
+                        />
+
+                    <Space
+                        android:layout_width="8dp"
+                        android:layout_height="match_parent"/>
+
+                    <id.dtech.cgo.CustomView.MyTextView
+                        android:id="@+id/txtDepartureGuest"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:text="3 Adult(s), 1 Children"
+                        android:layout_weight="1"
+                        android:layout_gravity="center_vertical"
+                        android:textColor="#7E7E7E"
+                        android:textSize="14sp"
+                        app:myFontStyle="nunito_sans_semibold"
+                        />
+
+                </LinearLayout>
+
+                <Space
+                    android:layout_width="match_parent"
+                    android:layout_height="8dp"/>
+
+                <id.dtech.cgo.CustomView.MyTextView
+                    android:id="@+id/txtDepartureDate"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Fri, 11 Feb - Departure 12:40 WITA"
+                    android:layout_gravity="center_vertical"
+                    android:textColor="#7E7E7E"
+                    android:textSize="14sp"
+                    app:myFontStyle="nunito_sans_semibold"
+                    />
+
+                <LinearLayout
+                    android:id="@+id/linearDepartureSeeTicket"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:visibility="gone"
+                    android:orientation="vertical">
+
+                    <Space
+                        android:layout_width="match_parent"
+                        android:layout_height="24dp"/>
+
+                    <Button
+                        android:id="@+id/btnDepartureSeeTicket"
+                        android:layout_width="125dp"
+                        android:layout_height="40dp"
+                        android:text="SEE TICKET"
+                        android:gravity="center"
+                        android:background="@drawable/background_see_ticket"
+                        android:textColor="#143ABE"
+                        android:textSize="14sp"
+                        />
+
+                </LinearLayout>
+
+                <Space
+                    android:layout_width="match_parent"
+                    android:layout_height="24dp"/>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:background="@color/divider_color"
+                    />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/linearReturn"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="24dp"
+                android:layout_marginLeft="24dp"
+                android:layout_marginRight="24dp"
+                android:orientation="vertical"
+                android:visibility="gone">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Return"
+                    android:textSize="14sp"
+                    />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="16dp"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:id="@+id/txtReturnOrigin"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Sanur Harbour"
+                        android:textColor="@color/profile_name"
+                        android:textStyle="bold"
+                        android:textSize="16sp"
+                        />
+
+                    <Space
+                        android:layout_width="8dp"
+                        android:layout_height="match_parent"/>
+
+                    <ImageView
+                        android:layout_width="24dp"
+                        android:layout_height="24dp"
+                        android:src="@drawable/ic_rightarrow2"
+                        />
+
+                    <Space
+                        android:layout_width="8dp"
+                        android:layout_height="match_parent"/>
+
+                    <TextView
+                        android:id="@+id/txtReturnDestination"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Labuan Bajo"
+                        android:textColor="@color/profile_name"
+                        android:textStyle="bold"
+                        android:textSize="16sp"
+                        />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="12dp"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal">
+
+                    <ImageView
+                        android:id="@+id/imgReturnMerchant"
+                        android:layout_width="55dp"
+                        android:layout_height="35dp"
+                        android:src="@drawable/example_asdp"
+                        />
+
+                    <Space
+                        android:layout_width="16dp"
+                        android:layout_height="match_parent"/>
+
+                    <TextView
+                        android:id="@+id/txtReturnMerchantName"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:text="ASDP"
+                        android:textSize="16sp"
+                        android:layout_weight="1"
+                        android:layout_gravity="center_vertical"
+                        />
+
+                </LinearLayout>
+
+                <Space
+                    android:layout_width="match_parent"
+                    android:layout_height="8dp"/>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:id="@+id/txtReturnClass"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:layout_gravity="center_vertical"
+                        android:text="Economy"
+                        android:textSize="13sp"
+                        android:textColor="@color/black" />
+
+                    <Space
+                        android:layout_width="8dp"
+                        android:layout_height="match_parent"/>
+
+                    <ImageView
+                        android:layout_width="5dp"
+                        android:layout_height="5dp"
+                        android:src="@drawable/ic_ellipse"
+                        android:layout_gravity="center_vertical"
+                        />
+
+                    <Space
+                        android:layout_width="8dp"
+                        android:layout_height="match_parent"/>
+
+                    <TextView
+                        android:id="@+id/txtReturnGuest"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="3 Adult(s), 1 Children"
+                        android:layout_gravity="center_vertical"
+                        android:textColor="@color/black"
+                        android:textSize="13sp"
+                        />
+
+                </LinearLayout>
+
+                <Space
+                    android:layout_width="match_parent"
+                    android:layout_height="8dp"/>
+
+                <TextView
+                    android:id="@+id/txtReturnDate"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Fri, 11 Feb - Departure 12:40 WITA"
+                    android:layout_gravity="center_vertical"
+                    android:textColor="#7E7E7E"
+                    android:textSize="13sp"
+                    />
+
+                <LinearLayout
+                    android:id="@+id/linearReturnSeeTicket"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                    <Space
+                        android:layout_width="match_parent"
+                        android:layout_height="24dp"/>
+
+                    <Button
+                        android:id="@+id/btnReturnSeeTicket"
+                        android:layout_width="125dp"
+                        android:layout_height="40dp"
+                        android:text="SEE TICKET"
+                        android:gravity="center"
+                        android:background="@drawable/background_see_ticket"
+                        android:textColor="#143ABE"
+                        android:textSize="14sp"
+                        />
+
+                </LinearLayout>
+
+                <Space
+                    android:layout_width="match_parent"
+                    android:layout_height="24dp"/>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:background="@color/divider_color"
+                    />
+
+            </LinearLayout>
+
+            <id.dtech.cgo.CustomView.MyTextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/booking_detail"
+                android:textSize="16sp"
+                android:textColor="@color/profile_name"
+                app:myFontStyle="nunito_sans_bold"
+                android:layout_marginTop="24dp"
+                android:layout_marginLeft="24dp"
+                />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_marginTop="24dp"
+                android:layout_marginLeft="24dp"
+                android:layout_marginRight="24dp">
+
+                <id.dtech.cgo.CustomView.MyTextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:text="@string/book_by"
+                    android:textSize="14sp"
+                    android:layout_weight="1"
+                    app:myFontStyle="nunito_sans_semibold"
+                    />
+
+                <id.dtech.cgo.CustomView.MyTextView
+                    android:id="@+id/txtName"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Emma Watson"
+                    android:textSize="14sp"
+                    app:myFontStyle="nunito_sans_semibold"
+                    />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_marginTop="24dp"
+                android:layout_marginLeft="24dp"
+                android:layout_marginRight="24dp">
+
+                <id.dtech.cgo.CustomView.MyTextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:text="@string/order_id"
+                    android:textSize="14sp"
+                    android:layout_weight="1"
+                    app:myFontStyle="nunito_sans_semibold"
+                    />
+
+                <id.dtech.cgo.CustomView.MyTextView
+                    android:id="@+id/txtOrderID"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="11211231231"
+                    android:textSize="14sp"
+                    app:myFontStyle="nunito_sans_semibold"
+                    />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_marginTop="24dp"
+                android:layout_marginLeft="24dp"
+                android:layout_marginRight="24dp">
+
+                <id.dtech.cgo.CustomView.MyTextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:text="@string/guest"
+                    android:textSize="14sp"
+                    android:layout_weight="1"
+                    app:myFontStyle="nunito_sans_semibold"
+                    />
+
+                <id.dtech.cgo.CustomView.MyTextView
+                    android:id="@+id/txtGuest"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="3 Guest(s)"
+                    android:textSize="14sp"
+                    app:myFontStyle="nunito_sans_semibold"
+                    />
+
+            </LinearLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@color/divider_color"
+                android:layout_marginTop="36dp"
+                android:layout_marginLeft="24dp"
+                android:layout_marginRight="24dp"
+                />
+
+            <id.dtech.cgo.CustomView.MyTextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/payment_detail"
+                android:textSize="16sp"
+                android:textColor="@color/profile_name"
+                app:myFontStyle="nunito_sans_bold"
+                android:layout_marginTop="24dp"
+                android:layout_marginLeft="24dp"
+                />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_marginTop="24dp"
+                android:layout_marginLeft="24dp"
+                android:layout_marginRight="24dp">
+
+                <id.dtech.cgo.CustomView.MyTextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:text="@string/payment"
+                    android:textSize="14sp"
+                    android:layout_weight="1"
+                    app:myFontStyle="nunito_sans_semibold"
+                    />
+
+                <id.dtech.cgo.CustomView.MyTextView
+                    android:id="@+id/txtBankName"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Permata Bank"
+                    android:textSize="14sp"
+                    app:myFontStyle="nunito_sans_semibold"
+                    />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_marginTop="24dp"
+                android:layout_marginLeft="24dp"
+                android:layout_marginRight="24dp">
+
+                <id.dtech.cgo.CustomView.MyTextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:text="@string/transfer_amount"
+                    android:textSize="14sp"
+                    android:layout_weight="1"
+                    app:myFontStyle="nunito_sans_semibold"
+                    />
+
+                <id.dtech.cgo.CustomView.MyTextView
+                    android:id="@+id/txtPrice"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="IDR 2.384.000"
+                    android:textSize="14sp"
+                    app:myFontStyle="nunito_sans_semibold"
+                    />
+
+            </LinearLayout>
+
+            <id.dtech.cgo.CustomView.MyTextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/hotel_near"
+                android:textSize="16sp"
+                android:textColor="@color/profile_name"
+                android:textStyle="bold"
+                android:layout_marginTop="24dp"
+                android:layout_marginLeft="24dp"
+                app:myFontStyle="nunito_sans_bold"
+                />
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="24dp">
+
+                <id.dtech.cgo.CustomView.MyTextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/no_hotel_near"
+                    android:textSize="14sp"
+                    android:background="@drawable/background_tnc"
+                    android:paddingTop="12dp"
+                    android:paddingBottom="12dp"
+                    android:paddingLeft="16dp"
+                    android:paddingRight="16dp"
+                    app:myFontStyle="nunito_sans_reguler"
+                    />
+
+            </RelativeLayout>
+
+        </LinearLayout>
+
+    </androidx.core.widget.NestedScrollView>
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="80dp"
+        app:cardElevation="5dp"
+        android:elevation="5dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="horizontal">
+
+            <carbon.widget.LinearLayout
+                android:id="@+id/linearBacktoHome"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:orientation="horizontal">
+
+                <carbon.widget.RelativeLayout
+                    android:id="@+id/btnHome"
+                    android:layout_width="match_parent"
+                    android:layout_height="45dp"
+                    android:layout_marginLeft="24dp"
+                    android:layout_marginRight="8dp"
+                    android:background="#ffffff"
+                    android:layout_gravity="center_vertical"
+                    app:carbon_cornerRadius="25dp"
+                    app:carbon_elevation="8dp"
+                    app:carbon_elevationShadowColor="@color/bottom_text_selected">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/back_to_home"
+                        android:textSize="16sp"
+                        android:textColor="@color/bottom_text_selected"
+                        android:layout_centerInParent="true"
+                        android:textAllCaps="true"
+                        />
+
+                </carbon.widget.RelativeLayout>
+
+            </carbon.widget.LinearLayout>
+
+            <Button
+                android:id="@+id/btnTicket"
+                android:layout_width="0dp"
+                android:layout_height="45dp"
+                android:layout_weight="1"
+                android:text="@string/see_ticket"
+                android:background="@drawable/background_bluerounded"
+                android:textColor="@color/white"
+                android:layout_gravity="center_vertical"
+                android:layout_marginLeft="8dp"
+                android:layout_marginRight="24dp"
+                android:textSize="16sp"
+                />
+
+        </LinearLayout>
+
+    </androidx.cardview.widget.CardView>
+
+</LinearLayout>

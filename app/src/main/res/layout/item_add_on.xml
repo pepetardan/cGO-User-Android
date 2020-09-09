@@ -1,0 +1,156 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView
+    android:id="@+id/cardParent"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_marginTop="24dp"
+    android:layout_marginLeft="24dp"
+    android:layout_marginRight="24dp"
+    app:cardElevation="5dp"
+    app:cardCornerRadius="8dp">
+
+    <LinearLayout
+        android:id="@+id/linearBackground"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="16dp"
+            android:layout_marginTop="24dp"
+            android:layout_marginRight="16dp"
+            android:orientation="horizontal">
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:orientation="vertical">
+
+                <id.dtech.cgo.CustomView.MyTextView
+                    android:id="@+id/txtTitle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/ticket_only"
+                    android:textColor="@color/black"
+                    app:myFontStyle="nunito_sans_bold"
+                    android:textSize="16sp"
+                    />
+
+                <id.dtech.cgo.CustomView.MyTextView
+                    android:id="@+id/txtDesc"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/purchase"
+                    android:textStyle="bold"
+                    android:textSize="14sp"
+                    android:lineSpacingExtra="4dp"
+                    android:layout_marginTop="12dp"
+                    android:textColor="@color/profile_name"
+                    app:myFontStyle="nunito_sans_reguler"
+                    />
+
+            </LinearLayout>
+
+            <ImageView
+                android:id="@+id/imgCheck"
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:src="@drawable/ic_checkmark_circle"
+                />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/linearAmount"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginTop="24dp"
+            android:layout_marginLeft="16dp"
+            android:layout_marginRight="16dp">
+
+            <id.dtech.cgo.CustomView.MyTextView
+                android:id="@+id/txtServiceName"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/total_price"
+                android:textSize="16sp"
+                android:textColor="@color/profile_name"
+                app:myFontStyle="nunito_sans_semibold"
+                />
+
+            <id.dtech.cgo.CustomView.MyTextView
+                android:id="@+id/txtAmount"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:text="IDR 430.000 "
+                android:textSize="16sp"
+                android:layout_weight="1"
+                app:myFontStyle="nunito_sans_bold"
+                android:gravity="end"
+                android:textColor="@color/bottom_text_selected"
+                />
+
+        </LinearLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_marginTop="24dp"
+            android:layout_marginLeft="16dp"
+            android:layout_marginRight="16dp"
+            android:background="@color/divider_color"
+            />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginTop="24dp"
+            android:layout_marginLeft="16dp"
+            android:layout_marginRight="16dp"
+            android:layout_marginBottom="24dp">
+
+            <id.dtech.cgo.CustomView.MyTextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/total_price"
+                android:textSize="16sp"
+                android:textColor="@color/profile_name"
+                app:myFontStyle="nunito_sans_semibold"
+                />
+
+            <id.dtech.cgo.CustomView.MyTextView
+                android:id="@+id/txtPrice"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:text="IDR 2.430.000 / trip"
+                android:textSize="16sp"
+                android:layout_weight="1"
+                app:myFontStyle="nunito_sans_bold"
+                android:gravity="end"
+                android:textColor="@color/bottom_text_selected"
+                />
+
+        </LinearLayout>
+
+        <Button
+            android:id="@+id/btnTicketCheckout"
+            android:layout_width="match_parent"
+            android:layout_height="45dp"
+            android:layout_marginLeft="16dp"
+            android:layout_marginRight="16dp"
+            android:layout_marginBottom="24dp"
+            android:text="@string/checkout"
+            android:background="@drawable/background_bluerounded"
+            android:textColor="@color/white"
+            />
+
+    </LinearLayout>
+
+</androidx.cardview.widget.CardView>

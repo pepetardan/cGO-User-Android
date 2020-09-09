@@ -1,0 +1,870 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:background="@color/white"
+    android:focusableInTouchMode="true"
+    android:fillViewport="true">
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:cardElevation="5dp">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <LinearLayout
+                android:id="@+id/linearLogin"
+                android:layout_width="match_parent"
+                android:layout_height="65dp"
+                android:orientation="horizontal"
+                android:layout_marginLeft="24dp"
+                android:layout_marginRight="24dp"
+                android:layout_marginTop="24dp"
+                android:visibility="gone"
+                android:background="@drawable/background_notlogin">
+
+                <Space
+                    android:layout_width="16dp"
+                    android:layout_height="match_parent"/>
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:layout_gravity="center_vertical"
+                    android:text="@string/benefits"
+                    android:textColor="@color/text1"
+                    android:textSize="14sp"
+                    />
+
+                <Space
+                    android:layout_width="16dp"
+                    android:layout_height="match_parent"/>
+
+                <ImageView
+                    android:layout_width="46dp"
+                    android:layout_height="46dp"
+                    android:src="@drawable/ic_profile_blue"
+                    android:layout_gravity="center_vertical"
+                    />
+
+                <Space
+                    android:layout_width="16dp"
+                    android:layout_height="match_parent"/>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/experienceHeader1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/linearLogin"
+                android:visibility="gone"
+                android:orientation="vertical">
+
+                <id.dtech.cgo.CustomView.MyTextView
+                    android:id="@+id/txtTitle"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="24dp"
+                    android:layout_marginLeft="24dp"
+                    android:layout_marginRight="24dp"
+                    android:textSize="17sp"
+                    app:myFontStyle="rubik_medium"
+                    android:textColor="@color/profile_name"
+                    android:text="Sailing with Rising Fast Boat with Tropical Yacht Charters 2 Days 1 Night"
+                    android:lineSpacingExtra="6dp"
+                    />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="16dp"
+                    android:layout_marginLeft="24dp"
+                    android:layout_marginRight="24dp"
+                    android:layout_marginBottom="8dp"
+                    android:orientation="horizontal">
+
+                    <id.dtech.cgo.CustomView.MyTextView
+                        android:id="@+id/txtPaymentType"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Ticket Only"
+                        android:layout_gravity="center_vertical"
+                        android:textSize="14sp"
+                        app:myFontStyle="nunito_sans_semibold"
+                        />
+
+                    <Space
+                        android:layout_width="8dp"
+                        android:layout_height="match_parent"/>
+
+                    <ImageView
+                        android:layout_width="5dp"
+                        android:layout_height="5dp"
+                        android:src="@drawable/ic_ellipse"
+                        android:layout_gravity="center_vertical"
+                        />
+
+                    <Space
+                        android:layout_width="8dp"
+                        android:layout_height="match_parent"/>
+
+                    <id.dtech.cgo.CustomView.MyTextView
+                        android:id="@+id/txtGuest"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="3 Adult(s)"
+                        android:layout_gravity="center_vertical"
+                        android:textSize="14sp"
+                        app:myFontStyle="nunito_sans_semibold"
+                        />
+
+                </LinearLayout>
+
+                <id.dtech.cgo.CustomView.MyTextView
+                    android:id="@+id/txtDate"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="12-13 Feb 2020"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginLeft="24dp"
+                    android:textSize="14sp"
+                    app:myFontStyle="nunito_sans_semibold"
+                    android:layout_marginTop="4dp"
+                    />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:layout_margin="24dp">
+
+                    <id.dtech.cgo.CustomView.MyTextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/total_price"
+                        android:textSize="16sp"
+                        android:textColor="@color/profile_name"
+                        app:myFontStyle="nunito_sans_semibold"
+                        />
+
+                    <id.dtech.cgo.CustomView.MyTextView
+                        android:id="@+id/txtPrice"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:text="IDR 2.430.000 / trip"
+                        android:textSize="16sp"
+                        android:layout_weight="1"
+                        android:textStyle="bold"
+                        android:gravity="end"
+                        android:textColor="@color/bottom_text_selected"
+                        app:myFontStyle="nunito_sans_bold"
+                        />
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/transportationHeader1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="24dp"
+                android:layout_below="@id/linearLogin"
+                android:orientation="vertical">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <LinearLayout
+                        android:id="@+id/linearDeparture1"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="24dp"
+                        android:orientation="vertical">
+
+                        <id.dtech.cgo.CustomView.MyTextView
+                            android:id="@+id/txtDeparture1"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/departure"
+                            android:textColor="@color/text12"
+                            app:myFontStyle="nunito_sans_bold"
+                            />
+
+                        <Space
+                            android:layout_width="match_parent"
+                            android:layout_height="12dp"/>
+
+                        <View
+                            android:id="@+id/viewDeparture1"
+                            android:layout_width="65dp"
+                            android:layout_height="2dp"
+                            android:background="@color/text13"
+                            />
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:id="@+id/linearReturn1"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="24dp"
+                        android:orientation="vertical">
+
+                        <id.dtech.cgo.CustomView.MyTextView
+                            android:id="@+id/txtReturn1"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Return"
+                            android:textColor="#A4A4A4"
+                            app:myFontStyle="nunito_sans_bold"
+                            />
+
+                        <Space
+                            android:layout_width="match_parent"
+                            android:layout_height="12dp"/>
+
+                        <View
+                            android:id="@+id/viewReturn1"
+                            android:layout_width="65dp"
+                            android:layout_height="2dp"
+                            android:background="@color/text13"
+                            android:visibility="invisible"
+                            />
+
+                    </LinearLayout>
+
+                </LinearLayout>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:background="@color/divider_color"
+                    android:layout_marginLeft="24dp"
+                    android:layout_marginRight="24dp"
+                    />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="24dp"
+                    android:layout_marginLeft="24dp"
+                    android:layout_marginRight="24dp"
+                    android:orientation="horizontal">
+
+                    <ImageView
+                        android:id="@+id/imgMerchant1"
+                        android:layout_width="55dp"
+                        android:layout_height="35dp"
+                        android:src="@drawable/example_asdp"
+                        />
+
+                    <Space
+                        android:layout_width="16dp"
+                        android:layout_height="match_parent"/>
+
+                    <id.dtech.cgo.CustomView.MyTextView
+                        android:id="@+id/txtMerchantName1"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:text="ASDP"
+                        android:textSize="16sp"
+                        android:layout_weight="1"
+                        android:layout_gravity="center_vertical"
+                        app:myFontStyle="nunito_sans_reguler"
+                        />
+
+                    <id.dtech.cgo.CustomView.MyTextView
+                        android:id="@+id/txtClass1"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Economy"
+                        android:textSize="16sp"
+                        android:layout_gravity="center_vertical"
+                        app:myFontStyle="nunito_sans_reguler"
+                        />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="24dp"
+                    android:orientation="horizontal">
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical">
+
+                        <ImageView
+                            android:layout_width="14dp"
+                            android:layout_height="14dp"
+                            android:src="@drawable/ic_gray_blankcircle"
+                            />
+
+                        <ImageView
+                            android:layout_width="wrap_content"
+                            android:layout_height="45dp"
+                            android:src="@drawable/background_dashline_vertical"
+                            android:layout_gravity="center_horizontal"
+                            />
+
+                        <ImageView
+                            android:layout_width="14dp"
+                            android:layout_height="14dp"
+                            android:src="@drawable/ic_gray_blankcircle"
+                            />
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:layout_marginLeft="16dp"
+                        android:layout_marginRight="16dp"
+                        android:orientation="vertical">
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal">
+
+                            <id.dtech.cgo.CustomView.MyTextView
+                                android:id="@+id/txtOriginTime1"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="19:50"
+                                android:textSize="14sp"
+                                android:textColor="@color/black"
+                                app:myFontStyle="nunito_sans_bold"
+                                />
+
+                            <Space
+                                android:layout_width="24dp"
+                                android:layout_height="match_parent"/>
+
+                            <id.dtech.cgo.CustomView.MyTextView
+                                android:id="@+id/txtOrigin1"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="Sanur Harbour"
+                                android:textSize="14sp"
+                                android:textColor="@color/black"
+                                app:myFontStyle="nunito_sans_reguler"
+                                />
+
+                        </LinearLayout>
+
+                        <id.dtech.cgo.CustomView.MyTextView
+                            android:id="@+id/txtLongTime1"
+                            android:layout_width="wrap_content"
+                            android:layout_height="0dp"
+                            android:text="1h 30m"
+                            android:textSize="12sp"
+                            android:layout_weight="1"
+                            android:gravity="center"
+                            app:myFontStyle="nunito_sans_reguler"
+                            />
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal">
+
+                            <id.dtech.cgo.CustomView.MyTextView
+                                android:id="@+id/txtDestinationTime1"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="21:20"
+                                android:textSize="14sp"
+                                android:textColor="@color/black"
+                                app:myFontStyle="nunito_sans_bold"
+                                />
+
+                            <Space
+                                android:layout_width="24dp"
+                                android:layout_height="match_parent"/>
+
+                            <id.dtech.cgo.CustomView.MyTextView
+                                android:id="@+id/txtDestination1"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="Nusa Penida"
+                                android:textSize="14sp"
+                                android:textColor="@color/black"
+                                app:myFontStyle="nunito_sans_reguler"
+                                />
+
+                        </LinearLayout>
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="bottom"
+                        android:orientation="horizontal">
+
+                        <id.dtech.cgo.CustomView.MyTextView
+                            android:id="@+id/txtDetail1"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Detail"
+                            android:textSize="16sp"
+                            android:textColor="@color/text10"
+                            app:myFontStyle="nunito_sans_semibold"
+                            />
+
+                        <ImageView
+                            android:layout_width="20dp"
+                            android:layout_height="20dp"
+                            android:src="@drawable/ic_right_arrow"
+                            android:layout_gravity="center_vertical"
+                            android:layout_marginLeft="6dp"
+                            />
+
+                    </LinearLayout>
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+        </RelativeLayout>
+
+    </androidx.cardview.widget.CardView>
+
+            <id.dtech.cgo.CustomView.MyTextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="24dp"
+                android:layout_marginLeft="24dp"
+                android:text="@string/book_by"
+                android:textSize="16sp"
+                android:textColor="@color/profile_name"
+                app:myFontStyle="nunito_sans_bold"
+                />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:layout_marginTop="24dp"
+                android:layout_marginLeft="24dp"
+                android:layout_marginRight="24dp">
+
+                <id.dtech.cgo.CustomView.MyTextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/title"
+                    android:textSize="14sp"
+                    android:textColor="@color/profile_name"
+                    app:myFontStyle="nunito_sans_semibold"
+                    />
+
+                <LinearLayout
+                    android:id="@+id/linearTitle"
+                    android:layout_width="235dp"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/background_border"
+                    android:orientation="horizontal"
+                    android:paddingTop="14dp"
+                    android:paddingBottom="14dp"
+                    android:paddingLeft="24dp"
+                    android:paddingRight="24dp"
+                    android:layout_marginTop="12dp">
+
+                    <id.dtech.cgo.CustomView.MyTextView
+                        android:id="@+id/txtBookedTitle"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:text="Mr."
+                        android:layout_weight="1"
+                        android:textSize="14sp"
+                        android:textColor="@color/profile_name"
+                        app:myFontStyle="nunito_sans_reguler"
+                        />
+
+                    <Space
+                        android:layout_width="6dp"
+                        android:layout_height="match_parent"/>
+
+                    <ImageView
+                        android:layout_width="20dp"
+                        android:layout_height="20dp"
+                        android:src="@drawable/ic_black_dropdown"
+                        />
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:layout_marginTop="24dp"
+                android:layout_marginLeft="24dp"
+                android:layout_marginRight="24dp">
+
+                <id.dtech.cgo.CustomView.MyTextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/fullname"
+                    android:textSize="14sp"
+                    android:textColor="@color/profile_name"
+                    app:myFontStyle="nunito_sans_semibold"
+                    />
+
+                <LinearLayout
+                    android:id="@+id/linearFullname"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/background_border"
+                    android:orientation="horizontal"
+                    android:paddingTop="14dp"
+                    android:paddingBottom="14dp"
+                    android:paddingLeft="24dp"
+                    android:paddingRight="24dp"
+                    android:layout_marginTop="12dp">
+
+                    <EditText
+                        android:id="@+id/edtBookedFullname"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@null"
+                        android:hint="@string/enter_name"
+                        android:textSize="14sp"
+                        />
+
+                </LinearLayout>
+
+                <TextView
+                    android:id="@+id/txtFullnameError"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Fill in your full name"
+                    android:textSize="12sp"
+                    android:layout_marginTop="4dp"
+                    android:textColor="#EB5757"
+                    android:visibility="gone"
+                    />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:layout_marginTop="24dp"
+                android:layout_marginLeft="24dp"
+                android:layout_marginRight="24dp">
+
+                <id.dtech.cgo.CustomView.MyTextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/email"
+                    android:textSize="14sp"
+                    android:textColor="@color/profile_name"
+                    android:textStyle="bold"
+                    app:myFontStyle="nunito_sans_semibold"
+                    />
+
+                <LinearLayout
+                    android:id="@+id/linearEmail"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/background_border"
+                    android:orientation="horizontal"
+                    android:paddingTop="14dp"
+                    android:paddingBottom="14dp"
+                    android:paddingLeft="24dp"
+                    android:paddingRight="24dp"
+                    android:layout_marginTop="12dp">
+
+                    <EditText
+                        android:id="@+id/edtBookedEmail"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@null"
+                        android:hint="@string/enter_email"
+                        android:textSize="14sp"
+                        />
+
+                </LinearLayout>
+
+                <TextView
+                    android:id="@+id/txtEmailAddressError"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Fill in your email address"
+                    android:textSize="12sp"
+                    android:layout_marginTop="4dp"
+                    android:textColor="#EB5757"
+                    android:visibility="gone"
+                    />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:layout_marginTop="24dp"
+                android:layout_marginLeft="24dp"
+                android:layout_marginRight="24dp">
+
+                <id.dtech.cgo.CustomView.MyTextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/phonenumber"
+                    android:textSize="14sp"
+                    android:textColor="@color/profile_name"
+                    android:textStyle="bold"
+                    app:myFontStyle="nunito_sans_semibold"
+                    />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:layout_marginTop="14dp">
+
+                    <LinearLayout
+                        android:id="@+id/linearPhone"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:background="@drawable/background_border"
+                        android:orientation="horizontal"
+                        android:paddingTop="14dp"
+                        android:paddingLeft="24dp"
+                        android:paddingRight="24dp">
+
+                        <id.dtech.cgo.CustomView.MyTextView
+                            android:id="@+id/txtBookedPhone"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:text="+62."
+                            android:layout_weight="1"
+                            android:textSize="14sp"
+                            app:myFontStyle="nunito_sans_reguler"
+                            android:textColor="#454545"
+                            />
+
+                        <Space
+                            android:layout_width="6dp"
+                            android:layout_height="match_parent"/>
+
+                        <ImageView
+                            android:layout_width="20dp"
+                            android:layout_height="20dp"
+                            android:src="@drawable/ic_black_dropdown"
+                            />
+
+                    </LinearLayout>
+
+                    <Space
+                        android:layout_width="12dp"
+                        android:layout_height="match_parent"/>
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:orientation="vertical">
+
+                        <LinearLayout
+                            android:id="@+id/linearPhoneNumber"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:background="@drawable/background_border"
+                            android:orientation="horizontal"
+                            android:paddingTop="14dp"
+                            android:paddingBottom="14dp"
+                            android:paddingLeft="24dp"
+                            android:paddingRight="24dp">
+
+                            <EditText
+                                android:id="@+id/edtBookedPhoneNumber"
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:background="@null"
+                                android:hint="@string/enter_phone"
+                                android:textSize="14sp"
+                                android:layout_weight="1"
+                                android:layout_gravity="center_vertical"
+                                android:inputType="number"
+                                android:maxLines="1"
+                                />
+
+                        </LinearLayout>
+
+                        <TextView
+                            android:id="@+id/txtPhoneError"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Fill in your phone number"
+                            android:textSize="12sp"
+                            android:layout_marginTop="4dp"
+                            android:textColor="#EB5757"
+                            android:visibility="gone"
+                            />
+
+                    </LinearLayout>
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:layout_marginTop="24dp"
+                android:layout_marginLeft="24dp"
+                android:layout_marginRight="24dp">
+
+                <id.dtech.cgo.CustomView.MyTextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/id_type"
+                    android:textSize="14sp"
+                    android:textColor="@color/profile_name"
+                    android:textStyle="bold"
+                    app:myFontStyle="nunito_sans_semibold"
+                    />
+
+                <LinearLayout
+                    android:id="@+id/linearIdCard"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/background_border"
+                    android:orientation="horizontal"
+                    android:paddingTop="14dp"
+                    android:paddingBottom="14dp"
+                    android:paddingLeft="24dp"
+                    android:paddingRight="24dp"
+                    android:layout_marginTop="12dp">
+
+                    <id.dtech.cgo.CustomView.MyTextView
+                        android:id="@+id/txtBookedID"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:text="ID Card"
+                        android:layout_weight="1"
+                        android:textSize="14sp"
+                        android:textColor="@color/profile_name"
+                        app:myFontStyle="nunito_sans_reguler"
+                        />
+
+                    <Space
+                        android:layout_width="6dp"
+                        android:layout_height="match_parent"/>
+
+                    <ImageView
+                        android:layout_width="20dp"
+                        android:layout_height="20dp"
+                        android:src="@drawable/ic_black_dropdown"
+                        />
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:layout_marginTop="24dp"
+                android:layout_marginLeft="24dp"
+                android:layout_marginRight="24dp">
+
+                <id.dtech.cgo.CustomView.MyTextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/id_number"
+                    android:textSize="14sp"
+                    android:textColor="@color/profile_name"
+                    app:myFontStyle="nunito_sans_semibold"
+                    />
+
+                <LinearLayout
+                    android:id="@+id/linearId"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/background_border"
+                    android:orientation="horizontal"
+                    android:paddingTop="14dp"
+                    android:paddingBottom="14dp"
+                    android:paddingLeft="24dp"
+                    android:paddingRight="24dp"
+                    android:layout_marginTop="12dp">
+
+                    <EditText
+                        android:id="@+id/edtBookedIdNumber"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@null"
+                        android:hint="@string/enter_idnum"
+                        android:textSize="14sp"
+                        android:inputType="number"
+                        />
+
+                </LinearLayout>
+
+                <TextView
+                    android:id="@+id/txtIdError"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Fill in your id card number"
+                    android:textSize="12sp"
+                    android:layout_marginTop="4dp"
+                    android:textColor="#EB5757"
+                    android:visibility="gone"
+                    />
+
+            </LinearLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@color/divider_color"
+                android:layout_marginTop="24dp"
+                android:layout_marginLeft="24dp"
+                android:layout_marginRight="24dp"
+                />
+
+    <id.dtech.cgo.CustomView.MyTextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/passenger_details"
+        android:layout_marginTop="24dp"
+        android:layout_marginLeft="24dp"
+        android:layout_marginRight="24dp"
+        android:textSize="16sp"
+        android:textColor="@color/profile_name"
+        android:textStyle="bold"
+        app:myFontStyle="nunito_sans_semibold"
+        />
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/rvGuest"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="12dp"
+                android:layout_marginBottom="24dp"
+                android:overScrollMode="never"
+                />
+
+    </LinearLayout>

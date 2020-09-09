@@ -1,0 +1,181 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    tools:context=".View.FragmentTrips">
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="105dp"
+        app:cardElevation="3dp">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <id.dtech.cgo.CustomView.MyTextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/my_trip"
+                android:textSize="16sp"
+                android:layout_marginTop="28dp"
+                android:layout_marginLeft="24dp"
+                android:layout_marginRight="24dp"
+                android:textColor="#666666"
+                app:myFontStyle="nunito_sans_bold"
+                />
+
+
+    <HorizontalScrollView
+        android:id="@+id/myHorizontalScroll"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:scrollbars="none"
+        android:layout_alignParentBottom="true">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="horizontal">
+
+        <LinearLayout
+            android:id="@+id/linearUpcoming"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="24dp"
+            android:orientation="vertical">
+
+            <id.dtech.cgo.CustomView.MyTextView
+                android:id="@+id/txtUpcoming"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Upcoming"
+                android:textColor="@color/black"
+                app:myFontStyle="nunito_sans_bold"
+                />
+
+            <Space
+                android:layout_width="match_parent"
+                android:layout_height="12dp"/>
+
+            <View
+                android:id="@+id/viewUpcoming"
+                android:layout_width="65dp"
+                android:layout_height="2dp"
+                android:background="@color/black"
+                />
+
+        </LinearLayout>
+
+
+            <LinearLayout
+                android:id="@+id/linearWaiting"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="24dp"
+                android:orientation="vertical">
+
+                <id.dtech.cgo.CustomView.MyTextView
+                    android:id="@+id/txtWaiting"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Waiting for Confirmation"
+                    android:textColor="@color/gray2"
+                    app:myFontStyle="nunito_sans_bold"
+                    />
+
+                <Space
+                    android:layout_width="match_parent"
+                    android:layout_height="12dp"/>
+
+                <View
+                    android:id="@+id/viewWaiting"
+                    android:layout_width="155dp"
+                    android:layout_height="2dp"
+                    android:background="@color/black"
+                    android:visibility="invisible"
+                    />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/linearPending"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="24dp"
+                android:orientation="vertical">
+
+                <id.dtech.cgo.CustomView.MyTextView
+                    android:id="@+id/txtPending"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Pending Payment"
+                    android:textColor="@color/gray2"
+                    app:myFontStyle="nunito_sans_bold"
+                    />
+
+                <Space
+                    android:layout_width="match_parent"
+                    android:layout_height="12dp"/>
+
+                <View
+                    android:id="@+id/viewPending"
+                    android:layout_width="113dp"
+                    android:layout_height="2dp"
+                    android:background="@color/black"
+                    android:visibility="invisible"
+                    />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/linearHistory"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="24dp"
+                android:layout_marginRight="24dp"
+                android:orientation="vertical">
+
+                <id.dtech.cgo.CustomView.MyTextView
+                    android:id="@+id/txtHistory"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="History"
+                    android:textColor="@color/gray2"
+                    app:myFontStyle="nunito_sans_bold"
+                    />
+
+                <Space
+                    android:layout_width="match_parent"
+                    android:layout_height="12dp"/>
+
+                <View
+                    android:id="@+id/viewHistory"
+                    android:layout_width="47dp"
+                    android:layout_height="2dp"
+                    android:background="@color/black"
+                    android:visibility="invisible"
+                    />
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+    </HorizontalScrollView>
+
+        </RelativeLayout>
+
+    </androidx.cardview.widget.CardView>
+
+    <androidx.viewpager.widget.ViewPager
+        android:id="@+id/viewPager"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"/>
+
+</LinearLayout>

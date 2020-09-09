@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="roundedBottomSheetCornerRadius">20dp</dimen>
+    <dimen name="roundedBottomSheetCornerRadiusTopPadding">0dp</dimen>
+    <dimen name="roundedBottomSheetCornerRadiusLeftPadding">0dp</dimen>
+    <dimen name="roundedBottomSheetCornerRadiusRightPadding">0dp</dimen>
+</resources>

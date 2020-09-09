@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#6200EE</color>
+    <color name="colorPrimaryDark">#3700B3</color>
+    <color name="colorAccent">#03DAC5</color>
+    <color name="white">#FFFFFF</color>
+    <color name="black">#000000</color>
+
+    <color name="gray">#9D9D9D</color>
+    <color name="gray2">#808080</color>
+    <color name="search_color">#BDBDBD</color>
+    <color name="error_color">#EB5757</color>
+
+    <color name="bottom_text_selected">#233E98</color>
+    <color name="bottom_text_unselected">#6D6D6D</color>
+
+    <color name="pin_selected_color">#143ABE</color>
+    <color name="pin_unselected_color">#C4C4C4</color>
+
+    <color name="profile_name">#35405A</color>
+    <color name="border_color">#EDEDED</color>
+    <color name="divider_color">#E6E6E6</color>
+
+    <color name="text1">#041C6F</color>
+    <color name="text2">#377BE8</color>
+    <color name="text3">#878787</color>
+    <color name="text4">#3C7DF0</color>
+    <color name="text5">#7A7A7A</color>
+    <color name="text6">#444444</color>
+    <color name="text7">#707070</color>
+    <color name="text8">#2DCE98</color>
+    <color name="text9">#3C7DF0</color>
+    <color name="text10">#002BFF</color>
+
+    <color name="text11">#BBBBBB</color>
+    <color name="text12">#616161</color>
+    <color name="text13">#6A3F3F</color>
+    <color name="text14">#C2C2C2</color>
+    <color name="text15">#979797</color>
+    <color name="text16">#706A6A</color>
+
+    <color name="roundedBottomSheetPrimaryNavigationBarColor">#000000</color>
+
+</resources>

@@ -1,0 +1,322 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical">
+
+    <id.dtech.cgo.CustomView.MyTextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/pay_booking"
+        android:textSize="16sp"
+        android:textStyle="bold"
+        android:textColor="@color/profile_name"
+        android:layout_marginTop="24dp"
+        android:layout_marginLeft="24dp"
+        app:myFontStyle="nunito_sans_bold"
+        />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_marginTop="24dp"
+        android:layout_marginLeft="24dp"
+        android:layout_marginRight="24dp"
+        android:background="@drawable/background_complete_payment">
+
+        <id.dtech.cgo.CustomView.MyTextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/complete_payment"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="16dp"
+            android:textSize="14sp"
+            android:textColor="@color/profile_name"
+            app:myFontStyle="nunito_sans_reguler"
+            />
+
+        <id.dtech.cgo.CustomView.MyTextView
+            android:id="@+id/txtDatePayment"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="16dp"
+            android:textSize="16sp"
+            android:textColor="@color/profile_name"
+            app:myFontStyle="nunito_sans_semibold"
+            />
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:layout_marginBottom="24dp"
+            android:layout_gravity="center_horizontal"
+            android:background="@drawable/background_time"
+            android:orientation="horizontal">
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:layout_margin="16dp">
+
+                <id.dtech.cgo.CustomView.MyTextView
+                    android:id="@+id/txtHour"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="0"
+                    android:layout_gravity="center_horizontal"
+                    android:textSize="24sp"
+                    app:myFontStyle="nunito_sans_bold"
+                    android:textColor="@color/profile_name"
+                    />
+
+                <id.dtech.cgo.CustomView.MyTextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="hrs"
+                    android:textSize="24sp"
+                    android:textColor="@color/profile_name"
+                    app:myFontStyle="nunito_sans_reguler"
+                    />
+
+            </LinearLayout>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:text=":"
+                android:layout_gravity="center_horizontal"
+                android:textSize="24sp"
+                android:textStyle="bold"
+                android:textColor="@color/profile_name"
+                android:paddingTop="16dp"
+                />
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="16dp"
+                android:orientation="vertical">
+
+                <id.dtech.cgo.CustomView.MyTextView
+                    android:id="@+id/txtMinute"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="0"
+                    android:layout_gravity="center_horizontal"
+                    android:textSize="24sp"
+                    app:myFontStyle="nunito_sans_bold"
+                    android:textColor="@color/profile_name"
+                    />
+
+                <id.dtech.cgo.CustomView.MyTextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="min"
+                    android:textSize="24sp"
+                    android:textColor="@color/profile_name"
+                    app:myFontStyle="nunito_sans_reguler"
+                    />
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+    <id.dtech.cgo.CustomView.MyTextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/payment_detail"
+        android:textSize="16sp"
+        android:textStyle="bold"
+        android:textColor="@color/profile_name"
+        android:layout_marginTop="24dp"
+        android:layout_marginLeft="24dp"
+        app:myFontStyle="nunito_sans_bold"
+        />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="24dp"
+        android:layout_marginLeft="24dp"
+        android:layout_marginRight="24dp"
+        android:orientation="horizontal">
+
+        <id.dtech.cgo.CustomView.MyTextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="@string/order_id"
+            android:textSize="14sp"
+            android:layout_weight="1"
+            app:myFontStyle="nunito_sans_semibold"
+            />
+
+        <id.dtech.cgo.CustomView.MyTextView
+            android:id="@+id/txtOrderID"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="16sp"
+            android:textColor="@color/profile_name"
+            app:myFontStyle="nunito_sans_semibold"
+            />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:layout_marginLeft="24dp"
+        android:layout_marginRight="24dp"
+        android:orientation="horizontal">
+
+        <id.dtech.cgo.CustomView.MyTextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="@string/payments"
+            android:textSize="14sp"
+            android:layout_weight="1"
+            android:textStyle="bold"
+            app:myFontStyle="nunito_sans_semibold"
+            />
+
+        <id.dtech.cgo.CustomView.MyTextView
+            android:id="@+id/txtPaymentName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="16sp"
+            android:textColor="@color/profile_name"
+            app:myFontStyle="nunito_sans_bold"
+            />
+
+    </LinearLayout>
+
+    <id.dtech.cgo.CustomView.MyTextView
+        android:id="@+id/txtHowtoPay"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/how_to_pay"
+        android:textSize="14sp"
+        android:textColor="@color/text9"
+        android:textStyle="bold"
+        android:layout_gravity="end"
+        android:layout_marginRight="24dp"
+        android:layout_marginTop="16dp"
+        app:myFontStyle="nunito_sans_bold"
+        />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:layout_marginLeft="24dp"
+        android:layout_marginRight="24dp"
+        android:orientation="horizontal">
+
+        <id.dtech.cgo.CustomView.MyTextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="@string/account_number"
+            android:textSize="14sp"
+            android:layout_weight="1"
+            android:layout_gravity="center_vertical"
+            app:myFontStyle="nunito_sans_semibold"
+            />
+
+        <id.dtech.cgo.CustomView.MyTextView
+            android:id="@+id/txtAccNumber"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="16sp"
+            android:textColor="@color/profile_name"
+            app:myFontStyle="nunito_sans_bold"
+            android:layout_gravity="center_vertical"
+            />
+
+        <ImageView
+            android:id="@+id/imgCopy"
+            android:layout_width="45dp"
+            android:layout_height="45dp"
+            android:src="@drawable/ic_copy_circle"
+            />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:layout_marginLeft="24dp"
+        android:layout_marginRight="24dp"
+        android:orientation="horizontal">
+
+        <id.dtech.cgo.CustomView.MyTextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="Transfer Amount"
+            android:textSize="14sp"
+            android:layout_weight="1"
+            app:myFontStyle="nunito_sans_semibold"
+            />
+
+        <id.dtech.cgo.CustomView.MyTextView
+            android:id="@+id/txtTransferAmount"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="16sp"
+            android:textColor="#233E98"
+            app:myFontStyle="nunito_sans_semibold"
+            />
+
+    </LinearLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@color/divider_color"
+        android:layout_marginTop="24dp"
+        android:layout_marginLeft="24dp"
+        android:layout_marginRight="24dp"
+        />
+
+    <id.dtech.cgo.CustomView.MyTextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/data_security"
+        android:textSize="16sp"
+        android:textStyle="bold"
+        android:textColor="@color/profile_name"
+        android:layout_marginTop="24dp"
+        android:layout_marginLeft="24dp"
+        app:myFontStyle="nunito_sans_bold"
+        />
+
+    <id.dtech.cgo.CustomView.MyTextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/data_security_content1"
+        android:textSize="14sp"
+        android:textColor="@color/profile_name"
+        android:layout_marginTop="24dp"
+        android:layout_marginLeft="24dp"
+        android:layout_marginRight="24dp"
+        app:myFontStyle="nunito_sans_reguler"
+        />
+
+    <id.dtech.cgo.CustomView.MyTextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/data_security_content2"
+        android:textSize="14sp"
+        android:textColor="@color/profile_name"
+        android:layout_margin="24dp"
+        app:myFontStyle="nunito_sans_reguler"
+        />
+
+</LinearLayout>

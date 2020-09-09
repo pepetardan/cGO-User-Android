@@ -1,0 +1,725 @@
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <string name="app_name">cGO</string>
+    <string name="next">Next</string>
+    <string name="start_exploring">Start Exploring</string>
+
+    <string name="login_register">Login/Register</string>
+    <string name="follow_easy_Step">Follow the easy step</string>
+    <string name="make_sure_phone">Make sure the phone number is valid and the code will be
+        sent by SMS to the number</string>
+
+    <string name="boarding_word_1">Find your favorite\n sea experiences</string>
+    <string name="boarding_word_2">Easy payment</string>
+    <string name="boarding_word_3">Paperless check in</string>
+
+    <string name="boarding_content_1">Book your favorite sea experiences. Sailing in Bali or join an
+        open trip at your favorite destination, find it here.</string>
+    <string name="boarding_content_2">We provide various payment options for your booking process.
+        All you have to do is click and pay!</string>
+    <string name="boarding_content_3">Save environtment, go paperless with our paper-free check in.</string>
+
+    <string name="explore">Explore</string>
+    <string name="blog">Blog</string>
+    <string name="my_trips">My Trips</string>
+    <string name="my_trip">My Trip</string>
+    <string name="account">Account</string>
+    <string name="profile">Profile</string>
+
+    <string name="please_Check_email">Please check your email for booking confirmation within max. 24 hour.</string>
+    <string name="or_register">Or Register Here with email used in your booking to check your confirmation status in our app.</string>
+
+    <string name="ticket_only">Ticket Only</string>
+    <string name="purchase">Purchases only ticket, there are no additional services</string>
+
+    <string name="start_date">Start Date</string>
+    <string name="guest">Guest</string>
+
+    <string name="book">Book</string>
+    <string name="schedule">Schedule</string>
+
+    <string name="book_by">Booked By</string>
+    <string name="checkout">Checkout</string>
+    <string name="total_price">Total Price</string>
+    <string name="photo_gallery">Photo Gallery</string>
+
+    <string name="pickup_service">Pickup Service</string>
+    <string name="pickup_service2">Add a pickup service from your arrival airpiort</string>
+    <string name="pickup_service3">Ticket + Pickup Service</string>
+
+    <string name="book_sea">Book sea experiences you’ll love</string>
+    <string name="book_sea2">Where do you want to go?</string>
+    <string name="price">Price</string>
+
+    <string name="proceeding">By proceeding, you confirm that you accept </string>
+    <string name="our">Our</string>
+    <string name="tnc">Terms and Conditions</string>
+
+    <string name="promo">Special Promo</string>
+    <string name="promo_code">Promo Code</string>
+    <string name="promo_content">Get exclusive promo for your adventure</string>
+
+    <string name="inpiration">Trip Insipiration</string>
+    <string name="inpiration_content">Trip inspiration for your next adventure</string>
+
+    <string name="credits">Credits</string>
+    <string name="credit_content">Collect and redeem your points</string>
+
+    <string name="avaibility">Availability</string>
+    <string name="minimum_booking"> Minimum booking for 3 days ahead</string>
+
+    <string name="wishlist">Wishlist</string>
+    <string name="wishlist_content">To save the destination that you will visit</string>
+
+    <string name="smart_profile">Smart Profile</string>
+    <string name="smart_profile_content">Simplify the data filling process</string>
+
+    <string name="share_referal_code">Share Referral Code</string>
+    <string name="settings">Settings</string>
+    <string name="help_center">Help Center</string>
+    <string name="see_all_fac">See all facilities</string>
+
+    <string name="experience">Experience</string>
+    <string name="packages">Package</string>
+    <string name="reviews">Reviews</string>
+    <string name="overall_ratings">Overall Ratings</string>
+
+    <string name="transportation">Transportation</string>
+    <string name="benefits">Log In or Register to get special benefits</string>
+
+    <string name="diving">Diving</string>
+    <string name="facilities">Facilities</string>
+    <string name="fishing">Fishing</string>
+    <string name="learn_more">Learn More</string>
+    <string name="get_direction">Get Direction</string>
+    <string name="referal">Share your referral code and collect credits for your next adventure</string>
+
+    <string name="sailing">Sailing</string>
+    <string name="sailing_content">Explore Sailing Experiences in Bali </string>
+    <string name="sailing_content2">Charter a boat and create a happy memories with your friends and family</string>
+
+    <string name="tour">Tour</string>
+    <string name="tour_content">Explore Tour Experiences in Labuan Bajo</string>
+    <string name="tour_content2">Enjoy living on board with adventurous activities from trekking, island hopping to snorkeling</string>
+
+    <string name="snorkeling">Snorkeling</string>
+    <string name="snorkeling_content">Find Snorkeling Spots in Bali</string>
+    <string name="snorkeling_content2">Explore beautiful snorkeling spots in popular destination</string>
+
+    <string name="itinerary">Itinerary</string>
+    <string name="pickup_options">Pickup options : </string>
+    <string name="pickuo_time">Pickup time : </string>
+
+    <string name="meeting_point">Meeting Point</string>
+    <string name="read_more">Read More</string>
+    <string name="see_more">See More</string>
+    <string name="enjoy_sea"> 300+ Sea Experiences to Enjoy</string>
+    <string name="search_content">Search by destination or activities</string>
+
+    <string name="bali_content">Find the best sea experiences in Island of God</string>
+    <string name="bajo_content">Enjoy living on board in popular destination</string>
+
+    <string name="search_destination">Search Destination</string>
+    <string name="search_by">Search by destination or activities</string>
+
+    <string name="boat_rules">Boat Rules</string>
+    <string name="no_infant">Boat Rules</string>
+    <string name="no_smoking">No Smoking</string>
+
+    <string name="continue_payment">Continue to Payment</string>
+    <string name="payment_method">Payment Method</string>
+    <string name="prev">Prev</string>
+    <string name="policy">  Payment, Cancellation and Refund Policy</string>
+
+    <string name="rating_lower">Rating lower to high</string>
+    <string name="rating_start">Start date till now</string>
+
+    <string name="title">Title</string>
+    <string name="fullname">Fullname</string>
+    <string name="email">Email</string>
+    <string name="phonenumber">Phone Number</string>
+    <string name="id_type">ID Type</string>
+    <string name="id_number">ID Number</string>
+
+    <string name="enter_name">Enter your name</string>
+    <string name="enter_email">Enter your email</string>
+    <string name="enter_phone">Enter your phone number</string>
+    <string name="enter_idnum">Enter id number</string>
+
+    <string name="fill_data">Fill in your data</string>
+    <string name="see_ticket">See Ticket</string>
+    <string name="back_to_home">BACK TO HOME</string>
+
+    <string name="apply">Apply</string>
+    <string name="full_payment">Full Payment</string>
+    <string name="down_payment">Down Payment</string>
+
+    <string name="description">Description</string>
+    <string name="get_your_discount">  Get Your Discount</string>
+
+    <string name="get_discount">Get a discount</string>
+    <string name="enter_promo_code">Enter Promo Code</string>
+
+    <string name="redeem_point">Redeem Your Point</string>
+    <string name="create_account">Create account and collect points</string>
+    <string name="choose_favorite_ctivity">Choose your favorite activities</string>
+
+    <string name="bank_transfer">Bank Transfer</string>
+    <string name="bank_transfer_content">Various bank options for easier payment</string>
+
+    <string name="credit_card">Credit Card</string>
+    <string name="credit_card_content">Only for Indonesian credit card users</string>
+
+    <string name="paypal">Paypal</string>
+    <string name="paypal_content">Paypal and international credit card users.\n4.4% tax will be
+        charged to your payment</string>
+
+    <string name="pay_booking">Please Pay your booking</string>
+    <string name="payment_success">PAYMENT SUCCESS</string>
+    <string name="complete_payment">Complete your payment within the time below</string>
+
+    <string name="description_sample">The speed characteristics of the boat Accura 48
+        make it an ideal choice when visiting several places in one day. The maximum capacity of the
+        vessel is 12 people; even a large company will fit.
+        </string>
+
+    <string name="payment_detail">Payment Detail</string>
+    <string name="total_payment">Total Payment</string>
+    <string name="see_details">See Details</string>
+    <string name="price_detail">Price Details</string>
+    <string name="how_to_pay">How to pay?</string>
+
+    <string name="payment">Price Details</string>
+    <string name="payments">Payment</string>
+    <string name="account_number">Account Number</string>
+    <string name="transfer_amount">Transfer Amount</string>
+
+    <string name="data_security">Data Security</string>
+    <string name="data_security_content1">Your info is safe with us. All data is encrypted and
+        transmitted securely with an SSL protocol.</string>
+    <string name="data_security_content2">cGO respects your privacy. We do not sell your
+        personal information to anyone. </string>
+
+    <string name="booking_detail">Booking Detail</string>
+    <string name="order_id">Order ID</string>
+    <string name="booked_by">Booked By</string>
+    <string name="hotel_near">Hotel near your destination</string>
+    <string name="no_hotel_near"> No recommended hotel yet, we are in the progress to find the best hotel for you</string>
+
+    <string name="place">Place</string>
+    <string name="search">Search</string>
+    <string name="guest_detail">Guest Detail</string>
+    <string name="time">Time</string>
+    <string name="search_transportation">Search Transportation</string>
+
+    <string name="how_use_ticket"> How to use ticket</string>
+    <string name="how_use_content1">Show e-ticket to check-in at your departure place </string>
+    <string name="how_use_content2">Bring your official identity document as used in your booking</string>
+    <string name="how_use_content3">Please arrive at the meeting point 60 minutes before departure</string>
+
+    <string name="from">From</string>
+    <string name="to">To</string>
+    <string name="select">Select</string>
+    <string name="select_guest">Select Guest</string>
+    <string name="select_date">Select Date</string>
+    <string name="departure">Departure</string>
+    <string name="returns">Return ?</string>
+
+    <string name="sort_by">Sort By</string>
+    <string name="filter_by">Filter By</string>
+    <string name="filter">Filter</string>
+    <string name="confirm">Confirm</string>
+    <string name="shorts">Sort</string>
+    <string name="choose">Choose</string>
+
+    <string name="select_departure">Select Departure</string>
+
+    <string name="overview">Overview</string>
+    <string name="facility">Facility</string>
+    <string name="ship_image">Ship Images</string>
+    <string name="please_wait">Please wait…</string>
+
+    <string name="update_available">Update Available</string>
+    <string name="update_content">We recommend you to update your app to the latest version. </string>
+
+    <string name="language">Languages</string>
+    <string name="currencies">Currencies</string>
+    <string name="notification">Notification</string>
+
+    <string name="ind">IND</string>
+    <string name="eng">ENG</string>
+
+    <string name="idr">IDR</string>
+    <string name="usd">US$</string>
+
+    <string name="classs">Class</string>
+
+    <string name="email_number">Email and Mobile Number</string>
+    <string name="change_password">Change Password</string>
+
+    <string name="about_cgo">About cGO</string>
+    <string name="privacy_policy">Privacy Policy</string>
+    <string name="rate_cgo">Rate cGO App</string>
+    <string name="logout">Logout</string>
+
+    <string name="verification_code">Verification Code</string>
+    <string name="verification_type">Please type the verification code sent \nto +62 89697526474</string>
+    <string name="code_successfully">Code sent successfully, enter before Code</string>
+
+    <string name="basic_info">Basic Info</string>
+    <string name="tell_us">Tell us about yourself</string>
+    <string name="done">Done</string>
+    <string name="cancel_policy">Cancellation policy</string>
+
+    <string name="save">Save</string>
+    <string name="select_activities">Select Activities</string>
+
+    <string name="email_address">Email Address</string>
+    <string name="enter_email_address">Enter your email address</string>
+    <string name="password">Password</string>
+    <string name="enter_password">Enter Password</string>
+    <string name="enter_your_password">Enter your password</string>
+
+    <string name="edit_profile">Edit Profile</string>
+    <string name="save_data">Save Data</string>
+
+    <string name="share_now">Share Now</string>
+    <string name="share_referal">Share Referal</string>
+    <string name="referal_code">Referal Code</string>
+    <string name="share_referal_content">Share your referral code to get points</string>
+
+    <string name="how_it_work">How it work</string>
+    <string name="referal_link">Share your referral link.</string>
+    <string name="referal_link2">When your friend pay their first-time trip using your code, you’ll
+        get 300.000 points</string>
+    <string name="referal_link3">Credits you got will expire in</string>
+    <string name="referal_link4">30 days</string>
+
+    <string name="archipelago">Share Your Love To \nArchipelago</string>
+    <string name="oceanbuddies">Invite your #oceanbuddies \nto cGO and get</string>
+    <string name="passenger_details">Guest Details</string>
+
+    <string name="meeting_point_content">We provide pickup from your accommodation island-wide,
+        except for West Jakarta areas.  Inform your guide for your pickup location \n\n
+        If you do not wish for a pickup service, meet us at Monumen Nasional on 10:00 AM</string>
+
+    <string name="meeting_point_content2">By train, 2 km from Gambir Station\nBy Transjakarta, 2 km from National Museum</string>
+
+    <string name="dp_content">How does it work?\nYou can pay as much as down payment price for a
+        trip. The rest of the payment will be paid directly to your guide within determined time.
+        \n\nYour guide will contact you for your remaining payment.
+    </string>
+
+    <string name="booking_confirmation">Please check your email for booking confirmation within
+        max. 24 hour.</string>
+
+    <string name="detail_passenger"> Detail Passenger</string>
+    <string name="detail_child_passenger"> Detail Child Passenger</string>
+    <string name="birth_date">Birth Date</string>
+    <string name="select_birth_date">Select birth date</string>
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+
+    <string name="facebook_app_id">320430185609228</string>
+
+    <string name="tnc_content" tools:ignore="TypographyOther">
+        <b>Introduction</b>\n\n\n
+
+        Please read these terms of use ("Terms") carefully before accessing and/or using the
+        Platform and/or Service. These Terms govern your rights and obligations (whether as a guest
+        or a registered user) regarding the access and/or use of cGO’s website, mobile application
+        or any Internet service (including any associated software supplied by cGO) (collectively
+        referred to as "Platform") under cGO’s control or ownership. These Terms constitute a
+        legally binding agreement between PT DTech Solusi Bisnis (including all its subsidiaries,
+        related and/or associated companies) (these entities are collectively referred to as "cGO",
+        "we", "us" or "our"), the proprietor of all rights in and to the Platform and/or Service,
+        and you, the user of the Platform and/or Service.\n\n
+
+        cGO is an online platform that provides access to book a variety of sea travel transportation
+        including yacht rental and tour booking outlets (collectively referred to as "Boat" and
+        the parties providing such Boat are referred to as "Merchant") in their city ("Service").\n\n
+
+        cGO is a technology company that provides the Platform and/or Service but not the Activities.
+        The Service enables cGO members to reserve and join Activities offered by the Merchant.
+        It is up to the Merchant to offer their travel activities to cGO users and it is up to cGO
+        members to accept such Activities\n\n
+
+        By accessing, browsing, downloading and/or using the Platform and/or Service, you acknowledge
+        that you agree to comply with and be bound by these Terms, as amended from time to time.
+        If you disagree with any part of these Terms, you must immediately discontinue your access
+        and/or use of the Platform and/or Service.\n\n
+
+        We may revise or update these Terms at any time by posting a revised/an updated version on
+        the Platform. Unless stated otherwise, any revision or update takes effect immediately.
+        our continued access and/or use of the Platform and/or Service after a revision or update
+        to these Terms constitutes your binding acceptance of the revised or updated Terms.\n\n
+
+        We may change or update the Platform and/or Service and any information on the Platform
+        and/or Service at any time without notice to you or liability to us. We may also suspend,
+        discontinue, or restrict access to, the Platform and/or Service temporarily or permanently
+        at any time without notice to you or liability to us.\n\n\n
+
+        <b>Purchasing and Payments I</b>\n\n
+
+        You are able to purchase yacht or boat rental and tour package at the price displayed at
+        each merchant page. When you purchase a travel activity, Organization (Midtrans) will
+        process your payment, or hold the credit card number and charge the card for the activity
+        at the time activity service is provided and (b) notify you of the purchase.\n\n
+
+        Regardless there will be a confirmation from the 3rd party organization about the payment
+        details information, Please do refer from cGO email notification for the DURATION of
+        payment.\n\n
+
+        Payment Method: You must provide us with a current, valid and accepted payment method
+        (as may be updated from time to time, "Payment Method") to use the Service. By using the
+        Service, you agree to pay us the individual purchase price of Payment Method. This does not
+        waive our right to seek payment directly from you through any other methods, should the
+        Payment Method fail. We use third party payment service providers to facilitate your Payment
+        Method. The terms of your payment will be based on your Payment Method and may be determined
+        by agreement between you and your financial institution, credit/debit card issuer or other
+        provider of your selected Payment Method. We disclaim all liabilities associated with the
+        security of the Payment Method. You shall be responsible to resolve any disputes with your
+        financial institution, credit/debit card issuer or other provider of your selected Payment
+        Method.\n\n
+
+        No refunds: Purchases are not refundable and we will not refund or credit for any partially
+        used or unused activities unless you provide credible evidence to us to prove that you have
+        been wrongly billed or such other circumstances on a "case to case" basis as we may decide
+        in our sole and absolute discretion.\n\n\n
+
+        <b>Purchasing and Payments II</b>\n\n
+
+        Boat/Tour search: You may search for Boat or Merchants and view related information about
+        activity types and times, Partners locations and other related information such as amenities
+        and other offerings. We may also feature an Activity as an advertisement on the Platform or
+        on any other social media sites, but this is not a recommendation or endorsement of such
+        Activity. We make no guarantees or representations on the quality or nature of the
+        Merchants.\n\n
+
+        Online Booking: All Activities are updated on a weekly basis. You must book an Activity on
+        the Platform in advance before you join the Activity. Some Activities are popular, so make
+        sure you plan in advance. Upon visiting the Activity, you may be asked to show your "Order
+        Code" for verification purposes. We make no guarantees or representations on the availability
+        of Activities available for reservation as access to the Activities. You may reserve up to
+        the total number of Eligible Activities based on merchant availability. Activities can be
+        reserved one week in advance and will close daily at 12 am midnight, but some Merchants may
+        have shorter reservation windows. We reserve the right to change, remove or add the Merchant
+        without notice to you or liability to us.\n\n
+
+        Feedback: If you provide us with any comments, bug reports, feedback, or modifications
+        proposed or suggested by you to the Platform and/or Service ("Feedback"), we have the
+        right to use such Feedback in our sole and absolute discretion. You grant us an irrevocable,
+        worldwide, non-exclusive, perpetual, royalty-free, sub-licensable and transferable license
+        to incorporate and use your Feedback for any purposes.\n\n
+
+        Communications from cGO: By signing up with cGO, you agree to receive certain email and
+        other communications in connection with the Platform and/or Service. For example, you might
+        receive email blast, Activity reservation confirmations and cancellation confirmations.
+        Communications relating to your Account will only be sent for important purposes, such as
+        password recovery. You will also receive our e-mail newsletter from time to time. You can
+        opt-out from receiving our e-mail newsletter by clicking the "Unsubscribe" link at the
+        bottom of the e-mail.\n\n
+
+        Multiple accounts: Every member is only entitled to create one account per person.
+        Any member who creates multiple accounts with single identity or multiple identities shall
+        be in violation of these Terms and shall have his Account suspended/terminated and shall
+        not be allowed to have access to the Platform and/or Service upon suspension/termination.
+        We and/or our Partners reserve the right to review and investigate all allegations of
+        fraudulent activities and to take any and all measures we and/or our Partner deem necessary
+        to ensure a fair sign up scheme is implemented accordingly.\n\n
+
+        Additional terms: When using the Platform and/or Service, you will be subject to any
+        additional guidelines or rules applicable to specific products, services or features which
+        may be posted from time to time ("FAQs"). All such FAQs are hereby incorporated by reference
+        into these Terms. In the event of any inconsistencies or discrepancies between these Terms
+        and the FAQs, these Terms shall prevail. Should you have any questions, please send us an
+        email to info@cgo.co.id.\n\n\n
+
+         <b>Promo Code</b>\n\n
+
+        Promo code is not transferable, exchangeable, convertible or redeemable for cash.\n\n
+
+        Promo code may not be combined or accumulated with other offers or promo codes.\n\n
+
+        Promo code may only be used pursuant to the specific terms that we establish for such promo
+        code and you must enter the promo code into the "Promo Code" field prior to completing the
+        order.\n\n
+
+        We reserve the right to withhold, deduct or remove or other features or benefits obtained
+        through the use of promo code by you or any other user in the event that we determine or
+        believe that the use or redemption of the promo code was in error, fraudulent, illegal or
+        in violation of the applicable promo code terms or these Terms.\n\n
+
+        We reserve the right to change, suspend, cancel and/or waive the promo code and its applicable
+        terms at any time and from time to time in our sole and absolute discretion without notice
+        to you or liability to us.\n\n\n
+
+         <b>Your Obligations</b>\n\n
+
+        You are solely responsible for your own internet connection/telecommunication charges
+        incurred for accessing and connecting to the Platform.\n\n
+
+        You may access and view the Platform and may save an electronic copy or print out a copy of
+        the materials from the Platform, solely for your own personal and non-commercial use. All
+        copies that you make must be in the form as presented on the Platform and must include all
+        applicable copyright and other notices on the Platform. You must not modify the paper or
+        digital copies of any materials you have printed off or downloaded in any way, and you must
+        not use any illustrations, photographs, video or audio sequences or any graphics separately
+        from any accompanying text or for any commercial use\n\n
+
+        You must comply at all times with any instructions for use of the Platform and/or Service
+        which we make from time to time.\n\n
+
+        You must keep your username and/or login password secure and: not permit any other person to
+        use your username and/or login password, including not disclosing or providing it to any other
+        person; and (b)immediately notify us if you become aware of any unauthorized use or disclosure
+        of your username and/or login password, by sending an email to info@cgo.co.id\n\n
+
+        Prior to participating in any of the Activities provided by merchant, you should seek the
+        advice of your doctor or other qualified healthcare professional if you have any concerns
+        or questions about your health. By using the Service and/or joining the Activity, you
+        acknowledge and agree that your participation in any of the Activities offered by our
+        Merchant is entirely at your own risk and you shall have no recourse whatsoever against us
+        and our Merchant.\n\n
+
+        You must not:\n 
+        (a) act in a way, or use or introduce anything (including any virus, worm, Trojan horse,
+        time bomb, keystroke logger, spyware or other similar feature) that may compromise, damage,
+        detrimentally interfere with, surreptitiously intercept or expropriate any system, network,
+        data or personal data stored on the Platform;\n
+        (b) use the Platform in any manner that could damage, disable, overburden or impair any of
+        our server, or the networks connected to our server, or interfere with any other party’s
+        access and use of the Platform;\n
+        (c) attempt to gain unauthorised access to the Platform, other cGO members’ Accounts,
+        computer systems or networks connected to our server, through hacking, password mining or
+        any other means or interfere or attempt to interfere with the proper working of the Platform
+        or any activities conducted on the Platform;\n
+        (d) obtain, or attempt to obtain, any information through any means not intentionally made
+        available on or through the Platform;\n
+        (e) remove, circumvent, disable, damage or otherwise interfere with security-related
+        features of the Platform;\n
+        (f) license, sub-license, sell, re-sell, transfer, assign, distribute or otherwise commercially
+        exploit or make available to any third party the Platform in any way;\n
+        (g) modify or create a derivative work based on the materials on the Platform, nor decompile,
+        decipher, reverse-engineer or disassemble or otherwise attempt to derive any source code or
+        underlying ideas or algorithms of any part of the Platform in order to build a competitive
+        product or service; build a product using similar ideas, features, functions or graphics of
+        the Platform; or copy any ideas, features, functions or graphics of the Platform;\n
+        (h) link to, mirror or frame any portion of the Platform;/n
+        (i) cause or launch any programs or scripts for the purpose of scraping, indexing, surveying,
+        or otherwise data mining any portion of the Platform;\n
+        (j) intentionally or unintentionally cause or attempt to cause physical or property damage
+        or harm to any cGO users or Merchants; and/or\n\n
+
+        You hereby agree to indemnify and hold us, our affiliates, and each of our and their respective
+        directors, shareholders, employees, partners, agents, contractors, directors, suppliers,
+        vendors and representatives harmless against all losses, damages, claims, liabilities,
+        expenses or costs that arise from or in connection with:\n
+
+        (a) your access and/or use of the Platform and/or Service;\n
+        (b) your breach of any of these Terms or any applicable law or regulation;\n
+        (c) your dealing with the Merchant, including your breach of any terms set by the Merchants
+        or the rights of any third party, including the Merchants;\n
+        (d) any other party\'s access and/or use of the Platform and/or Service using your username
+        and/or login password; and/or\n
+        (e) any other party\'s breach of any of these Terms where such party was able to access and/or
+        use the Platform and/or Service using your username and/or login password.\n\n
+
+        Any rights relating to the use of the Platform and/or Service not expressly granted herein
+        are reserved and no license or right is granted to you by implication, estoppel or
+        otherwise.\n\n\n
+
+        Intellectual Property\n\n
+
+        We are the owner (or the licensee, where applicable) of all proprietary and intellectual
+        property rights on the Platform (including all information, data, texts, graphics, visual
+        interfaces, artworks, photographs, logos, icons, sound recordings, videos, look and feel,
+        software programmes, computer code, downloadable files, software applications, interactive
+        features, tools, services) or other information or content made available on or through the
+        Platform./n/n
+
+        We grant you, subject to these Terms, a non-exclusive, non-transferable, non-assignable,
+        personal, limited license to access and use the Platform and/or Service for your own personal
+        and non-commercial use. This license is revocable at any time without notice to you or liability
+        to us. All rights not expressly granted to you are reserved by us.\n\n
+
+        The terms "cGO", and our logo are our trademarks, trade names and service marks. Without our
+        prior written permission, and except as solely enabled by any link as provided by us, you
+        agree not to display or use in any manner the marks "cGO".\n\n
+
+        <b>Disclaimer</b>\n\n\n
+
+        While we endeavour to ensure that the information and materials on the Platform and/or
+        Service are correct, no representation, warranty or guarantee, express or implied, is given
+        that they are complete, accurate, up-to-date, fit for a particular purpose and, to the extent
+        permitted by law, we do not accept any liability for any errors or omissions. The information
+        and materials on the Platform and/or the quality of the Service are provided to you for
+        information purposes only and on an "as is" and "as available" basis without representations,
+        warranties or guarantees of any kind either express or implied.\n\n
+
+        Whilst we endeavour to make the Platform available 24 hours a day, we shall not be liable if
+        for any reason the Platform is unavailable for any time or for any period. We make no representation,
+        warranty or guarantee that your access to the Platform will be uninterrupted, timely or error-free.
+        Due to the nature of the Internet, this cannot be guaranteed. In addition, we may occasionally
+        need to carry out repairs, maintenance or introduce new facilities and functions.\n\n
+
+        To the extent permitted by law, we and our licensors hereby disclaim all warranties, express
+        or implied, statutory or otherwise, in respect of the Platform and/or Service and we and our
+        licensors have no liability or responsibility to you or any other person (even if we have been
+        advised as to the possibility) for any direct, indirect, economic, exemplary, incidental or
+        consequential loss (including loss of profit and loss of data), damage, claim, liability,
+        expense or cost, whether in contract, tort (including negligence), equity, breach of statutory
+        duty or otherwise, arising out of or in connection with:\n 
+        (a) the Platform and/or Service being unavailable (in whole or in part), interrupted or
+        performing slowly;\n
+        (b) any error in, or omission from, any information made available through the Platform and/or
+        Service;\n
+        (c) any other party\'s access and/or use of the Platform and/or Service using your username
+        and/or login password;\n
+        (d) any exposure to malicious software including but not limited to, viruses, computer worms,
+        Trojan horses, spyware or other harmful forms of interference which may damage your computer
+        system, mobile device, software, data or other property or expose you to fraud when you access
+        or use the Platform and/or Service. To avoid doubt, you are responsible for ensuring the
+        process by which you access and use the Platform and/or Service protects you from this;
+        and/or\n
+        (e) any site linked from the Platform and/or Service. Any link on the Platform and/or Service
+        to other sites does not imply any endorsement, approval or recommendation of, or responsibility
+        for, those sites or their contents, operations, products or operators.\n\n
+
+        We make no representation, warranty or guarantee:\n 
+
+        (a) that the Platform and/or Service is appropriate or available for use in all countries or
+        that the content satisfies the laws of all countries. You are responsible for ensuring that
+        your access to and use of the Platform and/or Service is not illegal or prohibited, and for
+        your own compliance with applicable local laws;\n
+        (b) that the Platform and/or Service will be compatible with all hardware, software and
+        operating system which you may use;\n
+        (c) about the accuracy, reliability, suitability, completeness or timeliness of the Platform
+        and/or Service or of any information from the Partners, such as class times, locations and
+        descriptions; and/or\n
+        (d) about the quality, suitability, safety or ability of the Partners’ services.\n\n
+
+        We are not responsible nor liable for any direct, indirect, economic, exemplary, incidental
+        or consequential loss (including loss of profit and loss of data), damage, cost or expense,
+        whether in contract, tort (including negligence, injuries or other health or medical problems),
+        that you may suffer or incur as a result of or in connection with the acts, omissions and/or
+        negligence of any Partner who provides the Activities to you.\n\n\n
+
+         <b>Suspension and Termination</b>\n\n
+
+        General Rules\n\n
+
+        We reserve the right, in our absolute discretion, to monitor any and all access and use of
+        the Platform and/or Service. Without prejudice to any other right or remedy available to us,
+        if we consider that you have breached any of these Terms or we otherwise consider it appropriate,
+        we may immediately, and without notice to you or liability to us, suspend or terminate your Account
+        and access to the Platform and/or Service (or any part of it) without compensation to you and we
+        may block access from a particular Internet protocol address to the Platform and/or Service
+        (or any part of it) in the event of any breach of these Terms. In addition, we reserve the
+        right to seek all remedies available under these Terms, at law and in equity for breach of
+        these Terms.\n
+        On suspension or termination of your Account, you must immediately cease using the Platform
+        and/or Service and must not attempt to gain further access.\n\n\n
+
+        By agreeing to these Terms, you promise to follow these rules: \n\n
+
+        You understand and agree that, at any time and without prior notice cGO may (1) terminate,
+        cancel, deactivate, disable, delete and/or suspend your subscription, your account, any
+        orders placed, or your access to or use of the Site, your Trip (2) discontinue, disable,
+        suspend, modify or alter any aspect, feature or policy of the Site , including of your
+        subscription and memberships. This includes the right to terminate or modify any subscription
+        prior to the end of any pre-paid or committed period. Upon any termination or otherwise,
+        we may immediately deactivate your account and all related information and/or bar any further
+        access to your account information and the Site. cGO shall have no liability for, and you shall
+        have no recourse for, any such termination or deactivation, except as set forth in the following
+        sentence. If you are subscriber, then upon any such termination by us without cause, as your
+        sole recourse, we will issue you a pro rata refund of the prepaid portion of your subscription
+        applicable to future unused services (less any fees or costs for classes or services already used).
+        If we determine that you have violated these Terms or otherwise engaged in illegal or improper
+        use of your Site, you will not be entitled to any refund and you agree that we will not be responsible
+        to pay any such refund. Site under any other user name, email, payment method or profile cGO
+        may block your access to the Site to prevent re-registration.\n
+        Act in a deceptive or fraudulent manner by, among other things, impersonating another person
+        or access another user’s account or signing up for more than one account; Permit anyone to
+        use any services booked under your own account, Procedures, policies and behavior and usage
+        rules made available to you by the Merchants.\n\n
+
+        We also may suspend or terminate your account if we determine, in our sole discretion,
+        that you are either:\n\n
+
+        a person that has publicly made a comment or statement, or otherwise publicly made known a
+        position, including by membership in an organization as discussed above, that could be reasonably
+        perceived as Hateful Content or A Threat of Physical Harm; or a person or organization that
+        has acted in such a way as could be reasonably perceived to support, condone, encourage, or
+        represent Hateful Content or A Threat of Physical Harm.\n\n\n
+
+        If you violate any of these rules, then we may suspend or terminate your account.
+
+    </string>
+
+    <string name="privacy_policy_content">The following Privacy Policy describes how We collect,
+        store, use, transfer, disclose and protect Your personal information which can be identified
+        and obtained through our Application (as defined below). Please read this Privacy Policy
+        thoroughly to ensure that You understand how We apply this Privacy Policy.\n\n
+
+        We collect certain Personal Information from You to enable the Application to perform its
+        function whether for the use of Service (if You are a Customer) or Service provision management
+        (if You are a Merchant) or other functions necessary to support the Service ecosystem.
+        You can provide Personal Information directly (for example, when You register as an Application user)
+        or collected automatically when You use the Application.\n\n
+
+        When You visit the Website, a Website administrator will process technical data such as
+        Your internet protocol address, web pages You have visited, internet browser that You use,
+        web pages You previously/subsequently visited and the duration of every visit/session which
+        enable Us to send Website functions. In addition, in some cases, browser may advise You to
+        activate Your geo-location system to enable Us give You a better experience in using the
+        internet and/or Application. With this technical data, the Website administrators can manage
+        the Website, for example by resolving technical difficulties and improving the accessibility
+        of certain parts of the Website. Using this method, We can ensure that You can (always) find
+        information on the Website in quick and simple manners.\n\n
+
+        Information that You provide directly\n
+        When registering to the Webiste and Application , You will provide to Us certain Personal
+        Information pursuant to Terms of Use required by each type and function of the
+        Application.\n\n
+
+        Information which We collect when You use the Application\n
+        When You use the Application through Your mobile device, We will track and collect the
+        geo-location information in real-time and other relevant information to support the performance
+        efficiency and the functions of the Application.\n\n
+
+        Use of a Cookie\n
+        Cookie is a small data file placed in Your browser on Your internet device. With cookie,
+        the feature of application and/or website that You access can save information or remember
+        Your actions and preferences from time to time.\n\n
+
+        We use Your e-mail address, name, phone number and/or account password to verify Your
+        ownership over an account in our Application, to communicate with You in connection with the
+        use or management of the Service and to give You information regarding the Application. We
+        may also use Your name, email address and phone number to send message, general update of
+        the Application, special offers or promotions. We will also send email to You asking You to
+        subscribe to Our mailing list. You may at any time choose not to accept the information
+        regarding this update.\n\n
+
+        We use Your Personal Information entirely to analyze the Application’s pattern of use. You
+        hereby agree that Your data will be used by Our internal data processing system to ensure
+        the delivery of the best function of the Application to You.\n\n
+
+        Security\n
+        Confidentiality of Your data and personal information is the most important matter for Us.
+        We will conduct the best effort and steps to protect and secure Your data and Personal
+        Information. However, We cannot fully guarantee that Our system is totally impenetrable by
+        virus, malware, disruption or extraordinary occurrence including unauthorized access by a
+        third party. You may not disclose Your account password to anyone and must always maintain
+        the security of the device You use.\n\n
+
+        Changes to this Privacy Policy\n
+        We may change in this Privacy Policy to reflect the changes in Our activity. If We change
+        this Privacy Policy, We will notify You through e-mail or through announcement in the
+        Website 1 (one) day prior to the changes become effective. We advise You to visit this
+        page periodically to obtain the latest information regarding how We enforce this Privacy
+        Policy.
+
+</string>
+    <string name="redeem_ticket">How to Redeem Your Ticket</string>
+    <string name="guide">Guide</string>
+
+</resources>

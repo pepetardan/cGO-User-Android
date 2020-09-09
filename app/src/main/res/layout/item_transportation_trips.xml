@@ -1,0 +1,175 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView
+    android:id="@+id/cardParent"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    app:cardElevation="5dp"
+    android:layout_marginTop="24dp"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="24dp"
+            android:layout_marginLeft="24dp"
+            android:layout_marginRight="24dp"
+            android:orientation="horizontal">
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:layout_gravity="center_vertical"
+                android:orientation="horizontal">
+
+                <id.dtech.cgo.CustomView.MyTextView
+                    android:id="@+id/txtOrderID"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="ID : 112139912"
+                    android:textSize="14sp"
+                    android:textColor="#322D2D"
+                    app:myFontStyle="nunito_sans_reguler"
+                    />
+
+                <Space
+                    android:layout_width="8dp"
+                    android:layout_height="match_parent"/>
+
+                <ImageView
+                    android:layout_width="5dp"
+                    android:layout_height="5dp"
+                    android:src="@drawable/ic_ellipse"
+                    android:layout_gravity="center_vertical"
+                    />
+
+                <Space
+                    android:layout_width="8dp"
+                    android:layout_height="match_parent"/>
+
+                <id.dtech.cgo.CustomView.MyTextView
+                    android:id="@+id/txtDate"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="11 - 12 Feb 20"
+                    android:ellipsize="end"
+                    android:lines="1"
+                    android:textColor="#322D2D"
+                    app:myFontStyle="nunito_sans_reguler"
+                    />
+
+            </LinearLayout>
+
+            <Space
+                android:layout_width="8dp"
+                android:layout_height="match_parent"/>
+
+            <id.dtech.cgo.CustomView.MyTextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Transportation"
+                android:background="@drawable/background_service"
+                android:textColor="@color/white"
+                android:paddingTop="4dp"
+                android:paddingBottom="4dp"
+                android:paddingLeft="14dp"
+                android:paddingRight="14dp"
+                android:textSize="14sp"
+                app:myFontStyle="nunito_sans_semibold"
+                />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="24dp"
+            android:layout_marginRight="24dp"
+            android:layout_marginTop="16dp"
+            android:orientation="horizontal">
+
+            <id.dtech.cgo.CustomView.MyTextView
+                android:id="@+id/txtFrom"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Nusa Penida"
+                android:textSize="16sp"
+                android:textColor="@color/black"
+                app:myFontStyle="nunito_sans_semibold"
+                />
+
+            <Space
+                android:layout_width="8dp"
+                android:layout_height="match_parent"/>
+
+            <ImageView
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:src="@drawable/ic_rightarrow2"
+                />
+
+            <Space
+                android:layout_width="8dp"
+                android:layout_height="match_parent"/>
+
+            <id.dtech.cgo.CustomView.MyTextView
+                android:id="@+id/txtTo"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Pearl Harbour"
+                android:textSize="16sp"
+                android:textColor="@color/black"
+                app:myFontStyle="nunito_sans_semibold"
+                />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:layout_marginLeft="24dp"
+            android:layout_marginRight="24dp"
+            android:layout_marginBottom="16dp"
+            android:orientation="horizontal">
+
+            <id.dtech.cgo.CustomView.MyTextView
+                android:id="@+id/txtGuest"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="3 Adult(s), 1 Children"
+                android:layout_gravity="center_vertical"
+                android:textColor="#322D2D"
+                app:myFontStyle="nunito_sans_reguler"
+                />
+
+        </LinearLayout>
+
+        <id.dtech.cgo.CustomView.MyTextView
+            android:id="@+id/txtReview"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="You have not write a review"
+            android:background="@drawable/background_blue_review"
+            android:layout_marginLeft="12dp"
+            android:layout_marginRight="12dp"
+            android:layout_marginBottom="12dp"
+            android:paddingLeft="18dp"
+            android:paddingRight="18dp"
+            android:paddingTop="12dp"
+            android:paddingBottom="12dp"
+            android:textColor="#143ABE"
+            app:myFontStyle="nunito_sans_reguler"
+            android:visibility="gone"
+            />
+
+    </LinearLayout>
+
+</androidx.cardview.widget.CardView>

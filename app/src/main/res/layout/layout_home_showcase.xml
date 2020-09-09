@@ -1,0 +1,143 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:background="#50000000"
+    android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="52dp"
+            android:layout_marginTop="168dp"
+            android:layout_marginLeft="24dp"
+            android:layout_marginRight="24dp">
+
+            <LinearLayout
+                android:id="@+id/linearDialogExperience"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:orientation="horizontal"
+                android:layout_gravity="center_vertical"
+                android:gravity="center"
+                android:background="@drawable/background_white_rounded"
+                android:layout_weight="1">
+
+                <ImageView
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"
+                    android:src="@drawable/ic_snorkeling"
+                    android:layout_gravity="center_vertical"
+                    />
+
+                <Space
+                    android:layout_width="16dp"
+                    android:layout_height="match_parent"/>
+
+                <id.dtech.cgo.CustomView.MyTextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/experience"
+                    android:textSize="14sp"
+                    android:layout_gravity="center_vertical"
+                    android:textColor="@color/profile_name"
+                    app:myFontStyle="rubik_medium"
+                    />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/linearDialogTransportation"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:orientation="horizontal"
+                android:layout_gravity="center_vertical"
+                android:gravity="center"
+                android:visibility="invisible"
+                android:background="@drawable/background_white_rounded"
+                android:layout_weight="1">
+
+                <ImageView
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"
+                    android:src="@drawable/icon_ship"
+                    android:layout_gravity="center_vertical"
+                    />
+
+                <Space
+                    android:layout_width="16dp"
+                    android:layout_height="match_parent"/>
+
+                <id.dtech.cgo.CustomView.MyTextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/transportation"
+                    android:textSize="14sp"
+                    android:layout_gravity="center_vertical"
+                    android:textColor="@color/profile_name"
+                    app:myFontStyle="rubik_medium"
+                    />
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/linearDialogContent"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:background="@drawable/img_exp_coachmark"
+            android:layout_marginLeft="24dp"
+            android:layout_marginRight="36dp"
+            android:orientation="vertical">
+
+            <id.dtech.cgo.CustomView.MyTextView
+                android:id="@+id/txtDialogTitle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Explore Experience"
+                android:layout_marginTop="36dp"
+                android:layout_marginLeft="24dp"
+                android:layout_marginRight="24dp"
+                android:textSize="16sp"
+                app:myFontStyle="rubik_medium"
+                android:textColor="@color/profile_name"
+                />
+
+            <Space
+                android:layout_width="match_parent"
+                android:layout_height="12dp"/>
+
+            <id.dtech.cgo.CustomView.MyTextView
+                android:id="@+id/txtDialogContent"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1"
+                android:text="Sailing, open trip, snorkeling, diving.. what do you want to do? Explore and book your favorite sea experiences here."
+                android:layout_marginLeft="24dp"
+                android:layout_marginRight="24dp"
+                android:textSize="14sp"
+                app:myFontStyle="nunito_sans_reguler"
+                android:textColor="@color/profile_name"
+                android:lineSpacingExtra="4dp"
+                />
+
+            <id.dtech.cgo.CustomView.MyTextView
+                android:id="@+id/txtDialogNext"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/next"
+                android:layout_marginTop="12dp"
+                android:layout_marginLeft="24dp"
+                android:layout_marginRight="24dp"
+                android:layout_marginBottom="12dp"
+                android:textSize="16sp"
+                app:myFontStyle="rubik_medium"
+                android:textColor="@color/text4"
+                android:gravity="end"
+                />
+
+        </LinearLayout>
+</LinearLayout>

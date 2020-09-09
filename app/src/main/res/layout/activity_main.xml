@@ -1,0 +1,154 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@color/white"
+    tools:context=".View.MainActivity">
+
+        <FrameLayout
+            android:id="@+id/container"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1">
+        </FrameLayout>
+
+        <androidx.cardview.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="82dp"
+            app:cardElevation="5dp">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@color/white"
+                android:orientation="horizontal">
+
+                <FrameLayout
+                    android:id="@+id/frameExplore"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:orientation="vertical">
+
+                    <ImageView
+                        android:id="@+id/imgExplore"
+                        android:layout_width="40dp"
+                        android:layout_height="40dp"
+                        android:src="@drawable/ic_explore_blue"
+                        android:layout_gravity="center_horizontal"
+                        android:layout_marginTop="12dp"
+                        />
+
+                    <id.dtech.cgo.CustomView.MyTextView
+                        android:id="@+id/txtExplore"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/explore"
+                        android:layout_gravity="center_horizontal"
+                        android:layout_marginTop="50dp"
+                        android:textColor="@color/bottom_text_selected"
+                        android:textSize="12sp"
+                        app:myFontStyle="nunito_sans_semibold"
+                        />
+
+                </FrameLayout>
+
+                <FrameLayout
+                    android:id="@+id/frameBlog"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:orientation="vertical">
+
+                    <ImageView
+                        android:id="@+id/imgBlog"
+                        android:layout_width="26dp"
+                        android:layout_height="26dp"
+                        android:src="@drawable/ic_blog_gray"
+                        android:layout_gravity="center_horizontal"
+                        android:layout_marginTop="18dp"
+                        />
+
+                    <id.dtech.cgo.CustomView.MyTextView
+                        android:id="@+id/txtBlog"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/blog"
+                        android:layout_gravity="center_horizontal"
+                        android:layout_marginTop="50dp"
+                        android:textColor="@color/bottom_text_unselected"
+                        android:textSize="12sp"
+                        app:myFontStyle="nunito_sans_semibold"
+                        />
+
+                </FrameLayout>
+
+                <FrameLayout
+                    android:id="@+id/frameTrips"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:orientation="vertical">
+
+                    <ImageView
+                        android:id="@+id/imgTrips"
+                        android:layout_width="26dp"
+                        android:layout_height="26dp"
+                        android:src="@drawable/ic_trip_gray"
+                        android:layout_gravity="center_horizontal"
+                        android:layout_marginTop="18dp"
+                        />
+
+                    <id.dtech.cgo.CustomView.MyTextView
+                        android:id="@+id/txtTrips"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/my_trips"
+                        android:layout_gravity="center_horizontal"
+                        android:layout_marginTop="50dp"
+                        android:textColor="@color/bottom_text_unselected"
+                        android:textSize="12sp"
+                        app:myFontStyle="nunito_sans_semibold"
+                        />
+
+                </FrameLayout>
+
+                <FrameLayout
+                    android:id="@+id/frameAccount"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:orientation="vertical">
+
+                    <ImageView
+                        android:id="@+id/imgAccount"
+                        android:layout_width="26dp"
+                        android:layout_height="26dp"
+                        android:src="@drawable/ic_profile_gray"
+                        android:layout_gravity="center_horizontal"
+                        android:layout_marginTop="18dp"
+                        />
+
+                    <id.dtech.cgo.CustomView.MyTextView
+                        android:id="@+id/txtAccount"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/account"
+                        android:layout_gravity="center_horizontal"
+                        android:layout_marginTop="50dp"
+                        android:textColor="@color/bottom_text_unselected"
+                        android:textSize="12sp"
+                        app:myFontStyle="nunito_sans_semibold"
+                        />
+
+                </FrameLayout>
+
+            </LinearLayout>
+
+        </androidx.cardview.widget.CardView>
+
+</LinearLayout>

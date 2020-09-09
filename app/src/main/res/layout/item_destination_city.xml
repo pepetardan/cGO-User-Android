@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    android:id="@+id/linearParent"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginTop="4dp"
+    android:layout_marginLeft="42dp"
+    android:layout_marginRight="24dp"
+    android:paddingLeft="24dp"
+    android:orientation="vertical">
+
+    <TextView
+        android:id="@+id/txtName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Nusa Lembongan"
+        android:textSize="14sp"
+        android:textColor="@color/profile_name"
+        android:layout_marginTop="6dp"
+        android:layout_gravity="center_vertical"
+        />
+
+</LinearLayout>
