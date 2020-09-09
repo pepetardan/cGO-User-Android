@@ -266,11 +266,13 @@
                         <id.dtech.cgo.CustomView.MyTextView
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
-                            android:text="Jakarta Kota Tu..."
+                            android:text="Jakarta Kota Tua bogor"
                             android:layout_weight="1"
                             android:textSize="16sp"
                             android:textColor="#292727"
                             app:myFontStyle="nunito_sans_semibold"
+                            android:maxLines="1"
+                            android:ellipsize="end"
                             />
 
                         <Space
@@ -310,7 +312,7 @@
                     <id.dtech.cgo.CustomView.MyTextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="@string/guide"
+                        android:text="Guide"
                         android:textColor="@color/profile_name"
                         app:myFontStyle="nunito_sans_semibold"
                         />
@@ -327,7 +329,7 @@
                         <id.dtech.cgo.CustomView.MyTextView
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
-                            android:text="Rianti"
+                            android:text="Rianty"
                             android:layout_weight="1"
                             android:textSize="16sp"
                             android:textColor="#292727"

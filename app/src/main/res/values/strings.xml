@@ -170,6 +170,7 @@
     <string name="credit_card_content">Only for Indonesian credit card users</string>
 
     <string name="paypal">Paypal</string>
+    <string name="termasuk">Penjemputan dan pengantaran kembali ke hotel Peralatan keamanan\nAsuransi yang disediakan oleh operator (untuk peserta berusia 9-70 tahun)</string>
     <string name="paypal_content">Paypal and international credit card users.\n4.4% tax will be
         charged to your payment</string>
 
@@ -720,6 +721,5 @@
 
 </string>
     <string name="redeem_ticket">How to Redeem Your Ticket</string>
-    <string name="guide">Guide</string>
 
 </resources>

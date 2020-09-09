@@ -60,7 +60,7 @@ class AddOnAdapter(context : Context, addOnList : ArrayList<AddOnModel>, payment
             holder.txtTitle.text = addOnModel.name
             holder.linearAmount.visibility = View.GONE
         }
-        
+
          if (selected){
             holder.imgCheck.visibility = View.VISIBLE
             holder.btnTicketCheckout.visibility = View.VISIBLE

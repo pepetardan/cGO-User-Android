@@ -1,9 +1,215 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@color/white"
     tools:context=".View.PackageDetailActivity">
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+    <androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="65dp"
+        app:cardElevation="3dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="horizontal">
+
+            <ImageView
+                android:id="@+id/ivBack"
+                android:layout_width="28dp"
+                android:layout_height="28dp"
+                android:layout_gravity="center_vertical"
+                android:layout_marginLeft="24dp"
+                android:layout_marginRight="24dp"
+                android:src="@drawable/left_arrow"
+                />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/packages"
+                android:textSize="16sp"
+                android:layout_gravity="center_vertical"
+                />
+
+        </LinearLayout>
+
+    </androidx.cardview.widget.CardView>
+
+   <androidx.core.widget.NestedScrollView
+       android:layout_width="match_parent"
+       android:layout_height="0dp"
+       android:layout_weight="1">
+
+       <LinearLayout
+           android:layout_width="match_parent"
+           android:layout_height="match_parent"
+           android:orientation="vertical">
+
+           <LinearLayout
+               android:layout_width="match_parent"
+               android:layout_height="wrap_content"
+               android:layout_marginTop="24dp"
+               android:layout_marginLeft="24dp"
+               android:layout_marginRight="24dp"
+               android:gravity="center_vertical"
+               android:orientation="horizontal">
+
+               <ImageView
+                   android:layout_width="24dp"
+                   android:layout_height="24dp"
+                   android:src="@drawable/ic_location_black"
+                   />
+
+               <Space
+                   android:layout_width="12dp"
+                   android:layout_height="wrap_content"/>
+
+               <id.dtech.cgo.CustomView.MyTextView
+                   android:layout_width="0dp"
+                   android:layout_height="wrap_content"
+                   android:layout_weight="1"
+                   android:text="Jakarta, Indonesia"
+                   android:textSize="16sp"
+                   android:textColor="#707070"
+                   app:myFontStyle="nunito_sans_bold"
+                   />
+
+           </LinearLayout>
+
+           <TextView
+               android:layout_width="match_parent"
+               android:layout_height="wrap_content"
+               android:text="Jakarta Kota Tua Tour 1 Day With Guide"
+               android:layout_marginLeft="24dp"
+               android:layout_marginRight="24dp"
+               android:layout_marginTop="24dp"
+               android:textSize="18sp"
+               android:textColor="@color/profile_name"
+               android:textStyle="bold"
+               />
+
+           <TextView
+               android:layout_width="match_parent"
+               android:layout_height="wrap_content"
+               android:text="Package Details"
+               android:layout_marginLeft="24dp"
+               android:layout_marginRight="24dp"
+               android:layout_marginTop="24dp"
+               android:textSize="16sp"
+               android:textColor="@color/profile_name"
+               android:textStyle="bold"
+               />
+
+           <androidx.recyclerview.widget.RecyclerView
+               android:layout_width="match_parent"
+               android:layout_height="wrap_content"/>
+
+           <LinearLayout
+               android:layout_width="match_parent"
+               android:layout_height="wrap_content"
+               android:orientation="vertical"
+               android:layout_marginTop="24dp"
+               android:layout_marginLeft="24dp"
+               android:layout_marginRight="24dp"
+               android:background="@drawable/background_blue"
+               android:padding="16dp">
+
+               <id.dtech.cgo.CustomView.MyTextView
+                   android:layout_width="wrap_content"
+                   android:layout_height="wrap_content"
+                   android:text="Jakarta Kota Tua Reguler"
+                   android:textSize="16sp"
+                   android:textColor="@color/profile_name"
+                   app:myFontStyle="nunito_sans_bold"
+                   />
+
+               <id.dtech.cgo.CustomView.MyTextView
+                   android:layout_width="wrap_content"
+                   android:layout_height="wrap_content"
+                   android:text="IDR 500.000/pax"
+                   android:textSize="16sp"
+                   android:textColor="#233E98"
+                   app:myFontStyle="nunito_sans_bold"
+                   android:layout_marginTop="8dp"
+                   />
+
+           </LinearLayout>
+
+           <TextView
+               android:layout_width="match_parent"
+               android:layout_height="wrap_content"
+               android:text="Termasuk:"
+               android:layout_marginLeft="24dp"
+               android:layout_marginRight="24dp"
+               android:layout_marginTop="24dp"
+               android:textSize="16sp"
+               android:textColor="@color/profile_name"
+               android:textStyle="bold"
+               />
+
+           <id.dtech.cgo.CustomView.MyTextView
+               android:layout_width="match_parent"
+               android:layout_height="wrap_content"
+               android:text="@string/termasuk"
+               android:layout_marginTop="6dp"
+               android:layout_marginLeft="24dp"
+               android:layout_marginRight="24dp"
+               android:textSize="15sp"
+               app:myFontStyle="nunito_sans_reguler"
+               android:textColor="@color/profile_name"
+               />
+
+           <TextView
+               android:layout_width="match_parent"
+               android:layout_height="wrap_content"
+               android:text="Tidak Termasuk:"
+               android:layout_marginLeft="24dp"
+               android:layout_marginRight="24dp"
+               android:layout_marginTop="24dp"
+               android:textSize="16sp"
+               android:textColor="@color/profile_name"
+               android:textStyle="bold"
+               />
+
+           <id.dtech.cgo.CustomView.MyTextView
+               android:layout_width="match_parent"
+               android:layout_height="wrap_content"
+               android:text="Tip(Opsional)\nMakanan"
+               android:layout_marginTop="6dp"
+               android:layout_marginLeft="24dp"
+               android:layout_marginRight="24dp"
+               android:textSize="15sp"
+               app:myFontStyle="nunito_sans_reguler"
+               android:textColor="@color/profile_name"
+               />
+
+       </LinearLayout>
+
+   </androidx.core.widget.NestedScrollView>
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="80dp"
+        app:cardElevation="5dp"
+        android:elevation="5dp">
+
+        <Button
+            android:id="@+id/btnNext"
+            android:layout_width="match_parent"
+            android:layout_height="45dp"
+            android:layout_margin="24dp"
+            android:text="CHOOSE"
+            android:background="@drawable/background_bluerounded"
+            android:textColor="@color/white"
+            android:layout_gravity="center_vertical"
+            />
+
+    </androidx.cardview.widget.CardView>
+
+</LinearLayout>

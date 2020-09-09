@@ -10,13 +10,16 @@ import androidx.cardview.widget.CardView
 import androidx.recyclerview.widget.RecyclerView
 import id.dtech.cgo.CustomView.MyTextView
 import id.dtech.cgo.R
+import id.dtech.cgo.View.PackageDetailActivity
 import id.dtech.cgo.View.PackageListActivity
 import id.dtech.cgo.View.dp
 
-class PackageAdapter(context : Context, packagesList : ArrayList<String>) : RecyclerView.Adapter<PackageAdapter.PackageAdapterViewHolder>(){
+class PackageAdapter(context : Context,from : Int, packagesList : ArrayList<String>) :
+    RecyclerView.Adapter<PackageAdapter.PackageAdapterViewHolder>(){
 
     private val contexts = context
     private val packagesLists = packagesList
+    private val froms = from
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): PackageAdapterViewHolder {
         val view = LayoutInflater.from(contexts).inflate(R.layout.item_package,parent,
@@ -46,8 +49,14 @@ class PackageAdapter(context : Context, packagesList : ArrayList<String>) : Recy
         holder.txtPackageName.text = name
 
         holder.cardParent.setOnClickListener {
-            val i = Intent(contexts,PackageListActivity::class.java)
-            contexts.startActivity(i)
+            if (froms == 0){
+                val i = Intent(contexts,PackageListActivity::class.java)
+                contexts.startActivity(i)
+            }
+            else{
+                val i = Intent(contexts, PackageDetailActivity::class.java)
+                contexts.startActivity(i)
+            }
         }
     }
 

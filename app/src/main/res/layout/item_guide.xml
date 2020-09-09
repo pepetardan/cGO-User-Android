@@ -40,7 +40,6 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:gravity="center_vertical"
-
                     android:orientation="horizontal">
 
                     <id.dtech.cgo.CustomView.MyTextView
@@ -52,11 +51,26 @@
                         android:textColor="@color/profile_name"
                         />
 
-                    <carbon.widget.ImageView
+                    <ImageView
                         android:layout_width="36dp"
                         android:layout_height="36dp"
                         android:src="@drawable/ic_certified"
                         android:layout_marginLeft="4dp"
+                        />
+
+                    <Space
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        />
+
+                    <ImageView
+                        android:id="@+id/imgCheckTypeBlue"
+                        android:layout_width="24dp"
+                        android:layout_height="24dp"
+                        android:src="@drawable/ic_checktype_blue"
+                        android:layout_marginLeft="4dp"
+                        android:visibility="gone"
                         />
 
                 </LinearLayout>
@@ -216,6 +230,19 @@
             android:lineSpacingExtra="4dp"
             android:textSize="14sp"
             android:textColor="@color/profile_name"
+            />
+
+        <Button
+            android:id="@+id/btnNext"
+            android:layout_width="match_parent"
+            android:layout_height="45dp"
+            android:text="CHOOSE"
+            android:background="@drawable/background_bluerounded"
+            android:textColor="@color/white"
+            android:layout_gravity="center_vertical"
+            android:layout_marginTop="24dp"
+            android:layout_marginBottom="16dp"
+            android:visibility="gone"
             />
 
     </LinearLayout>

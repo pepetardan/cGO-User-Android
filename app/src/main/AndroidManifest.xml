@@ -15,6 +15,10 @@
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
         <activity
+            android:name=".View.ActivitySelectGuide"
+            android:theme="@style/AppTheme.WhiteNoActionBar"
+            />
+        <activity
             android:name=".View.PackageDetailActivity"
             android:theme="@style/AppTheme.WhiteNoActionBar" />
         <activity

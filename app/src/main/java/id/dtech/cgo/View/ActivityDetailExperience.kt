@@ -276,7 +276,7 @@ class ActivityDetailExperience : AppCompatActivity(), View.OnClickListener,
 
     private fun initiateGuideList(){
         rvGuide.layoutManager = LinearLayoutManager(this)
-        rvGuide.adapter = GuideAdapter(this)
+        rvGuide.adapter = GuideAdapter(this,0)
     }
 
     private fun initiateRvPackage(){
@@ -285,7 +285,7 @@ class ActivityDetailExperience : AppCompatActivity(), View.OnClickListener,
         packagesList.add("Kota Tua Reguler + Lunch")
 
         rvPackage.layoutManager = LinearLayoutManager(this)
-        rvPackage.adapter = PackageAdapter(this,packagesList)
+        rvPackage.adapter = PackageAdapter(this,0,packagesList)
     }
 
     private fun setSelectDateDialog() {
