@@ -84,7 +84,7 @@ class AddOnAdapter(context : Context, addOnList : ArrayList<AddOnModel>, payment
             }
         }
         else{
-            layoutParam.setMargins(24.dp, 24.dp, 24.dp, 0.dp)
+            layoutParam.setMargins(24.dp, 24.dp, 24.dp, 24.dp)
         }
 
         holder.cardParent.layoutParams = layoutParam

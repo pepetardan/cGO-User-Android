@@ -59,7 +59,6 @@
             android:id="@+id/experienceHeader2"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:visibility="gone"
             android:orientation="vertical">
 
             <id.dtech.cgo.CustomView.MyTextView
@@ -133,11 +132,128 @@
                 app:myFontStyle="nunito_sans_semibold"
                 />
 
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_marginTop="24dp"
+                android:layout_marginLeft="24dp"
+                android:layout_marginRight="24dp">
+
+                <id.dtech.cgo.CustomView.MyTextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="Package"
+                    android:textColor="#7E7E7E"
+                    app:myFontStyle="nunito_sans_semibold"
+                    />
+
+                <id.dtech.cgo.CustomView.MyTextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Jakarta Kota Tua Reguler"
+                    android:textColor="@color/profile_name"
+                    app:myFontStyle="nunito_sans_reguler"
+                    />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_marginTop="16dp"
+                android:layout_marginLeft="24dp"
+                android:layout_marginRight="24dp">
+
+                <id.dtech.cgo.CustomView.MyTextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="Add On"
+                    android:textColor="#7E7E7E"
+                    app:myFontStyle="nunito_sans_semibold"
+                    />
+
+                <id.dtech.cgo.CustomView.MyTextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Pickup service"
+                    android:textColor="@color/profile_name"
+                    app:myFontStyle="nunito_sans_reguler"
+                    />
+
+            </LinearLayout>
+
             <View
                 android:layout_width="match_parent"
                 android:layout_height="1dp"
                 android:background="@color/divider_color"
+                android:layout_marginTop="12dp"
+                android:layout_marginLeft="24dp"
+                android:layout_marginRight="24dp"
+                />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
                 android:layout_marginTop="24dp"
+                android:layout_marginLeft="24dp"
+                android:layout_marginRight="24dp">
+
+                <id.dtech.cgo.CustomView.MyTextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="Date"
+                    android:textColor="#7E7E7E"
+                    app:myFontStyle="nunito_sans_semibold"
+                    />
+
+                <id.dtech.cgo.CustomView.MyTextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="12-13 Feb 2020"
+                    android:textColor="@color/profile_name"
+                    app:myFontStyle="nunito_sans_reguler"
+                    />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_marginTop="16dp"
+                android:layout_marginLeft="24dp"
+                android:layout_marginRight="24dp">
+
+                <id.dtech.cgo.CustomView.MyTextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="Guest"
+                    android:textColor="#7E7E7E"
+                    app:myFontStyle="nunito_sans_semibold"
+                    />
+
+                <id.dtech.cgo.CustomView.MyTextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="3 Guest(s)"
+                    android:textColor="@color/profile_name"
+                    app:myFontStyle="nunito_sans_reguler"
+                    />
+
+            </LinearLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@color/divider_color"
+                android:layout_marginTop="12dp"
                 android:layout_marginLeft="24dp"
                 android:layout_marginRight="24dp"
                 />
@@ -148,6 +264,7 @@
             android:id="@+id/transportationHeader2"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:visibility="gone"
             app:cardElevation="5dp">
 
             <LinearLayout

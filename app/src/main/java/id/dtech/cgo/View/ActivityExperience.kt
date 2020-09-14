@@ -28,9 +28,7 @@ import com.kizitonwose.calendarview.model.CalendarMonth
 import com.kizitonwose.calendarview.model.DayOwner
 import com.kizitonwose.calendarview.ui.DayBinder
 import com.kizitonwose.calendarview.ui.ViewContainer
-import id.dtech.cgo.Adapter.ActivityTypeAdapter
-import id.dtech.cgo.Adapter.ServiceExperienceAdapter
-import id.dtech.cgo.Adapter.SortByAdapter
+import id.dtech.cgo.Adapter.*
 import id.dtech.cgo.Callback.MyCallback
 import id.dtech.cgo.Controller.ExperienceController
 import id.dtech.cgo.CustomView.MyTextView
@@ -100,9 +98,6 @@ class ActivityExperience : AppCompatActivity(), View.OnClickListener, MyCallback
     private lateinit var icFilterByClose : ImageView
     private lateinit var icSortByClose : ImageView
 
-    private lateinit var linearCard : LinearLayout
-    private lateinit var imgCard : ImageView
-
     // SORT BY FILTER
     private lateinit var btnFilter : Button
     private lateinit var txtClear : MyTextView
@@ -114,6 +109,12 @@ class ActivityExperience : AppCompatActivity(), View.OnClickListener, MyCallback
     private lateinit var txtPrivate : MyTextView
     private lateinit var txtSharing : MyTextView
     private lateinit var mySeekBar : RangeSeekBar
+
+    private lateinit var rvAccomodation : RecyclerView
+    private lateinit var rvLanguage : RecyclerView
+    private lateinit var rvTourGuide : RecyclerView
+    private lateinit var rvBookingConfirmation : RecyclerView
+    private lateinit var rvPayment : RecyclerView
 
     private val typelist = ArrayList<Int>()
 
@@ -560,21 +561,81 @@ class ActivityExperience : AppCompatActivity(), View.OnClickListener, MyCallback
         mySeekBar = sheetView.findViewById<RangeSeekBar>(R.id.mySeekBar)
         btnFilters = sheetView.findViewById(R.id.btnFilters)
         txtFilterClearAll = sheetView.findViewById(R.id.txtFilterClearAll)
+
         txtPrivate = sheetView.findViewById(R.id.txtPrivate)
         txtSharing = sheetView.findViewById(R.id.txtSharing)
         txtMinPrice = sheetView.findViewById(R.id.txtMinPrice)
         txtMaxPrice = sheetView.findViewById(R.id.txtMaxPrice)
         icFilterByClose = sheetView.findViewById(R.id.icFilterByClose)
-        linearCard = sheetView.findViewById(R.id.linearCard)
-        imgCard = sheetView.findViewById(R.id.imgCard)
+
+        rvAccomodation = sheetView.findViewById(R.id.rvAccomodation)
+        rvLanguage = sheetView.findViewById(R.id.rvLanguage)
+        rvTourGuide = sheetView.findViewById(R.id.rvTourGuide)
+        rvBookingConfirmation = sheetView.findViewById(R.id.rvBookingConfirmation)
+        rvPayment = sheetView.findViewById(R.id.rvPayment)
 
         mySeekBar.seekBarChangeListener = this
+
+        rvAccomodation.layoutManager = LinearLayoutManager(this)
+        rvAccomodation.adapter = TripAccomodationAdapter(this,accomodationList())
+
+        rvLanguage.layoutManager = LinearLayoutManager(this)
+        rvLanguage.adapter = LanguageUsedAdapter(this,languageList())
+
+        rvTourGuide.layoutManager = LinearLayoutManager(this)
+        rvTourGuide.adapter = TourGuideAdapter(this,tourGuideList())
+
+        rvBookingConfirmation.layoutManager = LinearLayoutManager(this)
+        rvBookingConfirmation.adapter = BookingConfirmationAdapter(this,bookingConfirmationList())
+
+        rvPayment.layoutManager = LinearLayoutManager(this)
+        rvPayment.adapter = PaymentAvaibilityAdapter(this,paymentList())
+
         icFilterByClose.setOnClickListener(this)
         txtSharing.setOnClickListener(this)
         txtPrivate.setOnClickListener(this)
         btnFilters.setOnClickListener(this)
         txtFilterClearAll.setOnClickListener(this)
-        linearCard.setOnClickListener(this)
+    }
+
+    private fun accomodationList() : ArrayList<String> {
+        val accomodationList = ArrayList<String>()
+        accomodationList.add("Card")
+        accomodationList.add("Boat")
+        accomodationList.add("Luxury Car")
+        accomodationList.add("Motorcycle")
+        accomodationList.add("Bike")
+        accomodationList.add("Walking")
+        return accomodationList
+    }
+
+    private fun languageList() : ArrayList<String> {
+        val languageList = ArrayList<String>()
+        languageList.add("Card")
+        languageList.add("Boat")
+        return languageList
+    }
+
+    private fun tourGuideList() : ArrayList<String> {
+        val tourList = ArrayList<String>()
+        tourList.add("Verified Guide")
+        tourList.add("Female Guide")
+        tourList.add("Male Guide")
+        return tourList
+    }
+
+    private fun bookingConfirmationList() : ArrayList<String> {
+        val bookingConfirmationList = ArrayList<String>()
+        bookingConfirmationList.add("Instant Booking")
+        bookingConfirmationList.add("No Instant Booking")
+        return bookingConfirmationList
+    }
+
+    private fun paymentList() : ArrayList<String> {
+        val paymentList = ArrayList<String>()
+        paymentList.add("Full Payment")
+        paymentList.add("Down Payment")
+        return paymentList
     }
 
     private fun setTransportationSortBy(){
@@ -855,9 +916,9 @@ class ActivityExperience : AppCompatActivity(), View.OnClickListener, MyCallback
         viewBottomprice = minThumbValue.toLong()
         viewUpperprice = maxThumbValue.toLong()
 
-       val strMinPrice = "Min. IDR "+ CurrencyUtil.decimal(viewBottomprice).replace(
+       val strMinPrice = "IDR "+ CurrencyUtil.decimal(viewBottomprice).replace(
            ",",".")
-       val strMaxPrice = "Max. IDR "+ CurrencyUtil.decimal(viewUpperprice).replace(
+       val strMaxPrice = "IDR "+ CurrencyUtil.decimal(viewUpperprice).replace(
            ",",".")
 
       txtMinPrice.text = strMinPrice
@@ -1163,20 +1224,10 @@ class ActivityExperience : AppCompatActivity(), View.OnClickListener, MyCallback
                 mySeekBar.setMaxThumbValue(500000000)
                 txtPrivate.setBackgroundResource(R.drawable.background_typeoftrip)
                 txtSharing.setBackgroundResource(R.drawable.background_typeoftrip)
-                val strMinPrice = "Min. IDR "+ CurrencyUtil.decimal(0).replace(
+                val strMinPrice = "IDR "+ CurrencyUtil.decimal(0).replace(
                     ",",".")
-                val strMaxPrice = "Max. IDR "+ CurrencyUtil.decimal(500000000).replace(
+                val strMaxPrice = "IDR "+ CurrencyUtil.decimal(500000000).replace(
                     ",",".")
-            }
-
-            R.id.linearCard -> {
-                if(!isLinearCardClicked){
-                    imgCard.setImageResource(R.drawable.ic_checktype_blue)
-                    isLinearCardClicked = true
-                } else {
-                    imgCard.setImageResource(R.drawable.ic_check_gray)
-                    isLinearCardClicked = false
-                }
             }
         }
     }

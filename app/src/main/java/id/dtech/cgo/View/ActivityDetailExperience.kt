@@ -55,13 +55,8 @@ import id.dtech.cgo.Util.CalendarUtil
 import id.dtech.cgo.Util.CurrencyUtil
 import id.dtech.cgo.Util.MapUtil
 import id.dtech.cgo.Util.ViewUtil
-import kotlinx.android.synthetic.main.activity_add_on.*
 import kotlinx.android.synthetic.main.activity_detail_experience.*
-import kotlinx.android.synthetic.main.activity_detail_experience.ivBack
-import kotlinx.android.synthetic.main.activity_detail_experience.shimerLayout
-import kotlinx.android.synthetic.main.activity_detail_experience.txtGuest
-import kotlinx.android.synthetic.main.activity_detail_experience.txtLocation
-import kotlinx.android.synthetic.main.activity_detail_experience.txtTitle
+
 import kotlinx.android.synthetic.main.calendar_day.view.*
 import kotlinx.android.synthetic.main.layout_calendar_header.view.*
 import org.threeten.bp.LocalDate

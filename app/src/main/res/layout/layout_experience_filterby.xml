@@ -48,6 +48,7 @@
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="1"
+        android:overScrollMode="never"
         android:fillViewport="true">
 
         <LinearLayout
@@ -67,135 +68,12 @@
                 android:layout_marginLeft="24dp"
                 android:layout_marginTop="24dp"/>
 
-            <LinearLayout
-                android:id="@+id/linearCard"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:gravity="center_vertical"
-                android:layout_marginBottom="5dp"
-                android:layout_marginRight="24dp"
-                >
-                <id.dtech.cgo.CustomView.MyTextView
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:text="Card"
-                    app:myFontStyle="nunito_sans_reguler"
-                    android:textColor="@color/profile_name"
-                    android:textSize="14sp"
-                    android:layout_marginLeft="24dp"/>
-                <ImageView
-                    android:id="@+id/imgCard"
-                    android:layout_width="24dp"
-                    android:layout_height="24dp"
-                    android:src="@drawable/ic_checklist_inactive"/>
-            </LinearLayout>
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:gravity="center_vertical"
-                android:layout_marginRight="24dp"
-                >
-                <id.dtech.cgo.CustomView.MyTextView
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:text="Boat"
-                    app:myFontStyle="nunito_sans_reguler"
-                    android:textColor="@color/profile_name"
-                    android:textSize="14sp"
-                    android:layout_marginLeft="24dp"/>
-                <ImageView
-                    android:layout_width="24dp"
-                    android:layout_height="24dp"
-                    android:src="@drawable/ic_checklist_inactive"/>
-            </LinearLayout>
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:gravity="center_vertical"
-                android:layout_marginRight="24dp"
-                >
-                <id.dtech.cgo.CustomView.MyTextView
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:text="Luxury Car"
-                    app:myFontStyle="nunito_sans_reguler"
-                    android:textColor="@color/profile_name"
-                    android:textSize="14sp"
-                    android:layout_marginLeft="24dp"/>
-                <ImageView
-                    android:layout_width="24dp"
-                    android:layout_height="24dp"
-                    android:src="@drawable/ic_checklist_inactive"/>
-            </LinearLayout>
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:gravity="center_vertical"
-                android:layout_marginRight="24dp"
-                >
-                <id.dtech.cgo.CustomView.MyTextView
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:text="Motorcycle"
-                    app:myFontStyle="nunito_sans_reguler"
-                    android:textColor="@color/profile_name"
-                    android:textSize="14sp"
-                    android:layout_marginLeft="24dp"/>
-                <ImageView
-                    android:layout_width="24dp"
-                    android:layout_height="24dp"
-                    android:src="@drawable/ic_checklist_inactive"/>
-            </LinearLayout>
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:gravity="center_vertical"
-                android:layout_marginRight="24dp"
-                >
-                <id.dtech.cgo.CustomView.MyTextView
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:text="Bike"
-                    app:myFontStyle="nunito_sans_reguler"
-                    android:textColor="@color/profile_name"
-                    android:textSize="14sp"
-                    android:layout_marginLeft="24dp"/>
-                <ImageView
-                    android:layout_width="24dp"
-                    android:layout_height="24dp"
-                    android:src="@drawable/ic_checklist_inactive"/>
-            </LinearLayout>
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:gravity="center_vertical"
-                android:layout_marginRight="24dp"
-                >
-                <id.dtech.cgo.CustomView.MyTextView
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:text="Walking"
-                    app:myFontStyle="nunito_sans_reguler"
-                    android:textColor="@color/profile_name"
-                    android:textSize="14sp"
-                    android:layout_marginLeft="24dp"/>
-                <ImageView
-                    android:layout_width="24dp"
-                    android:layout_height="24dp"
-                    android:src="@drawable/ic_checklist_inactive"/>
-            </LinearLayout>
+           <androidx.recyclerview.widget.RecyclerView
+               android:id="@+id/rvAccomodation"
+               android:layout_width="match_parent"
+               android:layout_height="wrap_content"
+               android:overScrollMode="never"
+               />
 
             <View
                 android:layout_width="match_parent"
@@ -216,48 +94,12 @@
                 app:myFontStyle="rubik_medium"
                 android:textColor="@color/profile_name"/>
 
-            <LinearLayout
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/rvLanguage"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:gravity="center_vertical"
-                android:layout_marginRight="24dp"
-                >
-                <id.dtech.cgo.CustomView.MyTextView
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:text="Bahasa Indonesia"
-                    app:myFontStyle="nunito_sans_reguler"
-                    android:textColor="@color/profile_name"
-                    android:textSize="14sp"
-                    android:layout_marginLeft="24dp"/>
-                <ImageView
-                    android:layout_width="24dp"
-                    android:layout_height="24dp"
-                    android:src="@drawable/ic_checklist_inactive"/>
-            </LinearLayout>
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:gravity="center_vertical"
-                android:layout_marginRight="24dp"
-                >
-                <id.dtech.cgo.CustomView.MyTextView
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:text="English"
-                    app:myFontStyle="nunito_sans_reguler"
-                    android:textColor="@color/profile_name"
-                    android:textSize="14sp"
-                    android:layout_marginLeft="24dp"/>
-                <ImageView
-                    android:layout_width="24dp"
-                    android:layout_height="24dp"
-                    android:src="@drawable/ic_checklist_inactive"/>
-            </LinearLayout>
+                android:overScrollMode="never"
+                />
 
             <View
                 android:layout_width="match_parent"
@@ -279,75 +121,12 @@
                 android:textColor="@color/profile_name"
                 />
 
-            <LinearLayout
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/rvTourGuide"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:gravity="center_vertical"
-                android:layout_marginRight="24dp">
-
-                <id.dtech.cgo.CustomView.MyTextView
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:text="Verified Guide"
-                    android:textSize="14sp"
-                    app:myFontStyle="nunito_sans_reguler"
-                    android:layout_marginLeft="24dp"
-                    android:textColor="@color/profile_name"
-                    />
-                <ImageView
-                    android:layout_width="24dp"
-                    android:layout_height="24dp"
-                    android:src="@drawable/ic_checklist_inactive">
-                </ImageView>
-            </LinearLayout>
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:gravity="center_vertical"
-                android:layout_marginRight="24dp">
-
-                <id.dtech.cgo.CustomView.MyTextView
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:text="Female Guide"
-                    android:textSize="14sp"
-                    app:myFontStyle="nunito_sans_reguler"
-                    android:layout_marginLeft="24dp"
-                    android:textColor="@color/profile_name"
-                    />
-                <ImageView
-                    android:layout_width="24dp"
-                    android:layout_height="24dp"
-                    android:src="@drawable/ic_checklist_inactive">
-                </ImageView>
-            </LinearLayout>
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:gravity="center_vertical"
-                android:layout_marginRight="24dp">
-
-                <id.dtech.cgo.CustomView.MyTextView
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:text="Male Guide"
-                    android:textSize="14sp"
-                    app:myFontStyle="nunito_sans_reguler"
-                    android:layout_marginLeft="24dp"
-                    android:textColor="@color/profile_name"
-                    />
-                <ImageView
-                    android:layout_width="24dp"
-                    android:layout_height="24dp"
-                    android:src="@drawable/ic_checklist_inactive">
-                </ImageView>
-            </LinearLayout>
+                android:overScrollMode="never"
+                />
 
             <View
                 android:layout_width="match_parent"
@@ -369,53 +148,12 @@
                 android:textColor="@color/profile_name"
                 />
 
-            <LinearLayout
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/rvBookingConfirmation"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:gravity="center_vertical"
-                android:layout_marginRight="24dp">
-
-                <id.dtech.cgo.CustomView.MyTextView
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:text="Instant Booking"
-                    android:textSize="14sp"
-                    app:myFontStyle="nunito_sans_reguler"
-                    android:layout_marginLeft="24dp"
-                    android:textColor="@color/profile_name"
-                    />
-                <ImageView
-                    android:layout_width="24dp"
-                    android:layout_height="24dp"
-                    android:src="@drawable/ic_checklist_inactive">
-                </ImageView>
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:gravity="center_vertical"
-                android:layout_marginRight="24dp">
-
-                <id.dtech.cgo.CustomView.MyTextView
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:text="No Instant Booking"
-                    android:textSize="14sp"
-                    app:myFontStyle="nunito_sans_reguler"
-                    android:layout_marginLeft="24dp"
-                    android:textColor="@color/profile_name"
-                    />
-                <ImageView
-                    android:layout_width="24dp"
-                    android:layout_height="24dp"
-                    android:src="@drawable/ic_checklist_inactive">
-                </ImageView>
-            </LinearLayout>
+                android:overScrollMode="never"
+                />
 
             <View
                 android:layout_width="match_parent"
@@ -437,57 +175,12 @@
                 android:textColor="@color/profile_name"
                 />
 
-            <LinearLayout
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/rvPayment"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:gravity="center_vertical"
-                android:layout_marginRight="24dp">
-
-                <id.dtech.cgo.CustomView.MyTextView
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:text="Full Payment"
-                    android:textSize="14sp"
-                    app:myFontStyle="nunito_sans_reguler"
-                    android:layout_marginLeft="24dp"
-                    android:textColor="@color/profile_name"
-                    />
-                <ImageView
-                    android:layout_width="24dp"
-                    android:layout_height="24dp"
-                    android:src="@drawable/ic_checklist_inactive">
-                </ImageView>
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:gravity="center_vertical"
-                android:layout_marginRight="24dp">
-
-                <id.dtech.cgo.CustomView.MyTextView
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:text="Down Payment"
-                    android:textSize="14sp"
-                    app:myFontStyle="nunito_sans_reguler"
-                    android:layout_marginLeft="24dp"
-                    android:textColor="@color/profile_name"
-                    />
-                <ImageView
-                    android:layout_width="24dp"
-                    android:layout_height="24dp"
-                    android:src="@drawable/ic_checklist_inactive">
-                </ImageView>
-
-
-
-            </LinearLayout>
-
+                android:overScrollMode="never"
+                />
 
             <id.dtech.cgo.CustomView.MyTextView
                 android:layout_width="wrap_content"
@@ -570,30 +263,89 @@
                 android:layout_marginTop="24dp"
                 android:layout_marginLeft="24dp"
                 android:layout_marginRight="24dp"
+                android:gravity="center_vertical"
                 android:orientation="horizontal">
 
-                <id.dtech.cgo.CustomView.MyTextView
-                    android:id="@+id/txtMinPrice"
+                <LinearLayout
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:text="Min. IDR 0"
-                    android:textSize="12sp"
-                    android:layout_weight="1"
-                    app:myFontStyle="nunito_sans_reguler"
-                    android:textColor="@color/profile_name"
+                    android:orientation="vertical"
+                    android:layout_weight="1">
+
+                    <id.dtech.cgo.CustomView.MyTextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Min"
+                        android:textSize="13sp"
+                        android:textColor="@color/profile_name"
+                        app:myFontStyle="nunito_sans_reguler"
+                        />
+
+                    <Space
+                        android:layout_width="wrap_content"
+                        android:layout_height="4dp"/>
+
+                    <id.dtech.cgo.CustomView.MyTextView
+                        android:id="@+id/txtMinPrice"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="IDR 0"
+                        android:textSize="13sp"
+                        app:myFontStyle="nunito_sans_reguler"
+                        android:textColor="@color/profile_name"
+                        android:background="@drawable/background_price"
+                        android:paddingLeft="24dp"
+                        android:paddingRight="24dp"
+                        android:paddingTop="10dp"
+                        android:paddingBottom="10dp"
+                        />
+
+                </LinearLayout>
+
+                <View
+                    android:layout_width="25dp"
+                    android:layout_height="2dp"
+                    android:background="@color/divider_color"
+                    android:layout_marginLeft="16dp"
+                    android:layout_marginRight="16dp"
+                    android:layout_marginTop="6dp"
                     />
 
-                <id.dtech.cgo.CustomView.MyTextView
-                    android:id="@+id/txtMaxPrice"
+                <LinearLayout
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:text="Max. IDR 500.000.000"
-                    android:textSize="12sp"
-                    android:layout_weight="1"
-                    android:gravity="end"
-                    app:myFontStyle="nunito_sans_reguler"
-                    android:textColor="@color/profile_name"
-                    />
+                    android:orientation="vertical"
+                    android:layout_weight="1">
+
+                    <id.dtech.cgo.CustomView.MyTextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Max"
+                        android:textSize="13sp"
+                        android:textColor="@color/profile_name"
+                        app:myFontStyle="nunito_sans_reguler"
+                        />
+
+                    <Space
+                        android:layout_width="wrap_content"
+                        android:layout_height="4dp"/>
+
+                    <id.dtech.cgo.CustomView.MyTextView
+                        android:id="@+id/txtMaxPrice"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="IDR 500.000.000"
+                        android:textSize="13sp"
+                        app:myFontStyle="nunito_sans_reguler"
+                        android:textColor="@color/profile_name"
+                        android:background="@drawable/background_price"
+                        android:paddingLeft="24dp"
+                        android:paddingRight="24dp"
+                        android:paddingTop="10dp"
+                        android:paddingBottom="10dp"
+                        />
+
+                </LinearLayout>
 
             </LinearLayout>
 
