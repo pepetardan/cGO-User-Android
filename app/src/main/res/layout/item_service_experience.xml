@@ -73,6 +73,7 @@
         android:layout_marginTop="14dp"
         android:layout_marginLeft="16dp"
         android:layout_marginRight="16dp"
+        android:gravity="center_vertical"
         android:orientation="horizontal">
 
         <LinearLayout
@@ -150,37 +151,53 @@
             />
 
         <Space
-            android:layout_width="6dp"
+            android:layout_width="8dp"
             android:layout_height="match_parent"/>
 
-        <View
-            android:layout_width="1dp"
-            android:layout_height="match_parent"
-            android:background="@color/divider_color"
-            />
-
-        <Space
-            android:layout_width="6dp"
-            android:layout_height="match_parent"/>
         <LinearLayout
+            android:id="@+id/linearCertifiedGuide"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
             android:gravity="center_vertical">
 
+            <View
+                android:layout_width="1dp"
+                android:layout_height="15dp"
+                android:background="#7A7A7A"
+                />
+
+            <Space
+                android:layout_width="8dp"
+                android:layout_height="match_parent"/>
+
             <ImageView
-                android:layout_width="30dp"
-                android:layout_height="30dp"
+                android:layout_width="24dp"
+                android:layout_height="24dp"
                 android:scaleType="fitXY"
-                android:src="@drawable/certified_guide_png"/>
+                android:src="@drawable/ic_certified"/>
 
             <id.dtech.cgo.CustomView.MyTextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Certified Guide"/>
+
         </LinearLayout>
 
     </LinearLayout>
+
+    <id.dtech.cgo.CustomView.MyTextView
+        android:id="@+id/txtSpecialPrice"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="IDR 1.200.000"
+        android:textColor="@color/text3"
+        android:textSize="14sp"
+        android:layout_marginLeft="16dp"
+        android:layout_gravity="center_vertical"
+        app:myFontStyle="nunito_sans_semibold"
+        android:layout_marginTop="14dp"
+        />
 
     <id.dtech.cgo.CustomView.MyTextView
         android:id="@+id/txtPrice"

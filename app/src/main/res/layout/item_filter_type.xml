@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout
+    android:id="@+id/linearParent"
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
@@ -21,7 +22,7 @@
         android:textSize="14sp" />
 
     <ImageView
-        android:id="@+id/imgCard"
+        android:id="@+id/imgCheck"
         android:layout_width="24dp"
         android:layout_height="24dp"
         android:src="@drawable/ic_checklist_inactive"/>

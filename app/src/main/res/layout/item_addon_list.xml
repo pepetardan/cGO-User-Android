@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    android:id="@+id/linearParent"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="horizontal"
+    android:layout_marginTop="24dp">
+
+    <id.dtech.cgo.CustomView.MyTextView
+        android:id="@+id/txtName"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:text="Add On (Pickup service)"
+        android:textSize="16sp"
+        app:myFontStyle="nunito_sans_reguler"
+        android:textColor="@color/profile_name"
+        />
+
+    <id.dtech.cgo.CustomView.MyTextView
+        android:id="@+id/txtPrice"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="IDR 350.000"
+        android:textSize="16sp"
+        app:myFontStyle="nunito_sans_reguler"
+        android:textColor="@color/profile_name"
+        />
+
+</LinearLayout>

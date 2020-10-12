@@ -50,5 +50,21 @@ class ApplicationListener {
         interface SortByListener {
             fun onSortByClicked(sortMap : HashMap<String,Any>)
         }
+
+        interface PackageListener {
+            fun onPackageClicked(packageMap : HashMap<String,Any>)
+        }
+
+        interface GuideListener {
+            fun onGuideClicked(guideMap : HashMap<String,Any>)
+        }
+
+        interface PaymentAvaibilityListener {
+            fun onPaymentAvaibilityClicked(PaymentAvaibilityMap : HashMap<String,Any>)
+        }
+
+        interface BookingConfirmationListener {
+            fun onBookingConfirmationClicked(BookingConfirmationMap : HashMap<String,Any>)
+        }
     }
 }

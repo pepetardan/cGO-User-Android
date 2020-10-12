@@ -21,10 +21,12 @@ import android.widget.*
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import carbon.widget.RelativeLayout
 import com.deishelon.roundedbottomsheet.RoundedBottomSheetDialog
 import com.google.android.material.bottomsheet.BottomSheetBehavior
 import com.google.android.material.snackbar.Snackbar
+import com.google.gson.JsonArray
 import com.kizitonwose.calendarview.CalendarView
 import com.kizitonwose.calendarview.model.CalendarDay
 import com.kizitonwose.calendarview.model.CalendarMonth
@@ -38,10 +40,13 @@ import com.xendit.Models.Token
 import com.xendit.Models.XenditError
 import com.xendit.TokenCallback
 import com.xendit.Xendit
+import id.dtech.cgo.Adapter.AdapterAddonList
+import id.dtech.cgo.Adapter.AddonNameAdapter
 import id.dtech.cgo.Adapter.BankPaymentAdapter
 import id.dtech.cgo.Adapter.PassengerAdapter
 import id.dtech.cgo.Callback.MyCallback
 import id.dtech.cgo.Controller.*
+import id.dtech.cgo.CustomView.MyTextView
 import id.dtech.cgo.Listener.ApplicationListener
 import id.dtech.cgo.Model.*
 import id.dtech.cgo.Preferance.ProfileSession
@@ -79,21 +84,50 @@ class ActivityCheckout : AppCompatActivity(), View.OnClickListener, ApplicationL
     private val selectedDates = java.util.ArrayList<LocalDate>()
     private val monthTitleFormatter = DateTimeFormatter.ofPattern("MMMM")
 
-    private lateinit var currentCalendarMonth : CalendarMonth
     private var countDownTimer : CountDownTimer? = null
 
+    private lateinit var priceRoundedBottomSheet: RoundedBottomSheetDialog
+    private lateinit var imgBottomClose : ImageView
+    private lateinit var txtTitlePackage : MyTextView
+    private lateinit var txtPricePackage : MyTextView
+    private lateinit var txtPricePromo : MyTextView
+    private lateinit var txtPriceCredit : MyTextView
+    private lateinit var txtSubTotalPrice : MyTextView
+    private lateinit var txtPriceDp : MyTextView
+    private lateinit var txtDp : MyTextView
+    private lateinit var txtDpTotalPrice : MyTextView
+    private lateinit var txtPriceDialog : MyTextView
+    private lateinit var txtDialogTotalPrice : MyTextView
+    private lateinit var rvAddonList : RecyclerView
+    private lateinit var linearPricePromo : LinearLayout
+    private lateinit var linearPriceCredit : LinearLayout
+    private lateinit var linearPriceSubtotal : LinearLayout
+    private lateinit var linearPriceDp : LinearLayout
+    private lateinit var linearPriceDialog : LinearLayout
+    private lateinit var viewDialog1 : View
+    private lateinit var viewDialog2 : View
+
+    private lateinit var currentCalendarMonth : CalendarMonth
     private lateinit var checkoutMap : HashMap<String,Any>
     private lateinit var paymentTransactionmap : HashMap<String,Any>
 
     private lateinit var guestList : ArrayList<HashMap<String,Any>>
+    private lateinit var addOnList : ArrayList<AddOnModel>
+    private lateinit var packageMap : HashMap<String,Any>
+    private lateinit var intentMap : HashMap<String,Any>
+    private var selectedGuideMap : HashMap<String,Any>? = null
+
+    private lateinit var guideList : ArrayList<HashMap<String,Any>>
+    private lateinit var packageList : ArrayList<HashMap<String,Any>>
     private lateinit var typeList : ArrayList<String>
+    private lateinit var packageExpPayment : ArrayList<HashMap<String,Any>>
 
     private lateinit var transactionController : TransactionController
     private lateinit var experienController : ExperienceController
     private lateinit var bookingController : BookingController
     private lateinit var micsController : MicsController
 
-    private lateinit var paymentMethodList : ArrayList<PaymentModel>
+    private lateinit var paymentMethodList : ArrayList<String>
 
     private lateinit var loadingDialog : AlertDialog
     private lateinit var backDialog : AlertDialog
@@ -135,6 +169,7 @@ class ActivityCheckout : AppCompatActivity(), View.OnClickListener, ApplicationL
     private var isPromoUsed = false
     private var isCreditsUsed = false
     private var creditPrice = 0L
+    private var strCurrency = ""
 
     //PAYMENT
     private lateinit var bankMethodList : ArrayList<PaymentMethodModel>
@@ -144,6 +179,7 @@ class ActivityCheckout : AppCompatActivity(), View.OnClickListener, ApplicationL
     private var paymentMethodModel: PaymentMethodModel? = null
     private var total_price = 0L
     private var fixed_total_price = 0L
+    private var currentSubtotalPrice = 0L
 
     private var bankPosition = 0
     private var paymentPosition = 0
@@ -151,6 +187,7 @@ class ActivityCheckout : AppCompatActivity(), View.OnClickListener, ApplicationL
 
     private var isPaypal = false
     private var payID = ""
+    private var paymentTypePercentage = 0
 
     //CREDITS
     private var isCreditsChecked = false
@@ -267,6 +304,8 @@ class ActivityCheckout : AppCompatActivity(), View.OnClickListener, ApplicationL
                 setConfirmation()
             }
             else{
+               initiatePriceBottomSheet()
+
                from = bundle.getInt("from")
                adultCount = bundle.getInt("adult_count")
                childrenCount = bundle.getInt("children_count")
@@ -274,15 +313,27 @@ class ActivityCheckout : AppCompatActivity(), View.OnClickListener, ApplicationL
 
                if (from == 1){
                    promoType = 1
+
+                   intentMap = bundle.getSerializable("intentMap") as HashMap<String, Any>
+                   packageMap = intentMap["packageMap"] as HashMap<String, Any>
+                   guideList = intentMap["guideList"] as ArrayList<HashMap<String, Any>>
+                   packageList = intentMap["packageList"] as ArrayList<HashMap<String, Any>>
+                   packageExpPayment = intentMap["packageExpPayment"] as ArrayList<HashMap<String, Any>>
+
+                   if (intentMap["selectedGuideMap"] != null) {
+                       selectedGuideMap = intentMap["selectedGuideMap"] as HashMap<String, Any>
+                   }
+
                    experienceDetailModel = bundle.getParcelable("experience_model") ?:
                            ExperienceDetailModel()
                    addOnModel = bundle.getParcelable("addon_model") ?:
                            AddOnModel()
-                   paymentMethodList = bundle.getParcelableArrayList("method_list") ?: ArrayList()
+
                    selectedDateName = bundle.getString("selected_date") ?: ""
                    date = bundle.getString("date") ?: ""
                    paymentType = bundle.getString("payment_type") ?: ""
-                   isDownPaymentAvailable = bundle.getBoolean("isDownPaymentAvailable")
+                   isDownPaymentAvailable = packageMap["isDownpaymentAvailable"] as Boolean
+                   addOnList = bundle.getParcelableArrayList("addOnList") ?: ArrayList()
 
                    if (isDownPaymentAvailable){
                        linearPaymentType.visibility = View.VISIBLE
@@ -297,6 +348,7 @@ class ActivityCheckout : AppCompatActivity(), View.OnClickListener, ApplicationL
                    transportationHeader1.visibility = View.GONE
                    transportationHeader2.visibility = View.GONE
 
+                   initiatePaymentMethod()
                    setHeaderContent()
                }
                else{
@@ -333,7 +385,7 @@ class ActivityCheckout : AppCompatActivity(), View.OnClickListener, ApplicationL
                    totalPricePayment = bundle.getLong("totalPricePayment")
                    date = bundle.getString("date") ?: ""
                    isReturn = bundle.getInt("is_return")
-                    Log.d("trans_date",date)
+
                    total_price = totalPricePayment
 
                    linearLogin.visibility = View.GONE
@@ -383,6 +435,9 @@ class ActivityCheckout : AppCompatActivity(), View.OnClickListener, ApplicationL
         txtDetail1.setOnClickListener(this)
         txtDetail2.setOnClickListener(this)
 
+        linearTotalBottomSheet.setOnClickListener(this)
+        linearPaymentTotalBottomSheet.setOnClickListener(this)
+
         linearBankPayment.setOnClickListener(this)
         linearCCMethod.setOnClickListener(this)
         linearPaypalMethod.setOnClickListener(this)
@@ -400,6 +455,46 @@ class ActivityCheckout : AppCompatActivity(), View.OnClickListener, ApplicationL
         linearLogin2.setOnClickListener(this)
         linearPhone.setOnClickListener(this)
         linearIdCard.setOnClickListener(this)
+    }
+
+    private fun initiatePaymentMethod(){
+        paymentMethodList = ArrayList()
+        paymentMethodList.add(packageExpPayment[0]["packagePaymentId"] as String)
+
+        if (packageExpPayment.size > 1){
+            paymentMethodList.add(packageExpPayment[1]["packagePaymentId"] as String)
+            paymentTypePercentage = packageExpPayment[1]["paymentPrecentage"] as Int
+        }
+    }
+
+    private fun initiatePriceBottomSheet(){
+        val view = LayoutInflater.from(this).inflate(R.layout.price_details_bottomsheet, null)
+        priceRoundedBottomSheet = RoundedBottomSheetDialog(this)
+        priceRoundedBottomSheet.setContentView(view)
+
+        imgBottomClose = view.findViewById(R.id.imgBottomClose)
+        txtTitlePackage = view.findViewById(R.id.txtTitlePackage)
+        txtPricePackage = view.findViewById(R.id.txtPricePackage)
+        txtDialogTotalPrice = view.findViewById(R.id.txtDialogTotalPrice)
+        txtPricePromo = view.findViewById(R.id.txtPricePromo)
+        txtPriceCredit = view.findViewById(R.id.txtPriceCredit)
+        txtSubTotalPrice = view.findViewById(R.id.txtSubTotalPrice)
+        txtPriceDp = view.findViewById(R.id.txtPriceDp)
+        txtDp = view.findViewById(R.id.txtDp)
+        txtDpTotalPrice = view.findViewById(R.id.txtDpTotalPrice)
+        txtPriceDialog = view.findViewById(R.id.txtPriceDialog)
+        rvAddonList = view.findViewById(R.id.rvAddonList)
+        linearPricePromo = view.findViewById(R.id.linearPricePromo)
+        linearPriceCredit = view.findViewById(R.id.linearPriceCredit)
+        linearPriceSubtotal = view.findViewById(R.id.linearPriceSubtotal)
+        linearPriceDp = view.findViewById(R.id.linearPriceDp)
+        linearPriceDialog = view.findViewById(R.id.linearPriceDialog)
+        viewDialog1 = view.findViewById(R.id.viewDialog1)
+        viewDialog2 = view.findViewById(R.id.viewDialog2)
+
+        rvAddonList.layoutManager = LinearLayoutManager(this)
+
+        imgBottomClose.setOnClickListener(this)
     }
 
     @SuppressLint("SetTextI18n")
@@ -424,11 +519,11 @@ class ActivityCheckout : AppCompatActivity(), View.OnClickListener, ApplicationL
             linearChildren.visibility = View.GONE
         }
 
-        val strAdultPrice = "IDR " +CurrencyUtil.decimal(totalAdultPrice).replace(
+        val strAdultPrice = "$strCurrency " +CurrencyUtil.decimal(totalAdultPrice).replace(
             ",",".")
-        val strChildrenPrice = "IDR " +CurrencyUtil.decimal(totalChildrenPrice).replace(
+        val strChildrenPrice = "$strCurrency " +CurrencyUtil.decimal(totalChildrenPrice).replace(
             ",",".")
-        val strTotalPrice = "IDR " +CurrencyUtil.decimal(totalPricePayment).replace(
+        val strTotalPrice = "$strCurrency " +CurrencyUtil.decimal(totalPricePayment).replace(
             ",",".")
 
         txtAdultPrice.text = strAdultPrice
@@ -602,59 +697,80 @@ class ActivityCheckout : AppCompatActivity(), View.OnClickListener, ApplicationL
 
     @SuppressLint("SetTextI18n")
     private fun setHeaderContent(){
-        txtTitle.text = experienceDetailModel.exp_title ?: ""
-        txtTitleHeader2.text = experienceDetailModel.exp_title ?: ""
 
-        txtPaymentType.text = addOnModel.name ?: ""
-        serviceHeader2.text = addOnModel.name ?: ""
+        val packageid = packageMap["packageId"] as Int
+        val name = packageMap["packageName"] as String
+        val packageCurrency = packageMap["packageCurrency"] as String
+        strCurrency = packageMap["packageCurrency"] as String
 
-        if (adultCount > 0 && childrenCount > 0 && infantCount > 0){
-            if (adultCount > 1){
-                txtGuest.text = "$adultCount Adult(s), $childrenCount Children, $infantCount Infant"
-                txtGuestHeader2.text = "$adultCount Adult(s), $childrenCount Children, $infantCount Infant"
-            }
-            else{
-                txtGuest.text = "$adultCount Adult, $childrenCount Children, $infantCount Infant"
-                txtGuestHeader2.text = "$adultCount Adult, $childrenCount Children, $infantCount Infant"
-            }
-        }
-        else if (adultCount > 0){
-            if (adultCount > 1){
-                txtGuest.text = "$adultCount Adult(s)"
-                txtGuestHeader2.text = "$adultCount Adult(s)"
-            }
-            else{
-                txtGuest.text = "$adultCount Adult"
-                txtGuestHeader2.text = "$adultCount Adult"
-            }
-        }
-        else if (childrenCount > 0){
-            txtGuest.text = "$childrenCount Children"
-            txtGuestHeader2.text = "$childrenCount Children"
+        if (packageid != 0){
+            linearPackage.visibility = View.VISIBLE
+            txtPackageName.text = name
+
+            linearPackage2.visibility = View.VISIBLE
+            txtPackageName2.text = name
         }
         else{
-            txtGuest.text = "$infantCount Infant"
-            txtGuestHeader2.text = "$infantCount Infant"
+            linearPackage.visibility = View.GONE
+            linearPackage2.visibility = View.GONE
         }
 
-        if (paymentType == "trip"){
-            total_price = addOnModel.total_price
+        for (i in 0 until addOnList.size){
+            val addOnModel = addOnList[i]
+            total_price += addOnModel.amount
         }
-        else{
-            total_price = addOnModel.total_price * (adultCount + childrenCount)
+
+        rvAddonName.layoutManager = LinearLayoutManager(this)
+        rvAddonName2.layoutManager = LinearLayoutManager(this)
+
+        val newRvList = ArrayList<AddOnModel>()
+        val newRvName = ArrayList<AddOnModel>()
+
+        for (i in 1 until addOnList.size){
+            newRvList.add(addOnList[i])
+            newRvName.add(addOnList[i])
         }
+
+        rvAddonName.adapter = AddonNameAdapter(this,newRvName)
+        rvAddonName2.adapter = AddonNameAdapter(this,newRvName)
+        rvAddonList.adapter = AdapterAddonList(this,newRvList,packageCurrency)
 
         fixed_total_price = total_price
         val price = CurrencyUtil.decimal(total_price).replace(",",
             ".")
-        val currency = addOnModel.currency ?: ""
-        val strPrice = "$currency $price/$paymentType"
+        val addOnTicketPrice = CurrencyUtil.decimal(addOnList[0].amount).replace(",",
+            ".")
+        val strPrice = "$packageCurrency $price"
 
-        txtPriceDetails.text = "$currency $price"
-        txtDateHeader2.text = selectedDateName
-        txtDate.text = selectedDateName
+        val totalGuestWithoutInfant = adultCount + childrenCount
+
+        if (totalGuestWithoutInfant > 1){
+            txtPackageGuide.text = "$totalGuestWithoutInfant Guest(s)"
+            txtPackageGuide2.text = "$totalGuestWithoutInfant Guest(s)"
+        }
+        else{
+            txtPackageGuide.text = "$totalGuestWithoutInfant Guest"
+            txtPackageGuide2.text = "$totalGuestWithoutInfant Guest"
+        }
+
+        if (packageid != 0){
+            txtTitlePackage.text = "Price ($name)"
+            txtPricePackage.text = "$packageCurrency $addOnTicketPrice (x$totalGuestWithoutInfant)"
+        }
+        else{
+            txtTitlePackage.text = "Price"
+            txtPricePackage.text = "$packageCurrency $addOnTicketPrice (x$totalGuestWithoutInfant)"
+        }
+
+        txtAddOnDate.text = selectedDateName
+        txtAddOnDate2.text = selectedDateName
+
+        txtDialogTotalPrice.text = strPrice
+
+        txtTitleCheckout.text = experienceDetailModel.exp_title ?: ""
+        txtPriceDetails.text = "$packageCurrency $price"
         txtPrice.text = strPrice
-        txtPaymentType2.text = "$currency $price"
+        txtPaymentType2.text = "$packageCurrency $price"
         txtPaymentTotalPrice.text = strPrice
     }
 
@@ -1117,6 +1233,7 @@ class ActivityCheckout : AppCompatActivity(), View.OnClickListener, ApplicationL
                 isPromoUsed = true
                 linearPromoDetail.visibility = View.VISIBLE
                 linearTotalPromo.visibility = View.VISIBLE
+                linearPricePromo.visibility = View.VISIBLE
                 setTotalPrice()
             }
 
@@ -1138,6 +1255,7 @@ class ActivityCheckout : AppCompatActivity(), View.OnClickListener, ApplicationL
                 linearPromo.setBackgroundResource(0)
                 linearPromo.setBackgroundColor(Color.parseColor("#ffffff"))
                 imgDonePromo.setBackgroundResource(R.drawable.ic_gray_blankcircle)
+                linearPricePromo.visibility = View.GONE
             }
 
             if (from == 1){
@@ -1168,8 +1286,9 @@ class ActivityCheckout : AppCompatActivity(), View.OnClickListener, ApplicationL
                     ",", ".")
 
                 if (from == 1){
-                    val currency = addOnModel.currency ?: ""
-                    txtTotalCredits.text = "- $currency $totalCredit"
+                    txtTotalCredits.text = "- $strCurrency $totalCredit"
+                    txtPriceCredit.text = "- $strCurrency $totalCredit"
+                    linearPriceCredit.visibility = View.VISIBLE
                 }
                 else{
                     transportPrice?.let {
@@ -1192,6 +1311,7 @@ class ActivityCheckout : AppCompatActivity(), View.OnClickListener, ApplicationL
                 if (from == 1){
                     if (!isPromoUsed){
                         linearPromoDetail.visibility = View.GONE
+                        linearPriceCredit.visibility = View.GONE
                     }
                 }
 
@@ -1214,6 +1334,7 @@ class ActivityCheckout : AppCompatActivity(), View.OnClickListener, ApplicationL
             imgCheckPromo.visibility = View.VISIBLE
             linearPromoDetail.visibility = View.VISIBLE
             linearTotalPromo.visibility = View.VISIBLE
+            linearPricePromo.visibility = View.VISIBLE
 
             isPromoUsed = true
         }
@@ -1224,6 +1345,7 @@ class ActivityCheckout : AppCompatActivity(), View.OnClickListener, ApplicationL
 
             imgCheckPromo.visibility = View.GONE
             linearTotalPromo.visibility = View.GONE
+            linearPricePromo.visibility = View.GONE
 
             promoID = ""
             promoModel = null
@@ -1289,7 +1411,7 @@ class ActivityCheckout : AppCompatActivity(), View.OnClickListener, ApplicationL
     }
 
     private fun downPaymentPrice(price : Long) : Long {
-        return (price * 30) / 100
+        return (price * paymentTypePercentage) / 100
     }
 
     @SuppressLint("SetTextI18n")
@@ -1306,7 +1428,6 @@ class ActivityCheckout : AppCompatActivity(), View.OnClickListener, ApplicationL
             txtPaymentLearnMore.visibility = View.GONE
 
             paymentPosition = 0
-
         }
         else{
             txtFullPayment.setBackgroundResource(R.drawable.background_more)
@@ -1315,7 +1436,9 @@ class ActivityCheckout : AppCompatActivity(), View.OnClickListener, ApplicationL
             txtDownPayment.setBackgroundResource(R.drawable.background_payment)
             txtDownPayment.setTextColor(Color.parseColor("#233E98"))
 
-            txtPaymentTypeTitle2.text = "Down Payment 30%"
+            txtPaymentTypeTitle2.text = "Down Payment $paymentTypePercentage%"
+            txtDpTotalPrice.text = "(Down Payment $paymentTypePercentage%)"
+            txtDp.text = "Down Payment ($paymentTypePercentage%)"
             txtPaymentLearnMore.visibility = View.VISIBLE
 
             paymentPosition = 1
@@ -1326,14 +1449,14 @@ class ActivityCheckout : AppCompatActivity(), View.OnClickListener, ApplicationL
             var paymentPrice: Long
 
             if (paymentPosition == 0){
-                paymentPrice = addOnModel.total_price
+                paymentPrice = fixed_total_price
             }
             else{
-                paymentPrice = downPaymentPrice(addOnModel.total_price)
+                paymentPrice = downPaymentPrice(total_price)
             }
             val price = CurrencyUtil.decimal(paymentPrice).replace(",",
                 ".")
-            val currency = addOnModel.currency ?: ""
+            val currency = packageMap["packageCurrency"] as String
 
             txtPaymentType2.text = "$currency $price"
             txtPriceDetails.text = "$currency $price"
@@ -1466,6 +1589,8 @@ class ActivityCheckout : AppCompatActivity(), View.OnClickListener, ApplicationL
             strEmail = bookedEmail
         }
 
+        val packageId = packageMap["packageId"] as Int
+
         val dataMap = HashMap<String,Any>()
         dataMap["id"] = ""
         dataMap["exp_id"] = experienceDetailModel.experience_id ?: ""
@@ -1477,6 +1602,28 @@ class ActivityCheckout : AppCompatActivity(), View.OnClickListener, ApplicationL
         dataMap["trans_id"] = ""
         dataMap["status"] = 0
         dataMap["experience_add_on_id"] = addOnModel.id ?: ""
+        dataMap["package_id"] = packageId
+        dataMap["x-mode"] = "mobile"
+
+        if (selectedGuideMap != null){
+            val guideId = selectedGuideMap!!["guide_id"] as String
+            dataMap["guide_id"] = guideId
+        }
+
+        if (addOnList.size > 1){
+            val addOnJsonArray = JSONArray()
+
+            for (i in 1 until addOnList.size){
+                val addOnId = addOnList[i].id ?: ""
+                val addOnJsonObject = JSONObject()
+
+                addOnJsonObject.put("id",addOnId)
+
+                addOnJsonArray.put(addOnJsonObject)
+            }
+
+            dataMap["experience_add_on_id"] = addOnJsonArray.toString()
+        }
 
         bookingController.createBooking(dataMap,this)
     }
@@ -1645,14 +1792,7 @@ class ActivityCheckout : AppCompatActivity(), View.OnClickListener, ApplicationL
     private fun setTotalPrice(){
               if (from == 1){
 
-                  var currentPrice : Long
-
-                  if (paymentPosition == 0){
-                      currentPrice = fixed_total_price
-                  }
-                  else{
-                      currentPrice = downPaymentPrice(fixed_total_price)
-                  }
+                  var currentPrice = fixed_total_price
 
                   if (promoModel != null && isPromoUsed){
 
@@ -1663,16 +1803,23 @@ class ActivityCheckout : AppCompatActivity(), View.OnClickListener, ApplicationL
                           if (promoType == 0){
                               currentPrice -= promoAmount
 
-                              txtPromoPrice.text = "- ${addOnModel.currency} " +CurrencyUtil
+                              txtPromoPrice.text = "- $strCurrency " +CurrencyUtil
+                                  .decimal(promoAmount).replace(",", ".")
+
+                              txtPricePromo.text = "- $strCurrency " +CurrencyUtil
                                   .decimal(promoAmount).replace(",", ".")
                           }
                           else{
                               val promoPricePercentage = (currentPrice * promoAmount) / 100
                               currentPrice -= promoPricePercentage
 
-                              txtPromoPrice.text = "- ${addOnModel.currency} " +CurrencyUtil
+                              txtPromoPrice.text = "- $strCurrency " +CurrencyUtil
                                   .decimal(promoPricePercentage).replace(",",
                                   ".")
+
+                              txtPricePromo.text = "- $strCurrency " +CurrencyUtil
+                                  .decimal(promoPricePercentage).replace(",",
+                                      ".")
                           }
 
                           promoID = model.id ?: ""
@@ -1683,13 +1830,55 @@ class ActivityCheckout : AppCompatActivity(), View.OnClickListener, ApplicationL
                       currentPrice -= profileSession.points
                   }
 
+                  currentSubtotalPrice = currentPrice
+                  val subTotalPrice = CurrencyUtil.decimal(currentPrice).replace(",",
+                      ".")
+                  val strSubTotalPrice = "$strCurrency $subTotalPrice"
+                  txtSubTotalPrice.text = strSubTotalPrice
+
+                  if (paymentPosition == 0){
+                      if (promoModel != null && isPromoUsed || isCreditsUsed){
+                          viewDialog1.visibility = View.VISIBLE
+                      }
+                      else{
+                          viewDialog1.visibility = View.GONE
+                      }
+
+                      linearPriceSubtotal.visibility = View.GONE
+                      linearPriceDp.visibility = View.GONE
+                      viewDialog2.visibility = View.GONE
+                      txtDpTotalPrice.visibility = View.GONE
+                  }
+                  else{
+                      if (promoModel != null && isPromoUsed || isCreditsUsed){
+                          viewDialog1.visibility = View.VISIBLE
+
+                          linearPriceSubtotal.visibility = View.VISIBLE
+                          txtDpTotalPrice.visibility = View.VISIBLE
+                          linearPriceDp.visibility = View.GONE
+                      }
+                      else{
+                          viewDialog1.visibility = View.GONE
+
+                          linearPriceSubtotal.visibility = View.VISIBLE
+                          linearPriceDp.visibility = View.VISIBLE
+                          txtDpTotalPrice.visibility = View.GONE
+                      }
+
+                      viewDialog2.visibility = View.VISIBLE
+                      currentPrice = downPaymentPrice(currentPrice)
+                  }
+
                   val price = CurrencyUtil.decimal(currentPrice).replace(",",
                       ".")
-                  val currency = addOnModel.currency ?: ""
-                  val strPrice = "$currency $price/$paymentType"
+                  val strPrice = "$strCurrency $price"
 
                   total_price = currentPrice
+
+                  txtPaymentType2.text = strPrice
                   txtPaymentTotalPrice.text = strPrice
+                  txtDialogTotalPrice.text = strPrice
+                  txtPriceDp.text = strPrice
               }
               else{
                   var currentPrice = totalPricePayment
@@ -1727,8 +1916,7 @@ class ActivityCheckout : AppCompatActivity(), View.OnClickListener, ApplicationL
 
                   val price = CurrencyUtil.decimal(currentPrice).replace(",",
                       ".")
-                  val currency = "IDR"
-                  val strPrice = "$currency $price"
+                  val strPrice = "$strCurrency $price"
 
                   total_price = currentPrice
                   txtPaymentTotalPrice.text = strPrice
@@ -1806,9 +1994,22 @@ class ActivityCheckout : AppCompatActivity(), View.OnClickListener, ApplicationL
         dataMap["cc_auth_id"] = ""
         dataMap["user_id"] = profileSession.id ?: ""
         dataMap["payment_method_id"] = paymentMethodModel?.id ?: ""
-        dataMap["experience_payment_id"] = paymentMethodList[paymentPosition].id ?: ""
+        dataMap["experience_payment_id"] = paymentMethodList[paymentPosition] ?: ""
+        dataMap["original_price"] = currentSubtotalPrice
         dataMap["total_price"] = total_price
-        dataMap["currency"] = addOnModel.currency ?: ""
+        dataMap["currency"] = "IDR"
+
+        if (userSession.access_token != null){
+            if (isCreditsUsed){
+                dataMap["points"] = profileSession.points
+            }
+            else{
+                dataMap["points"] = 0
+            }
+        }
+
+        dataMap["ex_change_rates"] = 1
+        dataMap["ex_change_currency"] = "IDR"
 
         if (paymentName == "Credit Card"){
             val cardName = edtCardName.text.toString().trim()
@@ -2218,7 +2419,7 @@ class ActivityCheckout : AppCompatActivity(), View.OnClickListener, ApplicationL
     override fun onSpecialPromoLoaded(promoModel: PromoModel) {
             this.promoModel = promoModel
             setPromoButtonState(1)
-        Snackbar.make(linearParent, "Promo code success", Snackbar.LENGTH_LONG).show()
+            Snackbar.make(linearParent, "Promo code success", Snackbar.LENGTH_LONG).show()
     }
 
     override fun onSpecialPromoError(message: String) {
@@ -2562,6 +2763,18 @@ class ActivityCheckout : AppCompatActivity(), View.OnClickListener, ApplicationL
                 val currentYearMonth = currentCalendarMonth.yearMonth.plusMonths(
                     12)
                 calendarView.scrollToMonth(currentYearMonth)
+            }
+
+            R.id.linearTotalBottomSheet -> {
+                priceRoundedBottomSheet.show()
+            }
+
+            R.id.linearPaymentTotalBottomSheet -> {
+                priceRoundedBottomSheet.show()
+            }
+
+            R.id.imgBottomClose -> {
+                priceRoundedBottomSheet.dismiss()
             }
         }
     }

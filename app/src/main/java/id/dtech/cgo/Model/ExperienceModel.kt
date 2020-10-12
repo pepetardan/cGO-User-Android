@@ -12,4 +12,6 @@ class ExperienceModel {
     var cover_photo : PhotoModel? = null
     var list_photo : ArrayList<HashMap<String,Any>>? = null
     var viewType : Int = 0
+    var is_certified_guide : Int = 0
+    var special_price : Long = 0
 }

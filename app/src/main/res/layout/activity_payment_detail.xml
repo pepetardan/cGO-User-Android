@@ -96,25 +96,111 @@
                 />
 
             <LinearLayout
+                android:id="@+id/linearPackage"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
                 android:layout_marginTop="24dp">
 
-                <TextView
-                    android:id="@+id/txtAddonName"
+                <id.dtech.cgo.CustomView.MyTextView
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:text="@string/ticket_only"
-                    android:textSize="14sp"
                     android:layout_weight="1"
+                    android:text="Package"
+                    android:textColor="#7E7E7E"
+                    app:myFontStyle="nunito_sans_semibold"
                     />
 
-                <TextView
+                <id.dtech.cgo.CustomView.MyTextView
+                    android:id="@+id/txtPackageName"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Jakarta Kota Tua Reguler"
+                    android:textColor="@color/profile_name"
+                    app:myFontStyle="nunito_sans_reguler"
+                    />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/linearAddOn"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_marginTop="16dp">
+
+                <id.dtech.cgo.CustomView.MyTextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="Add On"
+                    android:textColor="#7E7E7E"
+                    app:myFontStyle="nunito_sans_semibold"
+                    />
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/rvAddonName"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+
+            </LinearLayout>
+
+            <View
+                android:id="@+id/viewPackage"
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@color/divider_color"
+                android:layout_marginTop="12dp"
+                />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_marginTop="24dp">
+
+                <id.dtech.cgo.CustomView.MyTextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="Date"
+                    android:textColor="#7E7E7E"
+                    app:myFontStyle="nunito_sans_semibold"
+                    />
+
+                <id.dtech.cgo.CustomView.MyTextView
                     android:id="@+id/txtDate"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:textSize="14sp"
+                    android:text="12-13 Feb 2020"
+                    android:textColor="@color/profile_name"
+                    app:myFontStyle="nunito_sans_reguler"
+                    />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_marginTop="16dp">
+
+                <id.dtech.cgo.CustomView.MyTextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="Guest"
+                    android:textColor="#7E7E7E"
+                    app:myFontStyle="nunito_sans_semibold"
+                    />
+
+                <id.dtech.cgo.CustomView.MyTextView
+                    android:id="@+id/txtGuests"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="3 Guest(s)"
+                    android:textColor="@color/profile_name"
+                    app:myFontStyle="nunito_sans_reguler"
                     />
 
             </LinearLayout>
@@ -124,8 +210,6 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="24dp"
-                android:layout_marginLeft="24dp"
-                android:layout_marginRight="24dp"
                 android:background="@drawable/background_contact_details"
                 android:orientation="horizontal">
 
@@ -251,7 +335,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
-            android:layout_marginTop="24dp"
+            android:layout_marginTop="16dp"
             android:layout_marginLeft="24dp"
             android:layout_marginRight="24dp">
 
@@ -276,7 +360,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
-            android:layout_marginTop="24dp"
+            android:layout_marginTop="16dp"
             android:layout_marginLeft="24dp"
             android:layout_marginRight="24dp">
 
@@ -346,7 +430,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
-            android:layout_marginTop="24dp"
+            android:layout_marginTop="16dp"
             android:layout_marginLeft="24dp"
             android:layout_marginRight="24dp">
 

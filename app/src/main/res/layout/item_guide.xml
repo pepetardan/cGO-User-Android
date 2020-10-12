@@ -9,10 +9,10 @@
     android:layout_marginLeft="24dp"
     android:layout_marginRight="24dp"
     app:cardCornerRadius="8dp"
-    app:cardElevation="5dp"
-    >
+    app:cardElevation="5dp">
 
     <LinearLayout
+        android:id="@+id/linearParent"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:padding="16dp"
@@ -24,9 +24,9 @@
             android:orientation="horizontal">
 
             <de.hdodenhof.circleimageview.CircleImageView
+                android:id="@+id/imgPic"
                 android:layout_width="75dp"
                 android:layout_height="75dp"
-                android:src="@drawable/img_rianti"
                 />
 
             <LinearLayout
@@ -43,6 +43,7 @@
                     android:orientation="horizontal">
 
                     <id.dtech.cgo.CustomView.MyTextView
+                        android:id="@+id/txtName"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="Rianty"
@@ -52,10 +53,12 @@
                         />
 
                     <ImageView
+                        android:id="@+id/imgCertified"
                         android:layout_width="36dp"
                         android:layout_height="36dp"
                         android:src="@drawable/ic_certified"
                         android:layout_marginLeft="4dp"
+                        android:visibility="gone"
                         />
 
                     <Space
@@ -101,7 +104,7 @@
                             android:id="@+id/imgStar2"
                             android:layout_width="16dp"
                             android:layout_height="16dp"
-                            android:src="@drawable/ic_star"
+                            android:src="@drawable/ic_star_empty"
                             />
 
                         <Space
@@ -112,7 +115,7 @@
                             android:id="@+id/imgStar3"
                             android:layout_width="16dp"
                             android:layout_height="16dp"
-                            android:src="@drawable/ic_star"
+                            android:src="@drawable/ic_star_empty"
                             />
 
                         <Space
@@ -123,7 +126,7 @@
                             android:id="@+id/imgStar4"
                             android:layout_width="16dp"
                             android:layout_height="16dp"
-                            android:src="@drawable/ic_star"
+                            android:src="@drawable/ic_star_empty"
                             />
 
                         <Space
@@ -134,7 +137,7 @@
                             android:id="@+id/imgStar5"
                             android:layout_width="16dp"
                             android:layout_height="16dp"
-                            android:src="@drawable/ic_star"
+                            android:src="@drawable/ic_star_empty"
                             />
 
                     </LinearLayout>
@@ -146,27 +149,27 @@
                         android:layout_gravity="center_vertical"
                         android:orientation="horizontal">
 
-                        <TextView
+                        <id.dtech.cgo.CustomView.MyTextView
                             android:id="@+id/txtStar"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="4.7 /"
+                            android:text="0 /"
                             android:textSize="14sp"
                             android:textColor="@color/black"
-                            android:textStyle="bold"
+                            app:myFontStyle="nunito_sans_bold"
                             />
 
                         <Space
                             android:layout_width="4dp"
                             android:layout_height="match_parent"/>
 
-                        <TextView
+                        <id.dtech.cgo.CustomView.MyTextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="5"
                             android:textSize="14sp"
                             android:textColor="@color/black"
-                            android:textStyle="bold"
+                            app:myFontStyle="nunito_sans_bold"
                             />
 
                     </LinearLayout>
@@ -174,6 +177,7 @@
                 </LinearLayout>
 
                 <id.dtech.cgo.CustomView.MyTextView
+                    android:id="@+id/txtGender"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="Female"
@@ -183,15 +187,18 @@
                     />
 
                 <id.dtech.cgo.CustomView.MyTextView
+                    android:id="@+id/txtCertified"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="Certified by Asparnas"
                     app:myFontStyle="nunito_sans_reguler"
                     android:textColor="#7A7A7A"
                     android:layout_marginTop="8dp"
+                    android:visibility="gone"
                     />
 
                 <id.dtech.cgo.CustomView.MyTextView
+                    android:id="@+id/txtLicence"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="License: 12345678"
@@ -204,7 +211,7 @@
 
         </LinearLayout>
 
-        <TextView
+        <id.dtech.cgo.CustomView.MyTextView
             android:id="@+id/txtDescription"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -213,6 +220,7 @@
             android:lineSpacingExtra="4dp"
             android:textSize="14sp"
             android:textColor="@color/profile_name"
+            app:myFontStyle="nunito_sans_reguler"
             />
 
         <View
@@ -222,15 +230,38 @@
             android:layout_marginTop="12dp"
             />
 
-        <TextView
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Language: Indonesia, English"
             android:layout_marginTop="16dp"
-            android:lineSpacingExtra="4dp"
-            android:textSize="14sp"
-            android:textColor="@color/profile_name"
-            />
+            android:orientation="horizontal">
+
+            <id.dtech.cgo.CustomView.MyTextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Language:"
+                android:lineSpacingExtra="4dp"
+                android:textSize="14sp"
+                android:textColor="@color/profile_name"
+                app:myFontStyle="nunito_sans_reguler"
+                />
+
+            <Space
+                android:layout_width="4dp"
+                android:layout_height="wrap_content"/>
+
+            <id.dtech.cgo.CustomView.MyTextView
+                android:id="@+id/txtLanguage"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Indonesia, English"
+                android:lineSpacingExtra="4dp"
+                android:textSize="14sp"
+                android:textColor="@color/profile_name"
+                app:myFontStyle="nunito_sans_reguler"
+                />
+
+        </LinearLayout>
 
         <Button
             android:id="@+id/btnNext"
@@ -241,7 +272,7 @@
             android:textColor="@color/white"
             android:layout_gravity="center_vertical"
             android:layout_marginTop="24dp"
-            android:layout_marginBottom="16dp"
+            android:layout_marginBottom="8dp"
             android:visibility="gone"
             />
 

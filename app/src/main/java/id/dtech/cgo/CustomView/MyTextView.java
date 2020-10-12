@@ -4,6 +4,8 @@ import android.content.Context;
 import android.content.res.TypedArray;
 import android.graphics.Canvas;
 import android.graphics.Typeface;
+import android.os.Build;
+import android.text.Html;
 import android.util.AttributeSet;
 
 import androidx.core.content.res.ResourcesCompat;
@@ -100,6 +102,19 @@ public class MyTextView extends androidx.appcompat.widget.AppCompatTextView {
         }
 
         return typeface;
+    }
+
+    @Override
+    public void setText(CharSequence text, BufferType type) {
+        if (Build.VERSION.SDK_INT >= 24)
+        {
+            text = Html.fromHtml(text.toString(), Html.FROM_HTML_MODE_LEGACY);
+        }
+        else
+        {
+            text = Html.fromHtml(text.toString());
+        }
+        super.setText(text, type);
     }
 }
 

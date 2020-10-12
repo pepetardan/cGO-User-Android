@@ -3,6 +3,7 @@ package id.dtech.cgo.Controller
 import android.util.Log
 import id.dtech.cgo.ApiService.ApiService
 import id.dtech.cgo.Callback.MyCallback
+import id.dtech.cgo.Connection.BlogConnection
 import id.dtech.cgo.Connection.MyConnection
 import id.dtech.cgo.Model.TripInspirationModel
 import io.reactivex.Observer
@@ -21,7 +22,7 @@ class TripInspirationController {
 
             inspirationCallback.onTripInspirationPrepare()
 
-            val retrofit = MyConnection.myClient(ApiService::class.java,null)
+            val retrofit = BlogConnection.myClient(ApiService::class.java,null)
             val inspiration = retrofit.getTripInspiration()
 
             inspiration.observeOn(AndroidSchedulers.mainThread()).subscribeOn(IoScheduler()).subscribe( object :
@@ -45,20 +46,20 @@ class TripInspirationController {
                             for (i in 0 until totalLength){
 
                                 val inspirationObject = jsonArray[i] as JSONObject
-                                val exp_inspiration_id  = inspirationObject.getString("exp_inspiration_id")
-                                val exp_id  = inspirationObject.getString("exp_id")
-                                val exp_title  = inspirationObject.getString("exp_title")
-                                val exp_desc  = inspirationObject.getString("exp_desc")
-                                val exp_cover_photo  = inspirationObject.getString("exp_cover_photo")
+                                val exp_inspiration_id  = inspirationObject.getString("id")
+                                val exp_title  = inspirationObject.getString("title")
+                                val exp_desc  = inspirationObject.getString("description")
+                                val exp_cover_photo  = inspirationObject.getString("url_file")
 
                                 val inspirationModel = TripInspirationModel()
                                 inspirationModel.exp_inspiration_id = exp_inspiration_id
-                                inspirationModel.exp_id = exp_id
                                 inspirationModel.exp_title = exp_title
                                 inspirationModel.exp_desc = exp_desc
                                 inspirationModel.exp_cover_photo = exp_cover_photo
 
-                                inspirationArray.add(inspirationModel)
+                                if (exp_inspiration_id != "6"){
+                                    inspirationArray.add(inspirationModel)
+                                }
                             }
 
                             inspirationCallback.onTripInspirationLoaded(inspirationArray)

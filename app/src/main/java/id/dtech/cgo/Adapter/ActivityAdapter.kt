@@ -6,6 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
+import id.dtech.cgo.CustomView.MyTextView
 import id.dtech.cgo.Model.ItenaryModel
 import id.dtech.cgo.R
 
@@ -30,8 +31,8 @@ class ActivityAdapter (context : Context, activities : ArrayList<ItenaryModel>) 
     }
 
     class ActivityViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-        val txtTime = itemView.findViewById<TextView>(R.id.txtTime)
-        val txtActivity = itemView.findViewById<TextView>(R.id.txtActivity)
+        val txtTime = itemView.findViewById<MyTextView>(R.id.txtTime)
+        val txtActivity = itemView.findViewById<MyTextView>(R.id.txtActivity)
     }
 }
 

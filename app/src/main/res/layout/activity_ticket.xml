@@ -71,6 +71,7 @@
                     android:layout_marginTop="24dp"
                     android:textColor="#EB5757"
                     app:myFontStyle="nunito_sans_reguler"
+                    android:visibility="gone"
                     />
 
                 <ImageView
@@ -154,6 +155,7 @@
                     android:textColor="@color/profile_name"
                     android:layout_marginLeft="24dp"
                     android:layout_marginTop="24dp"
+                    android:visibility="gone"
                     />
 
                 <TextView
@@ -167,6 +169,101 @@
                     android:layout_marginTop="16dp"
                     android:textStyle="bold"
                     />
+
+                <LinearLayout
+                    android:id="@+id/linearPackage"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:layout_marginTop="24dp"
+                    android:layout_marginLeft="24dp"
+                    android:layout_marginRight="24dp"
+                    >
+
+                    <id.dtech.cgo.CustomView.MyTextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="Package"
+                        android:textColor="#7E7E7E"
+                        app:myFontStyle="nunito_sans_semibold"
+                        />
+
+                    <id.dtech.cgo.CustomView.MyTextView
+                        android:id="@+id/txtPackageName"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Jakarta Kota Tua Reguler"
+                        android:textColor="@color/profile_name"
+                        app:myFontStyle="nunito_sans_reguler"
+                        />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/linearAddOn"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:layout_marginTop="16dp"
+                    android:layout_marginLeft="24dp"
+                    android:layout_marginRight="24dp"
+                    >
+
+                    <id.dtech.cgo.CustomView.MyTextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="Add On"
+                        android:textColor="#7E7E7E"
+                        app:myFontStyle="nunito_sans_semibold"
+                        />
+
+                    <androidx.recyclerview.widget.RecyclerView
+                        android:id="@+id/rvAddonName"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"/>
+
+                </LinearLayout>
+
+                <View
+                    android:id="@+id/viewPackage"
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:background="@color/divider_color"
+                    android:layout_marginTop="12dp"
+                    android:layout_marginLeft="24dp"
+                    android:layout_marginRight="24dp"
+                    />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:layout_marginTop="24dp"
+                    android:layout_marginLeft="24dp"
+                    android:layout_marginRight="24dp"
+                    >
+
+                    <id.dtech.cgo.CustomView.MyTextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="Date"
+                        android:textColor="#7E7E7E"
+                        app:myFontStyle="nunito_sans_semibold"
+                        />
+
+                    <id.dtech.cgo.CustomView.MyTextView
+                        android:id="@+id/txtAddOnDate"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="12-13 Feb 2020"
+                        android:textColor="@color/profile_name"
+                        app:myFontStyle="nunito_sans_reguler"
+                        />
+
+                </LinearLayout>
 
                 <TextView
                     android:layout_width="wrap_content"

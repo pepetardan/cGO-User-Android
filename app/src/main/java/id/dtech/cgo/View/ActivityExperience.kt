@@ -31,6 +31,7 @@ import com.kizitonwose.calendarview.ui.ViewContainer
 import id.dtech.cgo.Adapter.*
 import id.dtech.cgo.Callback.MyCallback
 import id.dtech.cgo.Controller.ExperienceController
+import id.dtech.cgo.Controller.MasterController
 import id.dtech.cgo.CustomView.MyTextView
 import id.dtech.cgo.Listener.ApplicationListener
 import id.dtech.cgo.Model.ActivityTypeModel
@@ -51,9 +52,14 @@ import kotlin.collections.HashMap
 
 class ActivityExperience : AppCompatActivity(), View.OnClickListener, MyCallback.Companion.ExperienceSearchCallback,
     ApplicationListener.Companion.ActivityTypeListener, ApplicationListener.Companion.SortByListener,
-    RangeSeekBar.SeekBarChangeListener, ApplicationListener.Companion.ServiceExperienceListener {
+    RangeSeekBar.SeekBarChangeListener, ApplicationListener.Companion.ServiceExperienceListener,
+    MyCallback.Companion.AccomodationCallback, MyCallback.Companion.LanguageCallback,
+    MyCallback.Companion.CategoriesCallback, ApplicationListener.Companion.PaymentAvaibilityListener,
+    ApplicationListener.Companion.BookingConfirmationListener
+{
 
     private lateinit var experienceController: ExperienceController
+    private lateinit var masterController: MasterController
 
     private val monthTitleFormatter = DateTimeFormatter.ofPattern("MMMM")
 
@@ -121,6 +127,8 @@ class ActivityExperience : AppCompatActivity(), View.OnClickListener, MyCallback
     private var start_date : String? = null
     private var end_date : String? = null
     private var sortby : String? = null
+    private var payment_type : String? = null
+    private var booking_confirmation : String? = null
 
     private var guest : Int? = null
     private var trip : Int? = null
@@ -152,6 +160,7 @@ class ActivityExperience : AppCompatActivity(), View.OnClickListener, MyCallback
     private lateinit var serviceExperienceAdapter : ServiceExperienceAdapter
 
     private var from = 0
+    private var from_intent = 0
     private var loadFrom = 1
     private var currentPage = 1
 
@@ -172,19 +181,24 @@ class ActivityExperience : AppCompatActivity(), View.OnClickListener, MyCallback
     @SuppressLint("SetTextI18n")
     private fun setView(){
         rvService.layoutManager = LinearLayoutManager(this)
+        masterController = MasterController()
 
         experienceList = ArrayList()
         serviceExperienceAdapter = ServiceExperienceAdapter(this,experienceList,this)
         rvService.adapter = serviceExperienceAdapter
 
         experienceController = ExperienceController()
-        typeBooleanList = setBooleanList()
 
         val b = intent.extras
 
         b?.let { bundle ->
 
             from = bundle.getInt("from")
+            from_intent = bundle.getInt("from_intent")
+
+            masterController.getAccomodation(1,10,this)
+            masterController.getLanguage(1,10,this)
+            masterController.getCategories(this)
 
             if (from == 1){
                 nestedScrollView.visibility = View.VISIBLE
@@ -196,13 +210,10 @@ class ActivityExperience : AppCompatActivity(), View.OnClickListener, MyCallback
 
                 if (from == 2){
                     val typePosition = bundle.getInt("activity_position")
-                    val booleanPosition = typePosition - 1
-
                     typelist.add(typePosition)
-                    typeBooleanList[booleanPosition] = true
-
+                    /*
                     linearActivity.setBackgroundResource(R.drawable.background_more_stroke)
-                    txtActivities.text = "Activities: 1"
+                    txtActivities.text = "Activities: 1"*/
                 }
                 else{
                     val cityName = bundle.getString("name")
@@ -225,8 +236,12 @@ class ActivityExperience : AppCompatActivity(), View.OnClickListener, MyCallback
                     icSearchClose.visibility = View.VISIBLE
                 }
 
-                experienceController.getExperienceSearch(harbor_id,city_id,province_id,typelist.toString().replace(" ", ""),start_date,
-                    end_date,guest,trip,bottomprice,upperprice,sortby,1,10,1,this)
+                start_date = getAddMonthCalendar(0)
+                end_date = getAddMonthCalendar(2)
+
+                experienceController.getExperienceSearch(harbor_id,city_id,province_id,typelist.toString().replace(
+                    " ", ""),start_date, end_date,guest,trip,bottomprice,upperprice,
+                    sortby, payment_type,booking_confirmation,1,10,1,this)
             }
         }
 
@@ -246,6 +261,15 @@ class ActivityExperience : AppCompatActivity(), View.OnClickListener, MyCallback
         linearGuest.setOnClickListener(this)
     }
 
+    @SuppressLint("SimpleDateFormat")
+    private fun getAddMonthCalendar(addingMonth : Int) : String {
+        val currentCalendar = Calendar.getInstance()
+        currentCalendar.add(Calendar.MONTH, addingMonth)
+        val date = currentCalendar.time
+        val sdf = SimpleDateFormat("yyyy-MM-dd")
+        return sdf.format(date)
+    }
+
     private fun setLoadMore(){
         nestedContent.setOnScrollChangeListener { v: NestedScrollView?, _: Int, scrollY: Int,
                                                   _: Int, oldScrollY: Int ->
@@ -261,7 +285,7 @@ class ActivityExperience : AppCompatActivity(), View.OnClickListener, MyCallback
                                 loadFrom = 2
                                 val page = currentPage + 1
                                 experienceController.getExperienceSearch(harbor_id,city_id,province_id,typelist.toString().replace(" ", ""),start_date,
-                                    end_date,guest,trip,bottomprice,upperprice,sortby,page,10,2,this@ActivityExperience)
+                                    end_date,guest,trip,bottomprice,upperprice,sortby, payment_type, booking_confirmation,page,10,2,this@ActivityExperience)
 
                             }
                         }
@@ -284,9 +308,6 @@ class ActivityExperience : AppCompatActivity(), View.OnClickListener, MyCallback
         rvType = view.findViewById(R.id.rvType)
         icCLose = view.findViewById(R.id.icCLose)
 
-        rvType.layoutManager = LinearLayoutManager(this)
-        rvType.adapter = ActivityTypeAdapter(this,typeBooleanList,setActivityTypeData(),this)
-
         dialogType.setOnDismissListener {
             val size = typelist.size
 
@@ -302,7 +323,7 @@ class ActivityExperience : AppCompatActivity(), View.OnClickListener, MyCallback
             loadFrom = 1
             currentPage = 1
             experienceController.getExperienceSearch(harbor_id,city_id,province_id,typelist.toString().replace(" ", ""),start_date,
-                end_date,guest,trip,bottomprice,upperprice,sortby,1,10,1,this)
+                end_date,guest,trip,bottomprice,upperprice,sortby,payment_type, booking_confirmation,1,10,1,this)
         }
 
         icCLose.setOnClickListener(this)
@@ -396,6 +417,7 @@ class ActivityExperience : AppCompatActivity(), View.OnClickListener, MyCallback
                         }
 
                         calendarView.notifyCalendarChanged()
+                        Log.d("hahahaldi",""+start_date)
                     }
                 }
             }
@@ -577,19 +599,17 @@ class ActivityExperience : AppCompatActivity(), View.OnClickListener, MyCallback
         mySeekBar.seekBarChangeListener = this
 
         rvAccomodation.layoutManager = LinearLayoutManager(this)
-        rvAccomodation.adapter = TripAccomodationAdapter(this,accomodationList())
 
         rvLanguage.layoutManager = LinearLayoutManager(this)
-        rvLanguage.adapter = LanguageUsedAdapter(this,languageList())
 
         rvTourGuide.layoutManager = LinearLayoutManager(this)
         rvTourGuide.adapter = TourGuideAdapter(this,tourGuideList())
 
         rvBookingConfirmation.layoutManager = LinearLayoutManager(this)
-        rvBookingConfirmation.adapter = BookingConfirmationAdapter(this,bookingConfirmationList())
+        rvBookingConfirmation.adapter = BookingConfirmationAdapter(this,bookingConfirmationList(),this)
 
         rvPayment.layoutManager = LinearLayoutManager(this)
-        rvPayment.adapter = PaymentAvaibilityAdapter(this,paymentList())
+        rvPayment.adapter = PaymentAvaibilityAdapter(this,paymentList(),this)
 
         icFilterByClose.setOnClickListener(this)
         txtSharing.setOnClickListener(this)
@@ -598,43 +618,56 @@ class ActivityExperience : AppCompatActivity(), View.OnClickListener, MyCallback
         txtFilterClearAll.setOnClickListener(this)
     }
 
-    private fun accomodationList() : ArrayList<String> {
-        val accomodationList = ArrayList<String>()
-        accomodationList.add("Card")
-        accomodationList.add("Boat")
-        accomodationList.add("Luxury Car")
-        accomodationList.add("Motorcycle")
-        accomodationList.add("Bike")
-        accomodationList.add("Walking")
-        return accomodationList
-    }
+    private fun tourGuideList() : ArrayList<HashMap<String,Any>> {
+        val guideMap = HashMap<String,Any>()
+        guideMap["name"] = "Verified Guide"
+        guideMap["code"] = "verified"
 
-    private fun languageList() : ArrayList<String> {
-        val languageList = ArrayList<String>()
-        languageList.add("Card")
-        languageList.add("Boat")
-        return languageList
-    }
+        val guideMap1 = HashMap<String,Any>()
+        guideMap1["name"] = "Female Guide"
+        guideMap1["code"] = "female"
 
-    private fun tourGuideList() : ArrayList<String> {
-        val tourList = ArrayList<String>()
-        tourList.add("Verified Guide")
-        tourList.add("Female Guide")
-        tourList.add("Male Guide")
+        val guideMap2 = HashMap<String,Any>()
+        guideMap2["name"] = "Male Guide"
+        guideMap2["code"] = "male"
+
+        val tourList = ArrayList<HashMap<String,Any>>()
+        tourList.add(guideMap)
+        tourList.add(guideMap1)
+        tourList.add(guideMap2)
+
         return tourList
     }
 
-    private fun bookingConfirmationList() : ArrayList<String> {
-        val bookingConfirmationList = ArrayList<String>()
-        bookingConfirmationList.add("Instant Booking")
-        bookingConfirmationList.add("No Instant Booking")
+    private fun bookingConfirmationList() : ArrayList<HashMap<String,Any>> {
+        val bookingTypeMap = HashMap<String,Any>()
+        bookingTypeMap["name"] = "Instant Booking"
+        bookingTypeMap["code"] = "instant"
+
+        val bookingTypeMap1 = HashMap<String,Any>()
+        bookingTypeMap1["name"] = "No Instant Booking"
+        bookingTypeMap1["code"] = "noinstant"
+
+        val bookingConfirmationList = ArrayList<HashMap<String,Any>>()
+        bookingConfirmationList.add(bookingTypeMap)
+        bookingConfirmationList.add(bookingTypeMap1)
+
         return bookingConfirmationList
     }
 
-    private fun paymentList() : ArrayList<String> {
-        val paymentList = ArrayList<String>()
-        paymentList.add("Full Payment")
-        paymentList.add("Down Payment")
+    private fun paymentList() : ArrayList<HashMap<String,Any>> {
+        val paymentMap = HashMap<String,Any>()
+        paymentMap["name"] = "Full Payment"
+        paymentMap["code"] = "full"
+
+        val paymentMap1 = HashMap<String,Any>()
+        paymentMap1["name"] = "Down Payment"
+        paymentMap1["code"] = "down"
+
+        val paymentList = ArrayList<HashMap<String,Any>>()
+        paymentList.add(paymentMap)
+        paymentList.add(paymentMap1)
+
         return paymentList
     }
 
@@ -667,7 +700,6 @@ class ActivityExperience : AppCompatActivity(), View.OnClickListener, MyCallback
 
         lowestRatingMap["name"] = "Lowest rating to highest rating"
         lowestRatingMap["code"] = "ratingdown"
-
 
         sortDataList = ArrayList()
         sortDataList.add(highestMap)
@@ -752,7 +784,7 @@ class ActivityExperience : AppCompatActivity(), View.OnClickListener, MyCallback
         currentPage = 1
         experienceController.getExperienceSearch(harbor_id,city_id,province_id,typelist.toString().
         replace(" ", ""),start_date, end_date,guest,trip,bottomprice,
-            upperprice,sortby,1,10,1,this)
+            upperprice,sortby,payment_type,booking_confirmation,1,10,1,this)
     }
 
     private fun setBtnGuestApplyEnable(){
@@ -771,7 +803,7 @@ class ActivityExperience : AppCompatActivity(), View.OnClickListener, MyCallback
         loadFrom = 1
         currentPage = 1
         experienceController.getExperienceSearch(harbor_id,city_id,province_id,typelist.toString().replace(" ", ""),start_date,
-            end_date,guest,trip,bottomprice,upperprice,sortby,1,10,1,this)
+            end_date,guest,trip,bottomprice,upperprice,sortby,payment_type,booking_confirmation,1,10,1,this)
     }
 
     private fun setAdultCount(from : Int){
@@ -888,7 +920,7 @@ class ActivityExperience : AppCompatActivity(), View.OnClickListener, MyCallback
         currentPage = 1
         experienceController.getExperienceSearch(harbor_id,city_id,province_id,typelist.toString()
             .replace(" ", ""),start_date, end_date,guest,trip,bottomprice,upperprice
-            ,sortby,1,10,1,this)
+            ,sortby,payment_type,booking_confirmation,1,10,1,this)
     }
 
     override fun onActivityTypeClicked(model: ActivityTypeModel, isSelected: Boolean) {
@@ -1030,7 +1062,46 @@ class ActivityExperience : AppCompatActivity(), View.OnClickListener, MyCallback
         loadFrom = 2
         val page = currentPage + 1
         experienceController.getExperienceSearch(harbor_id,city_id,province_id,typelist.toString().replace(" ", ""),start_date,
-            end_date,guest,trip,bottomprice,upperprice,sortby,page,10,2,this@ActivityExperience)
+            end_date,guest,trip,bottomprice,upperprice,sortby,payment_type, booking_confirmation,page,10,2,this@ActivityExperience)
+    }
+
+    override fun onAccomodationPrepare() {
+
+    }
+
+    override fun onAccomodationSuccess(accomodations: ArrayList<HashMap<String, Any>>) {
+        rvAccomodation.adapter = TripAccomodationAdapter(this,accomodations)
+    }
+
+    override fun onAccomodationError() {
+
+    }
+
+    override fun onLanguagePrepare() {
+
+    }
+
+    override fun onLanguageSuccess(languages: ArrayList<HashMap<String, Any>>) {
+        rvLanguage.adapter = LanguageUsedAdapter(this,languages)
+    }
+
+    override fun onLanguageError() {
+
+    }
+
+    override fun onCategoriesPrepare() {
+
+    }
+
+    override fun onCategoriesSuccess(categories : ArrayList<ActivityTypeModel>,
+                                     typeList : ArrayList<Boolean>) {
+        typeBooleanList = typeList
+        rvType.layoutManager = LinearLayoutManager(this)
+        rvType.adapter = ActivityTypeAdapter(this, typeBooleanList, categories,this)
+    }
+
+    override fun onCategoriesError() {
+
     }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
@@ -1060,15 +1131,30 @@ class ActivityExperience : AppCompatActivity(), View.OnClickListener, MyCallback
                 currentPage = 1
                 experienceController.getExperienceSearch(harbor_id,city_id,province_id,typelist.toString()
                     .replace(" ", ""),start_date, end_date,guest,trip,bottomprice,
-                    upperprice,sortby,1,10,1,this)
+                    upperprice,sortby,payment_type,booking_confirmation,1,10,1,this)
             }
         }
+    }
+
+    override fun onPaymentAvaibilityClicked(PaymentAvaibilityMap: java.util.HashMap<String, Any>) {
+        payment_type = PaymentAvaibilityMap["code"] as String
+    }
+
+    override fun onBookingConfirmationClicked(BookingConfirmationMap: java.util.HashMap<String, Any>) {
+        booking_confirmation = BookingConfirmationMap["code"] as String
     }
 
     override fun onClick(v: View?) {
         when(v?.id){
             R.id.ivBack -> {
-                finish()
+                if (from_intent == 0){
+                    finish()
+                }
+                else{
+                    val i = Intent(this,MainActivity::class.java)
+                    startActivity(i)
+                    finish()
+                }
             }
 
             R.id.linearSearch -> {
@@ -1173,7 +1259,7 @@ class ActivityExperience : AppCompatActivity(), View.OnClickListener, MyCallback
                 currentPage = 1
                 experienceController.getExperienceSearch(harbor_id,city_id,province_id,typelist.toString()
                     .replace(" ", ""),start_date, end_date,guest,trip,bottomprice,
-                    upperprice,sortby,1,10,1,this)
+                    upperprice,sortby,payment_type,booking_confirmation,1,10,1,this)
                 sortBySheetDialog.dismiss()
                 isSortByClearClicked = false
             }
@@ -1203,6 +1289,7 @@ class ActivityExperience : AppCompatActivity(), View.OnClickListener, MyCallback
                 }
                 else{
                     trip = null
+                    payment_type = null
                     bottomprice = 0
                     upperprice = 500000000
                     viewTrip = null
@@ -1213,7 +1300,7 @@ class ActivityExperience : AppCompatActivity(), View.OnClickListener, MyCallback
                 currentPage = 1
                 experienceController.getExperienceSearch(harbor_id,city_id,province_id,typelist.toString()
                     .replace(" ", ""),start_date, end_date,guest,trip,bottomprice,
-                    upperprice,sortby,1,10,1,this)
+                    upperprice,sortby,payment_type,booking_confirmation,1,10,1,this)
                 filterBySheetDialog.dismiss()
                 isFilterByClearClicked = false
             }
@@ -1228,7 +1315,19 @@ class ActivityExperience : AppCompatActivity(), View.OnClickListener, MyCallback
                     ",",".")
                 val strMaxPrice = "IDR "+ CurrencyUtil.decimal(500000000).replace(
                     ",",".")
+                rvPayment.adapter = PaymentAvaibilityAdapter(this,paymentList(),this)
             }
+        }
+    }
+
+    override fun onBackPressed() {
+        if (from_intent == 0){
+            super.onBackPressed()
+        }
+        else{
+            val i = Intent(this,MainActivity::class.java)
+            startActivity(i)
+            finish()
         }
     }
 }

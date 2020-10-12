@@ -7,31 +7,22 @@ import android.content.Context
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.util.Log
 import android.view.View
+import androidx.recyclerview.widget.LinearLayoutManager
 
 import com.squareup.picasso.Picasso
+import id.dtech.cgo.Adapter.AddonNameAdapter
 import id.dtech.cgo.Callback.MyCallback
 import id.dtech.cgo.Controller.BookingController
 import id.dtech.cgo.Model.AddOnModel
 
-import id.dtech.cgo.Model.ExperienceDetailModel
 import id.dtech.cgo.Preferance.UserSession
 import id.dtech.cgo.R
 import id.dtech.cgo.Util.CurrencyUtil
 import id.dtech.cgo.Util.ViewUtil
 
 import kotlinx.android.synthetic.main.activity_payment_detail.*
-import kotlinx.android.synthetic.main.activity_payment_detail.imgCopy
-import kotlinx.android.synthetic.main.activity_payment_detail.ivBack
-import kotlinx.android.synthetic.main.activity_payment_detail.txtDate
-import kotlinx.android.synthetic.main.activity_payment_detail.txtGuest
-import kotlinx.android.synthetic.main.activity_payment_detail.txtMerchantName
-import kotlinx.android.synthetic.main.activity_payment_detail.txtMerchantPhone
-import kotlinx.android.synthetic.main.activity_payment_detail.txtOrderID
-import kotlinx.android.synthetic.main.activity_payment_detail.txtTitle
-import kotlinx.android.synthetic.main.activity_ticket.*
-import kotlinx.android.synthetic.main.layout_confirmation.*
+
 import java.text.SimpleDateFormat
 import java.util.*
 import kotlin.collections.ArrayList
@@ -158,23 +149,56 @@ class ActivityPaymentDetail : AppCompatActivity(), View.OnClickListener,
 
         val experienceMap = data["experience"] as HashMap<String,Any>
         val bookedByArray = data["booked_by"] as ArrayList<HashMap<String,Any>>
+        val expPaymentMap = data["expPaymentMap"] as HashMap<String,Any>
+        val totalGuestList = data["guest_desc"] as ArrayList<HashMap<String,Any>>
         val bookedByMap = bookedByArray[0]
+        val addOnlist = experienceMap["addOnlist"] as ArrayList<AddOnModel>
+
         val total_price = data["total_price"] as Long
         val currency = data["currency"] as String
         val expDuration = experienceMap["exp_duration"] as Int
         val bookingDate = data["booking_date"] as String
-        val totalGuestList = data["guest_desc"] as ArrayList<HashMap<String,Any>>
         val total_guest = totalGuestList.size
         val merchant_picture = experienceMap["merchant_picture"] as String
         val merchant_name = experienceMap["merchant_name"] as String
         val merchant_phone = experienceMap["merchant_phone"] as String
 
-        transactionStatus = data["transaction_status"] as Int
-        Log.d("aldi_status",""+transactionStatus)
-        if (experienceMap["add_on_model"] != null){
-             val addonModel = experienceMap["add_on_model"] as AddOnModel
-             txtAddonName.text = "Ticket + ${addonModel.name ?: ""}"
+        var packageId = 0
+        val packageName = experienceMap["package_name"] as String
+
+        var isPackageIdZero = false
+        var isAddOnEmpty = false
+
+        if (expPaymentMap["packageId"] != null){
+            packageId = expPaymentMap["packageId"] as Int
         }
+
+        if (packageId != 0){
+            linearPackage.visibility = View.VISIBLE
+            txtPackageName.text = packageName
+            isPackageIdZero = false
+        }
+        else{
+            linearPackage.visibility = View.GONE
+            isPackageIdZero = true
+        }
+
+        if (addOnlist.size > 0){
+            isAddOnEmpty = false
+            rvAddonName.layoutManager = LinearLayoutManager(this)
+            rvAddonName.adapter = AddonNameAdapter(this,addOnlist)
+            linearAddOn.visibility = View.VISIBLE
+        }
+        else{
+            isAddOnEmpty = true
+            linearAddOn.visibility = View.GONE
+        }
+
+        if (isPackageIdZero && isAddOnEmpty){
+            viewPackage.visibility = View.GONE
+        }
+
+        transactionStatus = data["transaction_status"] as Int
 
         applyDate(bookingDate,expDuration)
 
@@ -190,9 +214,11 @@ class ActivityPaymentDetail : AppCompatActivity(), View.OnClickListener,
         txtPrice.text = strPrice
 
         if (total_guest > 1){
+            txtGuests.text = "$total_guest Guest(s)"
             txtGuest.text = "$total_guest Guest(s)"
         }
         else{
+            txtGuests.text = "$total_guest Guest"
             txtGuest.text = "$total_guest Guest"
         }
 
@@ -204,6 +230,10 @@ class ActivityPaymentDetail : AppCompatActivity(), View.OnClickListener,
         txtMerchantPhone.text = merchant_phone
 
         checkBookingType()
+    }
+
+    override fun onDetailBookingError(message: String) {
+
     }
 
     @SuppressLint("SimpleDateFormat")
@@ -231,10 +261,6 @@ class ActivityPaymentDetail : AppCompatActivity(), View.OnClickListener,
             val strDay = sdfDayMonth.format(date ?: Date())
             txtDate.text = strDay
         }
-    }
-
-    override fun onDetailBookingError(message: String) {
-
     }
 }
 

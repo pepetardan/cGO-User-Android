@@ -69,6 +69,7 @@ class ActivityVerification : AppCompatActivity(), View.OnClickListener,
 
             txtPhone.text = "Please type the verification code sent \n to $strPhoneNumber"
             etBlock.setText(strCode)
+
             countDown()
         }
 

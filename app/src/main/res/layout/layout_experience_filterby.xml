@@ -243,7 +243,7 @@
                 android:background="@color/divider_color"
                 android:layout_marginLeft="18dp"
                 android:layout_marginRight="18dp"
-                android:layout_marginTop="36dp"
+                android:layout_marginTop="24dp"
                 />
 
             <id.dtech.cgo.CustomView.MyTextView

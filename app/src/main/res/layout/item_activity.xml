@@ -60,7 +60,7 @@
 
     </LinearLayout>
 
-    <TextView
+    <id.dtech.cgo.CustomView.MyTextView
         android:id="@+id/txtTime"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -69,7 +69,7 @@
         android:textSize="14sp"
         />
 
-    <TextView
+    <id.dtech.cgo.CustomView.MyTextView
         android:id="@+id/txtActivity"
         android:layout_width="0dp"
         android:layout_height="wrap_content"

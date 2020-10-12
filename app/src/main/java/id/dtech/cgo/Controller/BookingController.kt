@@ -245,6 +245,7 @@ class BookingController {
                             val exp_duration = experienceObject.getInt("exp_duration")
                             val province_name = experienceObject.getString("province_name")
                             val harbors_name = experienceObject.getString("harbors_name")
+                            val package_name = experienceObject.getString("package_name")
                             val exp_payment_deadline_amount = experienceObject.getInt("exp_payment_deadline_amount")
                             val exp_payment_deadline_type = experienceObject.getString("exp_payment_deadline_type")
 
@@ -269,6 +270,16 @@ class BookingController {
                                 experienceMap["add_on_model"] = addOnModel
                             }
 
+                            val addOnlist = ArrayList<AddOnModel>()
+
+                            if (!jsonObject.isNull("experience_add_on")){
+                                val addOnArray = jsonObject.getJSONArray("experience_add_on")
+
+                                for (i in 0 until addOnArray.length()){
+
+                                }
+                            }
+
                             experienceMap["exp_type"] = expTypeList
                             experienceMap["exp_id"] = exp_id
                             experienceMap["exp_title"] = exp_title
@@ -283,6 +294,8 @@ class BookingController {
                             experienceMap["harbors_name"] = harbors_name
                             experienceMap["exp_payment_deadline_amount"] = exp_payment_deadline_amount
                             experienceMap["exp_payment_deadline_type"] = exp_payment_deadline_type
+                            experienceMap["package_name"] = package_name
+                            experienceMap["addOnlist"] = addOnlist
                         }
 
                         val transportList = ArrayList<TransportationModel>()
@@ -338,6 +351,14 @@ class BookingController {
                             name = experimentPaymentTypeObject.getString("name")
                         }
 
+                        val expPaymentMap = HashMap<String,Any>()
+
+                        if (jsonObject.isNull("exp_payment")){
+                            val expPaymentObject = jsonObject.getJSONObject("exp_payment")
+                            val packageId = expPaymentObject.getInt("package_id")
+                            expPaymentMap["packageId"] = packageId
+                        }
+
                         val bookingDetailMap = HashMap<String,Any>()
                         bookingDetailMap["id"] = id
                         bookingDetailMap["booked_by_email"] = booked_by_email
@@ -367,6 +388,7 @@ class BookingController {
                         bookingDetailMap["remaining_payment"] = remainingPayment
                         bookingDetailMap["name"] = name
                         bookingDetailMap["transportation"] = transportList
+                        bookingDetailMap["expPaymentMap"] = expPaymentMap
 
                         detailBookingCallback.onDetailBookingSuccess(bookingDetailMap)
                     }
@@ -419,5 +441,59 @@ class BookingController {
                     pdfFileCallback.onPdfFileError(e.message ?: "")
                 }
             })
+        }
+
+    fun getCalculationPrice(dataMap : HashMap<String,Any>, calculatePriceCallback : MyCallback.Companion.CalculatePriceCallback){
+
+        calculatePriceCallback.onCalculatePricePrepare()
+
+        val date = dataMap["date"] as String
+        val total_guest = dataMap["total_guest"] as Int
+        val package_id = dataMap["package_id"] as Int
+        val currency = dataMap["currency"] as String
+        val exp_id = dataMap["exp_id"] as String
+
+        val retrofit = MyConnection.myClient(ApiService::class.java,null)
+        val discover = retrofit.getCalculatePrice(date,total_guest
+            ,package_id,currency,exp_id)
+
+        discover.observeOn(AndroidSchedulers.mainThread()).subscribeOn(IoScheduler()).subscribe( object :
+                Observer<Response<ResponseBody>> {
+            override fun onSubscribe(d: Disposable) {
+
+            }
+
+            override fun onNext(t: Response<ResponseBody>) {
+                if (t.isSuccessful){
+                    val jsonObject = JSONObject(t.body()?.string() ?: "")
+                    var price = 0L
+
+                    if (!jsonObject.isNull("price")){
+                        price = jsonObject.getLong("price")
+                    }
+
+                    val strCurrency = jsonObject.getString("currency")
+
+                    val priceMap = HashMap<String,Any>()
+                    priceMap["price"] = price
+                    priceMap["currency"] = strCurrency
+
+                    calculatePriceCallback.onCalculatePriceSuccess(priceMap)
+                }
+                else{
+                    calculatePriceCallback.onCalculatePriceError()
+                    Log.d("price_error",""+t.errorBody())
+                }
+            }
+
+            override fun onError(e: Throwable) {
+                    calculatePriceCallback.onCalculatePriceError()
+                    e.printStackTrace()
+            }
+
+            override fun onComplete() {
+
+            }
+        })
     }
 }

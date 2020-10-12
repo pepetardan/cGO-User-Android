@@ -29,15 +29,16 @@ import com.krishna.fileloader.listener.FileRequestListener
 import com.krishna.fileloader.pojo.FileResponse
 import com.krishna.fileloader.request.FileLoadRequest
 import com.squareup.picasso.Picasso
+import id.dtech.cgo.Adapter.AddonNameAdapter
 import id.dtech.cgo.Adapter.ServiceTypeAdapter
 import id.dtech.cgo.Callback.MyCallback
 import id.dtech.cgo.Controller.BookingController
 import id.dtech.cgo.CustomView.MyTextView
+import id.dtech.cgo.Model.AddOnModel
 import id.dtech.cgo.R
 import id.dtech.cgo.Util.DownloadFileFromURL
 import id.dtech.cgo.Util.ViewUtil
 import kotlinx.android.synthetic.main.activity_ticket.*
-import kotlinx.android.synthetic.main.activity_ticket.txtOrderID
 import java.io.File
 import java.io.FileOutputStream
 import java.io.InputStream
@@ -178,15 +179,13 @@ class ActivityTicket : AppCompatActivity(), View.OnClickListener,
     @SuppressLint("SetTextI18n", "SimpleDateFormat")
     override fun onDetailBookingSuccess(data: HashMap<String, Any>) {
         val experienceMap = data["experience"] as HashMap<String,Any>
-        val bookedByArray = data["booked_by"] as ArrayList<HashMap<String,Any>>
-        val bookedByMap = bookedByArray[0]
-        val total_price = data["total_price"] as Long
-        val currency = data["currency"] as String
+        val expPaymentMap = data["expPaymentMap"] as HashMap<String,Any>
         val typeList = experienceMap["exp_type"] as ArrayList<String>
         val expDuration = experienceMap["exp_duration"] as Int
         val bookingDate = data["booking_date"] as String
         val harborName = experienceMap["harbors_name"] as String
         val provinceName = experienceMap["province_name"] as String
+        val addOnlist = experienceMap["addOnlist"] as ArrayList<AddOnModel>
 
         guestList = data["guest_desc"] as ArrayList<HashMap<String,Any>>
         val total_guest = guestList.size
@@ -195,7 +194,7 @@ class ActivityTicket : AppCompatActivity(), View.OnClickListener,
         val merchant_phone = experienceMap["merchant_phone"] as String
         val barcode_picture = data["ticket_qr_code"] as String
 
-        rvType.adapter = ServiceTypeAdapter(this,typeList)
+        rvType.adapter = ServiceTypeAdapter(0,this,typeList)
         applyDate(bookingDate,expDuration)
 
         if (barcode_picture.isNotEmpty()){
@@ -220,6 +219,41 @@ class ActivityTicket : AppCompatActivity(), View.OnClickListener,
 
         if (experienceMap["exp_pickup_time"] as String =="00:00:00"){
             linearTime.visibility = View.GONE
+        }
+
+        var packageId = 0
+        val packageName = experienceMap["package_name"] as String
+
+        var isPackageIdZero = false
+        var isAddOnEmpty = false
+
+        if (expPaymentMap["packageId"] != null){
+            packageId = expPaymentMap["packageId"] as Int
+        }
+
+        if (packageId != 0){
+            linearPackage.visibility = View.VISIBLE
+            txtPackageName.text = packageName
+            isPackageIdZero = false
+        }
+        else{
+            linearPackage.visibility = View.GONE
+            isPackageIdZero = true
+        }
+
+        if (addOnlist.size > 0){
+            isAddOnEmpty = false
+            rvAddonName.layoutManager = LinearLayoutManager(this)
+            rvAddonName.adapter = AddonNameAdapter(this,addOnlist)
+            linearAddOn.visibility = View.VISIBLE
+        }
+        else{
+            isAddOnEmpty = true
+            linearAddOn.visibility = View.GONE
+        }
+
+        if (isPackageIdZero && isAddOnEmpty){
+            viewPackage.visibility = View.GONE
         }
 
         txtOrderID.text = order_id
@@ -251,11 +285,11 @@ class ActivityTicket : AppCompatActivity(), View.OnClickListener,
            val strDayDate = sdfDayDate.format(calendar.time)
 
            val strDayDateYear = "$strDay - $strDayDate"
-           txtDate.text = strDayDateYear
+           txtAddOnDate.text = strDayDateYear
        }
         else{
            val strDay = sdfDayMonth.format(date ?: Date())
-           txtDate.text = strDay
+           txtAddOnDate.text = strDay
        }
     }
 

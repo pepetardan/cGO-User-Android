@@ -89,6 +89,8 @@
     <string name="diving">Diving</string>
     <string name="facilities">Facilities</string>
     <string name="fishing">Fishing</string>
+    <string name="tour_guide">Tour Guide</string>
+    <string name="island_hoping">Island Hoping</string>
     <string name="learn_more">Learn More</string>
     <string name="get_direction">Get Direction</string>
     <string name="referal">Share your referral code and collect credits for your next adventure</string>
@@ -98,6 +100,7 @@
     <string name="sailing_content2">Charter a boat and create a happy memories with your friends and family</string>
 
     <string name="tour">Tour</string>
+    <string name="point_request">We provide meeting point request. You would be able to chat with us for meeting point request after payment.</string>
     <string name="tour_content">Explore Tour Experiences in Labuan Bajo</string>
     <string name="tour_content2">Enjoy living on board with adventurous activities from trekking, island hopping to snorkeling</string>
 

@@ -12,6 +12,7 @@
     app:cardElevation="5dp">
 
     <LinearLayout
+        android:id="@+id/linearPackage"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:padding="8dp"
@@ -19,13 +20,16 @@
         android:orientation="horizontal">
 
         <androidx.cardview.widget.CardView
+            android:id="@+id/cardImage"
             android:layout_width="75dp"
             android:layout_height="wrap_content"
             android:clipToPadding="true"
             app:cardCornerRadius="12dp"
+            android:visibility="gone"
             app:cardElevation="0dp">
 
             <ImageView
+                android:id="@+id/imgPackage"
                 android:layout_width="match_parent"
                 android:layout_height="75dp"
                 android:src="@drawable/example_facility_img"

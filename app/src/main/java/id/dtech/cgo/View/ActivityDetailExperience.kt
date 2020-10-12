@@ -2,8 +2,10 @@ package id.dtech.cgo.View
 
 import android.annotation.SuppressLint
 import android.app.Dialog
+import android.content.ActivityNotFoundException
 import android.content.Context
 import android.content.Intent
+import android.content.pm.PackageManager
 import android.graphics.Color
 import android.net.Uri
 import android.os.Build
@@ -22,6 +24,7 @@ import androidx.core.widget.NestedScrollView
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.viewpager.widget.ViewPager
+
 import com.deishelon.roundedbottomsheet.RoundedBottomSheetDialog
 import com.facebook.FacebookSdk
 import com.facebook.share.model.ShareHashtag
@@ -41,12 +44,14 @@ import com.kizitonwose.calendarview.model.DayOwner
 import com.kizitonwose.calendarview.ui.DayBinder
 import com.kizitonwose.calendarview.ui.MonthHeaderFooterBinder
 import com.kizitonwose.calendarview.ui.ViewContainer
+
 import id.dtech.cgo.Adapter.*
 import id.dtech.cgo.Callback.MyCallback
 import id.dtech.cgo.Controller.ExperienceController
 import id.dtech.cgo.Controller.TripInspirationController
 import id.dtech.cgo.Controller.UserController
 import id.dtech.cgo.CustomView.MyTextView
+import id.dtech.cgo.Listener.ApplicationListener
 import id.dtech.cgo.Model.*
 import id.dtech.cgo.Preferance.UserSession
 
@@ -72,7 +77,8 @@ import kotlin.collections.HashMap
 class ActivityDetailExperience : AppCompatActivity(), View.OnClickListener,
     MyCallback.Companion.ExperienceDetailCallback, MyCallback.Companion.ExperienceReviewCallback
     , MyCallback.Companion.TripInspirationCallback, MyCallback.Companion.CreateWishlistCallback,
-    OnMapReadyCallback, MyCallback.Companion.CheckWishlistCallback {
+    OnMapReadyCallback, MyCallback.Companion.CheckWishlistCallback,
+    ApplicationListener.Companion.PackageListener {
 
     private lateinit var guestBottomSheetDialog : RoundedBottomSheetDialog
     private lateinit var dateBottomSheetDialog : RoundedBottomSheetDialog
@@ -129,6 +135,9 @@ class ActivityDetailExperience : AppCompatActivity(), View.OnClickListener,
     private lateinit var imgShareCLose : ImageView
     private lateinit var linearFacebook : LinearLayout
     private lateinit var linearTwitter : LinearLayout
+    private lateinit var linearWhatsapp : LinearLayout
+    private lateinit var linearGmail : LinearLayout
+    private lateinit var linearLine : LinearLayout
 
     private lateinit var txtDialogPrice : MyTextView
     private lateinit var txtDialogDate : MyTextView
@@ -142,6 +151,7 @@ class ActivityDetailExperience : AppCompatActivity(), View.OnClickListener,
     private var price = 0L
     private var isDownPaymentAvailable = false
     private var defaultCurrency = ""
+    private val whatsAppAppId = "com.whatsapp"
 
     private lateinit var gMap : GoogleMap
     private lateinit var checkoutDialog : RoundedBottomSheetDialog
@@ -170,7 +180,6 @@ class ActivityDetailExperience : AppCompatActivity(), View.OnClickListener,
 
         iteneraries = ArrayList()
         dayAdapter = DayAdapter(this,iteneraries)
-        rvIteneraries.adapter = dayAdapter
 
         facilityList = ArrayList()
         facilityAdapter = FacilityAdapter(this,facilityList)
@@ -187,11 +196,15 @@ class ActivityDetailExperience : AppCompatActivity(), View.OnClickListener,
         mapFragment = supportFragmentManager.findFragmentById(R.id.map) as SupportMapFragment
         mapFragment.getMapAsync(this)
 
+        rvGuide.layoutManager = LinearLayoutManager(this)
+
         rvInclude.layoutManager = LinearLayoutManager(this)
 
         rvExclude.layoutManager = LinearLayoutManager(this)
 
         rvReview.layoutManager = LinearLayoutManager(this)
+
+        rvPackage.layoutManager = LinearLayoutManager(this)
 
         rvPolicy.layoutManager = LinearLayoutManager(this)
         rvPolicy.adapter = PolicyAdapter(this)
@@ -206,14 +219,13 @@ class ActivityDetailExperience : AppCompatActivity(), View.OnClickListener,
             false)
 
         rvIteneraries.layoutManager = LinearLayoutManager(this)
+        rvIteneraries.adapter = dayAdapter
 
         setCalendar()
         setShareDialog()
         setCheckoutDialog()
         setSelectDateDialog()
         setInputGuestDialog()
-        initiateRvPackage()
-        initiateGuideList()
 
         val b = intent.extras
 
@@ -242,6 +254,7 @@ class ActivityDetailExperience : AppCompatActivity(), View.OnClickListener,
         txtAllFacility.setOnClickListener(this)
         
         linearOverview.setOnClickListener(this)
+        linearPackages.setOnClickListener(this)
         linearExperience.setOnClickListener(this)
         linearFacility.setOnClickListener(this)
         linearAvaibility.setOnClickListener(this)
@@ -267,20 +280,6 @@ class ActivityDetailExperience : AppCompatActivity(), View.OnClickListener,
         linearDate.setOnClickListener(this)
         linearGuest.setOnClickListener(this)
         btnDialogBook.setOnClickListener(this)
-    }
-
-    private fun initiateGuideList(){
-        rvGuide.layoutManager = LinearLayoutManager(this)
-        rvGuide.adapter = GuideAdapter(this,0)
-    }
-
-    private fun initiateRvPackage(){
-        val packagesList = ArrayList<String>()
-        packagesList.add("Kota Tua Reguler")
-        packagesList.add("Kota Tua Reguler + Lunch")
-
-        rvPackage.layoutManager = LinearLayoutManager(this)
-        rvPackage.adapter = PackageAdapter(this,0,packagesList)
     }
 
     private fun setSelectDateDialog() {
@@ -423,17 +422,18 @@ class ActivityDetailExperience : AppCompatActivity(), View.OnClickListener,
         val sdfDayDate = SimpleDateFormat("dd MMM yyyy")
         val sdfDay = SimpleDateFormat("dd")
         val sdfDayMonth = SimpleDateFormat("dd MMMM yyyy")
+        val sdfDate = SimpleDateFormat("yyyy-MM-dd HH:mm:ss")
 
         val strDate = selectedDates[0].toString()
-        val date = sdf.parse(strDate)
+        val dateCalendar = sdf.parse(strDate)
         val duration = experienceDetailModel.exp_duration
 
         if (duration > 1){
             val calendar = Calendar.getInstance()
-            calendar.time = date ?: Date()
+            calendar.time = dateCalendar ?: Date()
             calendar.add(Calendar.DATE,duration - 1)
 
-            val strDay = sdfDay.format(date ?: Date())
+            val strDay = sdfDay.format(dateCalendar ?: Date())
             val strDayDate = sdfDayDate.format(calendar.time)
 
             val strDayDateYear = "$strDay - $strDayDate"
@@ -441,10 +441,12 @@ class ActivityDetailExperience : AppCompatActivity(), View.OnClickListener,
             strSelectedDate = strDayDateYear
         }
         else{
-            val strDay = sdfDayMonth.format(date ?: Date())
+            val strDay = sdfDayMonth.format(dateCalendar ?: Date())
             txtDialogDate.text = strDay
             strSelectedDate = strDay
         }
+
+        date = sdfDate.format(dateCalendar ?: Date())
     }
 
     @SuppressLint("SetTextI18n")
@@ -471,10 +473,16 @@ class ActivityDetailExperience : AppCompatActivity(), View.OnClickListener,
         imgShareCLose = view.findViewById(R.id.imgShareCLose)
         linearFacebook = view.findViewById(R.id.linearFacebook)
         linearTwitter = view.findViewById(R.id.linearTwitter)
+        linearWhatsapp = view.findViewById(R.id.linearWhatsapp)
+        linearGmail = view.findViewById(R.id.linearGmail)
+        linearLine  = view.findViewById(R.id.linearLine)
 
         imgShareCLose.setOnClickListener(this)
         linearFacebook.setOnClickListener(this)
         linearTwitter.setOnClickListener(this)
+        linearWhatsapp.setOnClickListener(this)
+        linearGmail.setOnClickListener(this)
+        linearLine.setOnClickListener(this)
     }
 
     private fun createWishList(){
@@ -534,7 +542,8 @@ class ActivityDetailExperience : AppCompatActivity(), View.OnClickListener,
                 val textView = container.textView
                 textView.text = day.date.dayOfMonth.toString()
 
-                if (day.owner == DayOwner.THIS_MONTH && avaibilityDate.contains(day.date)) {
+                if (day.owner == DayOwner.THIS_MONTH && avaibilityDate.contains(day.date) &&
+                    day.date.dayOfYear >= today.dayOfYear) {
                     textView.setTextColor(Color.parseColor("#000000"))
                     textView.setBackgroundColor(0)
                 }
@@ -669,62 +678,84 @@ class ActivityDetailExperience : AppCompatActivity(), View.OnClickListener,
         }
     }
 
-    @SuppressLint("SimpleDateFormat")
-    private fun intentCheckout(){
+    private fun openWhatsAppAndSendMessage() {
 
-        if (selectedDates.size > 0){
-            val sdfCalendar = SimpleDateFormat("yyyy-MM-dd")
-            val sdfDate = SimpleDateFormat("yyyy-MM-dd HH:mm:ss")
-            val strDate = selectedDates[0].toString()
+        try {
+            intent = Intent(Intent.ACTION_SEND)
+            intent.type = "text/plain"
+            val text = "Checkout ${experienceDetailModel.exp_title ?:""} on cGO " +
+                    "\n https://cgo.co.id/product/${experienceDetailModel.experience_id ?: ""}"
 
-            val dateCalendar = sdfCalendar.parse(strDate) ?: Date()
-            date = sdfDate.format(dateCalendar)
+            intent.`package` = whatsAppAppId
+            intent.putExtra(Intent.EXTRA_TEXT, text)
+            startActivity(Intent.createChooser(intent, "Finish the action with:"))
+
+        } catch (e: PackageManager.NameNotFoundException) {
+            ViewUtil.showBlackToast(this,"Whatsapp not installed.",0).show()
         }
+    }
 
-        val maxGuest = experienceDetailModel.exp_max_guest
-        guest = adultCount + childrenCount + infantCount
-
-        if (date.isEmpty()){
-            ViewUtil.showBlackToast(this,"Please select date",0).show()
-            return
+    private fun openGmailAndSendMessage(){
+        val i = Intent(Intent.ACTION_SEND)
+        val text = "Checkout ${experienceDetailModel.exp_title ?:""} on cGO " +
+                "\n https://cgo.co.id/product/${experienceDetailModel.experience_id ?: ""}"
+        i.type = "message/rfc822"
+        i.putExtra(Intent.EXTRA_SUBJECT, "cGO Indonesia")
+        i.putExtra(Intent.EXTRA_TEXT, text)
+        try {
+            startActivity(Intent.createChooser(i, "Send mail..."))
+        } catch (ex: ActivityNotFoundException) {
+            ViewUtil.showBlackToast(this,"There are no email clients installed.",0).show()
         }
+    }
 
-        if (guest == 0){
-            ViewUtil.showBlackToast(this,"Please select guest",0).show()
-            return
+    private fun openLineAndShareMessage(){
+        try {
+            val appName = "jp.naver.line.android"
+            val text = "Checkout ${experienceDetailModel.exp_title ?:""} on cGO " +
+                    "\n https://cgo.co.id/product/${experienceDetailModel.experience_id ?: ""}"
+            val intent = Intent()
+            intent.action = Intent.ACTION_VIEW
+            intent.data = Uri.parse("line://msg/text/$text")
+            startActivity(intent)
         }
-
-        if (guest > maxGuest){
-            ViewUtil.showBlackToast(this,"Maximum guest is $maxGuest",0).show()
-            return
+        catch (e: java.lang.Exception) {
+            Log.e("ERROR LINE", e.toString())
+            ViewUtil.showBlackToast(this,"Line not installed in your device",0).show()
         }
+    }
 
-        val i = Intent(this,ActivityAddOn::class.java)
-        i.putExtra("experience_detail_model", experienceDetailModel)
-        i.putExtra("payment_type", paymentType)
-        i.putExtra("price", price)
-        i.putExtra("isDownPaymentAvailable", isDownPaymentAvailable)
-        i.putExtra("avaibility", avaibilityDate)
-        i.putExtra("defaultCurrency",defaultCurrency)
-        i.putExtra("selected_date",strSelectedDate)
-        i.putExtra("date", date)
-        i.putExtra("adult_count", adultCount)
-        i.putExtra("children_count", childrenCount)
-        i.putExtra("infant_count", infantCount)
-        i.putParcelableArrayListExtra("method_list",paymentModelList)
-
-        startActivity(i)
+    private fun shareTwitter(){
+        val text = "Checkout ${experienceDetailModel.exp_title ?:""} on cGO " +
+                "\n https://cgo.co.id/product/${experienceDetailModel.experience_id ?: ""}"
+        try {
+            val intent = Intent()
+            intent.action = Intent.ACTION_SEND
+            intent.setClassName("com.twitter.android",
+                "com.twitter.android.PostActivity")
+            intent.putExtra(Intent.EXTRA_TEXT, text)
+            startActivity(intent)
+        }
+        catch (e: java.lang.Exception) {
+            val tweet = Intent(Intent.ACTION_VIEW)
+            tweet.data = Uri.parse(
+                "http://twitter.com/?status=" + Uri.encode(text)
+            )
+            startActivity(tweet)
+        }
     }
 
     private fun setTabListener(position : Int){
         if (position == 1){
             txtOverview.setTextColor(Color.parseColor("#000000"))
+            txtPackages.setTextColor(Color.parseColor("#808080"))
             txtExperience.setTextColor(Color.parseColor("#808080"))
             txtFacility.setTextColor(Color.parseColor("#808080"))
             txtAvaibility.setTextColor(Color.parseColor("#808080"))
             txtReviews.setTextColor(Color.parseColor("#808080"))
 
             dividerOverview.visibility = View.VISIBLE
+            dividerPackages.visibility = View.INVISIBLE
             dividerExperience.visibility = View.INVISIBLE
             dividerFacility.visibility = View.INVISIBLE
             dividerAvaibility.visibility = View.INVISIBLE
@@ -734,12 +765,31 @@ class ActivityDetailExperience : AppCompatActivity(), View.OnClickListener,
         }
         else if (position == 2){
             txtOverview.setTextColor(Color.parseColor("#808080"))
+            txtPackages.setTextColor(Color.parseColor("#000000"))
+            txtExperience.setTextColor(Color.parseColor("#808080"))
+            txtFacility.setTextColor(Color.parseColor("#808080"))
+            txtAvaibility.setTextColor(Color.parseColor("#808080"))
+            txtReviews.setTextColor(Color.parseColor("#808080"))
+
+            dividerOverview.visibility = View.INVISIBLE
+            dividerPackages.visibility = View.VISIBLE
+            dividerExperience.visibility = View.INVISIBLE
+            dividerFacility.visibility = View.INVISIBLE
+            dividerAvaibility.visibility = View.INVISIBLE
+            dividerReview.visibility = View.INVISIBLE
+
+            myNestedScroll.smoothScrollTo(txtPackageList,false)
+        }
+        else if (position == 3){
+            txtOverview.setTextColor(Color.parseColor("#808080"))
+            txtPackages.setTextColor(Color.parseColor("#808080"))
             txtExperience.setTextColor(Color.parseColor("#000000"))
             txtFacility.setTextColor(Color.parseColor("#808080"))
             txtAvaibility.setTextColor(Color.parseColor("#808080"))
             txtReviews.setTextColor(Color.parseColor("#808080"))
 
             dividerOverview.visibility = View.INVISIBLE
+            dividerPackages.visibility = View.INVISIBLE
             dividerExperience.visibility = View.VISIBLE
             dividerFacility.visibility = View.INVISIBLE
             dividerAvaibility.visibility = View.INVISIBLE
@@ -747,14 +797,16 @@ class ActivityDetailExperience : AppCompatActivity(), View.OnClickListener,
 
             myNestedScroll.smoothScrollTo(txtExperienceTitle,false)
         }
-        else if (position == 3){
+        else if (position == 4){
             txtOverview.setTextColor(Color.parseColor("#808080"))
+            txtPackages.setTextColor(Color.parseColor("#808080"))
             txtExperience.setTextColor(Color.parseColor("#808080"))
             txtFacility.setTextColor(Color.parseColor("#000000"))
             txtAvaibility.setTextColor(Color.parseColor("#808080"))
             txtReviews.setTextColor(Color.parseColor("#808080"))
 
             dividerOverview.visibility = View.INVISIBLE
+            dividerPackages.visibility = View.INVISIBLE
             dividerExperience.visibility = View.INVISIBLE
             dividerFacility.visibility = View.VISIBLE
             dividerAvaibility.visibility = View.INVISIBLE
@@ -762,14 +814,16 @@ class ActivityDetailExperience : AppCompatActivity(), View.OnClickListener,
 
             myNestedScroll.smoothScrollTo(txtFacilitiesTitle,false)
         }
-        else if (position == 4){
+        else if (position == 5){
             txtOverview.setTextColor(Color.parseColor("#808080"))
+            txtPackages.setTextColor(Color.parseColor("#808080"))
             txtExperience.setTextColor(Color.parseColor("#808080"))
             txtFacility.setTextColor(Color.parseColor("#808080"))
             txtAvaibility.setTextColor(Color.parseColor("#000000"))
             txtReviews.setTextColor(Color.parseColor("#808080"))
 
             dividerOverview.visibility = View.INVISIBLE
+            dividerPackages.visibility = View.INVISIBLE
             dividerExperience.visibility = View.INVISIBLE
             dividerFacility.visibility = View.INVISIBLE
             dividerAvaibility.visibility = View.VISIBLE
@@ -779,12 +833,14 @@ class ActivityDetailExperience : AppCompatActivity(), View.OnClickListener,
         }
         else{
             txtOverview.setTextColor(Color.parseColor("#808080"))
+            txtPackages.setTextColor(Color.parseColor("#808080"))
             txtExperience.setTextColor(Color.parseColor("#808080"))
             txtFacility.setTextColor(Color.parseColor("#808080"))
             txtAvaibility.setTextColor(Color.parseColor("#808080"))
             txtReviews.setTextColor(Color.parseColor("#000000"))
 
             dividerOverview.visibility = View.INVISIBLE
+            dividerPackages.visibility = View.INVISIBLE
             dividerExperience.visibility = View.INVISIBLE
             dividerFacility.visibility = View.INVISIBLE
             dividerAvaibility.visibility = View.INVISIBLE
@@ -850,7 +906,7 @@ class ActivityDetailExperience : AppCompatActivity(), View.OnClickListener,
     ){
 
         if (count == 0.0){
-            txtCount.text = "0/"
+            txtCount.text = "0 /"
             star1.setImageResource(R.drawable.ic_star_empty)
             star2.setImageResource(R.drawable.ic_star_empty)
             star3.setImageResource(R.drawable.ic_star_empty)
@@ -858,7 +914,7 @@ class ActivityDetailExperience : AppCompatActivity(), View.OnClickListener,
             star5.setImageResource(R.drawable.ic_star_empty)
         }
         else if (count == 0.5){
-            txtCount.text = "0.5/"
+            txtCount.text = "0.5 /"
             star1.setImageResource(R.drawable.ic_star_half)
             star2.setImageResource(R.drawable.ic_star_empty)
             star3.setImageResource(R.drawable.ic_star_empty)
@@ -939,6 +995,104 @@ class ActivityDetailExperience : AppCompatActivity(), View.OnClickListener,
         }
     }
 
+    private fun setPackage(packageMap : HashMap<String,Any>, packageFrom : Int){
+        val packageAvaibility = packageMap["packageAvaibility"] as ArrayList<LocalDate>
+        val price = CurrencyUtil.decimal(packageMap["packagePrice"] as Long).replace(",",".")
+        val paymentType = (packageMap["packageTypePayment"] as String).split(" ")[1]
+        val packageCurrency = packageMap["packageCurrency"] as String
+        val strPrice = "$packageCurrency $price/$paymentType"
+
+        txtPrice.text = strPrice
+        txtDialogPrice.text = strPrice
+
+        avaibilityDate = packageAvaibility
+
+        calendarViewDialog.notifyCalendarChanged()
+        calendarView.notifyCalendarChanged()
+
+
+        if (packageFrom == 1){
+            intentCheckout(packageMap)
+        }
+    }
+
+    @SuppressLint("SimpleDateFormat")
+    private fun intentCheckout(packageMap : HashMap<String,Any>?){
+          val intentMap = HashMap<String,Any>()
+          intentMap["packageMap"] = packageMap ?: HashMap<String,Any>()
+          intentMap["experienceDetailModel"] = experienceDetailModel
+          intentMap["guideList"] = experienceDetailModel.exp_guides ?: ArrayList<HashMap<String,Any>>()
+          intentMap["packageList"] = experienceDetailModel.exp_packages ?: ArrayList<HashMap<String,Any>>()
+          intentMap["paymentType"] = paymentType
+          intentMap["price"] = price
+          intentMap["isDownPaymentAvailable"] = isDownPaymentAvailable
+          intentMap["avaibility"] = avaibilityDate
+          intentMap["defaultCurrency"] = defaultCurrency
+          intentMap["selected_date"] = strSelectedDate
+          intentMap["date"] = date
+          intentMap["adult_count"] = adultCount
+          intentMap["children_count"] = childrenCount
+          intentMap["infant_count"] = infantCount
+          intentMap["method_list"] = paymentModelList
+
+          if (packageMap != null){
+              val i = Intent(this, PackageDetailActivity::class.java)
+              i.putExtra("intentMap", intentMap as Serializable)
+              startActivity(i)
+          }
+        else{
+              if (selectedDates.size > 0){
+                  val sdfCalendar = SimpleDateFormat("yyyy-MM-dd")
+                  val sdfDate = SimpleDateFormat("yyyy-MM-dd HH:mm:ss")
+                  val strDate = selectedDates[0].toString()
+
+                  val dateCalendar = sdfCalendar.parse(strDate) ?: Date()
+                  date = sdfDate.format(dateCalendar)
+              }
+
+              val maxGuest = experienceDetailModel.exp_max_guest
+              guest = adultCount + childrenCount + infantCount
+
+              if (date.isEmpty()){
+                  ViewUtil.showBlackToast(this,"Please select date",0).show()
+                  return
+              }
+
+              if (guest == 0){
+                  ViewUtil.showBlackToast(this,"Please select guest",0).show()
+                  return
+              }
+
+              if (guest > maxGuest){
+                  ViewUtil.showBlackToast(this,"Maximum guest is $maxGuest",0).show()
+                  return
+              }
+
+              experienceDetailModel.exp_packages?.let { packageList ->
+                  if (packageList.size > 0){
+                      intentMap["packageMap"] = packageList[0]
+                      intentMap["packageExpPayment"] = packageList[0]["packageExpPayment"] as ArrayList<HashMap<String,Any>>
+                  }
+              }
+
+              experienceDetailModel.exp_guides?.let { guideList ->
+                  if (guideList.size > 1){
+                      val i = Intent(this,ActivitySelectGuide::class.java)
+                      i.putExtra("intentMap", intentMap as Serializable)
+                      startActivity(i)
+                  }
+                  else{
+                      if (guideList.size == 1){
+                          intentMap["selectedGuideMap"] = guideList[0]
+                      }
+                      val i = Intent(this,ActivityAddOn::class.java)
+                      i.putExtra("intentMap", intentMap as Serializable)
+                      startActivity(i)
+                  }
+              }
+          }
+    }
+
     override fun onExperienceDetailPrepare() {
         linearContent.visibility = View.GONE
         shimerLayout.visibility = View.VISIBLE
@@ -948,37 +1102,77 @@ class ActivityDetailExperience : AppCompatActivity(), View.OnClickListener,
     @SuppressLint("SetTextI18n", "SimpleDateFormat")
     override fun onExperienceDetailLoaded(expDetailModel: ExperienceDetailModel) {
 
-        linearContent.visibility = View.VISIBLE
-        shimerLayout.visibility = View.GONE
-        shimerLayout.stopShimmerAnimation()
-
         experienceDetailModel = expDetailModel
         val countRating = experienceDetailModel.count_rating
 
+        val isFlexibleTicket = experienceDetailModel.is_flexible_ticket
+        val flexibleTicketValid = experienceDetailModel.exp_validity_amount
+        val flexibleTicketType = experienceDetailModel.exp_validity_type
+
         setTextDescription()
+
+        txtPlace.text = experienceDetailModel.exp_pickup_place ?: ""
         txtTitle.text = experienceDetailModel.exp_title ?: ""
         txtLocation.text = experienceDetailModel.harbors_name+", "+experienceDetailModel.province
-        txtPickup.text = " "+experienceDetailModel.exp_pickup_place
         txtGuest.text = "Max. "+experienceDetailModel.exp_max_guest+" Person"
         txtExpType.text = experienceDetailModel.exp_trip_type
-
         txtReviewCount.text = ""+countRating
 
+        val address = experienceDetailModel.exp_address ?: ""
         val pickupTime = experienceDetailModel.exp_pickup_time ?: "00:00:00"
+        val startTradeHour = experienceDetailModel.trading_hour_start ?: "00:00:00"
+        val endTradeHour = experienceDetailModel.trading_hour_end ?: "00:00:00"
+
         val sdf = SimpleDateFormat("HH:mm:ss")
         val sdfs = SimpleDateFormat("HH:mm")
-        val pickupDateTime = sdf.parse(pickupTime)
-        txtPickupTime.text = sdfs.format(pickupDateTime ?: Date())
+
+        if (isFlexibleTicket != 0){
+            linearFlexibleTicket.visibility = View.VISIBLE
+            txtFlexibleTicket.text = "Ticket is still valid $flexibleTicketValid $flexibleTicketType" +
+                    " after chosen trip date"
+        }
+
+        if (address.isNotEmpty() || address != "null"){
+            txtAddress.text = address
+        }
+
+        if (pickupTime != "null"){
+            val pickupDateTime = sdf.parse(pickupTime) ?:  Date()
+            txtTime.text = sdfs.format(pickupDateTime)
+        }
+
+        if (startTradeHour != "null" && endTradeHour != "null"){
+            val tradeHourStart = sdf.parse(startTradeHour) ?:  Date()
+            val endHourStart = sdf.parse(endTradeHour) ?:  Date()
+            txtTradingHour.text = "${sdfs.format(tradeHourStart)} - ${sdfs.format(endHourStart)}"
+        }
+
+        if (experienceDetailModel.start_point != null){
+            if (experienceDetailModel.start_point!!.isNotEmpty()){
+                linearStartEndPoint.visibility = View.VISIBLE
+                txtStartPoint.text = experienceDetailModel.start_point ?: ""
+                txtEndPoint.text = experienceDetailModel.end_point ?: ""
+            }
+            else{
+                linearStartEndPoint.visibility = View.GONE
+            }
+        }
+
+        if (experienceDetailModel.how_to_get_location != null){
+            if (experienceDetailModel.how_to_get_location!! != "null" && experienceDetailModel.how_to_get_location!!.isNotEmpty()){
+                linearToGetThere.visibility = View.VISIBLE
+                txtToGetThere.text = experienceDetailModel.how_to_get_location ?: ""
+            }
+            else{
+                linearToGetThere.visibility = View.GONE
+            }
+        }
 
         if (experienceDetailModel.exp_duration > 1){
-            txtDuration.text = ""+experienceDetailModel.exp_duration+" days"
+            txtDuration.text = "Duration "+experienceDetailModel.exp_duration+" days"
         }
         else{
-            txtDuration.text = ""+experienceDetailModel.exp_duration+" day"
-        }
-
-        if (pickupTime == "00:00:00"){
-            linearPickupTime.visibility = View.GONE
+            txtDuration.text = "Duration "+experienceDetailModel.exp_duration+" day"
         }
 
         if (countRating > 1){
@@ -988,19 +1182,40 @@ class ActivityDetailExperience : AppCompatActivity(), View.OnClickListener,
             txtReview.text = "Review"
         }
 
+        if (experienceDetailModel.is_certified_guide == 1){
+            linearCertifiedGuide.visibility = View.VISIBLE
+        }
+        else{
+            linearCertifiedGuide.visibility = View.GONE
+        }
+
         experienceDetailModel.exp_itenerary?.let {
             iteneraries = it
             val itenaryList = ArrayList<ItemItenaryModel>()
-            if (it.size > 1){
-                for (i in 0 until 1){
-                    itenaryList.add(it[i])
+
+            if (it.size > 0){
+                linearItinerary.visibility = View.VISIBLE
+                if (it.size > 1){
+                    for (i in 0 until 1){
+                        itenaryList.add(it[i])
+                    }
+                    dayAdapter.updateItenary(itenaryList)
+                    txtItenarySeeMore.visibility = View.VISIBLE
                 }
-                dayAdapter.updateItenary(itenaryList)
-                txtItenarySeeMore.visibility = View.VISIBLE
+                else{
+                    dayAdapter.updateItenary(iteneraries)
+                    txtItenarySeeMore.visibility = View.GONE
+                }
+
+                if (experienceDetailModel.is_customised_intinerary == 1){
+                    txtItineraryCustomize.visibility = View.VISIBLE
+                }
+                else{
+                    txtItineraryCustomize.visibility = View.GONE
+                }
             }
             else{
-                dayAdapter.updateItenary(iteneraries)
-                txtItenarySeeMore.visibility = View.GONE
+                linearItinerary.visibility = View.GONE
             }
         }
 
@@ -1013,20 +1228,8 @@ class ActivityDetailExperience : AppCompatActivity(), View.OnClickListener,
         }
 
         experienceDetailModel.exp_type?.let {
-            rvServiceType.adapter = ServiceTypeAdapter(this,it)
-        }
-
-        experienceDetailModel.exp_payment?.let {
-            val payment = it[0]
-            price = payment.price
-
-            val strPriceNumber =  CurrencyUtil.decimal(payment.price).replace(",",".")
-            paymentType = (payment.price_item_type ?: "").split(" ")[1].toLowerCase(Locale.ROOT)
-            defaultCurrency = payment.currency ?: ""
-
-            val strPrice = "$defaultCurrency $strPriceNumber/$paymentType"
-            txtPrice.text = strPrice
-            txtDialogPrice.text = strPrice
+            it.add(0,experienceDetailModel.exp_booking_type ?: "")
+            rvServiceType.adapter = ServiceTypeAdapter(1,this,it)
         }
 
         experienceDetailModel.exp_payment?.let {
@@ -1087,14 +1290,87 @@ class ActivityDetailExperience : AppCompatActivity(), View.OnClickListener,
             rvRules.adapter = BoatRulesAdapter(this,it)
         }
 
-        experienceDetailModel.exp_avaibility?.let {
-            avaibilityDate = it
-            calendarView.notifyCalendarChanged()
+        experienceDetailModel.exp_guides?.let {
+            if (it.size > 0){
+                linearYourGuide.visibility = View.VISIBLE
+                rvGuide.adapter = GuideAdapter(this,0, it, 0,null)
+            }
+            else{
+                linearYourGuide.visibility = View.GONE
+            }
+        }
+
+        experienceDetailModel.exp_languages?.let {
+           if (it.size > 0){
+               var strName = ""
+
+               if (it.size > 1){
+                   for (i in 0 until it.size){
+                       val language = it[i]
+                       val name =  language["languageName"] as? String ?: ""
+
+                       if (i != it.size - 1){
+                           strName += "$name, "
+                       }
+                       else{
+                           strName += name
+                       }
+                   }
+               }
+               else{
+                   strName = it[0]["languageName"] as? String ?: ""
+               }
+
+               txtLanguage.text = strName
+           }
+        }
+
+        experienceDetailModel.exp_accomodations?.let {
+          if (it.size > 0){
+              var strName = ""
+
+              if (it.size > 1){
+                  for (i in 0 until it.size){
+                      val accomodation = it[i]
+                      val name =  accomodation["accomodationsName"] as? String ?: ""
+
+                      if (i != it.size - 1){
+                          strName += "$name, "
+                      }
+                      else{
+                          strName += name
+                      }
+                  }
+              }
+              else{
+                  strName = it[0]["accomodationsName"] as? String ?: ""
+              }
+
+              txtAccomodation.text = strName
+          }
+        }
+
+        experienceDetailModel.exp_packages?.let {
+            val packageMap = it[0]
+            val packageId = packageMap["packageId"] as Int
+
+            if (packageId != 0){
+                linearPackages.visibility = View.VISIBLE
+                linearPackage.visibility = View.VISIBLE
+                rvPackage.adapter = PackageAdapter(this,0, it, 0,this)
+            }
+            else{
+                linearPackages.visibility = View.GONE
+                linearPackage.visibility = View.GONE
+            }
+
+            setPackage(packageMap,0)
         }
 
         val marker_option =  MarkerOptions()
             .icon( MapUtil.vectorToBitmap(R.drawable.ic_location_red, Color.parseColor("#FFFFFF"),this))
             .position(LatLng( experienceDetailModel.exp_pickup_place_latitude, experienceDetailModel.exp_pickup_place_longitude))
+
         gMap.moveCamera(CameraUpdateFactory.newLatLngZoom(LatLng(experienceDetailModel.exp_pickup_place_latitude
             ,experienceDetailModel.exp_pickup_place_longitude),15f))
         gMap.addMarker(marker_option)
@@ -1108,6 +1384,10 @@ class ActivityDetailExperience : AppCompatActivity(), View.OnClickListener,
 
         setStar(expDetailModel.rating,imgStar1,imgStar2,imgStar3,imgStar4,imgStar5,txtStar)
         experienceController.loadExperienceReview(experience_id,this)
+
+        linearContent.visibility = View.VISIBLE
+        shimerLayout.visibility = View.GONE
+        shimerLayout.stopShimmerAnimation()
     }
 
     private fun setTextDescription(){
@@ -1252,10 +1532,13 @@ class ActivityDetailExperience : AppCompatActivity(), View.OnClickListener,
 
     }
 
+    override fun onPackageClicked(packageMap: java.util.HashMap<String, Any>) {
+        setPackage(packageMap,1)
+    }
+
     @SuppressLint("SetTextI18n")
     override fun onClick(v: View?) {
         when(v?.id){
-
             R.id.ivBack -> {
                 finish()
             }
@@ -1279,16 +1562,24 @@ class ActivityDetailExperience : AppCompatActivity(), View.OnClickListener,
                 setTabListener(1)
             }
 
-            R.id.linearExperience -> {
+            R.id.linearPackages -> {
                 setTabListener(2)
             }
 
-            R.id.linearFacility -> {
+            R.id.linearExperience -> {
                 setTabListener(3)
             }
 
-            R.id.linearAvaibility -> {
+            R.id.linearFacility -> {
                 setTabListener(4)
+            }
+
+            R.id.linearAvaibility -> {
+                setTabListener(5)
+            }
+
+            R.id.linearReview -> {
+                setTabListener(6)
             }
 
             R.id.imgPrevious -> {
@@ -1309,6 +1600,7 @@ class ActivityDetailExperience : AppCompatActivity(), View.OnClickListener,
 
             R.id.imgSearch -> {
                 val i = Intent(this,ActivityExperienceSearch::class.java)
+                i.putExtra("from",1)
                 startActivity(i)
             }
 
@@ -1337,7 +1629,19 @@ class ActivityDetailExperience : AppCompatActivity(), View.OnClickListener,
             }
 
             R.id.linearTwitter -> {
+                shareTwitter()
+            }
 
+            R.id.linearWhatsapp -> {
+                openWhatsAppAndSendMessage()
+            }
+
+            R.id.linearGmail -> {
+                openGmailAndSendMessage()
+            }
+
+            R.id.linearLine -> {
+                openLineAndShareMessage()
             }
 
             R.id.txtItenarySeeMore -> {
@@ -1350,10 +1654,6 @@ class ActivityDetailExperience : AppCompatActivity(), View.OnClickListener,
 
             R.id.imgShare -> {
                 shareDialog.show()
-            }
-
-            R.id.linearReview -> {
-                setTabListener(5)
             }
 
             R.id.linearDate -> {
@@ -1407,9 +1707,10 @@ class ActivityDetailExperience : AppCompatActivity(), View.OnClickListener,
             }
 
             R.id.btnDialogBook -> {
-                intentCheckout()
+                intentCheckout(null)
             }
         }
     }
 }
+
 

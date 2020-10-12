@@ -22,8 +22,8 @@ class ViewUtil {
 
         fun showBlackToast(context : Context, message : String, duration : Int) : Toast{
             val toastView = Toast.makeText(context ,message, duration)
-            toastView.view.setBackgroundResource(R.drawable.background_black_toast)
-            toastView.view.findViewById<TextView>(android.R.id.message).setTextColor(Color.
+            toastView.view?.setBackgroundResource(R.drawable.background_black_toast)
+            toastView.view?.findViewById<TextView>(android.R.id.message)?.setTextColor(Color.
             parseColor("#FFFFFF"))
             return toastView
         }

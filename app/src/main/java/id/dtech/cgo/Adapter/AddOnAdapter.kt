@@ -49,26 +49,28 @@ class AddOnAdapter(context : Context, addOnList : ArrayList<AddOnModel>, payment
 
          holder.txtServiceName.text = addOnModel.name
          holder.txtDesc.text = addOnModel.desc
-         holder.txtPrice.text = "$currency $total_price/$paymentTYpes"
+         holder.txtPrice.text = "$currency $total_price"
 
         if (position != 0){
-            holder.txtTitle.text = "Ticket + "+addOnModel.name
+            holder.txtTitle.text = addOnModel.name
             holder.txtAmount.text = "$currency $price"
             holder.linearAmount.visibility = View.VISIBLE
+            holder.linearTotalPrice.visibility = View.GONE
+            holder.priceDivider.visibility = View.GONE
         }
         else{
             holder.txtTitle.text = addOnModel.name
             holder.linearAmount.visibility = View.GONE
+            holder.linearTotalPrice.visibility = View.VISIBLE
+            holder.priceDivider.visibility = View.VISIBLE
         }
 
          if (selected){
-            holder.imgCheck.visibility = View.VISIBLE
-            holder.btnTicketCheckout.visibility = View.VISIBLE
+            holder.imgCheck.setImageResource(R.drawable.ic_checkmark_circle)
             holder.linearbackground.setBackgroundResource(R.drawable.background_add_on)
          }
          else{
-            holder.imgCheck.visibility = View.GONE
-            holder.btnTicketCheckout.visibility = View.GONE
+            holder.imgCheck.setImageResource(R.drawable.ic_blank_lightblue)
             holder.linearbackground.setBackgroundResource(0)
         }
 
@@ -89,13 +91,11 @@ class AddOnAdapter(context : Context, addOnList : ArrayList<AddOnModel>, payment
 
         holder.cardParent.layoutParams = layoutParam
 
-        holder.btnTicketCheckout.setOnClickListener {
-            checkoutListeners.onAddOnCheckoutClicked()
-        }
-
         holder.cardParent.setOnClickListener {
-            addOnListener.onAddOnClicked(addOnModel,selected,position)
-            notifyDataSetChanged()
+            if(position != 0){
+                addOnListener.onAddOnClicked(addOnModel,selected,position)
+                notifyDataSetChanged()
+            }
         }
     }
 
@@ -107,6 +107,7 @@ class AddOnAdapter(context : Context, addOnList : ArrayList<AddOnModel>, payment
     class AddOnViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView){
         val linearbackground = itemView.findViewById<LinearLayout>(R.id.linearBackground)
         val linearAmount = itemView.findViewById<LinearLayout>(R.id.linearAmount)
+        val linearTotalPrice = itemView.findViewById<LinearLayout>(R.id.linearTotalPrice)
         val txtAmount = itemView.findViewById<TextView>(R.id.txtAmount)
 
         val imgCheck = itemView.findViewById<ImageView>(R.id.imgCheck)
@@ -115,7 +116,7 @@ class AddOnAdapter(context : Context, addOnList : ArrayList<AddOnModel>, payment
         val txtPrice = itemView.findViewById<TextView>(R.id.txtPrice)
         val txtServiceName = itemView.findViewById<TextView>(R.id.txtServiceName)
 
-        val btnTicketCheckout = itemView.findViewById<Button>(R.id.btnTicketCheckout)
         val cardParent = itemView.findViewById<CardView>(R.id.cardParent)
+        val priceDivider = itemView.findViewById<View>(R.id.priceDivider)
     }
 }

@@ -122,3 +122,4 @@ class ActivityPaymentRedirect : AppCompatActivity(), View.OnClickListener{
         }
     }
 }
+

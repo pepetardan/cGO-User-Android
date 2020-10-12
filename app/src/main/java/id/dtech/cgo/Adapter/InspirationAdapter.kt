@@ -17,6 +17,7 @@ import id.dtech.cgo.Model.TripInspirationModel
 
 import id.dtech.cgo.R
 import id.dtech.cgo.View.ActivityDetailExperience
+import id.dtech.cgo.View.ActivityDetaipTripInspiration
 import id.dtech.cgo.View.dp
 
 class InspirationAdapter (contex : Context, itemList : ArrayList<TripInspirationModel>) :
@@ -39,6 +40,8 @@ class InspirationAdapter (contex : Context, itemList : ArrayList<TripInspiration
         val inspirationModel = inspirationList[position]
         val lastIndex = inspirationList.size - 1
         val layoutParam = FrameLayout.LayoutParams(300.dp,255.dp)
+        val id = inspirationModel.exp_inspiration_id
+        val trip_url = "https://blog.cgo.co.id/#/blog-detail/$id"
 
         if (position == 0){
             layoutParam.setMargins(24.dp, 8.dp, 0, 8.dp)
@@ -56,8 +59,8 @@ class InspirationAdapter (contex : Context, itemList : ArrayList<TripInspiration
         holder.cardParent.layoutParams = layoutParam
 
         holder.txtReadMore.setOnClickListener {
-            val intent = Intent(contexts,ActivityDetailExperience::class.java)
-            intent.putExtra("experience_id", inspirationModel.exp_id ?: "")
+            val intent = Intent(contexts, ActivityDetaipTripInspiration::class.java)
+            intent.putExtra("trip_url", trip_url)
             contexts.startActivity(intent)
         }
     }

@@ -104,7 +104,7 @@ class ServiceContentAdapter (context : Context, experienceList : ArrayList<Exper
 
         holder.rvServiceType.layoutManager = LinearLayoutManager(contexs
                 ,LinearLayoutManager.HORIZONTAL,false)
-        holder.rvServiceType.adapter = ServiceTypeAdapter(contexs,types)
+        holder.rvServiceType.adapter = ServiceTypeAdapter(0,contexs,types)
 
         holder.linearParent.setOnClickListener {
             val i = Intent(contexs,ActivityDetailExperience::class.java)

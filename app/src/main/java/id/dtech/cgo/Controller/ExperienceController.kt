@@ -75,7 +75,7 @@ class ExperienceController {
 
                   override fun onError(e: Throwable) {
                       confirmationPaymentCallback.onConfirmationPaymentError(e.message ?: "")
-                      Log.d("confirmation_error",e.message)
+                      Log.d("confirmation_error",e.message ?: "")
                   }
               })
           }
@@ -221,14 +221,15 @@ class ExperienceController {
 
         fun getExperienceSearch(harbor_id : String?, city_id : Int?,province_id : Int?, type : String?, startdate : String?,
                                  enddate : String?, guest : Int?, trip : Int?, bottomprice : Long?,
-                                 upperprice : Long?, sortby : String?, page : Int?, size : Int?,loadFrom : Int,
-                                experienceSearchCallback : MyCallback.Companion.ExperienceSearchCallback){
+                                 upperprice : Long?, sortby : String?, payment_type : String?, booking_type : String?, page : Int?, size : Int?,loadFrom : Int,
+                                 experienceSearchCallback : MyCallback.Companion.ExperienceSearchCallback){
 
             experienceSearchCallback.onExperienceSearchPrepare()
 
             val retrofit = MyConnection.myClient(ApiService::class.java,null)
-            val experience = retrofit.getExperienceSearch(harbor_id,city_id,province_id,
-                type,startdate,enddate, guest,trip,bottomprice,upperprice,sortby,"published",page,size)
+            val experience = retrofit.getExperienceSearch(harbor_id
+                ,city_id,province_id, type,startdate,enddate, guest,trip,bottomprice,upperprice,sortby,
+                "published", payment_type, booking_type, page, size)
 
                 experience.observeOn(AndroidSchedulers.mainThread()).subscribeOn(IoScheduler()).subscribe( object :
                     Observer<Response<ResponseBody>> {
@@ -261,8 +262,10 @@ class ExperienceController {
                                     val exp_title = experienceObject.getString("exp_title")
                                     val rating = experienceObject.getDouble("rating")
                                     val count_rating = experienceObject.getInt("count_rating")
+                                    val is_certified_guide = experienceObject.getInt("is_certified_guide")
                                     val currency = experienceObject.getString("currency")
                                     val price = experienceObject.getLong("price")
+                                    val special_price = experienceObject.getLong("special_price")
                                     val payment_type = experienceObject.getString("payment_type")
 
                                     val expTypeList = ArrayList<String>()
@@ -329,6 +332,8 @@ class ExperienceController {
                                     experienceModel.cover_photo = coverPhotoModel
                                     experienceModel.list_photo = listPhotoList
                                     experienceModel.viewType = 0
+                                    experienceModel.is_certified_guide = is_certified_guide
+                                    experienceModel.special_price = special_price
 
                                     experienceList.add(experienceModel)
                                 }
@@ -374,7 +379,7 @@ class ExperienceController {
                 override fun onNext(t: Response<ResponseBody>) {
                     if (t.isSuccessful){
                         try {
-                            val jsonObject = JSONObject(t.body()?.string())
+                            val jsonObject = JSONObject(t.body()?.string() ?: "")
                             val experience_id = jsonObject.getString("id")
                             val exp_title = jsonObject.getString("exp_title")
                             val exp_trip_type = jsonObject.getString("exp_trip_type")
@@ -395,108 +400,151 @@ class ExperienceController {
                             val exp_duration = jsonObject.getInt("exp_duration")
                             val merchant_id = jsonObject.getString("merchant_id")
                             val harbors_name = jsonObject.getString("harbors_name")
+                            val trading_hour_start = jsonObject.getString("trading_hour_start")
+                            val trading_hour_end = jsonObject.getString("trading_hour_end")
                             val city = jsonObject.getString("city")
                             val province = jsonObject.getString("province")
+                            val exp_address = jsonObject.getString("exp_address")
+                            val how_to_get_location = jsonObject.getString("how_to_get_location")
                             val count_rating = jsonObject.getInt("count_rating")
+                            val is_certified_guide = jsonObject.getInt("is_certified_guide")
 
-                            val expTypeArray = jsonObject.getJSONArray("exp_type")
-                            val expTypeSize = expTypeArray.length()
+                            var is_customised_intinerary = 0
+                            var is_request_exp_pickup_place = 0
+
+                            var is_flexible_ticket = 0
+                            var exp_validity_amount = 0
+                            var exp_validity_type = ""
+
+                            if (!jsonObject.isNull("is_customised_intinerary")){
+                                is_customised_intinerary = jsonObject.getInt("is_customised_intinerary")
+                            }
+
+                            if (!jsonObject.isNull("is_request_exp_pickup_place")){
+                                is_request_exp_pickup_place = jsonObject.getInt("is_request_exp_pickup_place")
+                            }
+
+                            if (!jsonObject.isNull("is_flexible_ticket")){
+                                is_flexible_ticket = jsonObject.getInt("is_flexible_ticket")
+                                exp_validity_amount = jsonObject.getInt("exp_validity_amount")
+                                exp_validity_type = jsonObject.getString("exp_validity_type")
+                            }
+
                             val expTypeList = ArrayList<String>()
 
-                            for (i in 0 until expTypeSize) {
-                                val expType = expTypeArray[i] as String
-                                expTypeList.add(expType)
+                            if (!jsonObject.isNull("exp_type")){
+                                val expTypeArray = jsonObject.getJSONArray("exp_type")
+                                val expTypeSize = expTypeArray.length()
+
+                                for (i in 0 until expTypeSize) {
+                                    val expType = expTypeArray[i] as String
+                                    expTypeList.add(expType)
+                                }
                             }
 
-                            val expItenaryObject = jsonObject.getJSONObject("exp_internary")
-                            val expItenaryItemArray = expItenaryObject.getJSONArray("item")
-
-                            val expItenaryItemSize = expItenaryItemArray.length()
                             val expItenaryItemList = ArrayList<ItemItenaryModel>()
 
-                            for (j in 0 until expItenaryItemSize){
+                            if (!jsonObject.isNull("exp_internary")){
+                                val expItenaryObject = jsonObject.getJSONObject("exp_internary")
 
-                                val itemObject = expItenaryItemArray.get(j) as JSONObject
-                                val day = itemObject.getInt("day")
+                                if (!expItenaryObject.isNull("item")){
 
-                                val itenaryArray = itemObject.getJSONArray("itinerary")
-                                val itenarySize = itenaryArray.length()
-                                val itenaryList = ArrayList<ItenaryModel>()
+                                    val expItenaryItemArray = expItenaryObject.getJSONArray("item")
+                                    val expItenaryItemSize = expItenaryItemArray.length()
 
-                                for (k in 0 until itenarySize){
-                                    val itenaryObject = itenaryArray.get(k) as JSONObject
-                                    val time = itenaryObject.getString("time")
-                                    val activity = itenaryObject.getString("activity")
+                                    for (j in 0 until expItenaryItemSize){
 
-                                    val itenaryModel = ItenaryModel()
-                                    itenaryModel.time = time
-                                    itenaryModel.activity = activity
+                                        val itemObject = expItenaryItemArray.get(j) as JSONObject
+                                        val day = itemObject.getInt("day")
 
-                                    itenaryList.add(itenaryModel)
+                                        val itenaryArray = itemObject.getJSONArray("itinerary")
+                                        val itenarySize = itenaryArray.length()
+                                        val itenaryList = ArrayList<ItenaryModel>()
+
+                                        for (k in 0 until itenarySize){
+                                            val itenaryObject = itenaryArray.get(k) as JSONObject
+                                            val time = itenaryObject.getString("time")
+                                            val activity = itenaryObject.getString("activity")
+
+                                            val itenaryModel = ItenaryModel()
+                                            itenaryModel.time = time
+                                            itenaryModel.activity = activity
+
+                                            itenaryList.add(itenaryModel)
+                                        }
+
+                                        val itemItenaryModel = ItemItenaryModel()
+                                        itemItenaryModel.day = day
+                                        itemItenaryModel.itenary = itenaryList
+
+                                        expItenaryItemList.add(itemItenaryModel)
+                                    }
                                 }
-
-                                val itemItenaryModel = ItemItenaryModel()
-                                itemItenaryModel.day = day
-                                itemItenaryModel.itenary = itenaryList
-
-                                expItenaryItemList.add(itemItenaryModel)
                             }
 
-                            val expFacilityArray = jsonObject.getJSONArray("exp_facilities")
-                            val expFacilitySize = expFacilityArray.length()
                             val expFacilityList = ArrayList<FacilityModel>()
 
-                            for (l in 0 until expFacilitySize) {
-                                val facilityObject = expFacilityArray.get(l) as JSONObject
-                                val name = facilityObject.getString("name")
-                                val icon = facilityObject.getString("icon")
-                                val amount = facilityObject.getInt("amount")
+                            if (!jsonObject.isNull("exp_facilities")){
+                                val expFacilityArray = jsonObject.getJSONArray("exp_facilities")
+                                val expFacilitySize = expFacilityArray.length()
 
-                                val facilityModel = FacilityModel()
-                                facilityModel.name = name
-                                facilityModel.icon = icon
-                                facilityModel.amount = amount
+                                for (l in 0 until expFacilitySize) {
+                                    val facilityObject = expFacilityArray.get(l) as JSONObject
+                                    val name = facilityObject.getString("name")
+                                    val icon = facilityObject.getString("icon")
+                                    val amount = facilityObject.getInt("amount")
 
-                                expFacilityList.add(facilityModel)
+                                    val facilityModel = FacilityModel()
+                                    facilityModel.name = name
+                                    facilityModel.icon = icon
+                                    facilityModel.amount = amount
+
+                                    expFacilityList.add(facilityModel)
+                                }
                             }
-
-                            val expInclusionArray = jsonObject.getJSONArray("exp_inclusion")
-                            val expInclusionSize = expInclusionArray.length()
 
                             val expInclusionList = ArrayList<InclusionModel>()
                             val expExclusionList = ArrayList<InclusionModel>()
 
-                            for (m in 0 until expInclusionSize) {
-                                val facilityObject = expInclusionArray.get(m) as JSONObject
-                                val name = facilityObject.getString("name")
-                                val type = facilityObject.getInt("type")
+                            if (!jsonObject.isNull("exp_inclusion")){
+                                val expInclusionArray = jsonObject.getJSONArray("exp_inclusion")
+                                val expInclusionSize = expInclusionArray.length()
 
-                                val inclusionModel = InclusionModel()
-                                inclusionModel.name = name
-                                inclusionModel.type = type
+                                for (m in 0 until expInclusionSize) {
+                                    val facilityObject = expInclusionArray.get(m) as JSONObject
+                                    val name = facilityObject.getString("name")
+                                    val type = facilityObject.getInt("type")
 
-                                if (type == 0){
-                                    expInclusionList.add(inclusionModel)
-                                }
-                                else{
-                                    expExclusionList.add(inclusionModel)
+                                    val inclusionModel = InclusionModel()
+                                    inclusionModel.name = name
+                                    inclusionModel.type = type
+
+                                    if (type == 0){
+                                        expInclusionList.add(inclusionModel)
+                                    }
+                                    else{
+                                        expExclusionList.add(inclusionModel)
+                                    }
                                 }
                             }
 
-                            val expRulesArray = jsonObject.getJSONArray("exp_rules")
-                            val expRulesSize = expRulesArray.length()
                             val expRulesList = ArrayList<RulesModel>()
 
-                            for (n in 0 until expRulesSize){
-                                val rulesObject = expRulesArray[n] as JSONObject
-                                val name  = rulesObject.getString("name")
-                                val desc = rulesObject.getString("desc")
+                            if (!jsonObject.isNull("exp_rules")){
+                                val expRulesArray = jsonObject.getJSONArray("exp_rules")
+                                val expRulesSize = expRulesArray.length()
 
-                                val rulesModel = RulesModel()
-                                rulesModel.name = name
-                                rulesModel.desc = desc
+                                for (n in 0 until expRulesSize){
+                                    val rulesObject = expRulesArray[n] as JSONObject
+                                    val name  = rulesObject.getString("name")
+                                    val desc = rulesObject.getString("desc")
 
-                                expRulesList.add(rulesModel)
+                                    val rulesModel = RulesModel()
+                                    rulesModel.name = name
+                                    rulesModel.desc = desc
+
+                                    expRulesList.add(rulesModel)
+                                }
                             }
 
                             val avaibilityLocaleDate = ArrayList<LocalDate>()
@@ -536,32 +584,34 @@ class ExperienceController {
                                 }
                             }
 
-                            val expPaymentArray = jsonObject.getJSONArray("exp_payment")
-                            val expPaymentSize = expPaymentArray.length()
                             val expPaymentList = ArrayList<PaymentModel>()
 
-                            for (q in 0 until expPaymentSize ){
-                                val paymentObject = expPaymentArray.get(q) as JSONObject
-                                val paymentId  = paymentObject.getString("id")
-                                val currency = paymentObject.getString("currency")
-                                val price = paymentObject.getLong("price")
-                                val price_item_type = paymentObject.getString("price_item_type")
-                                val payment_type_id = paymentObject.getString("payment_type_id")
-                                val payment_type_name = paymentObject.getString("payment_type_name")
-                                val payment_type_desc = paymentObject.getString("payment_type_desc")
+                            if (!jsonObject.isNull("exp_payment")){
+                                val expPaymentArray = jsonObject.getJSONArray("exp_payment")
+                                val expPaymentSize = expPaymentArray.length()
 
-                                val paymentModel = PaymentModel()
-                                paymentModel.id  = paymentId
-                                paymentModel.currency  = currency
-                                paymentModel.price  = price
-                                paymentModel.price_item_type  = price_item_type
-                                paymentModel.payment_type_id  = payment_type_id
-                                paymentModel.payment_type_name = payment_type_name
-                                paymentModel.payment_type_desc = payment_type_desc
+                                for (q in 0 until expPaymentSize ){
+                                    val paymentObject = expPaymentArray.get(q) as JSONObject
+                                    val paymentId  = paymentObject.getString("id")
+                                    val currency = paymentObject.getString("currency")
+                                    val price = paymentObject.getLong("price")
+                                    val price_item_type = paymentObject.getString("price_item_type")
+                                    val payment_type_id = paymentObject.getString("payment_type_id")
+                                    val payment_type_name = paymentObject.getString("payment_type_name")
+                                    val payment_type_desc = paymentObject.getString("payment_type_desc")
 
-                                expPaymentList.add(paymentModel)
+                                    val paymentModel = PaymentModel()
+                                    paymentModel.id  = paymentId
+                                    paymentModel.currency  = currency
+                                    paymentModel.price  = price
+                                    paymentModel.price_item_type  = price_item_type
+                                    paymentModel.payment_type_id  = payment_type_id
+                                    paymentModel.payment_type_name = payment_type_name
+                                    paymentModel.payment_type_desc = payment_type_desc
+
+                                    expPaymentList.add(paymentModel)
+                                }
                             }
-
 
                             val listPhotoList = ArrayList<HashMap<String,Any>>()
 
@@ -604,6 +654,292 @@ class ExperienceController {
                             minimumBookingModel.minimum_booking_desc = minimum_booking_desc
                             minimumBookingModel.minimum_booking_amount = minimum_booking_amount
 
+                            val guideList = ArrayList<HashMap<String,Any>>()
+                            val guideArrayList = jsonObject.getJSONArray("guide")
+                            val guideSize = guideArrayList.length()
+
+                            for (r in 0 until guideSize){
+                                val guideObject = guideArrayList[r] as JSONObject
+                                val guide_id = guideObject.getString("id")
+                                val guide_name = guideObject.getString("name")
+                                val guide_bio = guideObject.getString("bio")
+                                val guide_desc = guideObject.getString("desc")
+                                val guide_photo = guideObject.getString("photo")
+                                val guide_rating = guideObject.getDouble("rating")
+                                val guide_certified = guideObject.getInt("is_certified")
+                                val guide_licence = guideObject.getString("license")
+                                val guide_available = guideObject.getBoolean("is_available")
+
+                                val genderObject = guideObject.getJSONObject("gender")
+                                val gender_id = genderObject.getInt("id")
+                                val gender_value = genderObject.getString("value")
+
+                                val genderLanguages = ArrayList<HashMap<String,Any>>()
+                                val genderLanguageArray = guideObject.getJSONArray("language")
+                                val genderLanguageArraySize = genderLanguageArray.length()
+
+                                for (s in 0 until genderLanguageArraySize){
+                                    val genderLanguageObject = genderLanguageArray[s] as JSONObject
+                                    val genderLanguageId = genderLanguageObject.getInt("id")
+                                    val genderLanguageName = genderLanguageObject.getString("name")
+
+                                    val genderLanguageMap = HashMap<String,Any>()
+                                    genderLanguageMap["genderLanguageId"] = genderLanguageId
+                                    genderLanguageMap["genderLanguageName"] = genderLanguageName
+
+                                    genderLanguages.add(genderLanguageMap)
+                                }
+
+                                val guideMap = HashMap<String,Any>()
+                                guideMap["guide_id"] = guide_id
+                                guideMap["guide_name"] = guide_name
+                                guideMap["guide_bio"] = guide_bio
+                                guideMap["guide_desc"] = guide_desc
+                                guideMap["guide_photo"] = guide_photo
+                                guideMap["guide_rating"] = guide_rating
+                                guideMap["guide_certified"] = guide_certified
+                                guideMap["guide_licence"] = guide_licence
+                                guideMap["guide_available"] = guide_available
+                                guideMap["gender_id"] = gender_id
+                                guideMap["gender_value"] = gender_value
+                                guideMap["genderLanguages"] = genderLanguages
+
+                                guideList.add(guideMap)
+                            }
+
+                            val languagesArray = jsonObject.getJSONArray("languages")
+                            val languagesSize = languagesArray.length()
+                            val languagesList = ArrayList<HashMap<String,Any>>()
+
+                            for (i in 0 until languagesSize){
+                                val languagesObject = languagesArray[i] as JSONObject
+                                val languageId = languagesObject.getInt("id")
+                                val languageName = languagesObject.getString("name")
+
+                                val languageMap = HashMap<String,Any>()
+                                languageMap["languageId"] = languageId
+                                languageMap["languageName"] = languageName
+
+                                languagesList.add(languageMap)
+                            }
+
+                            val accomodationsArray = jsonObject.getJSONArray("accomodations")
+                            val accomodationsSize = accomodationsArray.length()
+                            val accomodationsList = ArrayList<HashMap<String,Any>>()
+
+                            for (i in 0 until accomodationsSize){
+                                val accomodationsObject = accomodationsArray[i] as JSONObject
+                                val accomodationsId = accomodationsObject.getInt("id")
+                                val accomodationsName = accomodationsObject.getString("name")
+
+                                val accomodationsMap = HashMap<String,Any>()
+                                accomodationsMap["accomodationsId"] = accomodationsId
+                                accomodationsMap["accomodationsName"] = accomodationsName
+
+                                accomodationsList.add(accomodationsMap)
+                            }
+
+                            var startPoint = ""
+                            var endPoint = ""
+
+                            if (!jsonObject.isNull("exp_intinerary_start_end_point")){
+                                val startEndObject = jsonObject.getJSONObject("exp_intinerary_start_end_point")
+                                startPoint = startEndObject.getString("start")
+                                endPoint = startEndObject.getString("end")
+                            }
+
+                            val packageArray = jsonObject.getJSONArray("package")
+                            val packageArraySize = packageArray.length()
+                            val packageList = ArrayList<HashMap<String,Any>>()
+
+                            for (i in 0 until packageArraySize){
+                                val packageObject = packageArray[i] as JSONObject
+                                val packageId = packageObject.getInt("id")
+                                val packageValue = packageObject.getInt("value")
+                                val packageName = packageObject.getString("name")
+                                val packageDetails = packageObject.getString("details")
+                                val packageDesc = packageObject.getString("desc")
+                                val packagePrice = packageObject.getLong("price")
+                                val packageCurrency = packageObject.getString("currency")
+                                val packageTypePayment = packageObject.getString("type_payment")
+
+                                var isDownpaymentAvailable = false
+
+                                val packageImagesList = ArrayList<String>()
+
+                                if (!packageObject.isNull("images")){
+                                    val packageImagesArray = packageObject.getJSONArray("images")
+                                    val packageImagesArraySize = packageImagesArray.length()
+
+                                    for(j in 0 until packageImagesArraySize){
+                                        val strPackageImages = packageImagesArray[j] as String
+                                        packageImagesList.add(strPackageImages)
+                                    }
+                                }
+
+                                val packageImageList = ArrayList<PhotoModel>()
+
+                                if (!packageObject.isNull("package_image")){
+                                    val packageImageArray = packageObject.getJSONArray("package_image")
+                                    val packageImageArraySize = packageImageArray.length()
+
+                                    for(k in 0 until packageImageArraySize){
+                                        val packageImageObject = packageImageArray[k] as JSONObject
+                                        val package_image_original = packageImageObject.getString("original")
+                                        val package_image_thumbnail = packageImageObject.getString("thumbnail")
+
+                                        val photoModel = PhotoModel()
+                                        photoModel.original = package_image_original
+                                        photoModel.thumbnail = package_image_thumbnail
+
+                                        packageImageList.add(photoModel)
+                                    }
+                                }
+
+                                val pakageExpPayment = ArrayList<HashMap<String,Any>>()
+
+                                if (!packageObject.isNull("exp_payment")){
+
+                                    val packagePaymentArray = packageObject.getJSONArray("exp_payment")
+                                    val packagePaymentArraySize = packagePaymentArray.length()
+
+                                    for (l in 0 until packagePaymentArraySize){
+
+                                        val packagePaymentObject = packagePaymentArray[l] as JSONObject
+                                        val packagePaymentId = packagePaymentObject.getString("id")
+                                        val packageId1 = packagePaymentObject.getInt("package_id")
+                                        val packagePaymentCurrency = packagePaymentObject.getString("currency")
+                                        val packagePaymentPrice = packagePaymentObject.getLong("price")
+                                        val packagePriceItemType = packagePaymentObject.getString("price_item_type")
+                                        val packagePaymentTypeId = packagePaymentObject.getString("payment_type_id")
+                                        val packagePaymentTypeName = packagePaymentObject.getString("payment_type_name")
+                                        val packagePaymentTypeDesc = packagePaymentObject.getString("payment_type_desc")
+                                        val paymentPerecentage = packagePaymentObject.getInt("payment_precentage")
+
+                                        val packagePaymentCustomPriceList = ArrayList<HashMap<String,Any>>()
+
+                                        if (!packagePaymentObject.isNull("custom_price")){
+                                            val packagePaymentCustomPriceArray = packagePaymentObject.getJSONArray("custom_price")
+                                            val packagePaymentCustomPriceArraySize = packagePaymentCustomPriceArray.length()
+
+                                            for (m in 0 until packagePaymentCustomPriceArraySize){
+                                                val packagePaymentCustomPriceObject = packagePaymentCustomPriceArray[m] as JSONObject
+                                                val customPriceCurrency = packagePaymentCustomPriceObject.getString("currency")
+                                                val customPricePrice = packagePaymentCustomPriceObject.getLong("price")
+                                                val customPriceGuest = packagePaymentCustomPriceObject.getInt("guest")
+
+                                                val customPriceMap = HashMap<String,Any>()
+                                                customPriceMap["customPriceCurrency"] = customPriceCurrency
+                                                customPriceMap["customPricePrice"] = customPricePrice
+                                                customPriceMap["customPriceGuest"] = customPriceGuest
+
+                                                packagePaymentCustomPriceList.add(customPriceMap)
+                                            }
+                                        }
+
+                                        val specialPriceList = ArrayList<HashMap<String,Any>>()
+
+                                        if (!packagePaymentObject.isNull("special_prices")){
+                                            val specialPriceArray = packagePaymentObject.getJSONArray("special_prices")
+                                            val specialPriceArraySize = specialPriceArray.length()
+
+                                            for (n in 0 until specialPriceArraySize){
+                                                val specialPriceObject = specialPriceArray[n] as JSONObject
+                                                val specialPriceId = specialPriceObject.getString("id")
+                                                val specialPricePrice = specialPriceObject.getLong("special_price")
+                                                val specialPriceCurrency = specialPriceObject.getString("currency")
+                                                val specialPriceStartDate = specialPriceObject.getString("start_date")
+                                                val specialPriceEndDate = specialPriceObject.getString("end_date")
+
+                                                val specialPriceMap = HashMap<String,Any>()
+                                                specialPriceMap["specialPriceId"] = specialPriceId
+                                                specialPriceMap["specialPricePrice"] = specialPricePrice
+                                                specialPriceMap["specialPriceCurrency"] = specialPriceCurrency
+                                                specialPriceMap["specialPriceStartDate"] = specialPriceStartDate
+                                                specialPriceMap["specialPriceEndDate"] = specialPriceEndDate
+
+                                                specialPriceList.add(specialPriceMap)
+                                            }
+                                        }
+
+                                        if (packagePaymentTypeName == "Down Payment"){
+                                            isDownpaymentAvailable = true
+                                        }
+
+                                        val packagePaymentHashMap = HashMap<String,Any>()
+                                        packagePaymentHashMap["packagePaymentId"] = packagePaymentId
+                                        packagePaymentHashMap["packageId"] = packageId1
+                                        packagePaymentHashMap["packagePaymentCurrency"] = packagePaymentCurrency
+                                        packagePaymentHashMap["packagePaymentPrice"] = packagePaymentPrice
+                                        packagePaymentHashMap["packagePriceItemType"] = packagePriceItemType
+                                        packagePaymentHashMap["packagePaymentTypeId"] = packagePaymentTypeId
+                                        packagePaymentHashMap["packagePaymentTypeName"] = packagePaymentTypeName
+                                        packagePaymentHashMap["packagePaymentTypeDesc"] = packagePaymentTypeDesc
+                                        packagePaymentHashMap["packagePaymentCustomPriceList"] = packagePaymentCustomPriceList
+                                        packagePaymentHashMap["paymentPrecentage"] = paymentPerecentage
+                                        packagePaymentHashMap["specialPriceList"] = specialPriceList
+
+                                        pakageExpPayment.add(packagePaymentHashMap)
+                                    }
+                                }
+
+                                val packageAvaibility = ArrayList<LocalDate>()
+
+                                if (!packageObject.isNull("exp_availability")){
+
+                                    val avaibilityArray = packageObject.getJSONArray("exp_availability")
+                                    val avaibilityArraySize = avaibilityArray.length()
+
+                                        for (o in 0 until avaibilityArraySize) {
+
+                                            val avaibilityObject = avaibilityArray.get(o) as JSONObject
+                                            val year = avaibilityObject.getInt("year")
+                                            val month = avaibilityObject.getString("month")
+
+                                            val dateList = ArrayList<String>()
+
+                                            if (!avaibilityObject.isNull("date")){
+                                                val dateArray = avaibilityObject.getJSONArray("date")
+                                                val dateArraySize = dateArray.length()
+
+                                                for (p in 0 until dateArraySize){
+                                                    val date = dateArray[p] as String
+                                                    val sdf = SimpleDateFormat("yyyy-MM-dd")
+                                                    val dates = sdf.parse(date) ?: Date()
+                                                    val instant = Instant.ofEpochMilli(dates.time)
+                                                    val localDateTime = LocalDateTime.ofInstant(instant, ZoneId.systemDefault())
+                                                    val localDate = localDateTime.toLocalDate()
+
+                                                    packageAvaibility.add(localDate)
+                                                    dateList.add(date)
+                                                }
+                                            }
+
+                                            val avaibilityModel = AvaibilityModel()
+                                            avaibilityModel.year = year
+                                            avaibilityModel.month = month
+                                            avaibilityModel.date = dateList
+                                        }
+                                     }
+
+                                val packageMap = HashMap<String,Any>()
+                                packageMap["packageId"] = packageId
+                                packageMap["packageValue"] = packageValue
+                                packageMap["packageName"] = packageName
+                                packageMap["packageDetails"] = packageDetails
+                                packageMap["packageDesc"] = packageDesc
+                                packageMap["packagePrice"] = packagePrice
+                                packageMap["packageCurrency"] = packageCurrency
+                                packageMap["packageTypePayment"] = packageTypePayment
+                                packageMap["packageImagesList"] = packageImagesList
+                                packageMap["packageImageList"] = packageImageList
+                                packageMap["packageExpPayment"] = pakageExpPayment
+                                packageMap["packageAvaibility"] = packageAvaibility
+                                packageMap["isDownpaymentAvailable"] = isDownpaymentAvailable
+
+                                packageList.add(packageMap)
+                            }
+
                             val experienceDetailModel = ExperienceDetailModel()
                             experienceDetailModel.experience_id  = experience_id
                             experienceDetailModel.exp_title  = exp_title
@@ -618,6 +954,10 @@ class ExperienceController {
                             experienceDetailModel.exp_pickup_place_maps_name = exp_pickup_place_maps_name
                             experienceDetailModel.status = status
                             experienceDetailModel.rating = rating
+                            experienceDetailModel.is_request_exp_pickup_place = is_request_exp_pickup_place
+                            experienceDetailModel.how_to_get_location = how_to_get_location
+                            experienceDetailModel.is_certified_guide = is_certified_guide
+                            experienceDetailModel.exp_address = exp_address
                             experienceDetailModel.exp_location_latitude  = exp_location_latitude
                             experienceDetailModel.exp_location_longitude = exp_location_longitude
                             experienceDetailModel.exp_location_name = exp_location_name
@@ -625,7 +965,12 @@ class ExperienceController {
                             experienceDetailModel.exp_duration = exp_duration
                             experienceDetailModel.merchant_id = merchant_id
                             experienceDetailModel.harbors_name = harbors_name
+                            experienceDetailModel.trading_hour_start = trading_hour_start
+                            experienceDetailModel.trading_hour_end = trading_hour_end
                             experienceDetailModel.city = city
+                            experienceDetailModel.is_customised_intinerary = is_customised_intinerary
+                            experienceDetailModel.start_point = startPoint
+                            experienceDetailModel.end_point = endPoint
                             experienceDetailModel.province = province
                             experienceDetailModel.exp_type = expTypeList
                             experienceDetailModel.exp_itenerary   = expItenaryItemList
@@ -636,14 +981,22 @@ class ExperienceController {
                             experienceDetailModel.exp_avaibility  = avaibilityLocaleDate
                             experienceDetailModel.exp_payment  = expPaymentList
                             experienceDetailModel.exp_photos  = listPhotoList
+                            experienceDetailModel.exp_guides = guideList
+                            experienceDetailModel.exp_packages = packageList
+                            experienceDetailModel.exp_languages = languagesList
+                            experienceDetailModel.exp_accomodations = accomodationsList
                             experienceDetailModel.minimum_booking  = minimumBookingModel
                             experienceDetailModel.count_rating = count_rating
+                            experienceDetailModel.is_flexible_ticket = is_flexible_ticket
+                            experienceDetailModel.exp_validity_amount = exp_validity_amount
+                            experienceDetailModel.exp_validity_type = exp_validity_type
 
                             experienceDetailCallback.onExperienceDetailLoaded(experienceDetailModel)
                         }
                         catch (e : Exception){
                             experienceDetailCallback.onExperienceDetailError()
-                            Log.d("experience_detail_error",e.message)
+                            Log.d("experience_detail_error",e.message ?: "")
+                            e.printStackTrace()
                         }
                     }
                     else{
@@ -654,7 +1007,8 @@ class ExperienceController {
 
                 override fun onError(e: Throwable) {
                     experienceDetailCallback.onExperienceDetailError()
-                    Log.d("experience_detail_error",e.message)
+                    Log.d("experience_detail_error",e.message ?: "")
+                    e.printStackTrace()
                 }
 
                 })
@@ -681,29 +1035,33 @@ class ExperienceController {
                         if (t.isSuccessful){
                             try {
 
-                                val jsonArray = JSONArray(t.body()?.string())
-                                val jsonSize = jsonArray.length()
-                                val reviewList = ArrayList<ReviewModel>()
+                                val jsonObject = JSONObject(t.body()?.string() ?: "")
 
-                                for (i in 0 until jsonSize){
-                                    val jsonObject = jsonArray[i] as JSONObject
-                                    val name = jsonObject.getString("name")
-                                    val desc = jsonObject.getString("desc")
-                                    val values = jsonObject.getDouble("values")
+                                if (!jsonObject.isNull("data")){
+                                    val jsonArray = jsonObject.getJSONArray("data")
+                                    val jsonSize = jsonArray.length()
+                                    val reviewList = ArrayList<ReviewModel>()
 
-                                    val reviewModel = ReviewModel()
-                                    reviewModel.name = name
-                                    reviewModel.desc = desc
-                                    reviewModel.values = values
+                                    for (i in 0 until jsonSize){
+                                        val reviewObject = jsonArray[i] as JSONObject
+                                        val name = reviewObject.getString("name")
+                                        val desc = reviewObject.getString("desc")
+                                        val values = reviewObject.getDouble("values")
 
-                                    reviewList.add(reviewModel)
+                                        val reviewModel = ReviewModel()
+                                        reviewModel.name = name
+                                        reviewModel.desc = desc
+                                        reviewModel.values = values
+
+                                        reviewList.add(reviewModel)
+                                    }
+
+                                    experienceReviewCallback.onExperienceReviewLoaded(reviewList)
                                 }
-
-                                experienceReviewCallback.onExperienceReviewLoaded(reviewList)
                             }
                             catch (e : Exception){
                                 experienceReviewCallback.onExperienceReviewError()
-                                Log.d("experience_review_error",e.message)
+                                Log.d("experience_review_error",e.message ?: "")
                             }
                         }
                         else{
@@ -714,7 +1072,7 @@ class ExperienceController {
 
                     override fun onError(e: Throwable) {
                         experienceReviewCallback.onExperienceReviewError()
-                        Log.d("experience_review_error",e.message)
+                        Log.d("experience_review_error",e.message ?: "")
                     }
                 })
             }

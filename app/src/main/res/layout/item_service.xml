@@ -53,6 +53,8 @@
         android:layout_marginRight="24dp"
         android:textColor="@color/profile_name"
         app:myFontStyle="nunito_sans_semibold"
+        android:maxLines="3"
+        android:ellipsize="end"
         />
 
     <androidx.recyclerview.widget.RecyclerView

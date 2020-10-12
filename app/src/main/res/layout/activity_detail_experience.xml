@@ -112,6 +112,36 @@
 
                     </LinearLayout>
 
+                    <LinearLayout
+                        android:id="@+id/linearPackages"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="24dp"
+                        android:visibility="gone"
+                        android:orientation="vertical">
+
+                        <id.dtech.cgo.CustomView.MyTextView
+                            android:id="@+id/txtPackages"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Package"
+                            android:textColor="@color/gray2"
+                            app:myFontStyle="nunito_sans_semibold"
+                            />
+
+                        <Space
+                            android:layout_width="match_parent"
+                            android:layout_height="12dp"/>
+
+                        <View
+                            android:id="@+id/dividerPackages"
+                            android:layout_width="55dp"
+                            android:layout_height="2dp"
+                            android:background="@color/black"
+                            android:visibility="invisible"
+                            />
+
+                    </LinearLayout>
 
                     <LinearLayout
                         android:id="@+id/linearExperience"
@@ -288,7 +318,7 @@
                                android:layout_alignParentBottom="true"
                                android:layout_marginBottom="24dp"
                                android:layout_marginLeft="24dp"
-                               android:layout_marginRight="24dp">
+                               android:gravity="center_vertical">
 
                                <id.dtech.cgo.CustomView.MyTextView
                                    android:id="@+id/txtPage"
@@ -298,7 +328,6 @@
                                    android:layout_weight="1"
                                    android:textSize="14sp"
                                    android:textColor="@color/white"
-                                   android:layout_gravity="center_vertical"
                                    app:myFontStyle="nunito_sans_bold" />
 
                                <androidx.cardview.widget.CardView
@@ -306,6 +335,9 @@
                                    android:layout_width="wrap_content"
                                    android:layout_height="wrap_content"
                                    app:cardCornerRadius="18dp"
+                                   android:layout_marginTop="2dp"
+                                   android:layout_marginBottom="3dp"
+                                   android:layout_marginRight="24dp"
                                    app:cardElevation="3dp">
 
                                    <LinearLayout
@@ -323,7 +355,7 @@
                                            android:id="@+id/txtMorePhoto"
                                            android:layout_width="wrap_content"
                                            android:layout_height="wrap_content"
-                                           android:text="24 More Photos"
+                                           android:text="0 More Photos"
                                            android:textSize="12sp"
                                            android:textColor="@color/black"
                                            app:myFontStyle="nunito_sans_semibold"
@@ -434,7 +466,7 @@ batalmelulu
                                            android:id="@+id/imgStar2"
                                            android:layout_width="18dp"
                                            android:layout_height="18dp"
-                                           android:src="@drawable/ic_star"
+                                           android:src="@drawable/ic_star_empty"
                                            />
 
                                        <Space
@@ -445,7 +477,7 @@ batalmelulu
                                            android:id="@+id/imgStar3"
                                            android:layout_width="18dp"
                                            android:layout_height="18dp"
-                                           android:src="@drawable/ic_star"
+                                           android:src="@drawable/ic_star_empty"
                                            />
 
                                        <Space
@@ -456,7 +488,7 @@ batalmelulu
                                            android:id="@+id/imgStar4"
                                            android:layout_width="18dp"
                                            android:layout_height="18dp"
-                                           android:src="@drawable/ic_star"
+                                           android:src="@drawable/ic_star_empty"
                                            />
 
                                        <Space
@@ -467,7 +499,7 @@ batalmelulu
                                            android:id="@+id/imgStar5"
                                            android:layout_width="18dp"
                                            android:layout_height="18dp"
-                                           android:src="@drawable/ic_star"
+                                           android:src="@drawable/ic_star_empty"
                                            />
 
                                    </LinearLayout>
@@ -479,27 +511,28 @@ batalmelulu
                                        android:layout_gravity="center_vertical"
                                        android:orientation="horizontal">
 
-                                       <TextView
+                                       <id.dtech.cgo.CustomView.MyTextView
                                            android:id="@+id/txtStar"
                                            android:layout_width="wrap_content"
                                            android:layout_height="wrap_content"
-                                           android:text="4.7 /"
+                                           android:text="0 /"
                                            android:textSize="16sp"
                                            android:textColor="@color/black"
-                                           android:textStyle="bold"
+                                           app:myFontStyle="nunito_sans_bold"
                                            />
 
                                        <Space
                                            android:layout_width="4dp"
                                            android:layout_height="match_parent"/>
 
-                                       <TextView
+                                       <id.dtech.cgo.CustomView.MyTextView
                                            android:layout_width="wrap_content"
                                            android:layout_height="wrap_content"
                                            android:text="5"
                                            android:textSize="14sp"
                                            android:textColor="@color/black"
                                            android:textStyle="bold"
+                                           app:myFontStyle="nunito_sans_bold"
                                            />
 
                                    </LinearLayout>
@@ -512,27 +545,28 @@ batalmelulu
                                        android:layout_gravity="center_vertical"
                                        android:orientation="horizontal">
 
-                                       <TextView
+                                       <id.dtech.cgo.CustomView.MyTextView
                                            android:id="@+id/txtReviewCount"
                                            android:layout_width="wrap_content"
                                            android:layout_height="wrap_content"
                                            android:text="12"
                                            android:textSize="16sp"
                                            android:textColor="@color/text4"
-                                           android:textStyle="bold"
+                                           app:myFontStyle="nunito_sans_bold"
                                            />
 
                                        <Space
                                            android:layout_width="4dp"
                                            android:layout_height="match_parent"/>
 
-                                       <TextView
+                                       <id.dtech.cgo.CustomView.MyTextView
                                            android:id="@+id/txtReview"
                                            android:layout_width="wrap_content"
                                            android:layout_height="wrap_content"
                                            android:text="Reviews"
                                            android:textSize="16sp"
                                            android:textColor="@color/text4"
+                                           app:myFontStyle="nunito_sans_reguler"
                                            />
 
                                    </LinearLayout>
@@ -576,7 +610,7 @@ batalmelulu
                                                    android:layout_gravity="center_vertical"
                                                    />
 
-                                               <TextView
+                                               <id.dtech.cgo.CustomView.MyTextView
                                                    android:id="@+id/txtGuest"
                                                    android:layout_width="wrap_content"
                                                    android:layout_height="wrap_content"
@@ -584,7 +618,7 @@ batalmelulu
                                                    android:layout_gravity="center_vertical"
                                                    android:textColor="@color/profile_name"
                                                    android:textSize="16sp"
-                                                   android:textStyle="bold"
+                                                   app:myFontStyle="nunito_sans_bold"
                                                    />
 
                                            </LinearLayout>
@@ -603,7 +637,7 @@ batalmelulu
                                                    android:layout_gravity="center_vertical"
                                                    />
 
-                                               <TextView
+                                               <id.dtech.cgo.CustomView.MyTextView
                                                    android:id="@+id/txtExpType"
                                                    android:layout_width="wrap_content"
                                                    android:layout_height="wrap_content"
@@ -611,7 +645,7 @@ batalmelulu
                                                    android:layout_gravity="center_vertical"
                                                    android:textColor="@color/profile_name"
                                                    android:textSize="16sp"
-                                                   android:textStyle="bold"
+                                                   app:myFontStyle="nunito_sans_bold"
                                                    />
 
                                            </LinearLayout>
@@ -634,34 +668,6 @@ batalmelulu
                                            android:orientation="horizontal">
 
                                            <LinearLayout
-                                               android:layout_width="0dp"
-                                               android:layout_height="wrap_content"
-                                               android:layout_weight="1"
-                                               android:paddingLeft="4dp"
-                                               android:orientation="horizontal">
-
-                                               <ImageView
-                                                   android:layout_width="wrap_content"
-                                                   android:layout_height="wrap_content"
-                                                   android:src="@drawable/ic_certified"
-                                                   android:scaleType="fitXY"
-                                                   android:layout_gravity="center_vertical"
-                                                   />
-
-                                               <TextView
-                                                   android:layout_width="wrap_content"
-                                                   android:layout_height="wrap_content"
-                                                   android:text="Certified Guide"
-                                                   android:layout_gravity="center_vertical"
-                                                   android:textColor="@color/profile_name"
-                                                   android:textSize="16sp"
-                                                   android:textStyle="bold"
-                                                   android:layout_marginLeft="6dp"
-                                                   />
-
-                                           </LinearLayout>
-
-                                           <LinearLayout
                                                android:id="@+id/linearDownPayment"
                                                android:layout_width="0dp"
                                                android:layout_height="wrap_content"
@@ -672,20 +678,49 @@ batalmelulu
                                                <ImageView
                                                    android:layout_width="55dp"
                                                    android:layout_height="55dp"
-                                                   android:src="@drawable/certified_guide_png"
+                                                   android:src="@drawable/ic_private_trip"
                                                    android:scaleType="fitXY"
                                                    android:layout_gravity="center_vertical"
                                                    />
 
-                                               <TextView
-                                                   android:id="@+id/txtDownPayment"
+                                               <id.dtech.cgo.CustomView.MyTextView
+                                                   android:layout_width="wrap_content"
+                                                   android:layout_height="wrap_content"
+                                                   android:text="Down Payment Available"
+                                                   android:layout_gravity="center_vertical"
+                                                   android:textColor="@color/profile_name"
+                                                   android:textSize="16sp"
+                                                   app:myFontStyle="nunito_sans_bold"
+                                                   />
+
+                                           </LinearLayout>
+
+                                           <LinearLayout
+                                               android:id="@+id/linearCertifiedGuide"
+                                               android:layout_width="0dp"
+                                               android:layout_height="wrap_content"
+                                               android:layout_weight="1"
+                                               android:paddingLeft="4dp"
+                                               android:visibility="gone"
+                                               android:orientation="horizontal">
+
+                                               <ImageView
+                                                   android:layout_width="wrap_content"
+                                                   android:layout_height="wrap_content"
+                                                   android:src="@drawable/ic_certified"
+                                                   android:scaleType="fitXY"
+                                                   android:layout_gravity="center_vertical"
+                                                   />
+
+                                               <id.dtech.cgo.CustomView.MyTextView
                                                    android:layout_width="wrap_content"
                                                    android:layout_height="wrap_content"
                                                    android:text="Certified Guide"
                                                    android:layout_gravity="center_vertical"
                                                    android:textColor="@color/profile_name"
                                                    android:textSize="16sp"
-                                                   android:textStyle="bold"
+                                                   app:myFontStyle="nunito_sans_bold"
+                                                   android:layout_marginLeft="6dp"
                                                    />
 
                                            </LinearLayout>
@@ -700,20 +735,71 @@ batalmelulu
 
                        </androidx.cardview.widget.CardView>
 
-                       <TextView
+                       <LinearLayout
+                           android:id="@+id/linearFlexibleTicket"
+                           android:layout_width="wrap_content"
+                           android:layout_height="wrap_content"
+                           android:layout_weight="1"
+                           android:layout_marginLeft="25dp"
+                           android:layout_marginTop="24dp"
+                           android:visibility="gone"
+                           android:orientation="horizontal">
+
+                           <ImageView
+                               android:layout_width="28dp"
+                               android:layout_height="28dp"
+                               android:src="@drawable/ic_language_used"
+                               android:scaleType="fitXY"
+                               android:layout_gravity="clip_vertical"
+                               />
+
+                           <LinearLayout
+                               android:layout_width="wrap_content"
+                               android:layout_height="wrap_content"
+                               android:orientation="vertical"
+                               android:layout_marginLeft="10dp">
+
+                               <id.dtech.cgo.CustomView.MyTextView
+                                   android:layout_width="wrap_content"
+                                   android:layout_height="wrap_content"
+                                   android:text="Flexible Ticket"
+                                   android:layout_gravity="center_vertical"
+                                   android:textColor="@color/profile_name"
+                                   android:textSize="16sp"
+                                   app:myFontStyle="nunito_sans_bold"
+                                   />
+
+                               <id.dtech.cgo.CustomView.MyTextView
+                                   android:id="@+id/txtFlexibleTicket"
+                                   android:layout_width="wrap_content"
+                                   android:layout_height="wrap_content"
+                                   android:layout_gravity="center_vertical"
+                                   android:textColor="@color/profile_name"
+                                   android:textSize="14sp"
+                                   app:myFontStyle="nunito_sans_reguler"
+                                   android:layout_marginTop="4dp"
+                                   android:text="Ticket is still valid until 24 Feb 2020"
+                                   />
+
+                           </LinearLayout>
+
+                       </LinearLayout>
+
+                       <id.dtech.cgo.CustomView.MyTextView
                            android:layout_width="wrap_content"
                            android:layout_height="wrap_content"
                            android:text="@string/description"
                            android:textColor="@color/black"
-                           android:textStyle="bold"
+                           app:myFontStyle="nunito_sans_bold"
                            android:textSize="18sp"
                            android:layout_marginTop="24dp"
                            android:layout_marginLeft="24dp"
                            android:layout_marginRight="24dp"
                            />
 
-<!--Language-->
+
                        <LinearLayout
+                           android:id="@+id/linearlanguageUsed"
                            android:layout_width="wrap_content"
                            android:layout_height="wrap_content"
                            android:layout_weight="1"
@@ -734,41 +820,39 @@ batalmelulu
                                android:layout_height="wrap_content"
                                android:orientation="vertical"
                                android:layout_marginLeft="10dp">
-                               <TextView
+
+                               <id.dtech.cgo.CustomView.MyTextView
                                    android:layout_width="wrap_content"
                                    android:layout_height="wrap_content"
                                    android:text="Language Used"
                                    android:layout_gravity="center_vertical"
                                    android:textColor="@color/profile_name"
                                    android:textSize="16sp"
-                                   android:textStyle="bold"
+                                   app:myFontStyle="nunito_sans_bold"
                                    />
-                               <LinearLayout
-                                   android:layout_width="wrap_content"
-                                   android:layout_height="wrap_content"
-                                   android:orientation="horizontal">
-                                   <TextView
+
+                                   <id.dtech.cgo.CustomView.MyTextView
+                                       android:id="@+id/txtLanguage"
                                        android:layout_width="wrap_content"
                                        android:layout_height="wrap_content"
-                                       android:text="Bahasa Indonesia, English"
                                        android:layout_gravity="center_vertical"
                                        android:textColor="@color/profile_name"
                                        android:textSize="14sp"
-                                       android:textStyle="normal"
+                                       app:myFontStyle="nunito_sans_reguler"
+                                       android:layout_marginTop="4dp"
                                        />
-                               </LinearLayout>
 
                            </LinearLayout>
-
 
                        </LinearLayout>
 <!--Accomodation-->
                        <LinearLayout
+                           android:id="@+id/linearAccomodation"
                            android:layout_width="wrap_content"
                            android:layout_height="wrap_content"
                            android:layout_weight="1"
                            android:layout_marginLeft="25dp"
-                           android:layout_marginTop="24dp"
+                           android:layout_marginTop="16dp"
                            android:orientation="horizontal">
 
                            <ImageView
@@ -784,47 +868,45 @@ batalmelulu
                                android:layout_height="wrap_content"
                                android:orientation="vertical"
                                android:layout_marginLeft="10dp">
-                               <TextView
+
+                               <id.dtech.cgo.CustomView.MyTextView
                                    android:layout_width="wrap_content"
                                    android:layout_height="wrap_content"
                                    android:text="Tour Accomodation"
                                    android:layout_gravity="center_vertical"
                                    android:textColor="@color/profile_name"
                                    android:textSize="16sp"
-                                   android:textStyle="bold"
+                                   app:myFontStyle="nunito_sans_bold"
                                    />
-                               <LinearLayout
-                                   android:layout_width="wrap_content"
-                                   android:layout_height="wrap_content"
-                                   android:orientation="horizontal">
-                                   <TextView
+
+                                   <id.dtech.cgo.CustomView.MyTextView
+                                       android:id="@+id/txtAccomodation"
                                        android:layout_width="wrap_content"
                                        android:layout_height="wrap_content"
-                                       android:text="Walking, Car"
                                        android:layout_gravity="center_vertical"
                                        android:textColor="@color/profile_name"
                                        android:textSize="14sp"
-                                       android:textStyle="normal"
+                                       app:myFontStyle="nunito_sans_reguler"
+                                       android:layout_marginTop="4dp"
                                        />
-                               </LinearLayout>
 
                            </LinearLayout>
 
 
                        </LinearLayout>
-<!--Tour Guide-->
+
                        <LinearLayout
                            android:layout_width="wrap_content"
                            android:layout_height="wrap_content"
                            android:layout_weight="1"
                            android:layout_marginLeft="25dp"
-                           android:layout_marginTop="24dp"
+                           android:layout_marginTop="16dp"
                            android:orientation="horizontal">
 
                            <ImageView
                                android:layout_width="28dp"
                                android:layout_height="28dp"
-                               android:src="@drawable/ic_tour_guide"
+                               android:src="@drawable/ic_tourguide_person"
                                android:scaleType="fitXY"
                                android:layout_gravity="clip_vertical"
                                />
@@ -834,118 +916,93 @@ batalmelulu
                                android:layout_height="wrap_content"
                                android:orientation="vertical"
                                android:layout_marginLeft="10dp">
-                               <TextView
+
+                               <id.dtech.cgo.CustomView.MyTextView
                                    android:layout_width="wrap_content"
                                    android:layout_height="wrap_content"
                                    android:text="Tour Guide"
                                    android:layout_gravity="center_vertical"
                                    android:textColor="@color/profile_name"
                                    android:textSize="16sp"
-                                   android:textStyle="bold"
+                                   app:myFontStyle="nunito_sans_bold"
                                    />
-                               <LinearLayout
-                                   android:layout_width="wrap_content"
-                                   android:layout_height="wrap_content"
-                                   android:orientation="horizontal">
-                                   <TextView
+
+                                   <id.dtech.cgo.CustomView.MyTextView
                                        android:layout_width="wrap_content"
                                        android:layout_height="wrap_content"
-                                       android:text="Female and Male Guide Options"
                                        android:layout_gravity="center_vertical"
                                        android:textColor="@color/profile_name"
                                        android:textSize="14sp"
-                                       android:textStyle="normal"
+                                       app:myFontStyle="nunito_sans_reguler"
+                                       android:layout_marginTop="4dp"
                                        />
-                               </LinearLayout>
 
                            </LinearLayout>
 
 
                        </LinearLayout>
-<!--Address-->
-                       <LinearLayout
-                           android:layout_width="wrap_content"
-                           android:layout_height="wrap_content"
-                           android:layout_weight="1"
-                           android:layout_marginLeft="24dp"
-                           android:layout_marginTop="24dp"
-                           android:orientation="horizontal">
 
                            <LinearLayout
                                android:layout_width="wrap_content"
                                android:layout_height="wrap_content"
+                               android:layout_marginLeft="24dp"
+                               android:layout_marginTop="24dp"
                                android:orientation="vertical">
-                               <TextView
+
+                               <id.dtech.cgo.CustomView.MyTextView
                                    android:layout_width="wrap_content"
                                    android:layout_height="wrap_content"
                                    android:text="Address"
                                    android:layout_gravity="center_vertical"
                                    android:textColor="@color/profile_name"
                                    android:textSize="16sp"
-                                   android:textStyle="bold"
+                                   app:myFontStyle="nunito_sans_bold"
                                    />
-                               <LinearLayout
-                                   android:layout_width="wrap_content"
-                                   android:layout_height="wrap_content"
-                                   android:orientation="horizontal">
-                                   <TextView
+
+                               <id.dtech.cgo.CustomView.MyTextView
+                                       android:id="@+id/txtAddress"
                                        android:layout_width="wrap_content"
                                        android:layout_height="wrap_content"
-                                       android:text="Gambir, Central Jakarta City, Jakarta"
                                        android:layout_gravity="center_vertical"
                                        android:textColor="@color/profile_name"
                                        android:textSize="14sp"
-                                       android:textStyle="normal"
+                                       app:myFontStyle="nunito_sans_reguler"
+                                       android:layout_marginTop="4dp"
                                        />
-                               </LinearLayout>
 
                            </LinearLayout>
-
-
-                       </LinearLayout>
-<!--                       Trading Hour-->
-                       <LinearLayout
-                           android:layout_width="wrap_content"
-                           android:layout_height="wrap_content"
-                           android:layout_weight="1"
-                           android:layout_marginLeft="24dp"
-                           android:layout_marginTop="24dp"
-                           android:orientation="horizontal">
 
                            <LinearLayout
                                android:layout_width="wrap_content"
                                android:layout_height="wrap_content"
+                               android:layout_marginLeft="24dp"
+                               android:layout_marginTop="24dp"
                                android:orientation="vertical">
-                               <TextView
+
+                               <id.dtech.cgo.CustomView.MyTextView
                                    android:layout_width="wrap_content"
                                    android:layout_height="wrap_content"
                                    android:text="Trading Hour"
                                    android:layout_gravity="center_vertical"
                                    android:textColor="@color/profile_name"
                                    android:textSize="16sp"
-                                   android:textStyle="bold"
+                                   app:myFontStyle="nunito_sans_bold"
                                    />
-                               <LinearLayout
-                                   android:layout_width="wrap_content"
-                                   android:layout_height="wrap_content"
-                                   android:orientation="horizontal">
-                                   <TextView
+
+                                   <id.dtech.cgo.CustomView.MyTextView
+                                       android:id="@+id/txtTradingHour"
                                        android:layout_width="wrap_content"
                                        android:layout_height="wrap_content"
-                                       android:text="08:00 - 20:00"
                                        android:layout_gravity="center_vertical"
                                        android:textColor="@color/profile_name"
                                        android:textSize="14sp"
-                                       android:textStyle="normal"
+                                       app:myFontStyle="nunito_sans_reguler"
+                                       android:layout_marginTop="4dp"
                                        />
-                               </LinearLayout>
 
                            </LinearLayout>
 
-
-                       </LinearLayout>
-
-                       <TextView
+                       <id.dtech.cgo.CustomView.MyTextView
                            android:id="@+id/txtDescription"
                            android:layout_width="match_parent"
                            android:layout_height="wrap_content"
@@ -956,6 +1013,7 @@ batalmelulu
                            android:lineSpacingExtra="4dp"
                            android:textSize="14sp"
                            android:textColor="@color/profile_name"
+                           app:myFontStyle="nunito_sans_reguler"
                            />
 
                        <TextView
@@ -974,7 +1032,7 @@ batalmelulu
                        <View
                            android:layout_width="match_parent"
                            android:layout_height="2dp"
-                           android:layout_marginTop="36dp"
+                           android:layout_marginTop="24dp"
                            android:layout_marginLeft="24dp"
                            android:layout_marginRight="24dp"
                            android:background="@color/divider_color"
@@ -983,17 +1041,19 @@ batalmelulu
                    </LinearLayout>
 
                <LinearLayout
+                   android:id="@+id/linearPackage"
                    android:layout_width="match_parent"
                    android:layout_height="wrap_content"
                    android:orientation="vertical"
                    android:layout_marginTop="24dp">
 
-                   <TextView
+                   <id.dtech.cgo.CustomView.MyTextView
+                       android:id="@+id/txtPackageList"
                        android:layout_width="wrap_content"
                        android:layout_height="wrap_content"
                        android:text="@string/packages"
                        android:textColor="@color/black"
-                       android:textStyle="bold"
+                       app:myFontStyle="nunito_sans_bold"
                        android:textSize="18sp"
                        android:layout_marginLeft="24dp"
                        android:layout_marginRight="24dp"
@@ -1003,7 +1063,6 @@ batalmelulu
                        android:id="@+id/rvPackage"
                        android:layout_width="match_parent"
                        android:layout_height="wrap_content"
-                       android:layout_marginTop="8dp"
                        />
 
                    <View
@@ -1023,13 +1082,13 @@ batalmelulu
                        android:orientation="vertical"
                        android:layout_marginTop="24dp">
 
-                       <TextView
+                       <id.dtech.cgo.CustomView.MyTextView
                            android:id="@+id/txtExperienceTitle"
                            android:layout_width="wrap_content"
                            android:layout_height="wrap_content"
                            android:text="@string/experience"
                            android:textColor="@color/black"
-                           android:textStyle="bold"
+                           app:myFontStyle="nunito_sans_bold"
                            android:textSize="18sp"
                            android:layout_marginLeft="24dp"
                            android:layout_marginRight="24dp"
@@ -1043,103 +1102,144 @@ batalmelulu
                            android:layout_marginRight="24dp"
                            android:orientation="vertical">
 
-                           <TextView
-                               android:layout_width="wrap_content"
-                               android:layout_height="wrap_content"
-                               android:text="Start and End Point"
-                               android:textSize="16sp"
-                               android:textColor="@color/black"
-                               android:textStyle="bold"
-                               />
-
                            <LinearLayout
-                               android:layout_width="wrap_content"
+                               android:id="@+id/linearStartEndPoint"
+                               android:layout_width="match_parent"
                                android:layout_height="wrap_content"
-                               android:orientation="horizontal">
-                               <TextView
-                                   android:layout_width="match_parent"
+                               android:orientation="vertical">
+
+                               <id.dtech.cgo.CustomView.MyTextView
+                                   android:layout_width="wrap_content"
                                    android:layout_height="wrap_content"
-                                   android:layout_weight="1"
-                                   android:text="Monumen Nasional"
-                                   android:textSize="14sp"
-                                   android:textColor="@color/profile_name"
+                                   android:text="Start and End Point"
+                                   android:textSize="16sp"
+                                   android:textColor="@color/black"
+                                   app:myFontStyle="nunito_sans_bold"
                                    />
 
-                               <ImageView
-                                   android:layout_width="24dp"
-                                   android:layout_height="24dp"
-                                   android:layout_marginLeft="20dp"
-                                   android:layout_marginRight="20dp"
-                                   android:src="@drawable/ic_rightarrow2"/>
-
-                               <TextView
-                                   android:layout_width="match_parent"
+                               <LinearLayout
+                                   android:layout_width="wrap_content"
                                    android:layout_height="wrap_content"
-                                   android:layout_weight="1"
-                                   android:text="Stasiun Kota"
-                                   android:textSize="14sp"
-                                   android:textColor="@color/profile_name"
-                                   />
+                                   android:layout_marginTop="6dp"
+                                   android:orientation="horizontal">
+
+                                   <id.dtech.cgo.CustomView.MyTextView
+                                       android:id="@+id/txtStartPoint"
+                                       android:layout_width="match_parent"
+                                       android:layout_height="wrap_content"
+                                       android:layout_weight="1"
+                                       android:text="Monumen Nasional"
+                                       android:textSize="14sp"
+                                       android:textColor="@color/profile_name"
+                                       app:myFontStyle="nunito_sans_reguler"
+                                       />
+
+                                   <ImageView
+                                       android:layout_width="24dp"
+                                       android:layout_height="24dp"
+                                       android:layout_marginLeft="20dp"
+                                       android:layout_marginRight="20dp"
+                                       android:src="@drawable/ic_rightarrow2"/>
+
+                                   <id.dtech.cgo.CustomView.MyTextView
+                                       android:id="@+id/txtEndPoint"
+                                       android:layout_width="match_parent"
+                                       android:layout_height="wrap_content"
+                                       android:layout_weight="1"
+                                       android:text="Stasiun Kota"
+                                       android:textSize="14sp"
+                                       android:textColor="@color/profile_name"
+                                       app:myFontStyle="nunito_sans_reguler"
+                                       />
+
+                               </LinearLayout>
+
                            </LinearLayout>
-
-
 
                        </LinearLayout>
 
                        <LinearLayout
+                           android:id="@+id/linearItinerary"
                            android:layout_width="match_parent"
                            android:layout_height="wrap_content"
-                           android:layout_marginTop="16dp"
-                           android:layout_marginLeft="24dp"
-                           android:layout_marginRight="24dp"
-                           android:orientation="horizontal">
+                           android:orientation="vertical">
 
-                           <TextView
-                               android:layout_width="70dp"
+                           <LinearLayout
+                               android:layout_width="match_parent"
                                android:layout_height="wrap_content"
-                               android:text="@string/itinerary"
-                               android:textSize="16sp"
-                               android:textColor="@color/black"
-                               android:textStyle="bold"
+                               android:layout_marginTop="16dp"
+                               android:layout_marginLeft="24dp"
+                               android:layout_marginRight="24dp"
+                               android:orientation="horizontal">
+
+                               <id.dtech.cgo.CustomView.MyTextView
+                                   android:layout_width="70dp"
+                                   android:layout_height="wrap_content"
+                                   android:text="@string/itinerary"
+                                   android:textSize="16sp"
+                                   android:textColor="@color/black"
+                                   app:myFontStyle="nunito_sans_bold"
+                                   />
+
+                               <Space
+                                   android:layout_width="36dp"
+                                   android:layout_height="match_parent"/>
+
+                               <id.dtech.cgo.CustomView.MyTextView
+                                   android:id="@+id/txtDuration"
+                                   android:layout_width="0dp"
+                                   android:layout_height="wrap_content"
+                                   android:layout_weight="1"
+                                   android:text="Duration: 2 days 1 night"
+                                   android:textSize="14sp"
+                                   android:textColor="@color/profile_name"
+                                   app:myFontStyle="nunito_sans_reguler"
+                                   />
+
+                           </LinearLayout>
+
+                           <androidx.recyclerview.widget.RecyclerView
+                               android:id="@+id/rvIteneraries"
+                               android:layout_width="match_parent"
+                               android:layout_height="wrap_content"
+                               android:layout_marginTop="24dp"
+                               android:layout_marginLeft="24dp"
+                               android:layout_marginRight="24dp"
                                />
 
-                           <Space
-                               android:layout_width="36dp"
-                               android:layout_height="match_parent"/>
-
-                           <TextView
-                               android:id="@+id/txtDuration"
-                               android:layout_width="0dp"
+                           <id.dtech.cgo.CustomView.MyTextView
+                               android:id="@+id/txtItenarySeeMore"
+                               android:layout_width="wrap_content"
                                android:layout_height="wrap_content"
-                               android:layout_weight="1"
-                               android:text="Duration: 2 days 1 night"
-                               android:textSize="14sp"
+                               android:text="@string/see_more"
+                               android:textSize="16sp"
+                               android:textColor="@color/text4"
+                               android:textStyle="bold"
+                               android:layout_marginLeft="41dp"
+                               app:myFontStyle="nunito_sans_bold"
+                               />
+
+                           <id.dtech.cgo.CustomView.MyTextView
+                               android:id="@+id/txtItineraryCustomize"
+                               android:layout_width="wrap_content"
+                               android:layout_height="wrap_content"
+                               android:text="Itinerary can be customized with guide"
+                               android:textSize="16sp"
                                android:textColor="@color/profile_name"
+                               android:textStyle="bold"
+                               android:layout_marginTop="16dp"
+                               android:layout_marginLeft="41dp"
+                               app:myFontStyle="nunito_sans_reguler"
+                               android:background="@drawable/background_no_review"
+                               android:paddingLeft="16dp"
+                               android:paddingRight="16dp"
+                               android:paddingTop="8dp"
+                               android:paddingBottom="8dp"
                                />
 
                        </LinearLayout>
 
-                       <androidx.recyclerview.widget.RecyclerView
-                           android:id="@+id/rvIteneraries"
-                           android:layout_width="match_parent"
-                           android:layout_height="wrap_content"
-                           android:layout_marginTop="24dp"
-                           android:layout_marginLeft="24dp"
-                           android:layout_marginRight="24dp"
-                           />
-
-                       <TextView
-                           android:id="@+id/txtItenarySeeMore"
-                           android:layout_width="wrap_content"
-                           android:layout_height="wrap_content"
-                           android:text="@string/see_more"
-                           android:textSize="16sp"
-                           android:textColor="@color/text4"
-                           android:textStyle="bold"
-                           android:layout_marginLeft="41dp"
-                           />
-
-                       <TextView
+                       <id.dtech.cgo.CustomView.MyTextView
                            android:layout_width="wrap_content"
                            android:layout_height="wrap_content"
                            android:text="@string/meeting_point"
@@ -1149,61 +1249,85 @@ batalmelulu
                            android:textSize="16sp"
                            android:layout_marginLeft="24dp"
                            android:layout_marginRight="24dp"
+                           app:myFontStyle="nunito_sans_bold"
                            />
 
                        <LinearLayout
+                           android:id="@+id/linearMeetingPlace"
                            android:layout_width="match_parent"
                            android:layout_height="wrap_content"
                            android:layout_marginTop="24dp"
                            android:layout_marginLeft="24dp"
                            android:layout_marginRight="24dp"
-                           android:orientation="horizontal">
+                           android:orientation="vertical">
 
-                           <TextView
+                           <id.dtech.cgo.CustomView.MyTextView
                                android:layout_width="wrap_content"
                                android:layout_height="wrap_content"
-                               android:text="@string/pickup_options"
-                               android:textSize="14sp"
+                               android:text="Place:"
+
+                               app:myFontStyle="nunito_sans_bold"
                                android:textColor="@color/profile_name"
+                               android:textSize="14sp"
                                />
 
-                           <TextView
-                               android:id="@+id/txtPickup"
-                               android:layout_width="0dp"
+                           <id.dtech.cgo.CustomView.MyTextView
+                               android:id="@+id/txtPlace"
+                               android:layout_width="match_parent"
                                android:layout_height="wrap_content"
-                               android:layout_weight="1"
-                               android:text=" Hotel/Airport"
-                               android:textSize="14sp"
+                               android:text="@string/meeting_point_content"
+                               android:layout_marginTop="12dp"
+                               app:myFontStyle="nunito_sans_reguler"
                                android:textColor="@color/profile_name"
+                               android:textSize="16sp"
+                               />
+
+                           <id.dtech.cgo.CustomView.MyTextView
+                               android:id="@+id/txtPointRequest"
+                               android:layout_width="wrap_content"
+                               android:layout_height="wrap_content"
+                               android:text="@string/point_request"
+                               android:textSize="16sp"
+                               android:textColor="@color/profile_name"
+                               android:textStyle="bold"
+                               android:layout_marginTop="16dp"
+                               app:myFontStyle="nunito_sans_reguler"
+                               android:background="@drawable/background_no_review"
+                               android:paddingLeft="16dp"
+                               android:paddingRight="16dp"
+                               android:paddingTop="8dp"
+                               android:paddingBottom="8dp"
                                />
 
                        </LinearLayout>
 
                        <LinearLayout
-                           android:id="@+id/linearPickupTime"
-                           android:layout_width="match_parent"
+                           android:layout_width="wrap_content"
                            android:layout_height="wrap_content"
-                           android:layout_marginTop="8dp"
                            android:layout_marginLeft="24dp"
-                           android:layout_marginRight="24dp"
-                           android:orientation="horizontal">
+                           android:layout_marginTop="24dp"
+                           android:orientation="vertical">
 
-                           <TextView
+                           <id.dtech.cgo.CustomView.MyTextView
                                android:layout_width="wrap_content"
                                android:layout_height="wrap_content"
-                               android:text="@string/pickuo_time"
-                               android:textSize="14sp"
+                               android:text="Time"
+                               android:layout_gravity="center_vertical"
                                android:textColor="@color/profile_name"
+                               android:textSize="16sp"
+                               app:myFontStyle="nunito_sans_bold"
                                />
 
-                           <TextView
-                               android:id="@+id/txtPickupTime"
-                               android:layout_width="0dp"
+                           <id.dtech.cgo.CustomView.MyTextView
+                               android:id="@+id/txtTime"
+                               android:layout_width="wrap_content"
                                android:layout_height="wrap_content"
-                               android:layout_weight="1"
-                               android:text=" 10.00 WITA"
-                               android:textSize="14sp"
+                               android:text="08:00"
+                               android:layout_gravity="center_vertical"
                                android:textColor="@color/profile_name"
+                               android:textSize="14sp"
+                               app:myFontStyle="nunito_sans_reguler"
+                               android:layout_marginTop="4dp"
                                />
 
                        </LinearLayout>
@@ -1225,84 +1349,75 @@ batalmelulu
 
                        </LinearLayout>
 
-                       <TextView
+                       <id.dtech.cgo.CustomView.MyTextView
                            android:id="@+id/txtDirection"
                            android:layout_width="wrap_content"
                            android:layout_height="wrap_content"
                            android:text="@string/get_direction"
                            android:textSize="16sp"
                            android:textColor="@color/text4"
-                           android:textStyle="bold"
+                           app:myFontStyle="nunito_sans_bold"
                            android:layout_marginTop="24dp"
                            android:layout_marginLeft="24dp"
                            android:layout_marginRight="24dp"
                            />
 
-                        <id.dtech.cgo.CustomView.MyTextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="Place:"
-                            android:layout_marginTop="24dp"
-                            android:layout_marginLeft="24dp"
-                            android:layout_marginRight="24dp"
-                            app:myFontStyle="nunito_sans_semibold"
-                            android:textColor="@color/profile_name"
-                            android:textSize="14sp"
-                            />
-
-                       <id.dtech.cgo.CustomView.MyTextView
+                       <LinearLayout
+                           android:id="@+id/linearToGetThere"
                            android:layout_width="match_parent"
                            android:layout_height="wrap_content"
-                           android:text="@string/meeting_point_content"
-                           android:layout_marginTop="12dp"
-                           app:myFontStyle="nunito_sans_reguler"
-                           android:textColor="@color/profile_name"
-                           android:textSize="16sp"
-                           android:layout_marginLeft="24dp"
-                           android:layout_marginRight="24dp"
-                           />
-
-                       <TextView
-                           android:layout_width="wrap_content"
-                           android:layout_height="wrap_content"
-                           android:text="How to Get There"
                            android:layout_marginTop="24dp"
-                           android:textColor="@color/black"
-                           android:textStyle="bold"
-                           android:textSize="16sp"
                            android:layout_marginLeft="24dp"
                            android:layout_marginRight="24dp"
-                           />
+                           android:orientation="vertical">
 
-                       <id.dtech.cgo.CustomView.MyTextView
+                           <id.dtech.cgo.CustomView.MyTextView
+                               android:layout_width="wrap_content"
+                               android:layout_height="wrap_content"
+                               android:text="How to Get There"
+                               android:textColor="@color/black"
+                               app:myFontStyle="nunito_sans_bold"
+                               android:textSize="16sp"
+                               />
+
+                           <id.dtech.cgo.CustomView.MyTextView
+                               android:id="@+id/txtToGetThere"
+                               android:layout_width="match_parent"
+                               android:layout_height="wrap_content"
+                               android:text="@string/meeting_point_content2"
+                               android:layout_marginTop="12dp"
+                               app:myFontStyle="nunito_sans_reguler"
+                               android:textColor="@color/profile_name"
+                               android:textSize="16sp"
+                               android:lineSpacingExtra="6dp"
+                               />
+
+                       </LinearLayout>
+
+                       <LinearLayout
+                           android:id="@+id/linearYourGuide"
                            android:layout_width="match_parent"
                            android:layout_height="wrap_content"
-                           android:text="@string/meeting_point_content2"
-                           android:layout_marginTop="12dp"
-                           app:myFontStyle="nunito_sans_reguler"
-                           android:textColor="@color/profile_name"
-                           android:textSize="16sp"
-                           android:lineSpacingExtra="6dp"
-                           android:layout_marginLeft="24dp"
-                           android:layout_marginRight="24dp"
-                           />
+                           android:orientation="vertical"
+                           android:layout_marginTop="24dp">
 
-                       <TextView
-                           android:layout_width="wrap_content"
-                           android:layout_height="wrap_content"
-                           android:text="Your Guide"
-                           android:layout_marginTop="24dp"
-                           android:textColor="@color/black"
-                           android:textStyle="bold"
-                           android:textSize="16sp"
-                           android:layout_marginLeft="24dp"
-                           android:layout_marginRight="24dp"
-                           />
+                           <id.dtech.cgo.CustomView.MyTextView
+                               android:layout_width="wrap_content"
+                               android:layout_height="wrap_content"
+                               android:text="Your Guide"
+                               android:textColor="@color/black"
+                               app:myFontStyle="nunito_sans_bold"
+                               android:textSize="16sp"
+                               android:layout_marginLeft="24dp"
+                               android:layout_marginRight="24dp"
+                               />
 
-                       <androidx.recyclerview.widget.RecyclerView
-                           android:id="@+id/rvGuide"
-                           android:layout_width="match_parent"
-                           android:layout_height="wrap_content"/>
+                           <androidx.recyclerview.widget.RecyclerView
+                               android:id="@+id/rvGuide"
+                               android:layout_width="match_parent"
+                               android:layout_height="wrap_content"/>
+
+                       </LinearLayout>
 
                        <View
                            android:layout_width="match_parent"
@@ -1323,14 +1438,14 @@ batalmelulu
                        android:layout_marginLeft="24dp"
                        android:layout_marginRight="24dp">
 
-                       <TextView
+                       <id.dtech.cgo.CustomView.MyTextView
                            android:id="@+id/txtFacilitiesTitle"
                            android:layout_width="wrap_content"
                            android:layout_height="wrap_content"
                            android:text="@string/facilities"
                            android:textColor="@color/black"
                            android:textStyle="bold"
-                           android:textSize="16sp"
+                           app:myFontStyle="nunito_sans_bold"
                            />
 
                        <androidx.recyclerview.widget.RecyclerView
@@ -1338,14 +1453,14 @@ batalmelulu
                            android:layout_width="match_parent"
                            android:layout_height="wrap_content"/>
 
-                       <TextView
+                       <id.dtech.cgo.CustomView.MyTextView
                            android:id="@+id/txtAllFacility"
                            android:layout_width="wrap_content"
                            android:layout_height="wrap_content"
                            android:text="@string/see_all_fac"
                            android:textSize="16sp"
                            android:textColor="@color/text4"
-                           android:textStyle="bold"
+                           app:myFontStyle="nunito_sans_bold"
                            android:layout_marginTop="24dp"
                            />
 
@@ -1380,13 +1495,13 @@ batalmelulu
                        android:layout_marginLeft="24dp"
                        android:layout_marginRight="24dp">
 
-                       <TextView
+                       <id.dtech.cgo.CustomView.MyTextView
                            android:id="@+id/txtAvaibilityTitle"
                            android:layout_width="wrap_content"
                            android:layout_height="wrap_content"
                            android:text="@string/avaibility"
                            android:textColor="@color/black"
-                           android:textStyle="bold"
+                           app:myFontStyle="nunito_sans_bold"
                            android:textSize="16sp"
                            />
 
@@ -1402,7 +1517,7 @@ batalmelulu
                                android:src="@drawable/ic_circle_left"
                                />
 
-                           <TextView
+                           <id.dtech.cgo.CustomView.MyTextView
                                android:id="@+id/txtMonthYear"
                                android:layout_width="0dp"
                                android:layout_height="wrap_content"
@@ -1411,7 +1526,7 @@ batalmelulu
                                android:textColor="@color/black"
                                android:layout_gravity="center_vertical"
                                android:gravity="center"
-                               android:textStyle="bold"
+                               app:myFontStyle="nunito_sans_bold"
                                android:textSize="16sp"
                                />
 
@@ -1430,67 +1545,74 @@ batalmelulu
                            android:layout_marginTop="24dp"
                            android:orientation="horizontal">
 
-                           <TextView
+                           <id.dtech.cgo.CustomView.MyTextView
                                android:layout_width="0dp"
                                android:layout_height="wrap_content"
                                android:layout_weight="1"
                                android:text="Su"
                                android:gravity="center"
                                android:textColor="@color/text5"
+                               app:myFontStyle="nunito_sans_reguler"
                                />
 
-                           <TextView
+                           <id.dtech.cgo.CustomView.MyTextView
                                android:layout_width="0dp"
                                android:layout_height="wrap_content"
                                android:layout_weight="1"
                                android:text="Mo"
                                android:gravity="center"
                                android:textColor="@color/text5"
+                               app:myFontStyle="nunito_sans_reguler"
                                />
 
-                           <TextView
+                           <id.dtech.cgo.CustomView.MyTextView
                                android:layout_width="0dp"
                                android:layout_height="wrap_content"
                                android:layout_weight="1"
                                android:text="Tu"
                                android:gravity="center"
                                android:textColor="@color/text5"
+                               app:myFontStyle="nunito_sans_reguler"
                                />
 
-                           <TextView
+                           <id.dtech.cgo.CustomView.MyTextView
                                android:layout_width="0dp"
                                android:layout_height="wrap_content"
                                android:layout_weight="1"
                                android:text="We"
                                android:gravity="center"
                                android:textColor="@color/text5"
+                               app:myFontStyle="nunito_sans_reguler"
                                />
 
-                           <TextView
+                           <id.dtech.cgo.CustomView.MyTextView
                                android:layout_width="0dp"
                                android:layout_height="wrap_content"
                                android:layout_weight="1"
                                android:text="Th"
                                android:gravity="center"
                                android:textColor="@color/text5"
+                               app:myFontStyle="nunito_sans_reguler"
                                />
 
-                           <TextView
+                           <id.dtech.cgo.CustomView.MyTextView
                                android:layout_width="0dp"
                                android:layout_height="wrap_content"
                                android:layout_weight="1"
                                android:text="Fr"
                                android:gravity="center"
                                android:textColor="@color/text5"
+                               app:myFontStyle="nunito_sans_reguler"
                                />
 
-                           <TextView
+                           <id.dtech.cgo.CustomView.MyTextView
                                android:layout_width="0dp"
                                android:layout_height="wrap_content"
                                android:layout_weight="1"
                                android:text="Sa"
                                android:gravity="center"
                                android:textColor="@color/text5"
+                               app:myFontStyle="nunito_sans_reguler"
                                />
 
                        </LinearLayout>
@@ -1522,12 +1644,12 @@ batalmelulu
                        android:layout_marginLeft="24dp"
                        android:layout_marginRight="24dp">
 
-                       <TextView
+                       <id.dtech.cgo.CustomView.MyTextView
                            android:layout_width="wrap_content"
                            android:layout_height="wrap_content"
                            android:text="@string/boat_rules"
                            android:textColor="@color/black"
-                           android:textStyle="bold"
+                           app:myFontStyle="nunito_sans_bold"
                            android:textSize="16sp"
                            />
 
@@ -1551,19 +1673,19 @@ batalmelulu
                        android:layout_marginTop="24dp"
                        android:orientation="vertical">
 
-                       <TextView
+                       <id.dtech.cgo.CustomView.MyTextView
                            android:id="@+id/txtReviewTitle"
                            android:layout_width="wrap_content"
                            android:layout_height="wrap_content"
                            android:text="@string/reviews"
                            android:textColor="@color/black"
-                           android:textStyle="bold"
+                           app:myFontStyle="nunito_sans_bold"
                            android:textSize="18sp"
                            android:layout_marginLeft="24dp"
                            android:layout_marginRight="24dp"
                            />
 
-                       <TextView
+                       <id.dtech.cgo.CustomView.MyTextView
                            android:layout_width="wrap_content"
                            android:layout_height="wrap_content"
                            android:text="@string/overall_ratings"
@@ -1571,6 +1693,7 @@ batalmelulu
                            android:layout_marginTop="24dp"
                            android:layout_marginLeft="24dp"
                            android:layout_marginRight="24dp"
+                           app:myFontStyle="nunito_sans_reguler"
                            />
 
                        <LinearLayout
@@ -1642,26 +1765,26 @@ batalmelulu
                                android:layout_gravity="center_vertical"
                                android:orientation="horizontal">
 
-                               <TextView
+                               <id.dtech.cgo.CustomView.MyTextView
                                    android:layout_width="wrap_content"
                                    android:layout_height="wrap_content"
                                    android:text="0 /"
                                    android:textSize="16sp"
                                    android:textColor="@color/black"
-                                   android:textStyle="bold"
+                                   app:myFontStyle="nunito_sans_bold"
                                    />
 
                                <Space
                                    android:layout_width="4dp"
                                    android:layout_height="match_parent"/>
 
-                               <TextView
+                               <id.dtech.cgo.CustomView.MyTextView
                                    android:layout_width="wrap_content"
                                    android:layout_height="wrap_content"
                                    android:text="5"
                                    android:textSize="14sp"
                                    android:textColor="@color/black"
-                                   android:textStyle="bold"
+                                   app:myFontStyle="nunito_sans_bold"
                                    />
 
                            </LinearLayout>
@@ -1675,25 +1798,26 @@ batalmelulu
                                android:visibility="gone"
                                android:orientation="horizontal">
 
-                               <TextView
+                               <id.dtech.cgo.CustomView.MyTextView
                                    android:layout_width="wrap_content"
                                    android:layout_height="wrap_content"
                                    android:text="12"
                                    android:textSize="16sp"
                                    android:textColor="@color/text4"
-                                   android:textStyle="bold"
+                                   app:myFontStyle="nunito_sans_bold"
                                    />
 
                                <Space
                                    android:layout_width="4dp"
                                    android:layout_height="match_parent"/>
 
-                               <TextView
+                               <id.dtech.cgo.CustomView.MyTextView
                                    android:layout_width="wrap_content"
                                    android:layout_height="wrap_content"
                                    android:text="Reviews"
                                    android:textSize="16sp"
                                    android:textColor="@color/text4"
+                                   app:myFontStyle="nunito_sans_reguler"
                                    />
 
                            </LinearLayout>
@@ -1708,13 +1832,14 @@ batalmelulu
                            android:layout_marginRight="24dp"
                            android:orientation="horizontal">
 
-                           <TextView
+                           <id.dtech.cgo.CustomView.MyTextView
                                android:layout_width="wrap_content"
                                android:layout_height="wrap_content"
                                android:text="Guide"
                                android:textSize="14sp"
                                android:layout_gravity="center_vertical"
                                android:textColor="@color/black"
+                               app:myFontStyle="nunito_sans_reguler"
                                />
 
                            <Space
@@ -1734,13 +1859,14 @@ batalmelulu
                                android:layout_width="12dp"
                                android:layout_height="match_parent"/>
 
-                           <TextView
+                           <id.dtech.cgo.CustomView.MyTextView
                                android:layout_width="wrap_content"
                                android:layout_height="wrap_content"
                                android:text="0 / 5"
                                android:textSize="14sp"
                                android:layout_gravity="center_vertical"
                                android:textColor="@color/black"
+                               app:myFontStyle="nunito_sans_reguler"
                                />
 
                        </LinearLayout>
@@ -1753,13 +1879,14 @@ batalmelulu
                            android:layout_marginRight="24dp"
                            android:orientation="horizontal">
 
-                           <TextView
+                           <id.dtech.cgo.CustomView.MyTextView
                                android:layout_width="wrap_content"
                                android:layout_height="wrap_content"
                                android:text="Activities"
                                android:textSize="14sp"
                                android:layout_gravity="center_vertical"
                                android:textColor="@color/black"
+                               app:myFontStyle="nunito_sans_reguler"
                                />
 
                            <Space
@@ -1779,13 +1906,14 @@ batalmelulu
                                android:layout_width="12dp"
                                android:layout_height="match_parent"/>
 
-                           <TextView
+                           <id.dtech.cgo.CustomView.MyTextView
                                android:layout_width="wrap_content"
                                android:layout_height="wrap_content"
                                android:text="0 / 5"
                                android:textSize="14sp"
                                android:layout_gravity="center_vertical"
                                android:textColor="@color/black"
+                               app:myFontStyle="nunito_sans_reguler"
                                />
 
                        </LinearLayout>
@@ -1798,13 +1926,14 @@ batalmelulu
                            android:layout_marginRight="24dp"
                            android:orientation="horizontal">
 
-                           <TextView
+                           <id.dtech.cgo.CustomView.MyTextView
                                android:layout_width="wrap_content"
                                android:layout_height="wrap_content"
                                android:text="Service"
                                android:textSize="14sp"
                                android:layout_gravity="center_vertical"
                                android:textColor="@color/black"
+                               app:myFontStyle="nunito_sans_reguler"
                                />
 
                            <Space
@@ -1824,13 +1953,14 @@ batalmelulu
                                android:layout_width="12dp"
                                android:layout_height="match_parent"/>
 
-                           <TextView
+                           <id.dtech.cgo.CustomView.MyTextView
                                android:layout_width="wrap_content"
                                android:layout_height="wrap_content"
                                android:text="0 / 5"
                                android:textSize="14sp"
                                android:layout_gravity="center_vertical"
                                android:textColor="@color/black"
+                               app:myFontStyle="nunito_sans_reguler"
                                />
 
                        </LinearLayout>
@@ -1843,13 +1973,14 @@ batalmelulu
                            android:layout_marginRight="24dp"
                            android:orientation="horizontal">
 
-                           <TextView
+                           <id.dtech.cgo.CustomView.MyTextView
                                android:layout_width="wrap_content"
                                android:layout_height="wrap_content"
                                android:text="Cleanliness"
                                android:textSize="14sp"
                                android:layout_gravity="center_vertical"
                                android:textColor="@color/black"
+                               app:myFontStyle="nunito_sans_reguler"
                                />
 
                            <Space
@@ -1869,13 +2000,14 @@ batalmelulu
                                android:layout_width="12dp"
                                android:layout_height="match_parent"/>
 
-                           <TextView
+                           <id.dtech.cgo.CustomView.MyTextView
                                android:layout_width="wrap_content"
                                android:layout_height="wrap_content"
                                android:text="0 / 5"
                                android:textSize="14sp"
                                android:layout_gravity="center_vertical"
                                android:textColor="@color/black"
+                               app:myFontStyle="nunito_sans_reguler"
                                />
 
                        </LinearLayout>
@@ -1888,13 +2020,14 @@ batalmelulu
                            android:layout_marginRight="24dp"
                            android:orientation="horizontal">
 
-                           <TextView
+                           <id.dtech.cgo.CustomView.MyTextView
                                android:layout_width="wrap_content"
                                android:layout_height="wrap_content"
                                android:text="Value"
                                android:textSize="14sp"
                                android:layout_gravity="center_vertical"
                                android:textColor="@color/black"
+                               app:myFontStyle="nunito_sans_reguler"
                                />
 
                            <Space
@@ -1914,13 +2047,14 @@ batalmelulu
                                android:layout_width="12dp"
                                android:layout_height="match_parent"/>
 
-                           <TextView
+                           <id.dtech.cgo.CustomView.MyTextView
                                android:layout_width="wrap_content"
                                android:layout_height="wrap_content"
                                android:text="0 / 5"
                                android:textSize="14sp"
                                android:layout_gravity="center_vertical"
                                android:textColor="@color/black"
+                               app:myFontStyle="nunito_sans_reguler"
                                />
 
                        </LinearLayout>
@@ -1955,10 +2089,11 @@ batalmelulu
                                        android:layout_width="16dp"
                                        android:layout_height="match_parent"/>
 
-                                   <TextView
+                                   <id.dtech.cgo.CustomView.MyTextView
                                        android:layout_width="wrap_content"
                                        android:layout_height="wrap_content"
                                        android:text="@string/rating_lower"
+                                       app:myFontStyle="nunito_sans_reguler"
                                        />
 
                                </LinearLayout>
@@ -1983,10 +2118,11 @@ batalmelulu
                                        android:layout_width="16dp"
                                        android:layout_height="match_parent"/>
 
-                                   <TextView
+                                   <id.dtech.cgo.CustomView.MyTextView
                                        android:layout_width="wrap_content"
                                        android:layout_height="wrap_content"
                                        android:text="@string/rating_start"
+                                       app:myFontStyle="nunito_sans_reguler"
                                        />
 
                                </LinearLayout>
@@ -2025,12 +2161,12 @@ batalmelulu
                        android:layout_marginTop="32dp"
                        android:orientation="vertical">
 
-                       <TextView
+                       <id.dtech.cgo.CustomView.MyTextView
                            android:layout_width="wrap_content"
                            android:layout_height="wrap_content"
                            android:text="@string/policy"
                            android:textColor="@color/black"
-                           android:textStyle="bold"
+                           app:myFontStyle="nunito_sans_bold"
                            android:textSize="18sp"
                            android:layout_marginLeft="24dp"
                            android:layout_marginRight="24dp"
@@ -2061,12 +2197,12 @@ batalmelulu
                        android:layout_marginTop="32dp"
                        android:orientation="vertical">
 
-                       <TextView
+                       <id.dtech.cgo.CustomView.MyTextView
                            android:layout_width="wrap_content"
                            android:layout_height="wrap_content"
                            android:text="@string/redeem_ticket"
                            android:textColor="@color/black"
-                           android:textStyle="bold"
+                           app:myFontStyle="nunito_sans_bold"
                            android:textSize="18sp"
                            android:layout_marginLeft="24dp"
                            android:layout_marginRight="24dp"
@@ -2096,20 +2232,20 @@ batalmelulu
                        android:layout_height="wrap_content"
                        android:orientation="vertical">
 
-                       <TextView
+                       <id.dtech.cgo.CustomView.MyTextView
                            android:layout_width="match_parent"
                            android:layout_height="wrap_content"
                            android:text="@string/inpiration"
                            android:textSize="16sp"
                            android:textColor="@color/black"
-                           android:textStyle="bold"
+                          app:myFontStyle="nunito_sans_bold"
                            android:layout_centerVertical="true"
                            android:layout_marginTop="32dp"
                            android:layout_marginLeft="24dp"
                            android:layout_marginRight="24dp"
                            />
 
-                       <TextView
+                       <id.dtech.cgo.CustomView.MyTextView
                            android:layout_width="wrap_content"
                            android:layout_height="wrap_content"
                            android:text="@string/inpiration_content"
@@ -2118,6 +2254,7 @@ batalmelulu
                            android:layout_centerVertical="true"
                            android:layout_marginTop="8dp"
                            android:layout_marginLeft="24dp"
+                           app:myFontStyle="nunito_sans_reguler"
                            />
 
                        <androidx.recyclerview.widget.RecyclerView
@@ -2139,7 +2276,7 @@ batalmelulu
            <androidx.cardview.widget.CardView
                android:id="@+id/cardPrice"
                android:layout_width="match_parent"
-               android:layout_height="80dp"
+               android:layout_height="wrap_content"
                android:elevation="5dp">
 
                <RelativeLayout
@@ -2154,19 +2291,33 @@ batalmelulu
                        android:layout_marginLeft="24dp"
                        android:orientation="vertical">
 
-                       <TextView
+                       <id.dtech.cgo.CustomView.MyTextView
                            android:layout_width="wrap_content"
                            android:layout_height="wrap_content"
                            android:text="Price"
                            android:textSize="14sp"
                            android:textColor="@color/text6"
+                           app:myFontStyle="nunito_sans_reguler"
+                           />
+
+                       <id.dtech.cgo.CustomView.MyTextView
+                           android:id="@+id/txtSpecialPrice"
+                           android:layout_width="wrap_content"
+                           android:layout_height="wrap_content"
+                           android:text="IDR 1.200.000"
+                           android:textColor="@color/text3"
+                           android:textSize="14sp"
+                           android:layout_gravity="center_vertical"
+                           app:myFontStyle="nunito_sans_semibold"
+                           android:layout_marginTop="6dp"
+                           android:visibility="gone"
                            />
 
                        <Space
                            android:layout_width="match_parent"
                            android:layout_height="6dp"/>
 
-                       <TextView
+                       <id.dtech.cgo.CustomView.MyTextView
                            android:id="@+id/txtPrice"
                            android:layout_width="wrap_content"
                            android:layout_height="wrap_content"
@@ -2174,14 +2325,15 @@ batalmelulu
                            android:textColor="@color/pin_selected_color"
                            android:textStyle="bold"
                            android:textSize="16sp"
+                           app:myFontStyle="nunito_sans_bold"
                            />
 
                    </LinearLayout>
 
                    <Button
                        android:id="@+id/btnBook"
-                       android:layout_width="wrap_content"
-                       android:layout_height="55dp"
+                       android:layout_width="100dp"
+                       android:layout_height="40dp"
                        android:layout_margin="24dp"
                        android:text="@string/book"
                        android:background="@drawable/background_bluerounded"

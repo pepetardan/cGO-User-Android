@@ -18,7 +18,7 @@ class PhotoAdapter (context : Context, datas : ArrayList<HashMap<String,Any>>) :
     private val dataList = datas
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): PhotoViewHolder {
-        val view = LayoutInflater.from(contexs).inflate( R.layout.item_photo,parent, false)
+        val view = LayoutInflater.from(contexs).inflate(R.layout.item_photo,parent, false)
         return PhotoViewHolder(view)
     }
 

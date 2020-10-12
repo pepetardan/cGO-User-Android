@@ -192,5 +192,30 @@ class MyCallback {
             fun onVersionSuccess(versionCode : Int)
             fun onVersionError()
         }
+
+        interface AccomodationCallback {
+            fun onAccomodationPrepare()
+            fun onAccomodationSuccess(accomodations : ArrayList<HashMap<String,Any>>)
+            fun onAccomodationError()
+        }
+
+        interface LanguageCallback {
+            fun onLanguagePrepare()
+            fun onLanguageSuccess(languages : ArrayList<HashMap<String,Any>>)
+            fun onLanguageError()
+        }
+
+        interface CalculatePriceCallback {
+            fun onCalculatePricePrepare()
+            fun onCalculatePriceSuccess(data : HashMap<String,Any>)
+            fun onCalculatePriceError()
+        }
+
+        interface CategoriesCallback {
+            fun onCategoriesPrepare()
+            fun onCategoriesSuccess(categories : ArrayList<ActivityTypeModel>,
+                                    typeList : ArrayList<Boolean>)
+            fun onCategoriesError()
+        }
     }
 }

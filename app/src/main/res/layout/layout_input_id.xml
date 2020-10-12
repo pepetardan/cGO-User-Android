@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:padding="24dp"
+    android:orientation="vertical">
+
+    <EditText
+        android:id="@+id/edtInputDialog"
+        android:layout_width="match_parent"
+        android:text="9301e46a-ec77-4ee5-879b-9ff2e430ffbd"
+        android:layout_height="45dp"/>
+
+    <Button
+        android:id="@+id/btnInputDialog"
+        android:layout_width="200dp"
+        android:layout_height="wrap_content"
+        android:text="Next"
+        android:layout_gravity="center_horizontal"
+        />
+
+</LinearLayout>

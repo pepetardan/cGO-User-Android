@@ -18,6 +18,7 @@ class ExperienceDetailModel() : Parcelable {
     var exp_pickup_place_latitude : Double = 0.0
     var exp_pickup_place_maps_name : String? = null
     var status : Int = 0
+    var is_request_exp_pickup_place : Int = 0
     var rating : Double = 0.0
     var exp_location_latitude : String? = null
     var exp_location_longitude : String? = null
@@ -25,10 +26,21 @@ class ExperienceDetailModel() : Parcelable {
     var exp_cover_photo : String? = null
     var exp_duration : Int = 0
     var count_rating : Int = 0
+    var is_customised_intinerary : Int = 0
+    var is_certified_guide : Int = 0
+    var is_flexible_ticket : Int = 0
+    var exp_validity_amount : Int = 0
+    var exp_validity_type : String? = null
     var merchant_id : String? = null
     var harbors_name : String? = null
+    var trading_hour_start : String? = null
+    var trading_hour_end : String? = null
     var city : String? = null
     var province : String? = null
+    var exp_address : String? = null
+    var start_point : String? = null
+    var end_point : String? = null
+    var how_to_get_location : String? = null
     var exp_type : ArrayList<String>? = null
     var exp_itenerary : ArrayList<ItemItenaryModel>? = null
     var exp_facility :  ArrayList<FacilityModel>? = null
@@ -38,6 +50,10 @@ class ExperienceDetailModel() : Parcelable {
     var exp_avaibility : ArrayList<LocalDate>? = null
     var exp_payment : ArrayList<PaymentModel>? = null
     var exp_photos : ArrayList<HashMap<String,Any>>? = null
+    var exp_guides : ArrayList<HashMap<String,Any>>? = null
+    var exp_packages : ArrayList<HashMap<String,Any>>? = null
+    var exp_languages : ArrayList<HashMap<String,Any>>? = null
+    var exp_accomodations : ArrayList<HashMap<String,Any>>? = null
     var minimum_booking : MinimumBookingModel? = null
 
     constructor(parcel: Parcel) : this() {
@@ -53,6 +69,7 @@ class ExperienceDetailModel() : Parcelable {
         exp_pickup_place_latitude = parcel.readDouble()
         exp_pickup_place_maps_name = parcel.readString()
         status = parcel.readInt()
+        is_request_exp_pickup_place = parcel.readInt()
         rating = parcel.readDouble()
         exp_location_latitude = parcel.readString()
         exp_location_longitude = parcel.readString()
@@ -60,10 +77,18 @@ class ExperienceDetailModel() : Parcelable {
         exp_cover_photo = parcel.readString()
         exp_duration = parcel.readInt()
         count_rating = parcel.readInt()
+        is_customised_intinerary = parcel.readInt()
+        is_certified_guide = parcel.readInt()
         merchant_id = parcel.readString()
         harbors_name = parcel.readString()
+        trading_hour_start = parcel.readString()
+        trading_hour_end = parcel.readString()
         city = parcel.readString()
         province = parcel.readString()
+        exp_address = parcel.readString()
+        start_point = parcel.readString()
+        end_point = parcel.readString()
+        how_to_get_location = parcel.readString()
     }
 
     override fun writeToParcel(parcel: Parcel, flags: Int) {
@@ -79,6 +104,7 @@ class ExperienceDetailModel() : Parcelable {
         parcel.writeDouble(exp_pickup_place_latitude)
         parcel.writeString(exp_pickup_place_maps_name)
         parcel.writeInt(status)
+        parcel.writeInt(is_request_exp_pickup_place)
         parcel.writeDouble(rating)
         parcel.writeString(exp_location_latitude)
         parcel.writeString(exp_location_longitude)
@@ -86,10 +112,18 @@ class ExperienceDetailModel() : Parcelable {
         parcel.writeString(exp_cover_photo)
         parcel.writeInt(exp_duration)
         parcel.writeInt(count_rating)
+        parcel.writeInt(is_customised_intinerary)
+        parcel.writeInt(is_certified_guide)
         parcel.writeString(merchant_id)
         parcel.writeString(harbors_name)
+        parcel.writeString(trading_hour_start)
+        parcel.writeString(trading_hour_end)
         parcel.writeString(city)
         parcel.writeString(province)
+        parcel.writeString(exp_address)
+        parcel.writeString(start_point)
+        parcel.writeString(end_point)
+        parcel.writeString(how_to_get_location)
     }
 
     override fun describeContents(): Int {
@@ -105,6 +139,5 @@ class ExperienceDetailModel() : Parcelable {
             return arrayOfNulls(size)
         }
     }
-
 
 }

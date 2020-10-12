@@ -1,5 +1,6 @@
 package id.dtech.cgo.View
 
+import android.app.AlertDialog
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
@@ -8,19 +9,21 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Button
+import android.widget.EditText
 import android.widget.LinearLayout
 import android.widget.TextView
 import androidx.core.widget.NestedScrollView
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import id.dtech.cgo.Adapter.ActivityTypeHomeAdapter
 import id.dtech.cgo.Adapter.InspirationAdapter
 import id.dtech.cgo.Adapter.PromoAdapter
 import id.dtech.cgo.Adapter.ServiceAdapter
 import id.dtech.cgo.Callback.MyCallback
-import id.dtech.cgo.Controller.DestinationController
-import id.dtech.cgo.Controller.ExperienceController
-import id.dtech.cgo.Controller.PromoController
-import id.dtech.cgo.Controller.TripInspirationController
+import id.dtech.cgo.Controller.*
+import id.dtech.cgo.Listener.ApplicationListener
+import id.dtech.cgo.Model.ActivityTypeModel
 import id.dtech.cgo.Model.DiscoverPreferanceModel
 import id.dtech.cgo.Model.PromoModel
 import id.dtech.cgo.Model.TripInspirationModel
@@ -30,22 +33,26 @@ import id.dtech.cgo.R
 import io.supercharge.shimmerlayout.ShimmerLayout
 
 class FragmentExplore : Fragment(), View.OnClickListener, MyCallback.Companion.TripInspirationCallback,
-    MyCallback.Companion.PromoCallback, MyCallback.Companion.DiscoverPreferanceCallback{
+    MyCallback.Companion.PromoCallback, MyCallback.Companion.DiscoverPreferanceCallback,
+    MyCallback.Companion.CategoriesCallback, ApplicationListener.Companion.ActivityTypeListener {
+
+    private lateinit var dialogInput : AlertDialog
+    private lateinit var edtInputDialog : EditText
+    private lateinit var btnInputDialog : Button
 
     private lateinit var userSession: UserSession
+
     private lateinit var experienceController: ExperienceController
+    private lateinit var masterController: MasterController
 
     private lateinit var myNestedScroll : NestedScrollView
 
+    private lateinit var shimmerMenus : ShimmerLayout
     private lateinit var shimmerInspiration : ShimmerLayout
     private lateinit var shimmerPromo : ShimmerLayout
     private lateinit var shimmerTripReference : ShimmerLayout
 
-    private lateinit var linearDiving : LinearLayout
-    private lateinit var linearFishing : LinearLayout
-    private lateinit var linearSnorkeling : LinearLayout
-    private lateinit var linearSailing : LinearLayout
-    private lateinit var linearTour : LinearLayout
+    private lateinit var rvActivity : RecyclerView
 
     private lateinit var linearExperience : LinearLayout
     private lateinit var lineartransportation : LinearLayout
@@ -82,18 +89,16 @@ class FragmentExplore : Fragment(), View.OnClickListener, MyCallback.Companion.T
     private fun setView(view : View){
 
         experienceController = ExperienceController()
+        masterController = MasterController()
 
         myNestedScroll = view.findViewById(R.id.myNestedScroll)
 
+        shimmerMenus = view.findViewById(R.id.shimmerMenus)
         shimmerInspiration = view.findViewById(R.id.shimmerInspiration)
         shimmerPromo = view.findViewById(R.id.shimmerPromo)
         shimmerTripReference = view.findViewById(R.id.shimmerTripReference)
 
-        linearDiving = view.findViewById(R.id.linearDiving)
-        linearFishing = view.findViewById(R.id.linearFishing)
-        linearSnorkeling = view.findViewById(R.id.linearSnorkeling)
-        linearSailing = view.findViewById(R.id.linearSailing)
-        linearTour = view.findViewById(R.id.linearTour)
+        rvActivity = view.findViewById(R.id.rvActivity)
 
         linearHeader1 = view.findViewById(R.id.linearHeader1)
         linearHeader2 = view.findViewById(R.id.linearHeader2)
@@ -124,26 +129,37 @@ class FragmentExplore : Fragment(), View.OnClickListener, MyCallback.Companion.T
             rvInspiration.layoutManager = LinearLayoutManager(it,LinearLayoutManager.HORIZONTAL,
                 false)
 
+            rvActivity.layoutManager = LinearLayoutManager(it,LinearLayoutManager.HORIZONTAL,
+                false)
+
             checkLogin()
 
         }
 
+        masterController.getCategories(this)
         experienceController.getDiscoverPreference(this)
         PromoController.getPromo(this)
         TripInspirationController.getTripInspiration(this)
 
         setNestedScroll()
+        initiateInputDialog()
 
-        linearDiving.setOnClickListener(this)
-        linearFishing.setOnClickListener(this)
-        linearSnorkeling.setOnClickListener(this)
-        linearSailing.setOnClickListener(this)
-        linearTour.setOnClickListener(this)
         linearExperience.setOnClickListener(this)
         lineartransportation.setOnClickListener(this)
         linearExperience2.setOnClickListener(this)
         lineartransportation2.setOnClickListener(this)
         linearLogin.setOnClickListener(this)
+    }
+
+    private fun initiateInputDialog(){
+        activity?.let {
+            val view = LayoutInflater.from(it).inflate(R.layout.layout_input_id,null)
+            dialogInput = AlertDialog.Builder(it).setView(view).create()
+            edtInputDialog = view.findViewById(R.id.edtInputDialog)
+            btnInputDialog = view.findViewById(R.id.btnInputDialog)
+
+            btnInputDialog.setOnClickListener(this)
+        }
     }
 
     private fun checkLogin(){
@@ -155,15 +171,13 @@ class FragmentExplore : Fragment(), View.OnClickListener, MyCallback.Companion.T
             txtChoose.visibility = View.GONE
             linearLogin.visibility = View.VISIBLE
         }
-
-        Log.d("aldieys",userSession.access_token ?: "")
     }
 
-    private fun intentExperience(from : Int){
+    private fun intentExperience(from : Int, model: ActivityTypeModel?){
         activity?.let {
             val i = Intent(it,ActivityExperience::class.java)
             i.putExtra("from",from)
-            i.putExtra("activity_position",activityPosition)
+            i.putExtra("activity_position",model?.id)
             it.startActivity(i)
         }
     }
@@ -186,62 +200,6 @@ class FragmentExplore : Fragment(), View.OnClickListener, MyCallback.Companion.T
                 isHeader2Showed = false
             }
 
-            Log.d("aldieyScroll",""+scrollY+"__"+oldScrollY)
-        }
-    }
-
-    override fun onClick(v: View?) {
-        when(v?.id){
-            R.id.linearExperience -> {
-               intentExperience(1)
-            }
-
-            R.id.linearTransportation -> {
-                activity?.let {
-                    it.startActivity(Intent(it,ActivitySearchTransportation::class.java))
-                }
-            }
-
-            R.id.linearExperience2 -> {
-                intentExperience(1)
-            }
-
-            R.id.linearTransportation2 -> {
-                activity?.let {
-                    it.startActivity(Intent(it,ActivitySearchTransportation::class.java))
-                }
-            }
-
-            R.id.linearDiving -> {
-                activityPosition = 1
-                intentExperience(2)
-            }
-
-            R.id.linearFishing -> {
-                activityPosition = 2
-                intentExperience(2)
-            }
-
-            R.id.linearSnorkeling -> {
-                activityPosition = 3
-                intentExperience(2)
-            }
-
-            R.id.linearSailing -> {
-                activityPosition = 4
-                intentExperience(2)
-            }
-
-            R.id.linearTour -> {
-                activityPosition = 5
-                intentExperience(2)
-            }
-
-            R.id.linearLogin -> {
-                activity?.let {
-                    it.startActivity(Intent(it,ActivityLogin::class.java))
-                }
-            }
         }
     }
 
@@ -300,5 +258,66 @@ class FragmentExplore : Fragment(), View.OnClickListener, MyCallback.Companion.T
 
     override fun onDiscoverPreferanceError() {
 
+    }
+
+    override fun onCategoriesPrepare() {
+        shimmerMenus.startShimmerAnimation()
+        shimmerMenus.visibility = View.VISIBLE
+        rvActivity.visibility = View.GONE
+    }
+
+    override fun onCategoriesSuccess(categories: ArrayList<ActivityTypeModel>, typeList: ArrayList<Boolean>) {
+        activity?.let {
+            shimmerMenus.stopShimmerAnimation()
+            shimmerMenus.visibility = View.GONE
+            rvActivity.visibility = View.VISIBLE
+            rvActivity.adapter = ActivityTypeHomeAdapter(it, categories, this)
+        }
+    }
+
+    override fun onCategoriesError() {
+
+    }
+
+    override fun onActivityTypeClicked(model: ActivityTypeModel, isSelected: Boolean) {
+        intentExperience(2,model)
+    }
+
+    override fun onClick(v: View?) {
+        when(v?.id){
+            R.id.linearExperience -> {
+                intentExperience(1,null)
+            }
+
+            R.id.linearTransportation -> {
+                activity?.let {
+                    it.startActivity(Intent(it,ActivitySearchTransportation::class.java))
+                }
+            }
+
+            R.id.linearExperience2 -> {
+                intentExperience(1,null)
+            }
+
+            R.id.linearTransportation2 -> {
+                activity?.let {
+                    it.startActivity(Intent(it,ActivitySearchTransportation::class.java))
+                }
+            }
+
+            R.id.linearLogin -> {
+                activity?.let {
+                    it.startActivity(Intent(it,ActivityLogin::class.java))
+                }
+            }
+
+            R.id.btnInputDialog ->{
+                activity?.let {
+                  val i = Intent(it,ActivityDetailExperience::class.java)
+                  i.putExtra("experience_id", edtInputDialog.text.toString().trim())
+                  it.startActivity(i)
+                }
+            }
+        }
     }
 }

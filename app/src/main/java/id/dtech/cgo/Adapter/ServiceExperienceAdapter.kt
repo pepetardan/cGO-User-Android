@@ -3,6 +3,7 @@ package id.dtech.cgo.Adapter
 import android.annotation.SuppressLint
 import android.content.Context
 import android.content.Intent
+import android.graphics.Paint
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -61,6 +62,7 @@ class ServiceExperienceAdapter (context : Context, itemList : ArrayList<Experien
             val type = experienceModel.exp_type ?: ArrayList()
             val lastIndex = items.size - 1
             val price =  CurrencyUtil.decimal(experienceModel.price).replace(",",".")
+            val isCertified = experienceModel.is_certified_guide
 
             val layoutParam = LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT,
                 LinearLayout.LayoutParams.WRAP_CONTENT)
@@ -81,6 +83,13 @@ class ServiceExperienceAdapter (context : Context, itemList : ArrayList<Experien
                 holder.txtReview.text = ""+experienceModel.count_rating+" Review"
             }
 
+            if (isCertified == 1){
+                holder.linearCertifiedGuide.visibility = View.VISIBLE
+            }
+            else{
+                holder.linearCertifiedGuide.visibility = View.GONE
+            }
+
             experienceModel.payment_type?.let { strType ->
                 val paymentType = strType.split(" ")
 
@@ -89,14 +98,29 @@ class ServiceExperienceAdapter (context : Context, itemList : ArrayList<Experien
                     val currency = experienceModel.currency ?: ""
                     val strPrice = "$currency $price/$type"
                     holder.txtPrice.text = strPrice
+
+                    if (experienceModel.special_price != 0L){
+                        val specialPrice = CurrencyUtil.decimal(experienceModel.special_price).
+                        replace(",",".")
+                        val strSpecialPrice = "$specialPrice $price/$type"
+
+                        holder.txtSpecialPrice.visibility = View.VISIBLE
+                        holder.txtSpecialPrice.text = strSpecialPrice
+                    }
+                    else{
+                        holder.txtSpecialPrice.visibility = View.GONE
+                    }
                 }
             }
+
+            holder.txtSpecialPrice.paintFlags = holder.txtSpecialPrice.paintFlags or
+                    Paint.STRIKE_THRU_TEXT_FLAG
 
             holder.txtTitle.text = experienceModel.exp_title ?: ""
 
             holder.rvService.layoutManager = LinearLayoutManager(contexs
                 , LinearLayoutManager.HORIZONTAL,false)
-            holder.rvService.adapter = ServiceTypeAdapter(contexs,type)
+            holder.rvService.adapter = ServiceTypeAdapter(0,contexs,type)
 
             holder.linearParent.setOnClickListener {
                 val i = Intent(contexs,ActivityDetailExperience::class.java)
@@ -214,6 +238,7 @@ class ServiceExperienceAdapter (context : Context, itemList : ArrayList<Experien
     class ServiceExperienceViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         val rvService = itemView.findViewById<RecyclerView>(R.id.rvServiceType)
         val linearParent = itemView.findViewById<LinearLayout>(R.id.linearParent)
+        val linearCertifiedGuide = itemView.findViewById<LinearLayout>(R.id.linearCertifiedGuide)
 
         val viewPager = itemView.findViewById<ViewPager>(R.id.viewPager)
         val indicatorView = itemView.findViewById<PageIndicatorView>(R.id.indicatorView)
@@ -221,6 +246,7 @@ class ServiceExperienceAdapter (context : Context, itemList : ArrayList<Experien
         val txtTitle = itemView.findViewById<MyTextView>(R.id.txtTitle)
         val txtReview = itemView.findViewById<MyTextView>(R.id.txtReview)
         val txtPrice = itemView.findViewById<MyTextView>(R.id.txtPrice)
+        val txtSpecialPrice = itemView.findViewById<MyTextView>(R.id.txtSpecialPrice)
 
         val imgStar1 = itemView.findViewById<ImageView>(R.id.imgStar1)
         val imgStar2 = itemView.findViewById<ImageView>(R.id.imgStar2)

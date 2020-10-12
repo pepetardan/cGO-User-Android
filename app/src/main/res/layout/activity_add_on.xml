@@ -95,7 +95,7 @@
                 android:layout_marginLeft="24dp"
                 android:layout_marginRight="24dp"
                 android:textSize="18sp"
-                android:textColor="@color/black"
+                android:textColor="@color/profile_name"
                 android:textStyle="bold"
                 app:myFontStyle="rubik_medium"
                 />
@@ -241,12 +241,14 @@
                 android:layout_marginRight="24dp">
 
                 <LinearLayout
+                    android:id="@+id/linearPackage"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:orientation="vertical"
                     android:layout_weight="1">
 
                     <id.dtech.cgo.CustomView.MyTextView
+                        android:id="@+id/txtPackageTitle"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="Package"
@@ -264,6 +266,7 @@
                         android:orientation="horizontal">
 
                         <id.dtech.cgo.CustomView.MyTextView
+                            android:id="@+id/txtPackageName"
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
                             android:text="Jakarta Kota Tua bogor"
@@ -280,6 +283,7 @@
                             android:layout_height="match_parent"/>
 
                         <ImageView
+                            android:id="@+id/imgPackageDD"
                             android:layout_width="20dp"
                             android:layout_height="20dp"
                             android:src="@drawable/ic_black_dropdown"
@@ -300,16 +304,19 @@
                 </LinearLayout>
 
                 <Space
+                    android:id="@+id/packageSpace"
                     android:layout_width="24dp"
                     android:layout_height="match_parent"/>
 
                 <LinearLayout
+                    android:id="@+id/linearSelectGuide"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:orientation="vertical"
                     android:layout_weight="1">
 
                     <id.dtech.cgo.CustomView.MyTextView
+                        android:id="@+id/txtGuideTitle"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="Guide"
@@ -327,6 +334,7 @@
                         android:orientation="horizontal">
 
                         <id.dtech.cgo.CustomView.MyTextView
+                            android:id="@+id/txtGuide"
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
                             android:text="Rianty"
@@ -341,6 +349,7 @@
                             android:layout_height="match_parent"/>
 
                         <ImageView
+                            android:id="@+id/imgGuideDD"
                             android:layout_width="20dp"
                             android:layout_height="20dp"
                             android:src="@drawable/ic_black_dropdown"
@@ -414,13 +423,34 @@
 
             </io.supercharge.shimmerlayout.ShimmerLayout>
 
-            <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/rvAddOn"
+            <LinearLayout
+                android:id="@+id/linearAddOn"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:overScrollMode="never"
                 android:visibility="gone"
-                />
+                android:orientation="vertical">
+
+                <id.dtech.cgo.CustomView.MyTextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Select Add On"
+                    android:layout_marginTop="24dp"
+                    android:layout_marginLeft="24dp"
+                    android:layout_marginRight="24dp"
+                    android:textSize="18sp"
+                    android:textColor="@color/profile_name"
+                    android:textStyle="bold"
+                    app:myFontStyle="rubik_medium"
+                    />
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/rvAddOn"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:overScrollMode="never"
+                    />
+
+            </LinearLayout>
 
         </RelativeLayout>
 
@@ -431,7 +461,7 @@
     <androidx.cardview.widget.CardView
         android:id="@+id/cardPrice"
         android:layout_width="match_parent"
-        android:layout_height="80dp"
+        android:layout_height="wrap_content"
         android:elevation="5dp">
 
         <RelativeLayout
@@ -440,10 +470,12 @@
             android:orientation="horizontal">
 
             <LinearLayout
+                android:id="@+id/linearPrice"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_centerVertical="true"
                 android:layout_marginLeft="24dp"
+                android:visibility="gone"
                 android:orientation="vertical">
 
                 <TextView
@@ -470,9 +502,42 @@
 
             </LinearLayout>
 
+            <io.supercharge.shimmerlayout.ShimmerLayout
+                android:id="@+id/shimmerLayout"
+                android:layout_width="150dp"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="24dp">
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                    <View
+                        android:layout_width="50dp"
+                        android:layout_height="12dp"
+                        android:background="@drawable/rounded_view"
+                        />
+
+                    <Space
+                        android:layout_width="match_parent"
+                        android:layout_height="12dp"/>
+
+                    <View
+                        android:layout_width="100dp"
+                        android:layout_height="12dp"
+                        android:background="@drawable/rounded_view"
+                        />
+
+                </LinearLayout>
+
+            </io.supercharge.shimmerlayout.ShimmerLayout>
+
             <Button
-                android:layout_width="100dp"
-                android:layout_height="65dp"
+                android:id="@+id/btnCheckout"
+                android:layout_width="125dp"
+                android:layout_height="45dp"
                 android:layout_margin="24dp"
                 android:text="@string/checkout"
                 android:background="@drawable/background_bluerounded"

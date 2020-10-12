@@ -68,7 +68,7 @@
                 android:orientation="vertical">
 
                 <id.dtech.cgo.CustomView.MyTextView
-                    android:id="@+id/txtTitle"
+                    android:id="@+id/txtTitleCheckout"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="24dp"
@@ -82,64 +82,7 @@
                     />
 
                 <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="16dp"
-                    android:layout_marginLeft="24dp"
-                    android:layout_marginRight="24dp"
-                    android:layout_marginBottom="8dp"
-                    android:orientation="horizontal">
-
-                    <id.dtech.cgo.CustomView.MyTextView
-                        android:id="@+id/txtPaymentType"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="Ticket Only"
-                        android:layout_gravity="center_vertical"
-                        android:textSize="14sp"
-                        app:myFontStyle="nunito_sans_semibold"
-                        />
-
-                    <Space
-                        android:layout_width="8dp"
-                        android:layout_height="match_parent"/>
-
-                    <ImageView
-                        android:layout_width="5dp"
-                        android:layout_height="5dp"
-                        android:src="@drawable/ic_ellipse"
-                        android:layout_gravity="center_vertical"
-                        />
-
-                    <Space
-                        android:layout_width="8dp"
-                        android:layout_height="match_parent"/>
-
-                    <id.dtech.cgo.CustomView.MyTextView
-                        android:id="@+id/txtGuest"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="3 Adult(s)"
-                        android:layout_gravity="center_vertical"
-                        android:textSize="14sp"
-                        app:myFontStyle="nunito_sans_semibold"
-                        />
-
-                </LinearLayout>
-
-                <id.dtech.cgo.CustomView.MyTextView
-                    android:id="@+id/txtDate"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="12-13 Feb 2020"
-                    android:layout_gravity="center_vertical"
-                    android:layout_marginLeft="24dp"
-                    android:textSize="14sp"
-                    app:myFontStyle="nunito_sans_semibold"
-                    android:layout_marginTop="4dp"
-                    />
-
-                <LinearLayout
+                    android:id="@+id/linearPackage"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:orientation="horizontal"
@@ -157,6 +100,7 @@
                         />
 
                     <id.dtech.cgo.CustomView.MyTextView
+                        android:id="@+id/txtPackageName"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="Jakarta Kota Tua Reguler"
@@ -167,6 +111,7 @@
                 </LinearLayout>
 
                 <LinearLayout
+                    android:id="@+id/linearAddOn"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:orientation="horizontal"
@@ -183,13 +128,10 @@
                         app:myFontStyle="nunito_sans_semibold"
                         />
 
-                    <id.dtech.cgo.CustomView.MyTextView
+                    <androidx.recyclerview.widget.RecyclerView
+                        android:id="@+id/rvAddonName"
                         android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="Pickup service"
-                        android:textColor="@color/profile_name"
-                        app:myFontStyle="nunito_sans_reguler"
-                        />
+                        android:layout_height="wrap_content"/>
 
                 </LinearLayout>
 
@@ -220,6 +162,7 @@
                         />
 
                     <id.dtech.cgo.CustomView.MyTextView
+                        android:id="@+id/txtAddOnDate"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="12-13 Feb 2020"
@@ -247,6 +190,7 @@
                         />
 
                     <id.dtech.cgo.CustomView.MyTextView
+                        android:id="@+id/txtPackageGuide"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="3 Guest(s)"
@@ -282,6 +226,7 @@
                         />
 
                     <LinearLayout
+                        android:id="@+id/linearTotalBottomSheet"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:orientation="horizontal">

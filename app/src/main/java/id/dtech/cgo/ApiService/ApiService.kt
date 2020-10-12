@@ -23,6 +23,8 @@ interface ApiService {
                             @Query("upprice") upperprice : Long?,
                             @Query("sortby") sortby : String?,
                             @Query("status") status : String?,
+                            @Query("payment_type") payment_type : String?,
+                            @Query("booking_type") booking_type : String?,
                             @Query("page") page : Int?,
                             @Query("size") size : Int?
                             ) : Observable<Response<ResponseBody>>
@@ -50,7 +52,7 @@ interface ApiService {
     fun getUserInfo() : Observable<Response<ResponseBody>>
 
     // GET TRIP INSPIRATION
-    @GET("service/experience/inspirations")
+    @GET("wp-json/cgo/article")
     fun getTripInspiration() : Observable<Response<ResponseBody>>
 
     // GET PROMO
@@ -127,6 +129,29 @@ interface ApiService {
     // GET FILE PDF
     @GET
     fun getFilePDF(@Url url : String) : Observable<Response<ResponseBody>>
+
+    // CALCULATE PRICE
+    @GET("service/experience/calculate-price?")
+    fun getCalculatePrice(@Query("date") date : String,
+                          @Query("total_guest") total_guest : Int,
+                          @Query("package_id") package_id : Int,
+                          @Query("currency") currency : String,
+                          @Query("exp_id") exp_id : String
+    ) : Observable<Response<ResponseBody>>
+
+    // GET ACCOMODATION
+    @GET("master/accomodation?")
+    fun getAccomodation(@Query("page") page : Int, @Query("size") size : Int
+    ) : Observable<Response<ResponseBody>>
+
+    // GET LANGUAGE
+    @GET("master/language?")
+    fun getLanguage(@Query("page") page : Int, @Query("size") size : Int
+    ) : Observable<Response<ResponseBody>>
+
+    // GET CATEGORIES
+    @GET("service/experience/categories")
+    fun getCategories() : Observable<Response<ResponseBody>>
 
     // POST CREATE BOOKING
     @FormUrlEncoded

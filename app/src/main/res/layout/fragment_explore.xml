@@ -225,9 +225,9 @@
                         android:layout_weight="1">
 
                         <ImageView
-                            android:layout_width="20dp"
-                            android:layout_height="20dp"
-                            android:src="@drawable/ic_snorkeling"
+                            android:layout_width="22dp"
+                            android:layout_height="22dp"
+                            android:src="@drawable/ic_new_experience"
                             android:layout_gravity="center_vertical"
                             />
 
@@ -348,162 +348,191 @@
             app:myFontStyle="rubik_medium"
             />
 
-        <HorizontalScrollView
+        <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:scrollbars="none"
-            android:overScrollMode="never"
-            android:layout_marginTop="32dp">
+            android:layout_marginTop="24dp">
 
-            <LinearLayout
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/rvActivity"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:overScrollMode="never"
+                android:visibility="gone"
+                />
+
+            <io.supercharge.shimmerlayout.ShimmerLayout
+                android:id="@+id/shimmerMenus"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:shimmer_animation_duration="1200"
                 android:orientation="horizontal">
 
-                <LinearLayout
-                    android:id="@+id/linearDiving"
-                    android:layout_width="wrap_content"
+                <HorizontalScrollView
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:gravity="center_horizontal"
-                    android:layout_marginLeft="24dp"
-                    android:orientation="vertical">
+                    android:overScrollMode="never"
+                    android:scrollbars="none">
 
-                    <ImageView
-                        android:layout_width="53dp"
-                        android:layout_height="53dp"
-                        android:src="@drawable/ic_diving"
-                        />
-
-                    <Space
+                    <LinearLayout
                         android:layout_width="match_parent"
-                        android:layout_height="12dp"/>
-                    
-                    <id.dtech.cgo.CustomView.MyTextView
-                        android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="@string/diving"
-                        android:textSize="14sp"
-                        app:myFontStyle="nunito_sans_reguler"
-                        />
+                        android:orientation="horizontal">
 
-                </LinearLayout>
+                        <LinearLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:orientation="vertical">
 
-                <LinearLayout
-                    android:id="@+id/linearFishing"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:gravity="center_horizontal"
-                    android:layout_marginLeft="24dp"
-                    android:orientation="vertical">
+                            <LinearLayout
+                                android:layout_width="60dp"
+                                android:layout_height="60dp"
+                                android:layout_marginLeft="24dp"
+                                android:layout_marginRight="24dp"
+                                android:background="@drawable/linear_rounded" />
 
-                    <ImageView
-                        android:layout_width="53dp"
-                        android:layout_height="53dp"
-                        android:src="@drawable/ic_fishing"
-                        />
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="8dp"
+                                android:orientation="vertical">
 
-                    <Space
-                        android:layout_width="match_parent"
-                        android:layout_height="12dp"/>
+                                <View
+                                    android:layout_width="match_parent"
+                                    android:layout_height="12dp"
+                                    android:background="@drawable/rounded_view"
+                                    android:layout_marginTop="8dp"
+                                    android:layout_marginLeft="24dp"
+                                    android:layout_marginRight="24dp"
+                                    />
 
-                    <id.dtech.cgo.CustomView.MyTextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="@string/fishing"
-                        android:textSize="14sp"
-                        app:myFontStyle="nunito_sans_reguler"
-                        />
+                            </LinearLayout>
 
-                </LinearLayout>
+                        </LinearLayout>
 
-                <LinearLayout
-                    android:id="@+id/linearSnorkeling"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:gravity="center_horizontal"
-                    android:layout_marginLeft="24dp"
-                    android:orientation="vertical">
+                        <LinearLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:gravity="center_vertical"
+                            android:orientation="vertical">
 
-                    <ImageView
-                        android:layout_width="53dp"
-                        android:layout_height="53dp"
-                        android:src="@drawable/ic_snorkelings"
-                        />
+                            <LinearLayout
+                                android:layout_width="60dp"
+                                android:layout_height="60dp"
+                                android:background="@drawable/linear_rounded" />
 
-                    <Space
-                        android:layout_width="match_parent"
-                        android:layout_height="12dp"/>
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="8dp"
+                                android:orientation="vertical">
 
-                    <id.dtech.cgo.CustomView.MyTextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="@string/snorkeling"
-                        android:textSize="14sp"
-                        app:myFontStyle="nunito_sans_reguler"
-                        />
+                                <View
+                                    android:layout_width="match_parent"
+                                    android:layout_height="12dp"
+                                    android:background="@drawable/rounded_view"
+                                    android:layout_marginTop="8dp"
+                                    />
 
-                </LinearLayout>
+                            </LinearLayout>
 
-                <LinearLayout
-                    android:id="@+id/linearSailing"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:gravity="center_horizontal"
-                    android:layout_marginLeft="24dp"
-                    android:orientation="vertical">
+                        </LinearLayout>
 
-                    <ImageView
-                        android:layout_width="53dp"
-                        android:layout_height="53dp"
-                        android:src="@drawable/ic_sailing"
-                        />
+                        <LinearLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:gravity="center_vertical"
+                            android:layout_marginLeft="24dp"
+                            android:orientation="vertical">
 
-                    <Space
-                        android:layout_width="match_parent"
-                        android:layout_height="12dp"/>
+                            <LinearLayout
+                                android:layout_width="60dp"
+                                android:layout_height="60dp"
+                                android:background="@drawable/linear_rounded" />
 
-                    <id.dtech.cgo.CustomView.MyTextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="@string/sailing"
-                        android:textSize="14sp"
-                        app:myFontStyle="nunito_sans_reguler"
-                        />
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="8dp"
+                                android:orientation="vertical">
 
-                </LinearLayout>
+                                <View
+                                    android:layout_width="match_parent"
+                                    android:layout_height="12dp"
+                                    android:background="@drawable/rounded_view"
+                                    android:layout_marginTop="8dp"
+                                    />
 
-                <LinearLayout
-                    android:id="@+id/linearTour"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:gravity="center_horizontal"
-                    android:layout_marginLeft="24dp"
-                    android:layout_marginRight="24dp"
-                    android:orientation="vertical">
+                            </LinearLayout>
 
-                    <ImageView
-                        android:layout_width="53dp"
-                        android:layout_height="53dp"
-                        android:src="@drawable/ic_tour"
-                        />
+                        </LinearLayout>
 
-                    <Space
-                        android:layout_width="match_parent"
-                        android:layout_height="12dp"/>
+                        <LinearLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:gravity="center_vertical"
+                            android:layout_marginLeft="24dp"
+                            android:orientation="vertical">
 
-                    <id.dtech.cgo.CustomView.MyTextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="@string/tour"
-                        android:textSize="14sp"
-                        app:myFontStyle="nunito_sans_reguler"
-                        />
+                            <LinearLayout
+                                android:layout_width="60dp"
+                                android:layout_height="60dp"
+                                android:background="@drawable/linear_rounded" />
 
-                </LinearLayout>
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="8dp"
+                                android:orientation="vertical">
 
-            </LinearLayout>
+                                <View
+                                    android:layout_width="match_parent"
+                                    android:layout_height="12dp"
+                                    android:background="@drawable/rounded_view"
+                                    android:layout_marginTop="8dp"
+                                    />
 
-        </HorizontalScrollView>
+                            </LinearLayout>
+
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:gravity="center_vertical"
+                            android:layout_marginLeft="24dp"
+                            android:layout_marginRight="24dp"
+                            android:orientation="vertical">
+
+                            <LinearLayout
+                                android:layout_width="60dp"
+                                android:layout_height="60dp"
+                                android:background="@drawable/linear_rounded" />
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="8dp"
+                                android:orientation="vertical">
+
+                                <View
+                                    android:layout_width="match_parent"
+                                    android:layout_height="12dp"
+                                    android:background="@drawable/rounded_view"
+                                    android:layout_marginTop="8dp"
+                                    />
+
+                            </LinearLayout>
+
+                        </LinearLayout>
+
+                    </LinearLayout>
+
+                </HorizontalScrollView>
+
+            </io.supercharge.shimmerlayout.ShimmerLayout>
+
+        </RelativeLayout>
 
         <RelativeLayout
             android:layout_width="match_parent"

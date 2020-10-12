@@ -1,0 +1,303 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:padding="24dp">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_vertical"
+        android:orientation="horizontal">
+
+        <id.dtech.cgo.CustomView.MyTextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="Price Details"
+            android:layout_weight="1"
+            android:textSize="18sp"
+            app:myFontStyle="nunito_sans_semibold"
+            android:textColor="@color/profile_name"
+            />
+
+        <ImageView
+            android:id="@+id/imgBottomClose"
+            android:layout_width="18dp"
+            android:layout_height="18dp"
+            android:src="@drawable/ic_close_black"
+            />
+
+    </LinearLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_marginTop="24dp"
+        android:background="#EDEDED"
+    />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="24dp"
+        android:orientation="horizontal">
+
+        <id.dtech.cgo.CustomView.MyTextView
+            android:id="@+id/txtTitlePackage"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="Price Details"
+            android:layout_weight="1"
+            android:textSize="16sp"
+            app:myFontStyle="nunito_sans_reguler"
+            android:textColor="@color/profile_name"
+            />
+
+        <id.dtech.cgo.CustomView.MyTextView
+            android:id="@+id/txtPricePackage"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="IDR 1.500.000"
+            android:textSize="16sp"
+            app:myFontStyle="nunito_sans_reguler"
+            android:textColor="@color/profile_name"
+            />
+
+    </LinearLayout>
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rvAddonList"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:overScrollMode="never"
+            />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_marginTop="24dp"
+        android:background="#EDEDED"
+        />
+
+    <LinearLayout
+        android:id="@+id/linearSubtotal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:id="@+id/linearPriceDialog"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="24dp"
+            android:visibility="gone"
+            android:orientation="horizontal">
+
+            <id.dtech.cgo.CustomView.MyTextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:text="Price"
+                android:layout_weight="1"
+                android:textSize="16sp"
+                app:myFontStyle="nunito_sans_reguler"
+                android:textColor="@color/profile_name"
+                />
+
+            <id.dtech.cgo.CustomView.MyTextView
+                android:id="@+id/txtPriceDialog"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="IDR 1.500.000"
+                android:textSize="16sp"
+                app:myFontStyle="nunito_sans_reguler"
+                android:textColor="@color/profile_name"
+                />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/linearPricePromo"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="24dp"
+            android:visibility="gone"
+            android:orientation="horizontal">
+
+            <id.dtech.cgo.CustomView.MyTextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:text="Promo Code"
+                android:layout_weight="1"
+                android:textSize="16sp"
+                app:myFontStyle="nunito_sans_reguler"
+                android:textColor="@color/profile_name"
+                />
+
+            <id.dtech.cgo.CustomView.MyTextView
+                android:id="@+id/txtPricePromo"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="- IDR 100.000"
+                android:textSize="16sp"
+                app:myFontStyle="nunito_sans_reguler"
+                android:textColor="#2DCE98"
+                />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/linearPriceCredit"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="24dp"
+            android:visibility="gone"
+            android:orientation="horizontal">
+
+            <id.dtech.cgo.CustomView.MyTextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:text="Credits"
+                android:layout_weight="1"
+                android:textSize="16sp"
+                app:myFontStyle="nunito_sans_reguler"
+                android:textColor="@color/profile_name"
+                />
+
+            <id.dtech.cgo.CustomView.MyTextView
+                android:id="@+id/txtPriceCredit"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="- IDR 100.000"
+                android:textSize="16sp"
+                app:myFontStyle="nunito_sans_reguler"
+                android:textColor="#2DCE98"
+                />
+
+        </LinearLayout>
+
+        <View
+            android:id="@+id/viewDialog1"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_marginTop="24dp"
+            android:background="#EDEDED"
+            android:visibility="gone"
+            />
+
+        <LinearLayout
+            android:id="@+id/linearPriceSubtotal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="24dp"
+            android:visibility="gone"
+            android:orientation="horizontal">
+
+            <id.dtech.cgo.CustomView.MyTextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:text="Sub Total"
+                android:layout_weight="1"
+                android:textSize="16sp"
+                app:myFontStyle="nunito_sans_reguler"
+                android:textColor="@color/profile_name"
+                />
+
+            <id.dtech.cgo.CustomView.MyTextView
+                android:id="@+id/txtSubTotalPrice"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="IDR 1.500.000"
+                android:textSize="16sp"
+                app:myFontStyle="nunito_sans_reguler"
+                android:textColor="@color/profile_name"
+                />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/linearPriceDp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="24dp"
+            android:visibility="gone"
+            android:orientation="horizontal">
+
+            <id.dtech.cgo.CustomView.MyTextView
+                android:id="@+id/txtDp"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:text="Down Payment (40%)"
+                android:layout_weight="1"
+                android:textSize="16sp"
+                app:myFontStyle="nunito_sans_reguler"
+                android:textColor="@color/profile_name"
+                />
+
+            <id.dtech.cgo.CustomView.MyTextView
+                android:id="@+id/txtPriceDp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="IDR 740.000"
+                android:textSize="16sp"
+                app:myFontStyle="nunito_sans_reguler"
+                android:textColor="@color/profile_name"
+                />
+
+        </LinearLayout>
+
+        <View
+            android:id="@+id/viewDialog2"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_marginTop="24dp"
+            android:background="#EDEDED"
+            android:visibility="gone"
+            />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="24dp"
+        android:orientation="horizontal">
+
+        <id.dtech.cgo.CustomView.MyTextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="Total Price"
+            android:layout_weight="1"
+            android:textSize="16sp"
+            app:myFontStyle="nunito_sans_reguler"
+            android:textColor="@color/profile_name"
+            />
+
+        <id.dtech.cgo.CustomView.MyTextView
+            android:id="@+id/txtDialogTotalPrice"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="IDR 1.500.000"
+            android:textSize="16sp"
+            app:myFontStyle="nunito_sans_bold"
+            android:textColor="#233E98"
+            />
+
+    </LinearLayout>
+
+    <id.dtech.cgo.CustomView.MyTextView
+        android:id="@+id/txtDpTotalPrice"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="(Down Payment 40%)"
+        android:textSize="16sp"
+        app:myFontStyle="nunito_sans_reguler"
+        android:textColor="@color/profile_name"
+        android:layout_marginTop="4dp"
+        android:visibility="gone"
+        />
+
+</LinearLayout>
+
