@@ -55,6 +55,8 @@ class ExperienceDetailModel() : Parcelable {
     var exp_languages : ArrayList<HashMap<String,Any>>? = null
     var exp_accomodations : ArrayList<HashMap<String,Any>>? = null
     var minimum_booking : MinimumBookingModel? = null
+    var isGuideMaleExist : Boolean? = false
+    var isGuideFemaleExist : Boolean? = false
 
     constructor(parcel: Parcel) : this() {
         experience_id = parcel.readString()
@@ -79,6 +81,9 @@ class ExperienceDetailModel() : Parcelable {
         count_rating = parcel.readInt()
         is_customised_intinerary = parcel.readInt()
         is_certified_guide = parcel.readInt()
+        is_flexible_ticket = parcel.readInt()
+        exp_validity_amount = parcel.readInt()
+        exp_validity_type = parcel.readString()
         merchant_id = parcel.readString()
         harbors_name = parcel.readString()
         trading_hour_start = parcel.readString()
@@ -89,6 +94,8 @@ class ExperienceDetailModel() : Parcelable {
         start_point = parcel.readString()
         end_point = parcel.readString()
         how_to_get_location = parcel.readString()
+        isGuideMaleExist = parcel.readValue(Boolean::class.java.classLoader) as? Boolean
+        isGuideFemaleExist = parcel.readValue(Boolean::class.java.classLoader) as? Boolean
     }
 
     override fun writeToParcel(parcel: Parcel, flags: Int) {
@@ -114,6 +121,9 @@ class ExperienceDetailModel() : Parcelable {
         parcel.writeInt(count_rating)
         parcel.writeInt(is_customised_intinerary)
         parcel.writeInt(is_certified_guide)
+        parcel.writeInt(is_flexible_ticket)
+        parcel.writeInt(exp_validity_amount)
+        parcel.writeString(exp_validity_type)
         parcel.writeString(merchant_id)
         parcel.writeString(harbors_name)
         parcel.writeString(trading_hour_start)
@@ -124,6 +134,8 @@ class ExperienceDetailModel() : Parcelable {
         parcel.writeString(start_point)
         parcel.writeString(end_point)
         parcel.writeString(how_to_get_location)
+        parcel.writeValue(isGuideMaleExist)
+        parcel.writeValue(isGuideFemaleExist)
     }
 
     override fun describeContents(): Int {
@@ -139,5 +151,4 @@ class ExperienceDetailModel() : Parcelable {
             return arrayOfNulls(size)
         }
     }
-
 }

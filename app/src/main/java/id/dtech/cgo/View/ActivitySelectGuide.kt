@@ -22,10 +22,10 @@ class ActivitySelectGuide : AppCompatActivity(), View.OnClickListener,
 
     private lateinit var intentMap : HashMap<String,Any>
 
-    private lateinit var packageMap : HashMap<String,Any>
-    private lateinit var experienceDetailModel : ExperienceDetailModel
-    private lateinit var guideList : ArrayList<HashMap<String,Any>>
-    private lateinit var packageList : ArrayList<HashMap<String,Any>>
+    private  var packageMap : HashMap<String,Any>? = null
+    private  var experienceDetailModel : ExperienceDetailModel? = null
+    private  var guideList : ArrayList<HashMap<String,Any>>? = null
+    private  var packageList : ArrayList<HashMap<String,Any>>? = null
 
     private var intentFrom = 0
 
@@ -40,19 +40,31 @@ class ActivitySelectGuide : AppCompatActivity(), View.OnClickListener,
         val b = intent.extras
 
         b?.let {
-            intentMap = it.getSerializable("intentMap") as HashMap<String, Any>
-            intentFrom = it.getInt("intent_from")
 
-            experienceDetailModel = intentMap["experienceDetailModel"] as ExperienceDetailModel
-            packageMap = intentMap["packageMap"] as HashMap<String, Any>
+            if (it.getSerializable("intentMap") != null){
+                intentMap = it.getSerializable("intentMap") as HashMap<String,Any>
+                intentFrom = it.getInt("intent_from")
 
-            guideList = intentMap["guideList"] as ArrayList<HashMap<String, Any>>
-            packageList = intentMap["packageList"] as ArrayList<HashMap<String, Any>>
+                if (intentMap["experienceDetailModel"] != null){
+                    experienceDetailModel = intentMap["experienceDetailModel"] as ExperienceDetailModel
+                    txtLocation.text = experienceDetailModel?.harbors_name+", "+experienceDetailModel?.province
+                    txtTitle.text = experienceDetailModel?.exp_title ?: ""
+                }
 
-            txtLocation.text = experienceDetailModel.harbors_name+", "+experienceDetailModel.province
-            txtTitle.text = experienceDetailModel.exp_title ?: ""
+                if (intentMap["packageMap"] != null){
+                    packageMap = intentMap["packageMap"] as HashMap<String, Any>
+                }
 
-            initiateGuide()
+                if (intentMap["guideList"] != null){
+                    guideList = intentMap["guideList"] as ArrayList<HashMap<String, Any>>
+                }
+
+                if (intentMap["packageList"] != null){
+                    packageList = intentMap["packageList"] as ArrayList<HashMap<String, Any>>
+                }
+
+                initiateGuide()
+            }
         }
 
         ivBack.setOnClickListener(this)
@@ -66,27 +78,36 @@ class ActivitySelectGuide : AppCompatActivity(), View.OnClickListener,
             selectedPosition = selectedPosition()
         }
 
-        rvGuide.layoutManager = LinearLayoutManager(this)
-        rvGuide.adapter = GuideAdapter(this,1, guideList, selectedPosition,
-            this)
+        if (guideList != null){
+            rvGuide.layoutManager = LinearLayoutManager(this)
+            rvGuide.adapter = GuideAdapter(this,1, guideList!!, selectedPosition,
+                this)
+        }
     }
 
     private fun selectedPosition() : Int {
-        val selectedMap = intentMap["selectedGuideMap"] as HashMap<String,Any>
-        val currentSelectedId = selectedMap["guide_id"] as String
-        var selectedMapPosition = 0
+        if (intentMap["selectedGuideMap"] != null){
+            val selectedMap = intentMap["selectedGuideMap"] as HashMap<String,Any>
+            val currentSelectedId = selectedMap["guide_id"] as String
+            var selectedMapPosition = 0
 
-        for (i in 0 until guideList.size){
-            val guideListMap = guideList[i]
-            val guideListMapId = guideListMap["guide_id"] as String
+            if (guideList != null){
+                for (i in 0 until guideList!!.size ){
+                    val guideListMap = guideList!![i]
+                    val guideListMapId = guideListMap["guide_id"] as String
 
-            if (guideListMapId == currentSelectedId){
-                selectedMapPosition = i
-                break
+                    if (guideListMapId == currentSelectedId){
+                        selectedMapPosition = i
+                        break
+                    }
+                }
             }
-        }
 
-        return selectedMapPosition
+            return selectedMapPosition
+        }
+        else{
+            return 0
+        }
     }
 
     private fun intentAddOn(){

@@ -416,6 +416,9 @@ class ExperienceController {
                             var exp_validity_amount = 0
                             var exp_validity_type = ""
 
+                            var isGuideMaleExist = false
+                            var isGuideFemaleExist = false
+
                             if (!jsonObject.isNull("is_customised_intinerary")){
                                 is_customised_intinerary = jsonObject.getInt("is_customised_intinerary")
                             }
@@ -425,8 +428,15 @@ class ExperienceController {
                             }
 
                             if (!jsonObject.isNull("is_flexible_ticket")){
-                                is_flexible_ticket = jsonObject.getInt("is_flexible_ticket")
-                                exp_validity_amount = jsonObject.getInt("exp_validity_amount")
+
+                                if (!jsonObject.isNull("is_flexible_ticket")){
+                                    is_flexible_ticket = jsonObject.getInt("is_flexible_ticket")
+                                }
+
+                                if (!jsonObject.isNull("exp_validity_amount")){
+                                    exp_validity_amount = jsonObject.getInt("exp_validity_amount")
+                                }
+
                                 exp_validity_type = jsonObject.getString("exp_validity_type")
                             }
 
@@ -678,6 +688,13 @@ class ExperienceController {
                                 val genderLanguageArray = guideObject.getJSONArray("language")
                                 val genderLanguageArraySize = genderLanguageArray.length()
 
+                                if (gender_value == "Male"){
+                                    isGuideMaleExist = true
+                                }
+                                else{
+                                    isGuideFemaleExist = true
+                                }
+
                                 for (s in 0 until genderLanguageArraySize){
                                     val genderLanguageObject = genderLanguageArray[s] as JSONObject
                                     val genderLanguageId = genderLanguageObject.getInt("id")
@@ -814,7 +831,12 @@ class ExperienceController {
                                         val packagePaymentTypeId = packagePaymentObject.getString("payment_type_id")
                                         val packagePaymentTypeName = packagePaymentObject.getString("payment_type_name")
                                         val packagePaymentTypeDesc = packagePaymentObject.getString("payment_type_desc")
-                                        val paymentPerecentage = packagePaymentObject.getInt("payment_precentage")
+
+                                        var paymentPerecentage = 0
+
+                                        if (!packagePaymentObject.isNull("payment_precentage")){
+                                            paymentPerecentage = packagePaymentObject.getInt("payment_precentage")
+                                        }
 
                                         val packagePaymentCustomPriceList = ArrayList<HashMap<String,Any>>()
 
@@ -990,6 +1012,8 @@ class ExperienceController {
                             experienceDetailModel.is_flexible_ticket = is_flexible_ticket
                             experienceDetailModel.exp_validity_amount = exp_validity_amount
                             experienceDetailModel.exp_validity_type = exp_validity_type
+                            experienceDetailModel.isGuideMaleExist = isGuideMaleExist
+                            experienceDetailModel.isGuideFemaleExist = isGuideFemaleExist
 
                             experienceDetailCallback.onExperienceDetailLoaded(experienceDetailModel)
                         }

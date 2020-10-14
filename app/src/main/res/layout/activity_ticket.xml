@@ -64,6 +64,7 @@
                 android:background="@drawable/background_white_ticket">
 
                 <id.dtech.cgo.CustomView.MyTextView
+                    android:id="@+id/txtValidUntil"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="E-ticket valid until 24 Feb 2020"
@@ -277,6 +278,7 @@
                     />
 
                 <LinearLayout
+                    android:id="@+id/linearPlace"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:orientation="horizontal"
@@ -285,47 +287,15 @@
                     android:layout_marginRight="24dp">
 
                     <TextView
-                        android:layout_width="wrap_content"
+                        android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:text="@string/place"
                         android:textSize="16sp"
+                        android:layout_weight="1"
                         android:textColor="@color/profile_name"
                         />
-
-                    <Space
-                        android:layout_width="24dp"
-                        android:layout_height="wrap_content"/>
 
                     <id.dtech.cgo.CustomView.MyTextView
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:textSize="14sp"
-                        android:textColor="@color/profile_name"
-                        app:myFontStyle="nunito_sans_reguler"
-                        android:text="@string/meeting_point_content"
-                        />
-
-                </LinearLayout>
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="horizontal"
-                    android:layout_marginTop="12dp"
-                    android:layout_marginLeft="24dp"
-                    android:layout_marginRight="24dp">
-
-                    <TextView
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:text="@string/place"
-                        android:textSize="16sp"
-                        android:layout_weight="1"
-                        android:textColor="@color/profile_name"
-                        />
-
-                    <TextView
                         android:id="@+id/txtMeetPlace"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"

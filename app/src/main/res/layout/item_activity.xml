@@ -3,58 +3,18 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    android:layout_marginTop="3dp"
     android:orientation="horizontal">
 
     <LinearLayout
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_height="match_parent"
         android:orientation="vertical">
 
-        <View
+        <ImageView
             android:layout_width="1dp"
-            android:layout_height="5dp"
-            android:background="@color/divider_color"
-            android:layout_marginTop="3dp"
-            android:layout_marginLeft="8dp"
-            />
-
-        <View
-            android:layout_width="1dp"
-            android:layout_height="5dp"
-            android:background="@color/divider_color"
-            android:layout_marginTop="3dp"
-            android:layout_marginLeft="8dp"
-            />
-
-        <View
-            android:layout_width="1dp"
-            android:layout_height="5dp"
-            android:background="@color/divider_color"
-            android:layout_marginTop="3dp"
-            android:layout_marginLeft="8dp"
-            />
-
-        <View
-            android:layout_width="1dp"
-            android:layout_height="5dp"
-            android:background="@color/divider_color"
-            android:layout_marginTop="3dp"
-            android:layout_marginLeft="8dp"
-            />
-
-        <View
-            android:layout_width="1dp"
-            android:layout_height="5dp"
-            android:background="@color/divider_color"
-            android:layout_marginTop="3dp"
-            android:layout_marginLeft="8dp"
-            />
-
-        <View
-            android:layout_width="1dp"
-            android:layout_height="5dp"
-            android:background="@color/divider_color"
-            android:layout_marginTop="3dp"
+            android:layout_height="match_parent"
+            android:background="@drawable/background_dashline_vertical"
             android:layout_marginLeft="8dp"
             />
 
@@ -78,8 +38,6 @@
         android:layout_marginLeft="16dp"
         android:textSize="14sp"
         android:textColor="@color/profile_name"
-        android:maxLines="2"
-        android:ellipsize="end"
         />
 
 </LinearLayout>

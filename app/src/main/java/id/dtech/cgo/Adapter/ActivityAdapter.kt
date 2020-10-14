@@ -10,7 +10,8 @@ import id.dtech.cgo.CustomView.MyTextView
 import id.dtech.cgo.Model.ItenaryModel
 import id.dtech.cgo.R
 
-class ActivityAdapter (context : Context, activities : ArrayList<ItenaryModel>) : RecyclerView.Adapter<ActivityAdapter.ActivityViewHolder>() {
+class ActivityAdapter (context : Context, activities : ArrayList<ItenaryModel>) :
+    RecyclerView.Adapter<ActivityAdapter.ActivityViewHolder>() {
 
     private val contexs = context
     private val listActivity = activities

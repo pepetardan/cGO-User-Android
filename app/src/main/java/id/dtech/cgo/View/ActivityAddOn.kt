@@ -170,7 +170,13 @@ class ActivityAddOn : AppCompatActivity(), View.OnClickListener, MyCallback.Comp
         defaultCurrency = packageMap["packageCurrency"] as String? ?: ""
 
         val totalGuest = adultCount + childrenCount
-        price = (packageMap["packagePrice"] as Long? ?: 0) * totalGuest
+
+        if (totalGuest != 0) {
+            price = (packageMap["packagePrice"] as Long? ?: 0) * totalGuest
+        }
+        else{
+            price = packageMap["packagePrice"] as Long? ?: 0
+        }
 
         txtLocation.text = experienceDetailModel.harbors_name+", "+experienceDetailModel.province
         txtTitle.text = experienceDetailModel.exp_title ?: ""
@@ -221,8 +227,9 @@ class ActivityAddOn : AppCompatActivity(), View.OnClickListener, MyCallback.Comp
     @SuppressLint("SetTextI18n")
     private fun setTotalPrice(from : Int){
         val total_price = CurrencyUtil.decimal(price).replace(",",".")
+
         if (from == 0){
-            txtPrice.text = "$defaultCurrency $total_price/$paymentType"
+            txtPrice.text = "$defaultCurrency $total_price"
         }
         else{
             var totalPrice = 0L
@@ -760,8 +767,14 @@ class ActivityAddOn : AppCompatActivity(), View.OnClickListener, MyCallback.Comp
             val paymentType = packageMap["packageTypePayment"] as String
 
             if (paymentType == "Per Pax"){
-                selectedAddOnList[0].amount = packageMap["packagePrice"] as Long  * totalGuest
-                addOnModelList[0].amount = packageMap["packagePrice"] as Long  * totalGuest
+                if (totalGuest != 0){
+                    selectedAddOnList[0].amount = packageMap["packagePrice"] as Long  * totalGuest
+                    addOnModelList[0].amount = packageMap["packagePrice"] as Long  * totalGuest
+                }
+                else{
+                    selectedAddOnList[0].amount = packageMap["packagePrice"] as Long
+                    addOnModelList[0].amount = packageMap["packagePrice"] as Long
+                }
             }
             else{
                 selectedAddOnList[0].amount = packageMap["packagePrice"] as Long

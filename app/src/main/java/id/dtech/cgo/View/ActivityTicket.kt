@@ -192,10 +192,21 @@ class ActivityTicket : AppCompatActivity(), View.OnClickListener,
         val merchant_picture = experienceMap["merchant_picture"] as String
         val merchant_name = experienceMap["merchant_name"] as String
         val merchant_phone = experienceMap["merchant_phone"] as String
+        val ticket_valid_date = experienceMap["ticket_valid_date"] as? String ?: ""
         val barcode_picture = data["ticket_qr_code"] as String
 
         rvType.adapter = ServiceTypeAdapter(0,this,typeList)
         applyDate(bookingDate,expDuration)
+
+        if (ticket_valid_date.isNotEmpty()){
+            if (ticket_valid_date != "null"){
+                txtValidUntil.visibility = View.VISIBLE
+                txtValidUntil.text = "E-ticket valid until $ticket_valid_date"
+            }
+        }
+        else{
+            txtValidUntil.visibility = View.GONE
+        }
 
         if (barcode_picture.isNotEmpty()){
             Picasso.get().load(barcode_picture).into(imgQrCode)

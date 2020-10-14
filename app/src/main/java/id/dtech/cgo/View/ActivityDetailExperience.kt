@@ -169,6 +169,8 @@ class ActivityDetailExperience : AppCompatActivity(), View.OnClickListener,
     private var isItenarySeeMore = false
     private var isFacilitySeeMore = false
 
+    private lateinit var selectedPackageMap : HashMap<String,Any>
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         FacebookSdk.sdkInitialize(applicationContext)
@@ -1012,6 +1014,7 @@ class ActivityDetailExperience : AppCompatActivity(), View.OnClickListener,
 
 
         if (packageFrom == 1){
+            selectedPackageMap = packageMap
             intentCheckout(packageMap)
         }
     }
@@ -1019,7 +1022,8 @@ class ActivityDetailExperience : AppCompatActivity(), View.OnClickListener,
     @SuppressLint("SimpleDateFormat")
     private fun intentCheckout(packageMap : HashMap<String,Any>?){
           val intentMap = HashMap<String,Any>()
-          intentMap["packageMap"] = packageMap ?: HashMap<String,Any>()
+          intentMap["packageMap"] = selectedPackageMap
+          intentMap["packageExpPayment"] = selectedPackageMap["packageExpPayment"] as ArrayList<HashMap<String,Any>>
           intentMap["experienceDetailModel"] = experienceDetailModel
           intentMap["guideList"] = experienceDetailModel.exp_guides ?: ArrayList<HashMap<String,Any>>()
           intentMap["packageList"] = experienceDetailModel.exp_packages ?: ArrayList<HashMap<String,Any>>()
@@ -1068,13 +1072,6 @@ class ActivityDetailExperience : AppCompatActivity(), View.OnClickListener,
                   return
               }
 
-              experienceDetailModel.exp_packages?.let { packageList ->
-                  if (packageList.size > 0){
-                      intentMap["packageMap"] = packageList[0]
-                      intentMap["packageExpPayment"] = packageList[0]["packageExpPayment"] as ArrayList<HashMap<String,Any>>
-                  }
-              }
-
               experienceDetailModel.exp_guides?.let { guideList ->
                   if (guideList.size > 1){
                       val i = Intent(this,ActivitySelectGuide::class.java)
@@ -1108,10 +1105,10 @@ class ActivityDetailExperience : AppCompatActivity(), View.OnClickListener,
         val isFlexibleTicket = experienceDetailModel.is_flexible_ticket
         val flexibleTicketValid = experienceDetailModel.exp_validity_amount
         val flexibleTicketType = experienceDetailModel.exp_validity_type
+        val pickupPlace = experienceDetailModel.exp_pickup_place ?: ""
 
         setTextDescription()
 
-        txtPlace.text = experienceDetailModel.exp_pickup_place ?: ""
         txtTitle.text = experienceDetailModel.exp_title ?: ""
         txtLocation.text = experienceDetailModel.harbors_name+", "+experienceDetailModel.province
         txtGuest.text = "Max. "+experienceDetailModel.exp_max_guest+" Person"
@@ -1125,6 +1122,33 @@ class ActivityDetailExperience : AppCompatActivity(), View.OnClickListener,
 
         val sdf = SimpleDateFormat("HH:mm:ss")
         val sdfs = SimpleDateFormat("HH:mm")
+        val isGuideMaleExist = experienceDetailModel.isGuideMaleExist ?: false
+        val isGuideFemaleExist = experienceDetailModel.isGuideFemaleExist ?: false
+
+        if (pickupPlace.isNotEmpty()){
+            linearMeetingPlace.visibility = View.VISIBLE
+            txtPlace.text = pickupPlace
+        }
+        else{
+            linearMeetingPlace.visibility = View.GONE
+        }
+
+        if (isGuideMaleExist || isGuideFemaleExist){
+            linearTourGuide.visibility = View.VISIBLE
+
+            if (isGuideMaleExist && isGuideFemaleExist){
+                txtGuideGender.text = "Female & Male Guide Options"
+            }
+            else if (isGuideFemaleExist){
+                txtGuideGender.text = "Female Guide Options"
+            }
+            else{
+                txtGuideGender.text = "Male Guide Options"
+            }
+        }
+        else{
+            linearTourGuide.visibility = View.GONE
+        }
 
         if (isFlexibleTicket != 0){
             linearFlexibleTicket.visibility = View.VISIBLE
@@ -1132,19 +1156,31 @@ class ActivityDetailExperience : AppCompatActivity(), View.OnClickListener,
                     " after chosen trip date"
         }
 
-        if (address.isNotEmpty() || address != "null"){
+        if (address.isNotEmpty() && address != "null"){
+            linearAddressExperience.visibility = View.VISIBLE
             txtAddress.text = address
         }
+        else{
+            linearAddressExperience.visibility = View.GONE
+        }
 
-        if (pickupTime != "null"){
+        if (pickupTime != "null" && pickupTime != "00:00:00"){
+            linearPickupTime.visibility = View.VISIBLE
             val pickupDateTime = sdf.parse(pickupTime) ?:  Date()
             txtTime.text = sdfs.format(pickupDateTime)
         }
+        else{
+            linearPickupTime.visibility = View.GONE
+        }
 
         if (startTradeHour != "null" && endTradeHour != "null"){
+            linearTradingHour.visibility = View.VISIBLE
             val tradeHourStart = sdf.parse(startTradeHour) ?:  Date()
             val endHourStart = sdf.parse(endTradeHour) ?:  Date()
             txtTradingHour.text = "${sdfs.format(tradeHourStart)} - ${sdfs.format(endHourStart)}"
+        }
+        else{
+            linearTradingHour.visibility = View.GONE
         }
 
         if (experienceDetailModel.start_point != null){
@@ -1166,13 +1202,6 @@ class ActivityDetailExperience : AppCompatActivity(), View.OnClickListener,
             else{
                 linearToGetThere.visibility = View.GONE
             }
-        }
-
-        if (experienceDetailModel.exp_duration > 1){
-            txtDuration.text = "Duration "+experienceDetailModel.exp_duration+" days"
-        }
-        else{
-            txtDuration.text = "Duration "+experienceDetailModel.exp_duration+" day"
         }
 
         if (countRating > 1){
@@ -1365,6 +1394,7 @@ class ActivityDetailExperience : AppCompatActivity(), View.OnClickListener,
             }
 
             setPackage(packageMap,0)
+            selectedPackageMap = packageMap
         }
 
         val marker_option =  MarkerOptions()
