@@ -13,6 +13,7 @@ class ExperienceDetailModel() : Parcelable {
     var exp_desc : String? = null
     var exp_max_guest : Int = 0
     var exp_pickup_place : String? = null
+    var exp_pickup_place_desc : String? = null
     var exp_pickup_time  : String? = null
     var exp_pickup_place_longitude  : Double = 0.0
     var exp_pickup_place_latitude : Double = 0.0
@@ -66,6 +67,7 @@ class ExperienceDetailModel() : Parcelable {
         exp_desc = parcel.readString()
         exp_max_guest = parcel.readInt()
         exp_pickup_place = parcel.readString()
+        exp_pickup_place_desc = parcel.readString()
         exp_pickup_time = parcel.readString()
         exp_pickup_place_longitude = parcel.readDouble()
         exp_pickup_place_latitude = parcel.readDouble()
@@ -106,6 +108,7 @@ class ExperienceDetailModel() : Parcelable {
         parcel.writeString(exp_desc)
         parcel.writeInt(exp_max_guest)
         parcel.writeString(exp_pickup_place)
+        parcel.writeString(exp_pickup_place_desc)
         parcel.writeString(exp_pickup_time)
         parcel.writeDouble(exp_pickup_place_longitude)
         parcel.writeDouble(exp_pickup_place_latitude)

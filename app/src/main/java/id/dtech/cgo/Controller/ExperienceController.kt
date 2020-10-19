@@ -387,6 +387,7 @@ class ExperienceController {
                             val exp_desc = jsonObject.getString("exp_desc")
                             val exp_max_guest = jsonObject.getInt("exp_max_guest")
                             val exp_pickup_place = jsonObject.getString("exp_pickup_place")
+                            val exp_pickup_place_desc = jsonObject.getString("exp_pickup_place_desc")
                             val exp_pickup_time  = jsonObject.getString("exp_pickup_time")
                             val exp_pickup_place_longitude  = jsonObject.getDouble("exp_pickup_place_longitude")
                             val exp_pickup_place_latitude = jsonObject.getDouble("exp_pickup_place_latitude")
@@ -970,6 +971,7 @@ class ExperienceController {
                             experienceDetailModel.exp_desc = exp_desc
                             experienceDetailModel.exp_max_guest  = exp_max_guest
                             experienceDetailModel.exp_pickup_place = exp_pickup_place
+                            experienceDetailModel.exp_pickup_place_desc = exp_pickup_place_desc
                             experienceDetailModel.exp_pickup_time   = exp_pickup_time
                             experienceDetailModel.exp_pickup_place_longitude  = exp_pickup_place_longitude
                             experienceDetailModel.exp_pickup_place_latitude = exp_pickup_place_latitude

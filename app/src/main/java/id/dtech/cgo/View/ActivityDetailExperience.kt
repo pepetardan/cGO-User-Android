@@ -1105,7 +1105,7 @@ class ActivityDetailExperience : AppCompatActivity(), View.OnClickListener,
         val isFlexibleTicket = experienceDetailModel.is_flexible_ticket
         val flexibleTicketValid = experienceDetailModel.exp_validity_amount
         val flexibleTicketType = experienceDetailModel.exp_validity_type
-        val pickupPlace = experienceDetailModel.exp_pickup_place ?: ""
+        val pickupPlace = experienceDetailModel.exp_pickup_place_desc ?: ""
 
         setTextDescription()
 
