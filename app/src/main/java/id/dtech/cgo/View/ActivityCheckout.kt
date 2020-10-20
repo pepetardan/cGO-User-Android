@@ -752,7 +752,7 @@ class ActivityCheckout : AppCompatActivity(), View.OnClickListener, ApplicationL
 
         val addOnTicketPrice : String
 
-        if (paymentType == "Per Pax"){
+        if (paymentType == "Pax"){
              addOnTicketPrice = CurrencyUtil.decimal(addOnList[0].amount / totalGuest).replace(",",
                 ".")
         }
