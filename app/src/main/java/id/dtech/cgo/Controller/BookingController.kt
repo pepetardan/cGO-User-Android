@@ -250,13 +250,18 @@ class BookingController {
                             val exp_payment_deadline_type = experienceObject.getString("exp_payment_deadline_type")
                             val ticket_valid_date = experienceObject.getString("ticket_valid_date")
 
+                            val packageObject = experienceObject.getJSONObject("package")
+                            val package_id = packageObject.getInt("id")
+
                             var addOnModel : AddOnModel? = null
+
+                            val addOnList = ArrayList<AddOnModel>()
 
                             if (!experienceObject.isNull("experience_add_on")){
                                 val addonArray =  experienceObject.getJSONArray("experience_add_on")
 
-                                if (addonArray.length() > 0){
-                                    val addOnObject = addonArray[0] as JSONObject
+                                for (i in 0 until addonArray.length()){
+                                    val addOnObject = addonArray[i] as JSONObject
 
                                     addOnModel = AddOnModel()
                                     addOnModel.id = addOnObject.getString("id")
@@ -264,14 +269,14 @@ class BookingController {
                                     addOnModel.desc = addOnObject.getString("desc")
                                     addOnModel.currency = addOnObject.getString("currency")
                                     addOnModel.amount = addOnObject.getLong("amount")
+                                    addOnList.add(addOnModel)
                                 }
+
                             }
 
                             if (addOnModel != null ){
                                 experienceMap["add_on_model"] = addOnModel
                             }
-
-                            val addOnlist = ArrayList<AddOnModel>()
 
                             if (!jsonObject.isNull("experience_add_on")){
                                 val addOnArray = jsonObject.getJSONArray("experience_add_on")
@@ -297,7 +302,8 @@ class BookingController {
                             experienceMap["exp_payment_deadline_amount"] = exp_payment_deadline_amount
                             experienceMap["exp_payment_deadline_type"] = exp_payment_deadline_type
                             experienceMap["package_name"] = package_name
-                            experienceMap["addOnlist"] = addOnlist
+                            experienceMap["package_id"] = package_id
+                            experienceMap["addOnList"] = addOnList
                         }
 
                         val transportList = ArrayList<TransportationModel>()
@@ -357,8 +363,6 @@ class BookingController {
 
                         if (!jsonObject.isNull("exp_payment")){
                             val expPaymentObject = jsonObject.getJSONObject("exp_payment")
-                            val packageId = expPaymentObject.getInt("package_id")
-                            expPaymentMap["packageId"] = packageId
                         }
 
                         val bookingDetailMap = HashMap<String,Any>()

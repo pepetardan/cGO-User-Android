@@ -185,7 +185,7 @@ class ActivityTicket : AppCompatActivity(), View.OnClickListener,
         val bookingDate = data["booking_date"] as String
         val harborName = experienceMap["harbors_name"] as String
         val provinceName = experienceMap["province_name"] as String
-        val addOnlist = experienceMap["addOnlist"] as ArrayList<AddOnModel>
+        val addOnlist = experienceMap["addOnList"] as ArrayList<AddOnModel>
 
         guestList = data["guest_desc"] as ArrayList<HashMap<String,Any>>
         val total_guest = guestList.size
@@ -238,8 +238,8 @@ class ActivityTicket : AppCompatActivity(), View.OnClickListener,
         var isPackageIdZero = false
         var isAddOnEmpty = false
 
-        if (expPaymentMap["packageId"] != null){
-            packageId = expPaymentMap["packageId"] as Int
+        if (experienceMap["package_id"] != null){
+            packageId = experienceMap["package_id"] as Int
         }
 
         if (packageId != 0){
