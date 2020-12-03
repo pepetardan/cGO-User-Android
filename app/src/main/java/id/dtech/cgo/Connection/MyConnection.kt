@@ -55,7 +55,7 @@ class MyConnection {
             // http://cgo-web-api.azurewebsites.net -> Staging
             // https://api-cgo-prod.azurewebsites.net -> Prod
             return Retrofit.Builder()
-                .baseUrl("http://cgo-web-api.azurewebsites.net/")
+                .baseUrl("https://api-cgo-prod.azurewebsites.net/")
                 .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
                 .addConverterFactory(GsonConverterFactory.create())
                 .client(buildClient(token))

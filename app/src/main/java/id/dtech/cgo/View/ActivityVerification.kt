@@ -68,7 +68,6 @@ class ActivityVerification : AppCompatActivity(), View.OnClickListener,
             expiredMilis = bundle.getLong("expired_milis")
 
             txtPhone.text = "Please type the verification code sent \n to $strPhoneNumber"
-            etBlock.setText(strCode)
 
             countDown()
         }
