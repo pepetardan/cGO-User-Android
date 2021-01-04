@@ -262,7 +262,7 @@ class ActivityExperience : AppCompatActivity(), View.OnClickListener, MyCallback
 
     private fun loadDefaultExperience(){
         start_date = getAddMonthCalendar(0)
-        end_date = getAddMonthCalendar(2)
+        end_date = getAddMonthCalendar(24)
 
         experienceController.getExperienceSearch(harbor_id,city_id,province_id,typelist.toString().replace(
             " ", ""),start_date, end_date,guest,trip,bottomprice,upperprice,
