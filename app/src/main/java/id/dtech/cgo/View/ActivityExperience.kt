@@ -236,12 +236,7 @@ class ActivityExperience : AppCompatActivity(), View.OnClickListener, MyCallback
                     icSearchClose.visibility = View.VISIBLE
                 }
 
-                start_date = getAddMonthCalendar(0)
-                end_date = getAddMonthCalendar(2)
-
-                experienceController.getExperienceSearch(harbor_id,city_id,province_id,typelist.toString().replace(
-                    " ", ""),start_date, end_date,guest,trip,bottomprice,upperprice,
-                    sortby, payment_type,booking_confirmation,1,10,1,this)
+                loadDefaultExperience()
             }
         }
 
@@ -253,12 +248,25 @@ class ActivityExperience : AppCompatActivity(), View.OnClickListener, MyCallback
         setTransportationFilterBy()
 
         ivBack.setOnClickListener(this)
+        relativeShareReferal.setOnClickListener(this)
+        linearSailing.setOnClickListener(this)
+        linearTour.setOnClickListener(this)
+        linearSnorkeling.setOnClickListener(this)
         icSearchClose.setOnClickListener(this)
         linearShortBy.setOnClickListener(this)
         linearFilterBy.setOnClickListener(this)
         linearSearch.setOnClickListener(this)
         linearActivity.setOnClickListener(this)
         linearGuest.setOnClickListener(this)
+    }
+
+    private fun loadDefaultExperience(){
+        start_date = getAddMonthCalendar(0)
+        end_date = getAddMonthCalendar(2)
+
+        experienceController.getExperienceSearch(harbor_id,city_id,province_id,typelist.toString().replace(
+            " ", ""),start_date, end_date,guest,trip,bottomprice,upperprice,
+            sortby, payment_type,booking_confirmation,1,10,1,this)
     }
 
     @SuppressLint("SimpleDateFormat")
@@ -913,6 +921,7 @@ class ActivityExperience : AppCompatActivity(), View.OnClickListener, MyCallback
         txtSearch.text = getString(R.string.search_content)
         txtSearch.setTextColor(Color.parseColor("#BDBDBD"))
         icSearchClose.visibility = View.GONE
+
         province_id = null
         harbor_id = null
 
@@ -1155,6 +1164,32 @@ class ActivityExperience : AppCompatActivity(), View.OnClickListener, MyCallback
                     startActivity(i)
                     finish()
                 }
+            }
+
+            R.id.linearSailing -> {
+                typelist.add(4)
+                loadDefaultExperience()
+                txtActivities.text = "Activities: 1"
+                linearActivity.setBackgroundResource(R.drawable.background_more_stroke)
+            }
+
+            R.id.linearTour -> {
+                typelist.add(7)
+                loadDefaultExperience()
+                txtActivities.text = "Activities: 1"
+                linearActivity.setBackgroundResource(R.drawable.background_more_stroke)
+            }
+
+            R.id.linearSnorkeling -> {
+                typelist.add(3)
+                loadDefaultExperience()
+                txtActivities.text = "Activities: 1"
+                linearActivity.setBackgroundResource(R.drawable.background_more_stroke)
+            }
+
+            R.id.relativeShareReferal -> {
+                val i = Intent(this,ActivityShareReferal::class.java)
+                startActivity(i)
             }
 
             R.id.linearSearch -> {
