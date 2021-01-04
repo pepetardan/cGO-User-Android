@@ -52,7 +52,7 @@ class BlogConnection {
 
         private fun buildRetrofit(token : String?) : Retrofit {
             return Retrofit.Builder()
-                .baseUrl("https://adminblog.cgo.co.id/")
+                .baseUrl("https://api-cgo-prod.azurewebsites.net/")
                 .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
                 .addConverterFactory(GsonConverterFactory.create())
                 .client(buildClient(token))
