@@ -387,6 +387,7 @@ class ExperienceController {
                             val exp_desc = jsonObject.getString("exp_desc")
                             val exp_max_guest = jsonObject.getInt("exp_max_guest")
                             val exp_pickup_place = jsonObject.getString("exp_pickup_place")
+                            val exp_pickup_place_desc = jsonObject.getString("exp_pickup_place_desc")
                             val exp_pickup_time  = jsonObject.getString("exp_pickup_time")
                             val exp_pickup_place_longitude  = jsonObject.getDouble("exp_pickup_place_longitude")
                             val exp_pickup_place_latitude = jsonObject.getDouble("exp_pickup_place_latitude")
@@ -416,6 +417,9 @@ class ExperienceController {
                             var exp_validity_amount = 0
                             var exp_validity_type = ""
 
+                            var isGuideMaleExist = false
+                            var isGuideFemaleExist = false
+
                             if (!jsonObject.isNull("is_customised_intinerary")){
                                 is_customised_intinerary = jsonObject.getInt("is_customised_intinerary")
                             }
@@ -425,8 +429,15 @@ class ExperienceController {
                             }
 
                             if (!jsonObject.isNull("is_flexible_ticket")){
-                                is_flexible_ticket = jsonObject.getInt("is_flexible_ticket")
-                                exp_validity_amount = jsonObject.getInt("exp_validity_amount")
+
+                                if (!jsonObject.isNull("is_flexible_ticket")){
+                                    is_flexible_ticket = jsonObject.getInt("is_flexible_ticket")
+                                }
+
+                                if (!jsonObject.isNull("exp_validity_amount")){
+                                    exp_validity_amount = jsonObject.getInt("exp_validity_amount")
+                                }
+
                                 exp_validity_type = jsonObject.getString("exp_validity_type")
                             }
 
@@ -678,6 +689,13 @@ class ExperienceController {
                                 val genderLanguageArray = guideObject.getJSONArray("language")
                                 val genderLanguageArraySize = genderLanguageArray.length()
 
+                                if (gender_value == "Male"){
+                                    isGuideMaleExist = true
+                                }
+                                else{
+                                    isGuideFemaleExist = true
+                                }
+
                                 for (s in 0 until genderLanguageArraySize){
                                     val genderLanguageObject = genderLanguageArray[s] as JSONObject
                                     val genderLanguageId = genderLanguageObject.getInt("id")
@@ -814,7 +832,12 @@ class ExperienceController {
                                         val packagePaymentTypeId = packagePaymentObject.getString("payment_type_id")
                                         val packagePaymentTypeName = packagePaymentObject.getString("payment_type_name")
                                         val packagePaymentTypeDesc = packagePaymentObject.getString("payment_type_desc")
-                                        val paymentPerecentage = packagePaymentObject.getInt("payment_precentage")
+
+                                        var paymentPerecentage = 0
+
+                                        if (!packagePaymentObject.isNull("payment_precentage")){
+                                            paymentPerecentage = packagePaymentObject.getInt("payment_precentage")
+                                        }
 
                                         val packagePaymentCustomPriceList = ArrayList<HashMap<String,Any>>()
 
@@ -948,6 +971,7 @@ class ExperienceController {
                             experienceDetailModel.exp_desc = exp_desc
                             experienceDetailModel.exp_max_guest  = exp_max_guest
                             experienceDetailModel.exp_pickup_place = exp_pickup_place
+                            experienceDetailModel.exp_pickup_place_desc = exp_pickup_place_desc
                             experienceDetailModel.exp_pickup_time   = exp_pickup_time
                             experienceDetailModel.exp_pickup_place_longitude  = exp_pickup_place_longitude
                             experienceDetailModel.exp_pickup_place_latitude = exp_pickup_place_latitude
@@ -990,6 +1014,8 @@ class ExperienceController {
                             experienceDetailModel.is_flexible_ticket = is_flexible_ticket
                             experienceDetailModel.exp_validity_amount = exp_validity_amount
                             experienceDetailModel.exp_validity_type = exp_validity_type
+                            experienceDetailModel.isGuideMaleExist = isGuideMaleExist
+                            experienceDetailModel.isGuideFemaleExist = isGuideFemaleExist
 
                             experienceDetailCallback.onExperienceDetailLoaded(experienceDetailModel)
                         }

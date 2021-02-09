@@ -97,18 +97,19 @@ class ServiceExperienceAdapter (context : Context, itemList : ArrayList<Experien
                     val type = paymentType[1].toLowerCase(Locale.ROOT)
                     val currency = experienceModel.currency ?: ""
                     val strPrice = "$currency $price/$type"
-                    holder.txtPrice.text = strPrice
 
                     if (experienceModel.special_price != 0L){
                         val specialPrice = CurrencyUtil.decimal(experienceModel.special_price).
                         replace(",",".")
-                        val strSpecialPrice = "$specialPrice $price/$type"
+                        val strSpecialPrice = "$specialPrice/$type"
 
                         holder.txtSpecialPrice.visibility = View.VISIBLE
-                        holder.txtSpecialPrice.text = strSpecialPrice
+                        holder.txtSpecialPrice.text = strPrice
+                        holder.txtPrice.text = strSpecialPrice
                     }
                     else{
                         holder.txtSpecialPrice.visibility = View.GONE
+                        holder.txtPrice.text = strPrice
                     }
                 }
             }

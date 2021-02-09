@@ -14,9 +14,13 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
-        <activity android:name=".View.ActivityDetaipTripInspiration"
+        <activity
+            android:name=".View.ActivityNewLogin"
             android:theme="@style/AppTheme.WhiteNoActionBar"
             />
+        <activity
+            android:name=".View.ActivityDetaipTripInspiration"
+            android:theme="@style/AppTheme.WhiteNoActionBar" />
         <activity
             android:name=".View.ActivitySelectGuide"
             android:theme="@style/AppTheme.WhiteNoActionBar" />

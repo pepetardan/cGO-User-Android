@@ -731,15 +731,36 @@ class ActivityCheckout : AppCompatActivity(), View.OnClickListener, ApplicationL
             newRvName.add(addOnList[i])
         }
 
+        if (addOnList.size > 1){
+            linearAddOn.visibility = View.VISIBLE
+            linearAddOn2.visibility = View.VISIBLE
+        }
+        else{
+            linearAddOn.visibility = View.GONE
+            linearAddOn2.visibility = View.GONE
+        }
+
         rvAddonName.adapter = AddonNameAdapter(this,newRvName)
         rvAddonName2.adapter = AddonNameAdapter(this,newRvName)
+
         rvAddonList.adapter = AdapterAddonList(this,newRvList,packageCurrency)
 
         fixed_total_price = total_price
         val price = CurrencyUtil.decimal(total_price).replace(",",
             ".")
-        val addOnTicketPrice = CurrencyUtil.decimal(addOnList[0].amount).replace(",",
-            ".")
+        val totalGuest = adultCount + childrenCount
+
+        val addOnTicketPrice : String
+
+        if (paymentType == "Pax"){
+             addOnTicketPrice = CurrencyUtil.decimal(addOnList[0].amount / totalGuest).replace(",",
+                ".")
+        }
+        else{
+             addOnTicketPrice = CurrencyUtil.decimal(addOnList[0].amount).replace(",",
+                ".")
+        }
+
         val strPrice = "$packageCurrency $price"
 
         val totalGuestWithoutInfant = adultCount + childrenCount
@@ -768,6 +789,7 @@ class ActivityCheckout : AppCompatActivity(), View.OnClickListener, ApplicationL
         txtDialogTotalPrice.text = strPrice
 
         txtTitleCheckout.text = experienceDetailModel.exp_title ?: ""
+        txtTitleHeader2.text = experienceDetailModel.exp_title ?: ""
         txtPriceDetails.text = "$packageCurrency $price"
         txtPrice.text = strPrice
         txtPaymentType2.text = "$packageCurrency $price"

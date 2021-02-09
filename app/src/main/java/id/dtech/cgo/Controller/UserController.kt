@@ -350,6 +350,7 @@ class UserController {
                             val dataMap = HashMap<String,Any>()
                             val dataObject = jsonArray[i] as JSONObject
 
+
                             val order_id = dataObject.getString("order_id") ?: ""
                             val exp_type = dataObject.getString("exp_type") ?: ""
                             val exp_id = dataObject.getString("exp_id") ?: ""
@@ -458,71 +459,77 @@ class UserController {
                         for (i in 0 until jsonSize){
 
                             val jsonObject = jsonArray[i] as JSONObject
-                            val itemArray = jsonObject.getJSONArray("items")
-                            val itemSize = itemArray.length()
+                            if (!jsonObject.isNull("items")) {
 
-                            for (j in 0 until itemSize){
-                                val dataMap = HashMap<String,Any>()
-                                val dataObject = itemArray[j] as JSONObject
 
-                                val order_id = dataObject.getString("order_id") ?: ""
-                                val exp_type = dataObject.getString("exp_type") ?: ""
-                                val exp_id = dataObject.getString("exp_id") ?: ""
-                                val exp_title = dataObject.getString("exp_title") ?: ""
-                                val trans_id = dataObject.getString("trans_id") ?: ""
-                                val trans_name = dataObject.getString("trans_name") ?: ""
-                                val trans_from = dataObject.getString("trans_from") ?: ""
-                                val trans_to = dataObject.getString("trans_to") ?: ""
-                                val trans_departure_time = dataObject.getString("trans_departure_time") ?: ""
-                                val trans_arrival_time = dataObject.getString("trans_arrival_time") ?: ""
-                                val trans_class = dataObject.getString("trans_class") ?: ""
-                                val exp_booking_date = dataObject.getString("exp_booking_date") ?: ""
-                                val exp_duration = dataObject.getInt("exp_duration")
-                                val total_guest = dataObject.getInt("total_guest")
-                                val city = dataObject.getString("city") ?: ""
-                                val province = dataObject.getString("province") ?: ""
-                                val country = dataObject.getString("country") ?: ""
-                                val is_review = dataObject.getBoolean("is_review")
+                                val itemArray = jsonObject.getJSONArray("items")
+                                val itemSize = itemArray.length()
 
-                                val transGuestMap = HashMap<String,Any>()
-                                val transGuestObject = dataObject.getJSONObject("trans_guest")
-                                val adult = transGuestObject.getInt("adult")
-                                val children = transGuestObject.getInt("children")
+                                for (j in 0 until itemSize) {
+                                    val dataMap = HashMap<String, Any>()
+                                    val dataObject = itemArray[j] as JSONObject
 
-                                transGuestMap["adult"] = adult
-                                transGuestMap["children"] = children
+                                    val order_id = dataObject.getString("order_id") ?: ""
+                                    val exp_type = dataObject.getString("exp_type") ?: ""
+                                    val exp_id = dataObject.getString("exp_id") ?: ""
+                                    val exp_title = dataObject.getString("exp_title") ?: ""
+                                    val trans_id = dataObject.getString("trans_id") ?: ""
+                                    val trans_name = dataObject.getString("trans_name") ?: ""
+                                    val trans_from = dataObject.getString("trans_from") ?: ""
+                                    val trans_to = dataObject.getString("trans_to") ?: ""
+                                    val trans_departure_time =
+                                        dataObject.getString("trans_departure_time") ?: ""
+                                    val trans_arrival_time =
+                                        dataObject.getString("trans_arrival_time") ?: ""
+                                    val trans_class = dataObject.getString("trans_class") ?: ""
+                                    val exp_booking_date =
+                                        dataObject.getString("exp_booking_date") ?: ""
+                                    val exp_duration = dataObject.getInt("exp_duration")
+                                    val total_guest = dataObject.getInt("total_guest")
+                                    val city = dataObject.getString("city") ?: ""
+                                    val province = dataObject.getString("province") ?: ""
+                                    val country = dataObject.getString("country") ?: ""
+                                    val is_review = dataObject.getBoolean("is_review")
 
-                                var booking_type : Int
+                                    val transGuestMap = HashMap<String, Any>()
+                                    val transGuestObject = dataObject.getJSONObject("trans_guest")
+                                    val adult = transGuestObject.getInt("adult")
+                                    val children = transGuestObject.getInt("children")
 
-                                if (trans_name.isEmpty()){
-                                    booking_type = 0
+                                    transGuestMap["adult"] = adult
+                                    transGuestMap["children"] = children
+
+                                    var booking_type: Int
+
+                                    if (trans_name.isEmpty()) {
+                                        booking_type = 0
+                                    } else {
+                                        booking_type = 1
+                                    }
+
+                                    dataMap["order_id"] = order_id
+                                    dataMap["exp_type"] = exp_type
+                                    dataMap["exp_id"] = exp_id
+                                    dataMap["exp_title"] = exp_title
+                                    dataMap["trans_id"] = trans_id
+                                    dataMap["trans_name"] = trans_name
+                                    dataMap["trans_from"] = trans_from
+                                    dataMap["trans_to"] = trans_to
+                                    dataMap["trans_departure_time"] = trans_departure_time
+                                    dataMap["trans_arrival_time"] = trans_arrival_time
+                                    dataMap["trans_class"] = trans_class
+                                    dataMap["exp_booking_date"] = exp_booking_date
+                                    dataMap["exp_duration"] = exp_duration
+                                    dataMap["total_guest"] = total_guest
+                                    dataMap["city"] = city
+                                    dataMap["is_review"] = is_review
+                                    dataMap["province"] = province
+                                    dataMap["country"] = country
+                                    dataMap["booking_type"] = booking_type
+                                    dataMap["trans_guest"] = transGuestMap
+
+                                    dataList.add(dataMap)
                                 }
-                                else{
-                                    booking_type = 1
-                                }
-
-                                dataMap["order_id"] = order_id
-                                dataMap["exp_type"] = exp_type
-                                dataMap["exp_id"] = exp_id
-                                dataMap["exp_title"] = exp_title
-                                dataMap["trans_id"] = trans_id
-                                dataMap["trans_name"] = trans_name
-                                dataMap["trans_from"] = trans_from
-                                dataMap["trans_to"] = trans_to
-                                dataMap["trans_departure_time"] = trans_departure_time
-                                dataMap["trans_arrival_time"] = trans_arrival_time
-                                dataMap["trans_class"] = trans_class
-                                dataMap["exp_booking_date"] = exp_booking_date
-                                dataMap["exp_duration"] = exp_duration
-                                dataMap["total_guest"] = total_guest
-                                dataMap["city"] = city
-                                dataMap["is_review"] = is_review
-                                dataMap["province"] = province
-                                dataMap["country"] = country
-                                dataMap["booking_type"] = booking_type
-                                dataMap["trans_guest"] = transGuestMap
-
-                                dataList.add(dataMap)
                             }
                         }
 

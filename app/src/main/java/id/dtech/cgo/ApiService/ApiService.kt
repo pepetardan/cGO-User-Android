@@ -52,7 +52,7 @@ interface ApiService {
     fun getUserInfo() : Observable<Response<ResponseBody>>
 
     // GET TRIP INSPIRATION
-    @GET("wp-json/cgo/article")
+    @GET("cgo/article")
     fun getTripInspiration() : Observable<Response<ResponseBody>>
 
     // GET PROMO

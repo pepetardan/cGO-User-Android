@@ -178,7 +178,7 @@ class FragmentExplore : Fragment(), View.OnClickListener, MyCallback.Companion.T
             val i = Intent(it,ActivityExperience::class.java)
             i.putExtra("from",from)
             i.putExtra("activity_position",model?.id)
-            it.startActivity(i)
+            startActivity(i)
         }
     }
 

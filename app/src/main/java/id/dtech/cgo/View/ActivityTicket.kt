@@ -185,17 +185,28 @@ class ActivityTicket : AppCompatActivity(), View.OnClickListener,
         val bookingDate = data["booking_date"] as String
         val harborName = experienceMap["harbors_name"] as String
         val provinceName = experienceMap["province_name"] as String
-        val addOnlist = experienceMap["addOnlist"] as ArrayList<AddOnModel>
+        val addOnlist = experienceMap["addOnList"] as ArrayList<AddOnModel>
 
         guestList = data["guest_desc"] as ArrayList<HashMap<String,Any>>
         val total_guest = guestList.size
         val merchant_picture = experienceMap["merchant_picture"] as String
         val merchant_name = experienceMap["merchant_name"] as String
         val merchant_phone = experienceMap["merchant_phone"] as String
+        val ticket_valid_date = experienceMap["ticket_valid_date"] as? String ?: ""
         val barcode_picture = data["ticket_qr_code"] as String
 
         rvType.adapter = ServiceTypeAdapter(0,this,typeList)
         applyDate(bookingDate,expDuration)
+
+        if (ticket_valid_date.isNotEmpty()){
+            if (ticket_valid_date != "null"){
+                txtValidUntil.visibility = View.VISIBLE
+                txtValidUntil.text = "E-ticket valid until $ticket_valid_date"
+            }
+        }
+        else{
+            txtValidUntil.visibility = View.GONE
+        }
 
         if (barcode_picture.isNotEmpty()){
             Picasso.get().load(barcode_picture).into(imgQrCode)
@@ -227,8 +238,8 @@ class ActivityTicket : AppCompatActivity(), View.OnClickListener,
         var isPackageIdZero = false
         var isAddOnEmpty = false
 
-        if (expPaymentMap["packageId"] != null){
-            packageId = expPaymentMap["packageId"] as Int
+        if (experienceMap["package_id"] != null){
+            packageId = experienceMap["package_id"] as Int
         }
 
         if (packageId != 0){

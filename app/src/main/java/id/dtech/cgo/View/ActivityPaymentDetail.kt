@@ -149,10 +149,9 @@ class ActivityPaymentDetail : AppCompatActivity(), View.OnClickListener,
 
         val experienceMap = data["experience"] as HashMap<String,Any>
         val bookedByArray = data["booked_by"] as ArrayList<HashMap<String,Any>>
-        val expPaymentMap = data["expPaymentMap"] as HashMap<String,Any>
         val totalGuestList = data["guest_desc"] as ArrayList<HashMap<String,Any>>
         val bookedByMap = bookedByArray[0]
-        val addOnlist = experienceMap["addOnlist"] as ArrayList<AddOnModel>
+        val addOnlist = experienceMap["addOnList"] as ArrayList<AddOnModel>
 
         val total_price = data["total_price"] as Long
         val currency = data["currency"] as String
@@ -169,8 +168,8 @@ class ActivityPaymentDetail : AppCompatActivity(), View.OnClickListener,
         var isPackageIdZero = false
         var isAddOnEmpty = false
 
-        if (expPaymentMap["packageId"] != null){
-            packageId = expPaymentMap["packageId"] as Int
+        if (experienceMap["package_id"] != null){
+            packageId = experienceMap["package_id"] as Int
         }
 
         if (packageId != 0){

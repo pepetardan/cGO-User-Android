@@ -236,6 +236,7 @@
             />
 
           <LinearLayout
+              android:id="@+id/linearSailing"
               android:layout_width="match_parent"
               android:layout_height="wrap_content"
               android:orientation="vertical"
@@ -303,6 +304,7 @@
           </LinearLayout>
 
             <LinearLayout
+                android:id="@+id/linearTour"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
@@ -370,6 +372,7 @@
             </LinearLayout>
 
             <LinearLayout
+                android:id="@+id/linearSnorkeling"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
@@ -438,6 +441,7 @@
             </LinearLayout>
 
             <RelativeLayout
+                android:id="@+id/relativeShareReferal"
                 android:layout_width="match_parent"
                 android:layout_height="185dp"
                 android:layout_margin="24dp">
